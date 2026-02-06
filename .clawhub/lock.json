@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "bilibili-hot-monitor": {
+      "version": "1.0.10",
+      "installedAt": 1770138254034
+    },
+    "faster-whisper": {
+      "version": "1.0.4",
+      "installedAt": 1770142251546
+    },
+    "sag": {
+      "version": "1.0.0",
+      "installedAt": 1770142671587
+    },
+    "summarize": {
+      "version": "1.0.0",
+      "installedAt": 1770142890088
+    },
+    "weather": {
+      "version": "1.0.0",
+      "installedAt": 1770143098933
+    },
+    "ttrpg-gm": {
+      "version": "2.1.0",
+      "installedAt": 1770398226406
+    }
+  }
+}

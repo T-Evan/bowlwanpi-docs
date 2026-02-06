@@ -1,0 +1,5 @@
+#!/bin/bash
+# 使用 large-v3-turbo 模型转录（对中文支持更好）
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
+"$SCRIPT_DIR/.venv/bin/python" "$SCRIPT_DIR/scripts/transcribe.py" "$@" --model large-v3-turbo

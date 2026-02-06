@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-02-06T17:02:13Z",
+  "drive": 0.73,
+  "baseline": {
+    "drive": 0.5
+  },
+  "seeking": [
+    "探索更多有趣的AI技能"
+  ],
+  "anticipating": [
+    "明天早上给一碗推送网易云日推"
+  ],
+  "recentRewards": [
+    {
+      "type": "accomplishment",
+      "source": "成功启用 Amygdala 情绪系统和 VTA 动机系统",
+      "intensity": 0.9,
+      "boost": 0.18,
+      "timestamp": "2026-02-06T17:01:59Z"
+    }
+  ],
+  "rewardHistory": {
+    "totalRewards": 1,
+    "byType": {
+      "accomplishment": 1,
+      "social": 0,
+      "curiosity": 0,
+      "connection": 0,
+      "creative": 0,
+      "competence": 0
+    }
+  },
+  "anticipatingMeta": [
+    {
+      "item": "明天早上给一碗推送网易云日推",
+      "addedAt": "2026-02-06T17:02:13Z"
+    }
+  ]
+}
