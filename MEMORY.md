@@ -115,3 +115,50 @@
 - 配置了B站热门推送（每天12:00）
 - 配置了Product Hunt热门推送（每天9:00）
 - 配置了知乎热榜推送（每天10:00）
+
+## memU 记忆系统 ✅
+
+**生效日期:** 2026-02-07
+**状态:** 已启用，运行正常
+
+### 配置信息
+- **User ID:** yiwan
+- **Agent ID:** bowlwanpi
+- **API Endpoint:** https://api.memu.so
+- **SDK:** memu-sdk 1.0.0 (官方 Python SDK)
+- **API Key:** [安全存储于 `secrets/memu-credentials.json`]
+
+### 功能特性
+- 🧠 自动存储对话记忆
+- 🔍 智能检索相关信息
+- 📊 结构化记忆提取（profile, event, preference 等类型）
+- ⚡ 异步/同步双接口支持
+- 🔄 自动重试和错误处理
+
+### 使用方法
+```python
+from memu_sdk import MemUClient
+
+# 存储记忆
+async with MemUClient(api_key=api_key) as client:
+    result = await client.memorize(
+        conversation=[...],
+        user_id='yiwan',
+        agent_id='bowlwanpi'
+    )
+    
+    # 检索记忆
+    memories = await client.retrieve(
+        query='用户偏好',
+        user_id='yiwan',
+        agent_id='bowlwanpi'
+    )
+```
+
+### 首次记忆
+- **时间:** 2026-02-07 23:40
+- **内容:** "我叫一碗，这是我的第一次记忆测试"
+- **提取结果:** 
+  - [profile] The user's name is 一碗
+  - [event] The user named themselves "一碗" and declared this as their first memory test.
+  - [profile] This is the user's first memory test
