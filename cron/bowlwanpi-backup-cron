@@ -1,0 +1,55 @@
+# BowlWanpi 定时任务兜底方案
+# 使用 Linux 系统级 cron，即使 OpenClaw 内置调度器挂了也能执行
+# 
+# 安装: sudo cp /root/.openclaw/workspace/cron/bowlwanpi-backup-cron /etc/cron.d/
+# 权限: sudo chmod 644 /etc/cron.d/bowlwanpi-backup-cron
+# 验证: sudo cat /var/log/cron | grep bowlwanpi
+
+SHELL=/bin/bash
+PATH=/root/.nvm/versions/node/v22.22.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOME=/root
+
+# 心跳监控 - 每5分钟检查一次系统状态
+*/5 * * * * root /root/.openclaw/workspace/scripts/heartbeat.sh >> /var/log/bowlwanpi-heartbeat.log 2>&1
+
+# 心跳简报 - 每5分钟生成并尝试发送报告
+*/5 * * * * root /root/.openclaw/workspace/scripts/send-heartbeat-report.sh >> /var/log/bowlwanpi-reports.log 2>&1
+
+# Hacker News OpenClaw 监控 - 每小时检查一次
+0 * * * * root /root/.openclaw/workspace/scripts/hackernews-monitor.sh >> /var/log/bowlwanpi-hackernews.log 2>&1
+
+# 夜间构建 - 每天凌晨 3:00
+0 3 * * * root /root/.openclaw/workspace/scripts/nightly-build-enhanced.sh >> /var/log/bowlwanpi-nightly-build.log 2>&1
+
+# 晨报预备 - 每天上午 7:00
+0 7 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-prep >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 网易云日推 - 每天上午 8:00
+0 8 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh netease-music >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 早晨简报 - 每天上午 8:30
+30 8 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-brief >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 微博热搜 - 每天上午 8:30
+30 8 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh weibo-hot >> /var/log/bowlwanpi-cron.log 2>&1
+
+# Product Hunt - 每天上午 9:00
+0 9 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh product-hunt >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 知乎热榜 - 每天上午 10:00
+0 10 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh zhihu-hot >> /var/log/bowlwanpi-cron.log 2>&1
+
+# B站热门 - 每天中午 12:00
+0 12 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh bilibili-hot >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 信息收集 - 每天下午 14:00
+0 14 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh info-collect >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 晚间反思 - 每天下午 22:30
+30 22 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh evening-reflect >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 睡眠提醒 - 每天下午 23:00
+0 23 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh sleep-reminder >> /var/log/bowlwanpi-cron.log 2>&1
+
+# 周回顾 - 每周日 20:00
+0 20 * * 0 root /root/.openclaw/workspace/scripts/backup-cron.sh weekly-review >> /var/log/bowlwanpi-cron.log 2>&1
