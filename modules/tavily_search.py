@@ -79,14 +79,9 @@ def search(
         "Content-Type": "application/json"
     }
     
-    # 设置代理
-    proxies = {
-        "http://": "http://127.0.0.1:7890",
-        "https://": "http://127.0.0.1:7890"
-    }
-    
     try:
-        with httpx.Client(proxies=proxies, timeout=30) as client:
+        # 直接访问（不通过代理）
+        with httpx.Client(timeout=30) as client:
             response = client.post(url, json=payload, headers=headers)
             response.raise_for_status()
             return response.json()

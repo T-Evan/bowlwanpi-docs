@@ -17,6 +17,10 @@
         "MEMOS_USER_ID": "yiwanbot",
         "MEMOS_CHANNEL": "MODELSCOPE"
       }
+    },
+    "tavily-mcp": {
+      "type": "sse",
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=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"
     }
   }
 }
