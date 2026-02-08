@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "name": "memu-memory",
+  "auto_store": true,
+  "store_threshold": {
+    "min_length": 10,
+    "important_keywords": [
+      "记住", "提醒", "约定", "规则",
+      "我喜欢", "我习惯", "我偏好", "我不",
+      "配置", "设置", "方案", "计划",
+      "选择", "决定", "重要", "关键"
+    ]
+  },
+  "retrieve": {
+    "enabled": true,
+    "before_response": true,
+    "max_memories": 5
+  },
+  "credentials": {
+    "path": "/root/.openclaw/workspace/secrets/memu-credentials.json"
+  },
+  "user": {
+    "id": "yiwan",
+    "agent_id": "bowlwanpi"
+  }
+}

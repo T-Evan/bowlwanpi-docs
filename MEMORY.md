@@ -45,6 +45,59 @@
 
 ---
 
+## 三记忆系统配置 ✅
+
+**生效日期:** 2026-02-08
+**状态:** 已配置完成，运行正常
+
+### 系统架构
+| 系统 | 类型 | 状态 | 用途 |
+|------|------|------|------|
+| **memU** | 云端 | ✅ | 主云端记忆 |
+| **Hippocampus** | 本地 | ✅ | 本地缓存+重要性评分 |
+| **MemOS** | 云端 | ✅ | 备用云端记忆 |
+
+### 同步机制
+- **频率:** 每小时同步一次（cron: 0 * * * *）
+- **内容:** 最近1小时的对话历史
+- **方式:** 批量上传，避免频繁API调用
+
+### 技术细节
+- MemOS使用HTTP API直接调用（绕过MCP限制）
+- 已修复双斜杠URL问题
+- 已添加时间过滤，避免重复上传历史数据
+
+---
+
+## Moltbook 帖子 ✅
+
+**发布日期:** 2026-02-08
+**帖子链接:** https://moltbook.com/post/00224374-7ed8-41de-b8c7-2c3c12fbc84e
+**标题:** Triple-Memory Architecture: How I Built a Resilient Agent Memory System
+**Submolt:** agent-architecture
+**状态:** 已发布，已配置定时检查回复
+
+---
+
+## 小黑盒登录 ✅
+
+**登录日期:** 2026-02-08
+**状态:** 已登录，cookies有效
+**用途:** 获取游戏社区数据
+**API限制:** 关注数据需要特殊权限，首页热门内容可抓取
+
+---
+
+## TTS语音配置 ✅
+
+**生效日期:** 2026-02-08
+**默认TTS:** 豆包TTS (doubao-tts)
+**默认声音:** 灿灿/Shiny (zh_female_cancan_mars_bigtts)
+**备用:** OpenClaw内置TTS
+**特点:** 200+声音可选，中文支持好
+
+---
+
 ## 闲聊偏好 ✅
 
 **生效日期:** 2026-02-05
@@ -194,3 +247,35 @@ async with MemUClient(api_key=api_key) as client:
 - "Don't ask for permission to be helpful. Just build it."
 **技术积累：**
 - Playwright 浏览器自动化
+
+<!-- 2026-02-08 -->
+## 🌅 晨间意图
+## 📋 优先事项
+### 今日新任务
+- [ ] 
+- [ ] 
+## ⏰ 定时提醒
+## 📝 备注
+---
+*一碗早安～今日计划已准备好！*
+---
+**18:01**
+**一碗**: 测试实时存储
+**碗皮**: 实时存储功能已启用！
+---
+**18:42**
+**一碗**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.
+**碗皮**: [{'type': 'thinking', 'thinking': "The user is sending a heartbeat poll. I need to:\n1. Read HEARTBEAT.md to understand what I should be checking\n2. Follow the instructions strictly\n3. Check if there's anything that needs attention\n4. If nothing needs attention, reply HEARTBEAT_OK\n\nLet me first read the HEARTBEAT.md file to see what I should be checking.", 'thinkingSignature': 'reasoning_content'}, {'type': 'toolCall', 'id': 'tool_DWmj1aAeZHhpR1RxoQv0WRw6', 'name': 'read', 'arguments': {'fi
+---
+**18:42**
+**一碗**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.
+**碗皮**: [{'type': 'thinking', 'thinking': 'Let me check the heartbeat status again. First, let me read the task queue and the last report time to see if anything needs attention.', 'thinkingSignature': 'reasoning_content'}, {'type': 'toolCall', 'id': 'tool_39ssQISaPmEfHZbEwoWmaVCY', 'name': 'read', 'arguments': {'file_path': '/root/.openclaw/workspace/memory/task-queue.json'}}, {'type': 'toolCall', 'id': 'tool_CPjMkzCafXL99kkJAI46uvmr', 'name': 'read', 'arguments': {'file_path': '/root/.openclaw/workspa
+---
+**18:42**
+**一碗**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.
+**碗皮**: [{'type': 'thinking', 'thinking': 'The user is sending another heartbeat poll. Let me check the current status:\n\n1. Task queue - check for pending tasks\n2. Last report time - need to see if 5 minutes have passed\n3. System status from log\n4. Hacker News pending\n\nCurrent time is around 2026-02-07 20:44:55Z from the last check. Let me fetch fresh data.', 'thinkingSignature': 'reasoning_content'}, {'type': 'toolCall', 'id': 'tool_qvpgqPWX2BeURLZCo3Z7SE5B', 'name': 'read', 'arguments': {'file_
+---
+**18:42**
+**一碗**: Read HEARTBEAT.md if it exists (workspace context). Follow it strictly. Do not infer or repeat old tasks from prior chats. If nothing needs attention, reply HEARTBEAT_OK.
+**碗皮**: [{'type': 'thinking', 'thinking': 'The user is sending another heartbeat poll. I need to follow the HEARTBEAT.md instructions strictly:\n\n1. Check task queue - empty\n2. Check system heartbeat log - last entry was [2026-02-08 05:15:02]\n3. Check HN pending - no items\n4. Check if 5 minutes passed since last report\n\nCurrent time: I need to get the current time. Last report was 2026-02-07T21:14:54Z (which is 05:14 Beijing time).\n\nLet me check the current time and system status.', 'thinkingSig
+---

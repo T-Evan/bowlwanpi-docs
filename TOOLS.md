@@ -36,9 +36,30 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ## Search Preferences
 
 ### Default Search Provider
-- **Primary:** 腾讯云搜索 (tencent-search)
-- **Fallback:** Brave Search (web_search)
-- **Notes:** 一碗偏好使用腾讯云搜索，中文结果质量更好
+- **Primary:** 腾讯云 WSA 联网搜索 (tencent-search) ✅ 已配置
+- **Fallback:** Tavily MCP
+- **Notes:** 一碗偏好使用腾讯云搜索，中文结果质量更好；Brave Search 已停用
+- **Credentials:** `/root/.openclaw/workspace/secrets/tencent-credentials.json`
+
+---
+
+## TTS (语音合成) 偏好
+
+### 默认 TTS 服务
+- **Primary:** 豆包 TTS (doubao-tts) ✅ **默认**
+  - 声音: 灿灿/Shiny (zh_female_cancan_mars_bigtts)
+  - 特点: 200+ 声音可选，中文支持好，声音自然
+  - 配置: `~/.openclaw/workspace/skills/doubao-tts/.env`
+- **Fallback:** OpenClaw 内置 TTS
+  - 特点: 简单快速，无需额外配置
+
+### 使用方式
+```python
+# 优先使用豆包 TTS
+from skills.doubao-tts.scripts.tts import VolcanoTTS
+tts = VolcanoTTS()
+output = tts.synthesize("一碗你好～", output_file="/tmp/voice.mp3")
+```
 
 ---
 

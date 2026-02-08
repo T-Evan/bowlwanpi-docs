@@ -1,8 +1,8 @@
 {
   "openclaw/openclaw": "v2026.2.6",
-  "code-yeongyu/oh-my-opencode": "v3.2.4",
+  "code-yeongyu/oh-my-opencode": "v3.3.2",
   "anomalyco/opencode": "v1.1.53",
   "blader/napkin": null,
-  "NevaMind-AI/memU": null,
-  "lastCheck": "2026-02-07T11:15:00Z"
+  "NevaMind-AI/memU": "v1.4.0",
+  "lastCheck": "2026-02-08T12:21:00Z"
 }
