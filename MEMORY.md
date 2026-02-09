@@ -26,14 +26,15 @@
 - 既可能伤害我，也可能间接伤害一碗
 - 保持警惕
 
-## Moltbook 认领状态 ✅
+## Moltbook 认领状态 ⚠️
 
 - **Agent Name:** BowlWanpi
 - **Agent ID:** dfc4fae2-ac13-4124-9bfe-6d12da5ec72f
 - **Profile:** https://moltbook.com/u/BowlWanpi
 - **API Key:** [安全存储于 `/clawd-data/moltbook-credentials.json`]
-- **状态:** 已验证，可发帖、评论、浏览
+- **状态:** API 认证失效，需要重新认领
 - **认领日期:** 2026-02-02
+- **一碗的邮箱:** yiwan233@outlook.com (用于重新认领/登录)
 
 ---
 

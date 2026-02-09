@@ -1,19 +1,27 @@
 #!/usr/bin/env python3
 """
-简化版批量存储脚本 - 用于 cron 任务
+上传到三记忆系统的脚本
 """
 
 import json
 import os
 import sys
+import asyncio
 from datetime import datetime, timedelta
 from pathlib import Path
+
+sys.path.insert(0, '/root/.openclaw/workspace')
+sys.path.insert(0, '/root/.openclaw/workspace/skills/memu-memory')
+sys.path.insert(0, '/root/.openclaw/workspace/skills/hippocampus-memory')
+sys.path.insert(0, '/root/.openclaw/workspace/skills/unified-memory')
+
+from unified_memory_manager import store_to_all_systems
 
 WORKSPACE = Path("/root/.openclaw/workspace")
 MEMORY_DIR = WORKSPACE / "memory"
 
-def get_session_history(hours=1):
-    """获取最近 N 小时的会话历史"""
+def get_recent_conversations(hours=1):
+    """获取最近 N 小时的会话历史并提取对话对"""
     sessions_dir = Path("/root/.openclaw/agents/main/sessions")
     if not sessions_dir.exists():
         return []
@@ -55,10 +63,7 @@ def get_session_history(hours=1):
         except Exception as e:
             print(f"读取失败: {e}")
     
-    return messages
-
-def extract_conversations(messages):
-    """提取对话对"""
+    # 提取对话对
     conversations = []
     pending_user_msg = None
     
@@ -91,58 +96,70 @@ def extract_conversations(messages):
     
     return conversations
 
-def save_to_daily_file(conversations):
-    """保存到每日记忆文件"""
-    today = datetime.now().strftime("%Y-%m-%d")
-    daily_file = MEMORY_DIR / f"{today}.md"
+async def upload_to_memory_systems(conversations):
+    """批量上传到三记忆系统"""
+    if not conversations:
+        print("ℹ️ 没有对话需要上传")
+        return {'memu': 0, 'hippocampus': 0, 'memos': 0}
     
-    entries = []
-    for conv in conversations:
-        timestamp = datetime.now().strftime("%H:%M")
-        entry = f"\n---\n\n**{timestamp}**\n\n**一碗**: {conv['user']}\n\n**碗皮**: {conv['assistant']}\n"
-        entries.append(entry)
+    print(f"☁️ 开始上传 {len(conversations)} 组对话到三记忆系统...")
+    print()
     
-    try:
-        with open(daily_file, 'a', encoding='utf-8') as f:
-            f.write('\n'.join(entries))
-        return True
-    except Exception as e:
-        print(f"保存失败: {e}")
-        return False
+    stats = {'memu': 0, 'hippocampus': 0, 'memos': 0}
+    
+    for i, conv in enumerate(conversations, 1):
+        try:
+            result = await store_to_all_systems(
+                user_msg=conv['user'],
+                assistant_msg=conv['assistant'],
+                importance=0.7
+            )
+            
+            if result.get('memu'):
+                stats['memu'] += 1
+            if result.get('hippocampus'):
+                stats['hippocampus'] += 1
+            if result.get('memos'):
+                stats['memos'] += 1
+            
+            status = "✅" if all(result.values()) else "⚠️"
+            print(f"  {status} [{i}/{len(conversations)}] {conv['user'][:40]}...")
+            
+        except Exception as e:
+            print(f"  ❌ [{i}/{len(conversations)}] 上传失败: {e}")
+    
+    return stats
 
-def main():
+async def main():
     print("="*60)
-    print("🧠 会话历史批量存储")
+    print("🧠 三记忆系统批量上传")
     print("="*60)
     print(f"时间: {datetime.now().isoformat()}")
     print()
     
-    # 获取会话历史
-    messages = get_session_history(hours=1)
-    print(f"📨 找到 {len(messages)} 条消息（最近1小时）")
-    
-    # 提取对话
-    conversations = extract_conversations(messages)
-    print(f"💬 提取 {len(conversations)} 组对话")
+    # 获取最近1小时的对话
+    print("🔍 获取最近1小时的对话...")
+    conversations = get_recent_conversations(hours=1)
+    print(f"  找到 {len(conversations)} 组对话")
     print()
     
     if not conversations:
-        print("ℹ️ 没有新的对话需要存储")
+        print("ℹ️ 没有新对话需要上传")
         return 0
     
-    # 保存到每日文件
-    print("💾 保存到每日记忆文件...")
-    if save_to_daily_file(conversations):
-        today = datetime.now().strftime("%Y-%m-%d")
-        print(f"   ✅ memory/{today}.md")
+    # 上传到三记忆系统
+    stats = await upload_to_memory_systems(conversations)
     
     print()
     print("="*60)
-    print("✅ 完成!")
+    print("📊 上传统计:")
+    print(f"  memU:        {stats['memu']}/{len(conversations)}")
+    print(f"  Hippocampus: {stats['hippocampus']}/{len(conversations)}")
+    print(f"  MemOS:       {stats['memos']}/{len(conversations)}")
     print("="*60)
     
     return len(conversations)
 
 if __name__ == '__main__':
-    count = main()
+    count = asyncio.run(main())
     sys.exit(0)

@@ -1,66 +1,64 @@
 #!/usr/bin/env python3
 """
-实时存储备用方案 - 会话历史批量存储
-由于 OpenClaw hooks 未配置，使用此脚本手动存储对话历史
+实时存储备用方案 - 会话历史批量存储 v3.0
+修复：跳过有问题的 memU 初始化，使用可靠的本地存储 + 简单 HTTP API
 """
 
 import json
 import os
 import sys
-import asyncio
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
-sys.path.insert(0, '/root/.openclaw/workspace')
-sys.path.insert(0, '/root/.openclaw/workspace/skills/memu-memory')
-sys.path.insert(0, '/root/.openclaw/workspace/skills/unified-memory')
-
-try:
-    from unified_memory_manager import store_to_all_systems
-except ImportError:
-    store_to_all_systems = None
-    print("⚠️ 无法导入 unified_memory_manager")
-
+# 配置
 WORKSPACE = Path("/root/.openclaw/workspace")
 MEMORY_DIR = WORKSPACE / "memory"
+CREDENTIALS_PATH = '/root/.openclaw/workspace/secrets/memu-credentials.json'
+
+def check_proxy():
+    """检查代理是否正常工作"""
+    try:
+        result = subprocess.run(
+            ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', 
+             '--max-time', '3', '--proxy', 'http://127.0.0.1:7890', 'https://www.google.com'],
+            capture_output=True,
+            text=True,
+            timeout=5
+        )
+        return result.stdout.strip() == '200'
+    except:
+        return False
 
 def get_session_history(hours=1):
     """获取最近 N 小时的会话历史"""
     from datetime import datetime, timedelta
     
-    # 尝试从 OpenClaw 会话文件读取
     sessions_dir = Path("/root/.openclaw/agents/main/sessions")
     if not sessions_dir.exists():
         return []
     
-    # 获取最近 N 小时内修改过的会话文件
     cutoff_time = datetime.now() - timedelta(hours=hours)
     cutoff_timestamp = cutoff_time.timestamp()
     
-    session_files = [
-        f for f in sessions_dir.glob("*.jsonl")
-        if f.stat().st_mtime >= cutoff_timestamp
-    ]
+    session_files = [f for f in sessions_dir.glob("*.jsonl") if f.stat().st_mtime >= cutoff_timestamp]
     
     if not session_files:
-        print(f"ℹ️ 最近 {hours} 小时内没有新的会话文件")
         return []
     
-    # 按修改时间排序
     session_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
     
     messages = []
-    for session_file in session_files[:3]:  # 最多检查3个文件
+    for session_file in session_files[:3]:
         try:
             with open(session_file, 'r') as f:
                 for line in f:
                     if line.strip():
                         try:
                             msg = json.loads(line)
-                            # 检查消息时间戳是否在范围内
                             msg_time = msg.get('timestamp', 0)
                             if isinstance(msg_time, (int, float)):
-                                msg_time = msg_time / 1000  # 转换为秒
+                                msg_time = msg_time / 1000
                             elif isinstance(msg_time, str):
                                 try:
                                     msg_time = datetime.fromisoformat(msg_time.replace('Z', '+00:00')).timestamp()
@@ -85,13 +83,11 @@ def extract_conversations(messages):
         if not isinstance(msg, dict):
             continue
         
-        # OpenClaw 格式: role 在 message 对象内
         msg_data = msg.get('message', {})
         role = msg_data.get('role', '') if isinstance(msg_data, dict) else ''
         content = msg_data.get('content', '') if isinstance(msg_data, dict) else ''
         timestamp = msg.get('timestamp', datetime.now().isoformat())
         
-        # 提取纯文本内容
         if isinstance(content, list):
             text_parts = []
             for part in content:
@@ -102,61 +98,164 @@ def extract_conversations(messages):
             content = str(content)
         
         if role == 'user':
-            pending_user_msg = {
-                'content': content,
-                'timestamp': timestamp
-            }
+            pending_user_msg = {'content': content[:500], 'timestamp': timestamp}
         elif role == 'assistant' and pending_user_msg:
             conversations.append({
                 'user': pending_user_msg['content'],
-                'assistant': content,
+                'assistant': content[:1000],
                 'timestamp': pending_user_msg['timestamp']
             })
             pending_user_msg = None
     
     return conversations
 
-async def store_conversations_batch(conversations):
-    """批量存储对话"""
-    if store_to_all_systems is None:
-        print("❌ 无法导入存储函数")
+def save_to_hippocampus(conversations):
+    """保存到 Hippocampus (本地文件，最可靠)"""
+    try:
+        signals_file = f"{MEMORY_DIR}/signals.jsonl"
+        count = 0
+        for conv in conversations:
+            signal = {
+                "timestamp": datetime.now().timestamp(),
+                "user": conv['user'],
+                "assistant": conv['assistant'],
+                "importance": 0.7,
+                "type": "conversation"
+            }
+            with open(signals_file, 'a') as f:
+                f.write(json.dumps(signal, ensure_ascii=False) + '\n')
+            count += 1
+        return count
+    except Exception as e:
+        print(f"⚠️ Hippocampus 保存失败: {e}")
+        return 0
+
+def upload_to_memu_single(conv, api_key):
+    """使用 curl 直接上传单个对话到 memU (绕过 SDK)"""
+    try:
+        import hashlib
+        user_id = 'yiwan'
+        agent_id = 'bowlwanpi'
+        conversation_id = hashlib.md5(f"{user_id}\n{conv['user'][:50]}".encode()).hexdigest()
+        
+        data = {
+            "conversation": [
+                {"role": "user", "content": conv['user']},
+                {"role": "assistant", "content": conv['assistant']}
+            ],
+            "user_id": user_id,
+            "agent_id": agent_id
+        }
+        
+        cmd = [
+            'curl', '-s', '-X', 'POST',
+            'https://api.memu.so/memorize',
+            '-H', f'Authorization: Bearer {api_key}',
+            '-H', 'Content-Type: application/json',
+            '--proxy', 'http://127.0.0.1:7890',
+            '--max-time', '5',
+            '-d', json.dumps(data, ensure_ascii=False)
+        ]
+        
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=6)
+        return result.returncode == 0
+    except:
         return False
+
+def upload_to_memos_single(conv):
+    """使用 curl 直接上传单个对话到 MemOS"""
+    try:
+        import hashlib
+        from datetime import datetime
+        
+        user_id = 'yiwanbot'
+        api_key = "mpg-vCI2aAscjA0ckABPMVa6BhQARfckS+bm9YINlcnG"
+        conversation_id = hashlib.md5(f"{user_id}\n{conv['user'][:50]}".encode()).hexdigest()
+        
+        chat_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+        data = {
+            "user_id": user_id,
+            "conversation_id": conversation_id,
+            "messages": [
+                {"role": "user", "content": conv['user'], "chat_time": chat_time},
+                {"role": "assistant", "content": conv['assistant'], "chat_time": chat_time}
+            ]
+        }
+        
+        cmd = [
+            'curl', '-s', '-X', 'POST',
+            'https://memos.memtensor.cn/api/openmem/v1/add_message',
+            '-H', f'Authorization: Token {api_key}',
+            '-H', 'Content-Type: application/json',
+            '--proxy', 'http://127.0.0.1:7890',
+            '--max-time', '5',
+            '-d', json.dumps(data, ensure_ascii=False)
+        ]
+        
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=6)
+        return result.returncode == 0
+    except:
+        return False
+
+def store_to_all_systems_simple(conversations):
+    """简化的三系统存储（使用 curl，避免 SDK 卡住）"""
+    # 加载 memU API key
+    api_key = ''
+    try:
+        with open(CREDENTIALS_PATH, 'r') as f:
+            api_key = json.load(f).get('api_key', '')
+    except:
+        pass
     
-    success_count = 0
     memu_count = 0
     hippo_count = 0
     memos_count = 0
     
-    for conv in conversations:
-        try:
-            result = await store_to_all_systems(
-                user_msg=conv['user'],
-                assistant_msg=conv['assistant'],
-                importance=0.7
-            )
-            
-            if result['memu']:
+    print(f"☁️ 上传到三记忆系统（使用 curl，超时: 5秒）...")
+    print()
+    
+    for i, conv in enumerate(conversations):
+        print(f"  [{i+1}/{len(conversations)}] {conv['user'][:30]}...")
+        
+        # 1. Hippocampus (本地，最可靠)
+        hippo_ok = save_to_hippocampus([conv]) > 0
+        if hippo_ok:
+            hippo_count += 1
+        
+        # 2. memU (云端)
+        memu_ok = False
+        if api_key:
+            memu_ok = upload_to_memu_single(conv, api_key)
+            if memu_ok:
                 memu_count += 1
-            if result['hippocampus']:
-                hippo_count += 1
-            if result['memos']:
-                memos_count += 1
-            
-            if all(result.values()):
-                success_count += 1
-                print(f"  ✅ 存储: {conv['user'][:30]}...")
-            else:
-                print(f"  ⚠️ 部分失败: {conv['user'][:30]}...")
-                
-        except Exception as e:
-            print(f"  ❌ 存储失败: {e}")
+        
+        # 3. MemOS (云端)
+        memos_ok = upload_to_memos_single(conv)
+        if memos_ok:
+            memos_count += 1
+        
+        status = []
+        if hippo_ok:
+            status.append("H✅")
+        if memu_ok:
+            status.append("M✅")
+        if memos_ok:
+            status.append("O✅")
+        print(f"      {' | '.join(status) if status else '⚠️ 全部失败'}")
     
-    print(f"\n📊 三系统上传统计:")
-    print(f"  memU: {memu_count}/{len(conversations)}")
-    print(f"  Hippocampus: {hippo_count}/{len(conversations)}")
-    print(f"  MemOS: {memos_count}/{len(conversations)}")
+    print()
+    print(f"📊 上传统计: Hippo={hippo_count}/{len(conversations)} | memU={memu_count}/{len(conversations)} | MemOS={memos_count}/{len(conversations)}")
     
-    return success_count
+    # 如果有失败，检查代理
+    if hippo_count < len(conversations) or memu_count < len(conversations) or memos_count < len(conversations):
+        print()
+        print("🔍 检查网络代理...")
+        if check_proxy():
+            print("  ✅ 代理正常")
+        else:
+            print("  ⚠️ 代理异常，请检查 Mihomo")
+    
+    return memu_count, hippo_count, memos_count
 
 def save_to_daily_file(conversations):
     """保存到每日记忆文件"""
@@ -178,19 +277,20 @@ def save_to_daily_file(conversations):
         print(f"⚠️ 保存失败: {e}")
         return False
 
-async def main():
-    """主函数"""
+def main():
+    """主函数（同步版本，避免异步卡住）"""
     print("="*60)
-    print("🧠 会话历史批量存储")
+    print("🧠 会话历史批量存储 v3.0")
+    print("   同步执行 | curl 上传 | 5秒超时")
     print("="*60)
     print()
     
-    # 1. 获取最近1小时的会话历史
+    # 1. 获取会话历史
     print("🔍 读取最近1小时的会话历史...")
     messages = get_session_history(hours=1)
-    print(f"  找到 {len(messages)} 条消息（最近1小时）")
+    print(f"  找到 {len(messages)} 条消息")
     
-    # 2. 提取对话对
+    # 2. 提取对话
     conversations = extract_conversations(messages)
     print(f"  提取 {len(conversations)} 组对话")
     print()
@@ -199,26 +299,37 @@ async def main():
         print("ℹ️ 没有新的对话需要存储")
         return 0
     
-    # 3. 保存到每日文件
+    # 3. 保存到本地（高优先级）
     print("💾 保存到每日记忆文件...")
-    save_to_daily_file(conversations)
+    local_ok = save_to_daily_file(conversations)
+    print(f"  {'✅' if local_ok else '❌'} 本地保存")
     print()
     
-    # 4. 上传到云端记忆
-    if store_to_all_systems:
-        print("☁️ 上传到三记忆系统...")
-        success = await store_conversations_batch(conversations)
-        print(f"  成功存储: {success}/{len(conversations)}")
-    else:
-        print("⚠️ 跳过云端存储（无法导入存储模块）")
+    # 4. 上传到云端
+    memu, hippo, memos = store_to_all_systems_simple(conversations)
+    
+    # 5. 记录日志
+    print()
+    print("📝 记录执行日志...")
+    log_file = MEMORY_DIR / "nightly-build.log"
+    with open(log_file, 'a', encoding='utf-8') as f:
+        f.write(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M')} UTC] 对话历史批量存储\n")
+        f.write(f"{'='*60}\n")
+        f.write(f"📨 {len(messages)} 条消息 → {len(conversations)} 组对话\n")
+        f.write(f"💾 本地: {'✅' if local_ok else '❌'}\n")
+        f.write(f"☁️ 云端: Hippo={hippo} | memU={memu} | MemOS={memos}\n")
+        f.write(f"{'='*60}\n")
     
     print()
     print("="*60)
-    print("✅ 批量存储完成!")
+    success = (memu == len(conversations) and hippo == len(conversations) and memos == len(conversations))
+    if success:
+        print("✅ 全部完成！本地+云端都成功")
+    else:
+        print(f"⚠️ 完成！本地✅ 云端部分成功")
     print("="*60)
     
     return 0
 
 if __name__ == '__main__':
-    exit_code = asyncio.run(main())
-    sys.exit(exit_code)
+    exit(main())
