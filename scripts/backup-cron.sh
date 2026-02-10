@@ -26,18 +26,14 @@ send_message() {
     local content="$1"
     log "Sending message: ${content:0:50}..."
     
-    # 方法: 使用 openclaw CLI（最新版使用 message 参数）
+    # 方法: 使用 openclaw CLI（使用标准输入避免参数解析问题）
     if command -v openclaw &> /dev/null; then
         cd /root/.openclaw/workspace
-        # 尝试不同的参数格式
-        openclaw message send \
+        # 使用 --message - 从标准输入读取，避免参数解析问题
+        echo "$content" | openclaw message send \
             --channel feishu \
             --target "ou_a22ce6536f26dee3fec9397a9a1b87b5" \
-            "$content" >> "$LOG_FILE" 2>&1 || \
-        openclaw message send \
-            --channel feishu \
-            --user "ou_a22ce6536f26dee3fec9397a9a1b87b5" \
-            "$content" >> "$LOG_FILE" 2>&1
+            --message - >> "$LOG_FILE" 2>&1
         return $?
     fi
     

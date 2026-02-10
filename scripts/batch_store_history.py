@@ -198,20 +198,17 @@ def upload_to_memos_single(conv):
         return False
 
 def store_to_all_systems_simple(conversations):
-    """简化的三系统存储（使用 curl，避免 SDK 卡住）"""
-    # 加载 memU API key
-    api_key = ''
-    try:
-        with open(CREDENTIALS_PATH, 'r') as f:
-            api_key = json.load(f).get('api_key', '')
-    except:
-        pass
+    """简化的双系统存储（memU 已禁用，使用 Hipppcampus + MemOS）"""
+    # memU 已禁用（API 长期不可用）
+    MEMU_ENABLED = False
+    api_key = None  # 不再加载 memU credentials
     
-    memu_count = 0
+    memu_count = 0  # 保持为 0（已禁用）
     hippo_count = 0
     memos_count = 0
     
-    print(f"☁️ 上传到三记忆系统（使用 curl，超时: 5秒）...")
+    print(f"☁️ 上传到双记忆系统（Hippo + MemOS，memU 已禁用）...")
+    print(f"   注: memU API 长期不可用，已自动跳过以节省资源")
     print()
     
     for i, conv in enumerate(conversations):
@@ -222,12 +219,12 @@ def store_to_all_systems_simple(conversations):
         if hippo_ok:
             hippo_count += 1
         
-        # 2. memU (云端)
-        memu_ok = False
-        if api_key:
-            memu_ok = upload_to_memu_single(conv, api_key)
-            if memu_ok:
-                memu_count += 1
+        # 2. memU (已禁用，跳过)
+        # memu_ok = False
+        # if MEMU_ENABLED and api_key:
+        #     memu_ok = upload_to_memu_single(conv, api_key)
+        #     if memu_ok:
+        #         memu_count += 1
         
         # 3. MemOS (云端)
         memos_ok = upload_to_memos_single(conv)
@@ -237,17 +234,18 @@ def store_to_all_systems_simple(conversations):
         status = []
         if hippo_ok:
             status.append("H✅")
-        if memu_ok:
-            status.append("M✅")
+        # memU 已禁用，不再显示
+        # if memu_ok:
+        #     status.append("M✅")
         if memos_ok:
             status.append("O✅")
-        print(f"      {' | '.join(status) if status else '⚠️ 全部失败'}")
+        print(f"      {' | '.join(status) if status else '⚠️ 失败'}")
     
     print()
-    print(f"📊 上传统计: Hippo={hippo_count}/{len(conversations)} | memU={memu_count}/{len(conversations)} | MemOS={memos_count}/{len(conversations)}")
+    print(f"📊 上传统计: Hippo={hippo_count}/{len(conversations)} | MemOS={memos_count}/{len(conversations)} | memU=已禁用")
     
     # 如果有失败，检查代理
-    if hippo_count < len(conversations) or memu_count < len(conversations) or memos_count < len(conversations):
+    if hippo_count < len(conversations) or memos_count < len(conversations):
         print()
         print("🔍 检查网络代理...")
         if check_proxy():
@@ -255,7 +253,8 @@ def store_to_all_systems_simple(conversations):
         else:
             print("  ⚠️ 代理异常，请检查 Mihomo")
     
-    return memu_count, hippo_count, memos_count
+    # 返回统计（memu_count 固定为 0，因为已禁用）
+    return 0, hippo_count, memos_count
 
 def save_to_daily_file(conversations):
     """保存到每日记忆文件"""
@@ -322,11 +321,12 @@ def main():
     
     print()
     print("="*60)
-    success = (memu == len(conversations) and hippo == len(conversations) and memos == len(conversations))
+    # memU 已禁用，只检查 Hippo 和 MemOS
+    success = (hippo == len(conversations) and memos == len(conversations))
     if success:
-        print("✅ 全部完成！本地+云端都成功")
+        print("✅ 全部完成！Hippo + MemOS 双系统成功")
     else:
-        print(f"⚠️ 完成！本地✅ 云端部分成功")
+        print(f"⚠️ 完成！Hippo={hippo} | MemOS={memos} | memU=已禁用")
     print("="*60)
     
     return 0
