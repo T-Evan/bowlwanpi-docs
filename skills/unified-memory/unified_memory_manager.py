@@ -55,13 +55,24 @@ class MemOSClient:
         # 注意：不需要 X-User-ID 和 X-Channel headers，它们在 body 中
         
         # 添加代理（如果配置了）
-        cmd.extend(["--proxy", "http://127.0.0.1:7890"])
+        # 检查代理是否可用
+        try:
+            import subprocess
+            proxy_check = subprocess.run(
+                ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', 
+                 '--max-time', '2', '--proxy', 'http://127.0.0.1:7890', 'https://www.google.com'],
+                capture_output=True, text=True, timeout=3
+            )
+            if proxy_check.stdout.strip() == '200':
+                cmd.extend(["--proxy", "http://127.0.0.1:7890"])
+        except:
+            pass  # 代理检查失败，不使用代理
         
         # 添加 data
         if data:
             cmd.extend(["-d", json.dumps(data, ensure_ascii=False)])
         
-        cmd.extend(["--max-time", "30"])
+        cmd.extend(["--max-time", "10"])  # 减少超时时间避免卡住
         return cmd
     
     async def memorize(self, user_message: str, assistant_message: str) -> bool:
@@ -223,8 +234,9 @@ class MemOSClient:
 class UnifiedMemoryManager:
     """统一记忆管理器 - 整合 memU + Hippocampus + MemOS"""
     
-    def __init__(self, enable_memu: bool = True, enable_hippo: bool = True, enable_memos: bool = True):
-        self.enable_memu = enable_memu
+    def __init__(self, enable_memu: bool = False, enable_hippo: bool = True, enable_memos: bool = True):
+        # 暂时禁用 memU，因为 API 端点变更
+        self.enable_memu = False  # enable_memu
         self.enable_hippo = enable_hippo
         self.enable_memos = enable_memos
         
