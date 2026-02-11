@@ -1,9 +1,9 @@
 {
   "openclaw/openclaw": "v2026.2.9",
-  "code-yeongyu/oh-my-opencode": "v3.4.0",
-  "anomalyco/opencode": "v1.1.53",
+  "code-yeongyu/oh-my-opencode": "v3.5.1",
+  "anomalyco/opencode": "v1.1.56",
   "NevaMind-AI/memU": "v1.4.0",
-  "lastCheck": "2026-02-10T14:58:00Z",
+  "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [
     {
       "time": "2026-02-09T08:58:00Z",
@@ -29,6 +29,16 @@
       "time": "2026-02-10T14:58:00Z",
       "result": "no_updates",
       "details": "所有4个仓库版本均无更新"
+    },
+    {
+      "time": "2026-02-10T20:58:00Z",
+      "result": "update_found",
+      "details": "code-yeongyu/oh-my-opencode: v3.4.0 → v3.5.0; anomalyco/opencode: v1.1.53 → v1.1.55"
+    },
+    {
+      "time": "2026-02-11T02:58:00Z",
+      "result": "update_found",
+      "details": "code-yeongyu/oh-my-opencode: v3.5.0 → v3.5.1; anomalyco/opencode: v1.1.55 → v1.1.56"
     }
   ]
 }

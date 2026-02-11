@@ -5,6 +5,23 @@ description: 智能搜索聚合技能 - 统一腾讯云 WSA 和 Tavily 搜索能
 
 # 🔍 智能搜索 (Intelligent Search)
 
+## 配置
+
+### API Keys
+
+在 `skills/intelligent-search/.env` 文件中配置：
+
+```bash
+# Tavily API Key (必需)
+TAVILY_API_KEY=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
+
+# 腾讯云 WSA (可选，作为备用)
+TENCENT_SECRET_ID=your_secret_id
+TENCENT_SECRET_KEY=your_secret_key
+```
+
+**当前配置状态：** ✅ Tavily API Key 已配置
+
 ## 概述
 
 统一的搜索接口，整合 **腾讯云 WSA** 和 **Tavily** 两大搜索引擎，实现：

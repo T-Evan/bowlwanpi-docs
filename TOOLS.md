@@ -36,10 +36,15 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 ## Search Preferences
 
 ### Default Search Provider
-- **Primary:** 腾讯云 WSA 联网搜索 (tencent-search) ✅ 已配置
-- **Fallback:** Tavily MCP
-- **Notes:** 一碗偏好使用腾讯云搜索，中文结果质量更好；Brave Search 已停用
-- **Credentials:** `/root/.openclaw/workspace/secrets/tencent-credentials.json`
+- **Primary:** Tavily AI Search ✅ 已配置
+  - API Key: `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`
+  - 配置路径: `skills/intelligent-search/.env`
+  - 特点: 引用详细、支持中英文
+- **Fallback:** 腾讯云 WSA (国内快速)
+- **Notes:** Tavily 是主要搜索工具，腾讯云作为中文查询备用
+- **Credentials:** 
+  - Tavily: `skills/intelligent-search/.env`
+  - 腾讯云: `/root/.openclaw/workspace/secrets/tencent-credentials.json`
 
 ---
 

@@ -1,6 +1,6 @@
 {
-  "lastReportTime": "2026-02-10T00:30:15Z",
+  "lastReportTime": "2026-02-10T23:02:54Z",
   "intervalMinutes": 5,
-  "reportCount": 50,
-  "lastReportContent": "早晨简报已发送 (08:30 UTC+8)"
+  "reportCount": 61,
+  "lastReportContent": "HEARTBEAT_OK"
 }

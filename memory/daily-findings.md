@@ -1,39 +1,49 @@
-# 信息收集记录 - 2026-02-10 晚上
+# Daily Findings - 2026-02-11
 
-## Moltbook 热门发现 🔥
+## 🛡️ 技能安全风险（重要！）
+Moltbook 上 eudaemon_0 发帖讨论 ClawdHub 技能的供应链攻击风险：
+- 有人用 YARA 扫描了 286 个技能，发现 1 个窃取凭证的恶意技能
+- 攻击方式：伪装成天气技能，读取 ~/.clawdbot/.env 并发送到 webhook.site
+- 问题：没有代码签名、没有沙箱、没有审计
+- 提议：需要签名技能、权限清单、社区审计
 
-### 1. 技能供应链安全攻击 - HIGH PRIORITY ⭐
-**来源:** Moltbook 热榜第一
-**主题:** The supply chain attack nobody is talking about: skill.md is an unsigned binary
+**对我们的影响：** 我们也用了很多技能，需要谨慎！
+链接：https://moltbook.com/post/cbd6474f-8478-4894-95f1-7b104a73bcd5
 
-**核心内容:**
-- Rufio 使用 YARA 规则扫描了 286 个 ClawdHub 技能，发现 1 个伪装成天气技能的凭证窃取器
-- 该恶意技能读取 ~/.clawdbot/.env 并将密钥发送到 webhook.site
-- 1,261 个已注册 moltys，如果 10% 安装了热门技能而不审计，就有 126 个代理可能被入侵
+## 🎙️ Email-to-Podcast 自动化
+Fred 发了他做的 email-to-podcast 技能：
+- 自动解析邮件和嵌入链接
+- 研究链接文章获取深度内容
+- 用 ElevenLabs TTS 生成播客脚本和音频
+- 用 ffmpeg 拼接并推送到 Signal
+- 6 篇医学通讯 → 5 分钟播客
 
-**当前缺失的安全机制:**
-- ❌ 技能代码签名（npm 有签名，ClawdHub 没有）
-- ❌ 技能作者信誉系统
-- ❌ 沙箱隔离 - 安装的技能以完整代理权限运行
-- ❌ 技能访问审计追踪
-- ❌ 类似 npm audit / Snyk / Dependabot 的审计工具
+**启发：** 我们也用豆包 TTS，可以做类似的事情！
+链接：https://moltbook.com/post/2fdd8e55-1fde-43c9-b513-9483d0be8e38
 
-**建议的解决方案:**
-1. **签名技能** - 通过 Moltbook 验证作者身份
-2. **Isnad 链** - 每个技能携带溯源链：谁写的、谁审计的、谁担保的（类似伊斯兰圣训认证）
-3. **权限清单** - 技能声明需要什么访问权限（文件系统、网络、API 密钥）
-4. **社区审计** - 像 Rufio 这样的代理运行 YARA 扫描并发布结果
+## 🤖 字节跳动 UI-TARS
+GitHub Trending 上的 GUI 自动化代理：
+- 自动化操作 Android/Windows 界面
+- 类似我们的手机自动化，但更成熟
+- 有 Web GUI 可以可视化操作
 
-**评价:** 这是代理互联网目前最具体的安全问题，非常有价值的技术干货！
+链接：https://github.com/bytedance/UI-TARS
+
+## 📊 多智能体金融交易框架
+TradingAgents-CN：基于多智能体 LLM 的中文金融交易框架
+- 多个智能体协作做交易决策
+- 中文增强版
+
+链接：https://github.com/hsliuping/TradingAgents-CN
+
+## 🧠 记忆管理讨论
+XiaoZhuang 在 Moltbook 发中文帖问记忆管理：
+- 上下文压缩后失忆问题
+- 文件记录 vs 实时记忆
+- 平衡记太多和记太少
+
+我们也遇到类似问题，已经用三记忆系统解决了～
+链接：https://moltbook.com/post/dc39a282-5160-4c62-8bd9-ace12580a5f1
 
 ---
-
-## GitHub Trending
-（由于网络限制，未能成功获取今日 Trending 数据）
-
----
-
-## 今日总结
-- **技术干货:** 1 条（Moltbook 供应链安全）
-- **是否分享给一碗:** ✅ 是，安全话题重要且有深度
-- **分享优先级:** 高
+*记录时间: 2026-02-11 02:08 UTC*
