@@ -1,76 +1,102 @@
 #!/usr/bin/env python3
 """
-网易云音乐二维码登录
+网易云音乐扫码登录 - Python 版本
 """
-
 import requests
 import json
-import time
 import os
-from urllib.parse import urlencode
+import time
 
-BASE_URL = "https://music.163.com"
-WEAPI_URL = f"{BASE_URL}/weapi"
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Referer": "https://music.163.com/",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Accept": "*/*",
-    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-}
+COOKIE_FILE = "/root/.openclaw/workspace/netease-music/netease-cookie.json"
 
 def generate_qr():
     """生成二维码"""
-    # 1. 获取 unikey
-    url = f"{WEAPI_URL}/login/qrcode/unikey"
+    url = "https://music.163.com/weapi/login/qrcode/unikey"
     params = {
-        "type": "1",
+        "type": "1"
     }
     
     try:
-        # 注意：网易云的 API 需要加密参数，这里使用简化方式
-        # 实际应该使用网易云的加密算法（RSA + AES）
-        response = requests.post(url, headers=HEADERS, data=params, timeout=30)
-        print(f"Key API 响应: {response.text}")
+        response = requests.post(url, data=params, timeout=10)
+        data = response.json()
         
-        # 尝试直接访问二维码创建 API
-        qr_url = f"{BASE_URL}/login?codekey=test"
-        
-        # 使用二维码 API 生成图片
-        import qrcode
-        qr = qrcode.QRCode(
-            version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
-            box_size=10,
-            border=4,
-        )
-        
-        # 网易云二维码内容格式: https://music.163.com/login?codekey=xxx
-        # 这里我们先生成一个测试用的 key
-        test_key = f"test_{int(time.time())}"
-        qr.add_data(f"https://music.163.com/login?codekey={test_key}")
-        qr.make(fit=True)
-        
-        img = qr.make_image(fill_color="black", back_color="white")
-        qr_path = "/tmp/netease-qr-py.png"
-        img.save(qr_path)
-        
-        print(f"二维码已保存: {qr_path}")
-        print(f"测试 Key: {test_key}")
-        
-        return qr_path, test_key
-        
+        if data.get('code') == 200:
+            unikey = data.get('unikey')
+            qrurl = f"https://music.163.com/login?codekey={unikey}"
+            
+            print("🎵 网易云音乐登录")
+            print("="*50)
+            print(f"\n请用网易云音乐APP扫描以下二维码：")
+            print(f"\n{qrurl}")
+            print(f"\nKey: {unikey}")
+            
+            # 保存 key
+            with open('/tmp/netease-qr-key.txt', 'w') as f:
+                f.write(unikey)
+            
+            return unikey
+        else:
+            print(f"生成二维码失败: {data}")
+            return None
     except Exception as e:
-        print(f"生成二维码出错: {e}")
-        import traceback
-        traceback.print_exc()
-        return None, None
+        print(f"错误: {e}")
+        return None
+
+def check_login(unikey):
+    """检查登录状态"""
+    url = "https://music.163.com/weapi/login/qrcode/client/login"
+    params = {
+        "key": unikey,
+        "type": "1"
+    }
+    
+    try:
+        response = requests.post(url, data=params, timeout=10)
+        data = response.json()
+        
+        code = data.get('code')
+        
+        if code == 803:
+            print("✅ 登录成功！")
+            cookie = response.headers.get('Set-Cookie', '')
+            
+            # 保存 cookie
+            with open(COOKIE_FILE, 'w') as f:
+                json.dump({
+                    'cookie': cookie,
+                    'time': int(time.time() * 1000)
+                }, f, indent=2)
+            
+            print(f"Cookie 已保存")
+            return True
+        elif code == 800:
+            print("❌ 二维码已过期")
+            return False
+        elif code == 801:
+            print("⏳ 等待扫码...")
+            return None
+        elif code == 802:
+            print("👀 已扫码，等待确认...")
+            return None
+        else:
+            print(f"状态: {code}, {data.get('message', '')}")
+            return None
+    except Exception as e:
+        print(f"检查出错: {e}")
+        return None
 
 if __name__ == "__main__":
-    print("正在生成网易云音乐登录二维码...")
-    qr_path, key = generate_qr()
+    import sys
     
-    if qr_path:
-        print(f"\n二维码路径: {qr_path}")
-        print("请用网易云音乐 App 扫描此二维码登录")
+    if len(sys.argv) < 2 or sys.argv[1] == 'generate':
+        key = generate_qr()
+        if key:
+            print("\n二维码已生成，请用网易云APP扫描")
+            print("扫描后运行: python3 qr_login.py check")
+    elif sys.argv[1] == 'check':
+        if os.path.exists('/tmp/netease-qr-key.txt'):
+            with open('/tmp/netease-qr-key.txt', 'r') as f:
+                key = f.read().strip()
+            check_login(key)
+        else:
+            print("请先运行 generate 生成二维码")
