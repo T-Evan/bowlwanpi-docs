@@ -234,9 +234,9 @@ class MemOSClient:
 class UnifiedMemoryManager:
     """统一记忆管理器 - 整合 memU + Hippocampus + MemOS"""
     
-    def __init__(self, enable_memu: bool = False, enable_hippo: bool = True, enable_memos: bool = True):
-        # 暂时禁用 memU，因为 API 端点变更
-        self.enable_memu = False  # enable_memu
+    def __init__(self, enable_memu: bool = True, enable_hippo: bool = True, enable_memos: bool = True):
+        # 启用 memU - API 路径已修复为 v3
+        self.enable_memu = enable_memu
         self.enable_hippo = enable_hippo
         self.enable_memos = enable_memos
         
