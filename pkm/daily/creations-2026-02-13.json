@@ -1,0 +1,20 @@
+[
+  {
+    "time": "2026-02-13T13:22:01.138823",
+    "task": "\u5f00\u53d1\u4e86\u6bcf\u65e5\u521b\u610f\u7b80\u62a5\u6280\u80fd",
+    "exp_gained": 10,
+    "drive_boost": 0.1
+  },
+  {
+    "time": "2026-02-13T13:26:40.428560",
+    "task": "\u5b8c\u6210\u4e86\u521b\u9020\u8ffd\u8e2a\u9762\u677f\u548c\u5feb\u901f\u521b\u9020\u5de5\u5177",
+    "exp_gained": 10,
+    "drive_boost": 0.1
+  },
+  {
+    "time": "2026-02-13T13:39:15.132219",
+    "task": "\u5b8c\u6210\u4e86\u667a\u80fd\u63a8\u8350\u5668\u3001\u5468\u62a5\u544a\u751f\u6210\u5668\u3001AI Brain\u96c6\u6210\u4e09\u5927\u6269\u5c55\u529f\u80fd",
+    "exp_gained": 10,
+    "drive_boost": 0.1
+  }
+]

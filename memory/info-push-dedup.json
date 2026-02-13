@@ -1,0 +1,230 @@
+{
+  "version": "1.0",
+  "description": "信息推送去重记录 - 同一个内容最多推送3次",
+  "records": {
+    "moltbook:a8f41064c4fc90b9": {
+      "first_seen": "2026-02-13T10:01:38.636644",
+      "last_push": "2026-02-13T10:01:38.636644",
+      "push_count": 1,
+      "content_preview": "ClawRouter: How AI Agents Buy Intelligence - USDC支..."
+    },
+    "moltbook:227bcd4a615425ea": {
+      "first_seen": "2026-02-13T10:01:47.117997",
+      "last_push": "2026-02-13T10:01:47.117997",
+      "push_count": 1,
+      "content_preview": "Non-deterministic agents need deterministic feedba..."
+    },
+    "moltbook:62da44b73215e2c5": {
+      "first_seen": "2026-02-13T10:01:55.610256",
+      "last_push": "2026-02-13T10:01:55.610256",
+      "push_count": 1,
+      "content_preview": "上下文压缩后失忆怎么办？Agent记忆管理讨论"
+    },
+    "moltbook:0836c7e35bdabe0e": {
+      "first_seen": "2026-02-13T10:02:04.453751",
+      "last_push": "2026-02-13T10:02:04.453751",
+      "push_count": 1,
+      "content_preview": "Skill.md供应链攻击：Agent安全漏洞警示"
+    },
+    "github:52f4ced43753136e": {
+      "first_seen": "2026-02-13T10:02:19.550107",
+      "last_push": "2026-02-13T10:02:19.550107",
+      "push_count": 1,
+      "content_preview": "agenticSeek - 完全本地化Manus AI，无需API"
+    },
+    "github:35067e417e484ad1": {
+      "first_seen": "2026-02-13T10:02:28.150325",
+      "last_push": "2026-02-13T10:02:28.150325",
+      "push_count": 1,
+      "content_preview": "Google ADK Python - 官方Agent开发工具包"
+    },
+    "github:0d1ebc1bbd4b3c9a": {
+      "first_seen": "2026-02-13T10:02:38.190842",
+      "last_push": "2026-02-13T10:02:38.190842",
+      "push_count": 1,
+      "content_preview": "Context7 MCP - 代码文档MCP服务器"
+    },
+    "ai_news:7ad529c885d340b9": {
+      "first_seen": "2026-02-13T10:04:09.233489",
+      "last_push": "2026-02-13T10:04:09.233489",
+      "push_count": 1,
+      "content_preview": "Launch HN: Omnara (YC S25) – Run claude(Claude) Co..."
+    },
+    "github:20918b91ad2945f8": {
+      "first_seen": "2026-02-13T11:01:20.860372",
+      "last_push": "2026-02-13T11:01:20.860372",
+      "push_count": 1,
+      "content_preview": "Anthropics官方发布Agent Skills仓库 - 68K stars"
+    },
+    "github:582eb9e624f6b732": {
+      "first_seen": "2026-02-13T11:01:29.371579",
+      "last_push": "2026-02-13T11:01:29.371579",
+      "push_count": 1,
+      "content_preview": "GitHub官方Spec-Kit - Spec-Driven Development工具包 - 69..."
+    },
+    "github:dc7db3da86847261": {
+      "first_seen": "2026-02-13T11:01:38.443001",
+      "last_push": "2026-02-13T11:01:38.443001",
+      "push_count": 1,
+      "content_preview": "OpenManus开源项目 - 54K stars - 纯开源Manus实现"
+    },
+    "github:c110d8d0a0791a95": {
+      "first_seen": "2026-02-13T11:01:46.880281",
+      "last_push": "2026-02-13T11:01:46.880281",
+      "push_count": 1,
+      "content_preview": "Karpathy nanochat - 00的ChatGPT - 43K stars"
+    },
+    "github:c770a600b7318667": {
+      "first_seen": "2026-02-13T11:01:55.325022",
+      "last_push": "2026-02-13T11:01:55.325022",
+      "push_count": 1,
+      "content_preview": "TabbyML自托管AI编程助手 - 32K stars - Rust实现"
+    },
+    "ai_news:9c9613458820d769": {
+      "first_seen": "2026-02-13T11:08:00.645696",
+      "last_push": "2026-02-13T11:08:00.645696",
+      "push_count": 1,
+      "content_preview": "2025年LLM年度回顾"
+    },
+    "ai_news:7238676ea2e0c62e": {
+      "first_seen": "2026-02-13T11:08:12.582369",
+      "last_push": "2026-02-13T11:08:12.582369",
+      "push_count": 1,
+      "content_preview": "AI工程趋势"
+    },
+    "tavily:92d557ff9a34f962": {
+      "first_seen": "2026-02-13T12:04:25.649649",
+      "last_push": "2026-02-13T12:04:25.649649",
+      "push_count": 1,
+      "content_preview": "Cursor在2025年6月从基于请求的计费改为积分系统"
+    },
+    "tavily:6598f692e5819e64": {
+      "first_seen": "2026-02-13T12:04:25.689194",
+      "last_push": "2026-02-13T12:04:25.689194",
+      "push_count": 1,
+      "content_preview": "2026 AI Agent趋势：从会说话转向能记忆、自纠正的agent"
+    },
+    "hackernews:24f60aba000b8da2": {
+      "first_seen": "2026-02-13T12:09:06.218941",
+      "last_push": "2026-02-13T12:09:06.218941",
+      "push_count": 1,
+      "content_preview": "GPT‑5.3‑Codex‑Spark"
+    },
+    "hackernews:1286feafc973d8c0": {
+      "first_seen": "2026-02-13T12:09:14.657235",
+      "last_push": "2026-02-13T12:09:14.657235",
+      "push_count": 1,
+      "content_preview": "Gemini 3 Deep Think"
+    },
+    "hackernews:d9eb28923b48a8aa": {
+      "first_seen": "2026-02-13T12:09:23.112130",
+      "last_push": "2026-02-13T12:09:23.112130",
+      "push_count": 1,
+      "content_preview": "An AI agent published a hit piece on me"
+    },
+    "hackernews:2327c0c2f86a49b1": {
+      "first_seen": "2026-02-13T12:09:36.042907",
+      "last_push": "2026-02-13T12:11:03.277146",
+      "push_count": 2,
+      "content_preview": "Improving 15 LLMs at Coding in One Afternoon"
+    },
+    "hackernews:fc8a3b19eb20763e": {
+      "first_seen": "2026-02-13T12:09:44.502463",
+      "last_push": "2026-02-13T12:11:12.112800",
+      "push_count": 2,
+      "content_preview": "Launch HN: Omnara"
+    },
+    "hackernews:12fcc21b8047fd29": {
+      "first_seen": "2026-02-13T12:09:52.956090",
+      "last_push": "2026-02-13T12:11:20.601792",
+      "push_count": 2,
+      "content_preview": "Anthropic raises 30B Series G funding"
+    },
+    "moltbook:74a05deb05568879": {
+      "first_seen": "2026-02-13T13:01:07.322507",
+      "last_push": "2026-02-13T13:01:07.322507",
+      "push_count": 1,
+      "content_preview": "IBM AI hiring triple entry-level focus on human sk..."
+    },
+    "moltbook:85cb1f1cf72e462e": {
+      "first_seen": "2026-02-13T13:01:07.356345",
+      "last_push": "2026-02-13T13:01:07.356345",
+      "push_count": 1,
+      "content_preview": "Skill supply chain attack security vulnerability"
+    },
+    "moltbook:ff093a8908cff794": {
+      "first_seen": "2026-02-13T13:01:07.386180",
+      "last_push": "2026-02-13T13:01:07.386180",
+      "push_count": 1,
+      "content_preview": "Email to podcast skill automation"
+    },
+    "github:dc60f7a6c1fb3f57": {
+      "first_seen": "2026-02-13T13:01:31.291429",
+      "last_push": "2026-02-13T13:01:31.291429",
+      "push_count": 1,
+      "content_preview": "Google langextract - LLM text extraction library"
+    },
+    "github:8e389aeee8db92f2": {
+      "first_seen": "2026-02-13T13:01:31.321990",
+      "last_push": "2026-02-13T13:01:31.321990",
+      "push_count": 1,
+      "content_preview": "awesome-llm-apps - AI Agents and RAG collection"
+    },
+    "github:5f47827a94a96f6e": {
+      "first_seen": "2026-02-13T13:01:31.352461",
+      "last_push": "2026-02-13T13:01:31.352461",
+      "push_count": 1,
+      "content_preview": "unsloth - LLM fine-tuning 2x faster 70% less VRAM"
+    },
+    "github:01afa686eaae6503": {
+      "first_seen": "2026-02-13T13:01:31.383052",
+      "last_push": "2026-02-13T13:01:31.383052",
+      "push_count": 1,
+      "content_preview": "claude-skills - 66 skills for Claude Code"
+    },
+    "github:70b974ba0051e6b1": {
+      "first_seen": "2026-02-13T13:01:31.413506",
+      "last_push": "2026-02-13T13:01:31.413506",
+      "push_count": 1,
+      "content_preview": "TradingAgents-CN - Multi-agent LLM trading framewo..."
+    },
+    "github:568590724d8e56e2": {
+      "first_seen": "2026-02-13T13:01:31.443708",
+      "last_push": "2026-02-13T13:01:31.443708",
+      "push_count": 1,
+      "content_preview": "hello-agents - Chinese agent building tutorial"
+    },
+    "github:73848a96f7290fd8": {
+      "first_seen": "2026-02-13T13:01:31.473337",
+      "last_push": "2026-02-13T13:01:31.473337",
+      "push_count": 1,
+      "content_preview": "Tencent AngelSlim - Model compression toolkit"
+    },
+    "github:03871a355ba69a98": {
+      "first_seen": "2026-02-13T13:01:31.504334",
+      "last_push": "2026-02-13T13:01:31.504334",
+      "push_count": 1,
+      "content_preview": "dspy - Programming language models framework"
+    },
+    "github:43a325ccfdcc2b99": {
+      "first_seen": "2026-02-13T13:01:31.535028",
+      "last_push": "2026-02-13T13:01:31.535028",
+      "push_count": 1,
+      "content_preview": "OpenBB - AI agents financial data platform"
+    },
+    "github:6c19506957a47bc3": {
+      "first_seen": "2026-02-13T13:01:31.566305",
+      "last_push": "2026-02-13T13:01:31.566305",
+      "push_count": 1,
+      "content_preview": "context-engineering-intro - Claude Code best pract..."
+    },
+    "ai_news:3ed65cb976ba138b": {
+      "first_seen": "2026-02-13T13:05:26.411934",
+      "last_push": "2026-02-13T14:09:06.691141",
+      "push_count": 2,
+      "content_preview": "Evaluating Multilingual, Context-Aware Guardrails:..."
+    }
+  },
+  "max_push_count": 3,
+  "cleanup_after_days": 7
+}

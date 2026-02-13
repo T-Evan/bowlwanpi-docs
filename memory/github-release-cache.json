@@ -1,33 +1,33 @@
 {
   "openclaw/openclaw": {
-    "version": "v2026.2.9",
+    "version": "v2026.2.12",
     "changes": [
-      "iOS: alpha node app + setup-code onboarding. (#11756) Thanks @mbelinky.",
-      "Channels: comprehensive BlueBubbles and channel cleanup. (#11093) Thanks @tyler6",
-      "Plugins: device pairing + phone control plugins (Telegram `/pair`, iOS/Android n"
+      "Changes",
+      "CLI: add `openclaw logs --local-time` to display log timestamps in local timezon",
+      "Telegram: render blockquotes as native `<blockquote>` tags instead of stripping "
     ],
-    "published": "2026-02-09",
-    "fetched_at": "2026-02-11T17:33:43.418064"
+    "published": "2026-02-13",
+    "fetched_at": "2026-02-13T22:59:23.955927"
   },
   "code-yeongyu/oh-my-opencode": {
-    "version": "v3.5.2",
+    "version": "v3.5.3",
     "changes": [
-      "Highlights",
-      "Pinned plugin versions are now respected \u2014 auto-update skips when you've explici",
-      "If an update install fails, the config pin reverts to prevent version mismatch b"
+      "Background Agent",
+      "Handle `session.error` events \u2014 zombie tasks that held concurrency slots forever",
+      "Error-status tasks are now skipped during queue processing, preventing attempts "
     ],
-    "published": "2026-02-11",
-    "fetched_at": "2026-02-11T17:33:44.005059"
+    "published": "2026-02-12",
+    "fetched_at": "2026-02-13T22:59:24.574150"
   },
   "anomalyco/opencode": {
-    "version": "v1.1.56",
+    "version": "v1.1.65",
     "changes": [
-      "Task tool rendering fixed in app",
-      "Open apps with executables on Windows (@neriousy)",
-      "Don't close sidebar on session change"
+      "Revert token substitution in OPENCODE_CONFIG_CONTENT",
+      "Ensure @-mentioning a directory uses the read tool instead of deprecated list to",
+      "Add tool.definition hook for plugins to modify tool description and parameters ("
     ],
-    "published": "2026-02-10",
-    "fetched_at": "2026-02-11T17:33:44.672303"
+    "published": "2026-02-13",
+    "fetched_at": "2026-02-13T22:59:25.280004"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -37,7 +37,7 @@
       "Add salience-aware memory with reinforcement tracking ([#186](https://github.com"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-11T17:33:45.402991"
+    "fetched_at": "2026-02-13T22:59:25.924817"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [

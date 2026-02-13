@@ -1,0 +1,44 @@
+{
+  "unlocked": [],
+  "stats": {
+    "total_completed": 3,
+    "current_streak": 1,
+    "max_streak": 1,
+    "by_type": {
+      "skill": 1,
+      "content": 0,
+      "auto": 1,
+      "explore": 0,
+      "optimize": 0,
+      "creative": 0,
+      "content-creation": 1
+    },
+    "by_difficulty": {
+      "简单": 3,
+      "中等": 0,
+      "困难": 0,
+      "史诗": 0
+    },
+    "total_points": 0,
+    "last_completion": "2026-02-13"
+  },
+  "daily_log": {
+    "2026-02-13": [
+      {
+        "type": "content-creation",
+        "difficulty": "简单",
+        "time": "14:16"
+      },
+      {
+        "type": "auto",
+        "difficulty": "简单",
+        "time": "14:40"
+      },
+      {
+        "type": "skill",
+        "difficulty": "简单",
+        "time": "14:48"
+      }
+    ]
+  }
+}

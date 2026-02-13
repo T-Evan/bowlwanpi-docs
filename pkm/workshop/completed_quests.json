@@ -1,0 +1,59 @@
+[
+  {
+    "quest": {
+      "id": "quest_20260213_1",
+      "title": "\u81ea\u52a8\u5316\u6587\u4ef6\u7ba1\u7406",
+      "description": "\u521b\u5efa\u4e00\u4e2a\u81ea\u52a8\u5316\u6574\u7406workspace\u7684\u811a\u672c",
+      "type": "auto",
+      "difficulty": "\u7b80\u5355",
+      "estimated_time": 15,
+      "xp_reward": 20,
+      "tags": [
+        "auto",
+        "\u7b80\u5355"
+      ],
+      "prompt_template": "\u521b\u5efa\u4e00\u4e2a\u81ea\u52a8\u5316\u811a\u672c\uff0c\u5904\u7406\u6587\u4ef6\u7ba1\u7406"
+    },
+    "completed_at": "2026-02-13T14:40:35.490004",
+    "xp_gained": 20,
+    "notes": "\u521b\u5efa\u4e86workspace_organizer.py\uff0c\u6574\u7406\u4e8619\u4e2a\u6587\u4ef6\uff0c\u4fdd\u62a4\u4e8612\u4e2a\u6838\u5fc3\u6587\u4ef6"
+  },
+  {
+    "quest": {
+      "id": "quest_20260213_2",
+      "title": "\u6570\u636e\u5907\u4efd\u811a\u672c",
+      "description": "\u521b\u5efa\u4e00\u4e2a\u81ea\u52a8\u5907\u4efdworkspace\u7684\u811a\u672c",
+      "type": "skill",
+      "difficulty": "\u7b80\u5355",
+      "estimated_time": 15,
+      "xp_reward": 20,
+      "tags": [
+        "skill",
+        "\u7b80\u5355"
+      ],
+      "prompt_template": "\u5199\u4e00\u4e2a\u5b9e\u7528\u7684Python\u811a\u672c\uff0c\u89e3\u51b3\u6570\u636e\u5907\u4efd\u7684\u95ee\u9898"
+    },
+    "completed_at": "2026-02-13T14:47:56.643075",
+    "xp_gained": 20,
+    "notes": "\u521b\u5efa\u4e86workspace_backup.py\uff0c\u6210\u529f\u5907\u4efd19612\u4e2a\u6587\u4ef6\uff0c1005MB"
+  },
+  {
+    "quest": {
+      "id": "quest_hard_001",
+      "title": "\u6784\u5efa\u5b9e\u65f6\u6570\u636e\u4eea\u8868\u76d8",
+      "description": "\u521b\u5efa\u4e00\u4e2aWeb\u4eea\u8868\u76d8\uff0c\u5b9e\u65f6\u5c55\u793a\u7cfb\u7edf\u72b6\u6001",
+      "type": "skill",
+      "difficulty": "\u56f0\u96be",
+      "estimated_time": 120,
+      "xp_reward": 200,
+      "tags": [
+        "skill",
+        "\u56f0\u96be"
+      ],
+      "prompt_template": "\u6784\u5efa\u4e00\u4e2a\u5b9e\u65f6\u6570\u636e\u4eea\u8868\u76d8"
+    },
+    "completed_at": "2026-02-13T21:23:34.644340",
+    "xp_gained": 200,
+    "notes": "\u5b8c\u6210\u4e86Flask\u540e\u7aef+SSE\u5b9e\u65f6\u63a8\u9001+\u54cd\u5e94\u5f0f\u524d\u7aef\uff0c\u652f\u6301\u7cfb\u7edf\u76d1\u63a7\u3001\u5b9a\u65f6\u4efb\u52a1\u3001\u8bb0\u5fc6\u7cfb\u7edf\u4e09\u5927\u6570\u636e\u6e90"
+  }
+]

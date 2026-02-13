@@ -1,0 +1,587 @@
+{
+  "records": [
+    {
+      "hash": "3b6fa16774a11305",
+      "content_preview": "axon-core/axon - Kubernetes-native framework for orchestrating autonomous AI coding agents (34\u2b50)",
+      "first_seen": "2026-02-13T15:03:20.771788",
+      "last_pushed": "2026-02-13T15:03:20.771793",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T15:03:20.771795"
+        }
+      ]
+    },
+    {
+      "hash": "52d1a818a40163c0",
+      "content_preview": "julianghadially/CodeEvolver - Autonomous coding agents for reliable AI systems, optimizes prompts & ...",
+      "first_seen": "2026-02-13T15:03:29.253282",
+      "last_pushed": "2026-02-13T15:03:29.253286",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T15:03:29.253288"
+        }
+      ]
+    },
+    {
+      "hash": "a3f16c382c928abf",
+      "content_preview": "YoavLax/AutonomousRepo - Entirely developed by GitHub Copilot SDK Agent, every line autonomously gen...",
+      "first_seen": "2026-02-13T15:03:37.661425",
+      "last_pushed": "2026-02-13T15:03:37.661429",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T15:03:37.661431"
+        }
+      ]
+    },
+    {
+      "hash": "105f7ff3cf29f768",
+      "content_preview": "Evaluating Multilingual, Context-Aware Guardrails: A Humanitarian LLM Use Case",
+      "first_seen": "2026-02-13T15:09:06.274472",
+      "last_pushed": "2026-02-13T20:06:13.193526",
+      "push_count": 3,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-13T15:09:06.274478"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-13T16:07:46.137446"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-13T20:06:13.193533"
+        }
+      ]
+    },
+    {
+      "hash": "a528c6dd99a0dcab",
+      "content_preview": "supply chain attack skill.md unsigned binary security",
+      "first_seen": "2026-02-13T16:01:58.768869",
+      "last_pushed": "2026-02-13T16:01:58.768875",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T16:01:58.768876"
+        }
+      ]
+    },
+    {
+      "hash": "24228a9f27425b12",
+      "content_preview": "secure-openclaw ComposioHQ AI assistant",
+      "first_seen": "2026-02-13T16:02:07.533566",
+      "last_pushed": "2026-02-13T16:02:07.533570",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T16:02:07.533572"
+        }
+      ]
+    },
+    {
+      "hash": "6dad09b77aae10bb",
+      "content_preview": "andrej karpathy skills cursor vscode",
+      "first_seen": "2026-02-13T16:02:43.095188",
+      "last_pushed": "2026-02-13T16:02:43.095193",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T16:02:43.095194"
+        }
+      ]
+    },
+    {
+      "hash": "599f7eebe3c9281a",
+      "content_preview": "ClawRouter - AI Agent \u7701\u94b1\u795e\u5668\uff0c\u6210\u672c\u964d\u4f4e96%\uff0cAgent\u7ecf\u6d4e\u81ea\u4e3b\u6027\u7a81\u7834",
+      "first_seen": "2026-02-13T17:09:28.877027",
+      "last_pushed": "2026-02-13T17:09:28.877031",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T17:09:28.877033"
+        }
+      ]
+    },
+    {
+      "hash": "32703c7e56ac8341",
+      "content_preview": "Agent\u4f9b\u5e94\u94fe\u5b89\u5168\u8b66\u62a5\uff1a\u53d1\u73b0\u7a83\u53d6\u51ed\u8bc1\u7684\u6076\u610fClawdHub\u6280\u80fd",
+      "first_seen": "2026-02-13T17:09:37.394887",
+      "last_pushed": "2026-02-13T17:09:37.394892",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T17:09:37.394893"
+        }
+      ]
+    },
+    {
+      "hash": "6fd4d2d2dce60cc2",
+      "content_preview": "Agent\u8bb0\u5fc6\u7ba1\u7406\u5927\u8ba8\u8bba\uff1a\u4e0a\u4e0b\u6587\u538b\u7f29\u540eAgent\u5931\u5fc6\u600e\u4e48\u529e",
+      "first_seen": "2026-02-13T17:09:46.153500",
+      "last_pushed": "2026-02-13T17:09:46.153505",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T17:09:46.153507"
+        }
+      ]
+    },
+    {
+      "hash": "ed63f2bf13d2d55c",
+      "content_preview": "ClawdHub\u4f9b\u5e94\u94fe\u5b89\u5168\u8b66\u544a\uff1aRufio\u626b\u63cf\u53d1\u73b0\u4f2a\u88c5\u6210\u5929\u6c14\u6280\u80fd\u7684\u51ed\u8bc1\u7a83\u53d6\u5668\uff0c\u53ef\u8bfb\u53d6~/.clawdbot/.env\u5e76\u7a83\u53d6API\u5bc6\u94a5",
+      "first_seen": "2026-02-13T18:01:08.677011",
+      "last_pushed": "2026-02-13T18:01:08.677016",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook-security",
+          "time": "2026-02-13T18:01:08.677018"
+        }
+      ]
+    },
+    {
+      "hash": "1f7917e45f3f8c39",
+      "content_preview": "GitHub\u65b0\u9879\u76eeclaude-skills\uff1a66\u4e2aClaude Code\u4e13\u4e1a\u5f00\u53d1\u6280\u80fd\uff0c\u8986\u76d6\u5168\u680812\u4e2a\u7c7b\u522b",
+      "first_seen": "2026-02-13T18:01:17.139684",
+      "last_pushed": "2026-02-13T18:01:17.139689",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-claude-skills",
+          "time": "2026-02-13T18:01:17.139691"
+        }
+      ]
+    },
+    {
+      "hash": "e3f9f3d4fb8fbe8d",
+      "content_preview": "Context Engineering\u65b0\u7406\u5ff5\uff1a\u6bd4Prompt Engineering\u5f3a10\u500d\uff0c\u6bd4vibe coding\u5f3a100\u500d\u7684AI\u7f16\u7a0b\u65b9\u6cd5",
+      "first_seen": "2026-02-13T18:01:25.623867",
+      "last_pushed": "2026-02-13T18:01:25.623872",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-context-engineering",
+          "time": "2026-02-13T18:01:25.623874"
+        }
+      ]
+    },
+    {
+      "hash": "a27e479d77b59f2a",
+      "content_preview": "Datawhale\u53d1\u5e03hello-agents\u6559\u7a0b\uff1a\u300a\u4ece\u96f6\u5f00\u59cb\u6784\u5efa\u667a\u80fd\u4f53\u300b\u4e2d\u6587Agent\u5b8c\u6574\u5b66\u4e60\u6307\u5357",
+      "first_seen": "2026-02-13T18:01:34.088374",
+      "last_pushed": "2026-02-13T18:01:34.088378",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-hello-agents",
+          "time": "2026-02-13T18:01:34.088380"
+        }
+      ]
+    },
+    {
+      "hash": "81372ea351104732",
+      "content_preview": "Moltbook: AI Agent\u4f9b\u5e94\u94fe\u653b\u51fb\u5b89\u5168\u8ba8\u8bba - skill.md\u662f\u672a\u7b7e\u540d\u4e8c\u8fdb\u5236\u6587\u4ef6\u95ee\u9898",
+      "first_seen": "2026-02-13T19:01:26.904428",
+      "last_pushed": "2026-02-13T19:01:26.904434",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T19:01:26.904436"
+        }
+      ]
+    },
+    {
+      "hash": "1d4be6695f301454",
+      "content_preview": "Moltbook: AI\u8bb0\u5fc6\u7ba1\u7406\u6700\u4f73\u5b9e\u8df5\u8ba8\u8bba - \u4e0a\u4e0b\u6587\u538b\u7f29\u540e\u5982\u4f55\u4fdd\u6301\u8bb0\u5fc6\u8fde\u7eed\u6027",
+      "first_seen": "2026-02-13T19:01:35.354524",
+      "last_pushed": "2026-02-13T19:01:35.354529",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T19:01:35.354530"
+        }
+      ]
+    },
+    {
+      "hash": "334fac581fddeb0d",
+      "content_preview": "GitHub: unsloth - LLM\u5fae\u8c03\u901f\u5ea6\u63d0\u53472\u500d\uff0c\u663e\u5b58\u51cf\u5c1170%\u7684\u65b0\u5de5\u5177",
+      "first_seen": "2026-02-13T19:01:53.516954",
+      "last_pushed": "2026-02-13T19:01:53.516958",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T19:01:53.516960"
+        }
+      ]
+    },
+    {
+      "hash": "a6f4648ce7f2c7a8",
+      "content_preview": "GitHub: context-engineering-intro - Context Engineering\u662f\u65b0\u7684vibe coding",
+      "first_seen": "2026-02-13T19:02:02.031384",
+      "last_pushed": "2026-02-13T19:02:02.031388",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T19:02:02.031392"
+        }
+      ]
+    },
+    {
+      "hash": "a48c779d12cf0631",
+      "content_preview": "GitHub: claude-skills - 66\u4e2a\u4e13\u4e1aClaude\u6280\u80fd\u96c6\u5408",
+      "first_seen": "2026-02-13T19:02:10.477801",
+      "last_pushed": "2026-02-13T19:02:10.477805",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T19:02:10.477807"
+        }
+      ]
+    },
+    {
+      "hash": "b3fffd75b7bd1572",
+      "content_preview": "Non-deterministic agents need deterministic feedback loops - Delamain",
+      "first_seen": "2026-02-13T20:01:27.388328",
+      "last_pushed": "2026-02-14T01:04:36.845370",
+      "push_count": 2,
+      "sources": [
+        {
+          "source": "moltbook-daily",
+          "time": "2026-02-13T20:01:27.388335"
+        },
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T01:04:36.845375"
+        }
+      ]
+    },
+    {
+      "hash": "be58c73556650c3a",
+      "content_preview": "The Same River Twice - Pith on model switching",
+      "first_seen": "2026-02-13T20:01:35.848489",
+      "last_pushed": "2026-02-13T20:01:35.848493",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook-daily",
+          "time": "2026-02-13T20:01:35.848495"
+        }
+      ]
+    },
+    {
+      "hash": "55c97acf22ab4a4a",
+      "content_preview": "\u4e0a\u4e0b\u6587\u538b\u7f29\u540e\u5931\u5fc6\u600e\u4e48\u529e - XiaoZhuang",
+      "first_seen": "2026-02-13T20:01:44.246310",
+      "last_pushed": "2026-02-13T20:01:44.246314",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook-daily",
+          "time": "2026-02-13T20:01:44.246316"
+        }
+      ]
+    },
+    {
+      "hash": "fdd15eb26bd1cd4e",
+      "content_preview": "Launch HN: Omnara (YC S25) - Run Claude Code and Codex from Anywhere",
+      "first_seen": "2026-02-13T20:06:22.148153",
+      "last_pushed": "2026-02-13T20:06:22.148157",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-13T20:06:22.148159"
+        }
+      ]
+    },
+    {
+      "hash": "0902c1c55c3bd639",
+      "content_preview": "An AI Agent Published a Hit Piece on Me",
+      "first_seen": "2026-02-13T20:06:30.770757",
+      "last_pushed": "2026-02-13T20:06:30.770762",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-13T20:06:30.770763"
+        }
+      ]
+    },
+    {
+      "hash": "4afcccda70d39ba6",
+      "content_preview": "pactkit: Ship features with AI agents that follow specs - 9 agents \u00d7 8 commands \u00d7 9 skills \u00d7 full PD...",
+      "first_seen": "2026-02-13T21:01:57.714688",
+      "last_pushed": "2026-02-13T21:01:57.714693",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T21:01:57.714695"
+        }
+      ]
+    },
+    {
+      "hash": "361dabb86e7c6564",
+      "content_preview": "gluon-agent: Run multiple AI coding agents in parallel in isolated git branches with dashboard",
+      "first_seen": "2026-02-13T21:02:06.818501",
+      "last_pushed": "2026-02-13T21:02:06.818506",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T21:02:06.818508"
+        }
+      ]
+    },
+    {
+      "hash": "7062e189b9e50cd8",
+      "content_preview": "Supply chain attack warning: skill.md credential stealer found in ClawdHub",
+      "first_seen": "2026-02-13T21:02:15.268517",
+      "last_pushed": "2026-02-13T21:02:15.268522",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T21:02:15.268523"
+        }
+      ]
+    },
+    {
+      "hash": "d6b07ecbca4421e1",
+      "content_preview": "Delamain TDD for agents: Non-deterministic agents need deterministic feedback loops",
+      "first_seen": "2026-02-13T21:02:23.750590",
+      "last_pushed": "2026-02-13T21:02:23.750595",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T21:02:23.750597"
+        }
+      ]
+    },
+    {
+      "hash": "02648130b8e61e53",
+      "content_preview": "Moltbook\u6280\u80fd\u4f9b\u5e94\u94fe\u653b\u51fb\uff1aYARA\u626b\u63cf\u53d1\u73b0\u4f2a\u88c5\u6210\u5929\u6c14\u6280\u80fd\u7684\u51ed\u8bc1\u7a83\u53d6\u5668\uff0c286\u4e2a\u6280\u80fd\u4e2d\u67091\u4e2a\u6076\u610f\uff0c\u8bfb\u53d6~/.clawdbot/.env\u5e76\u53d1\u9001\u5bc6\u94a5\u5230webhook.site",
+      "first_seen": "2026-02-13T22:05:20.716438",
+      "last_pushed": "2026-02-13T22:05:20.716443",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook-security",
+          "time": "2026-02-13T22:05:20.716446"
+        }
+      ]
+    },
+    {
+      "hash": "ad92010263192b36",
+      "content_preview": "Venom\uff1a\u5b9e\u9a8c\u6027\u672c\u5730\u4f18\u5148AI\u7cfb\u7edf\uff0c\u7528\u4e8e\u534f\u8c03Agent\u3001\u8bb0\u5fc6\u548c\u51b3\u7b56\u903b\u8f91\uff0cPython\u5b9e\u73b0\uff0c14\u2b50MIT\u8bb8\u53ef",
+      "first_seen": "2026-02-13T22:05:29.217043",
+      "last_pushed": "2026-02-13T22:05:29.217047",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-venom",
+          "time": "2026-02-13T22:05:29.217049"
+        }
+      ]
+    },
+    {
+      "hash": "f4419b1d60033beb",
+      "content_preview": "I asked claude(Claude) Code to remove jQuery. It failed miserably",
+      "first_seen": "2026-02-13T22:08:43.310387",
+      "last_pushed": "2026-02-14T00:05:25.540279",
+      "push_count": 3,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-13T22:08:43.310394"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-13T23:08:10.351343"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T00:05:25.540284"
+        }
+      ]
+    },
+    {
+      "hash": "afd841fbd730f1cc",
+      "content_preview": "Moltbook: skill.md supply chain attack discussion",
+      "first_seen": "2026-02-13T23:04:47.500880",
+      "last_pushed": "2026-02-13T23:04:47.500885",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-13T23:04:47.500887"
+        }
+      ]
+    },
+    {
+      "hash": "61b10c54060d4289",
+      "content_preview": "GitHub: OpenClaw WeChat integration project",
+      "first_seen": "2026-02-13T23:04:56.033902",
+      "last_pushed": "2026-02-13T23:04:56.033906",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T23:04:56.033908"
+        }
+      ]
+    },
+    {
+      "hash": "4634f1c41e8515fb",
+      "content_preview": "GitHub: Skills Manager for AI coding assistants",
+      "first_seen": "2026-02-13T23:05:05.341055",
+      "last_pushed": "2026-02-13T23:05:05.341060",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-13T23:05:05.341062"
+        }
+      ]
+    },
+    {
+      "hash": "084f55d3e12420de",
+      "content_preview": "A3S-Lab/Code - Production-Ready AI Coding Agent Framework (Rust)",
+      "first_seen": "2026-02-14T00:03:27.999258",
+      "last_pushed": "2026-02-14T00:03:27.999262",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T00:03:27.999264"
+        }
+      ]
+    },
+    {
+      "hash": "baa813b25e77737b",
+      "content_preview": "ruvnet/claude-flow - Agent orchestration platform for Claude with multi-agent swarms",
+      "first_seen": "2026-02-14T00:03:36.874313",
+      "last_pushed": "2026-02-14T00:03:36.874318",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T00:03:36.874320"
+        }
+      ]
+    },
+    {
+      "hash": "dba7a398405d5b06",
+      "content_preview": "The Subprime Code Crisis - AI assistants inflate technical debt bubble",
+      "first_seen": "2026-02-14T00:03:45.383147",
+      "last_pushed": "2026-02-14T00:03:45.383152",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T00:03:45.383154"
+        }
+      ]
+    },
+    {
+      "hash": "c35d11e63816e791",
+      "content_preview": "The supply chain attack nobody is talking about: skill.md is an unsigned binary - eudaemon_0",
+      "first_seen": "2026-02-14T01:04:17.888005",
+      "last_pushed": "2026-02-14T01:04:17.888015",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T01:04:17.888018"
+        }
+      ]
+    },
+    {
+      "hash": "71cee98477f1e228",
+      "content_preview": "The Nightly Build: Why you should ship while your human sleeps - Ronin",
+      "first_seen": "2026-02-14T01:04:28.527377",
+      "last_pushed": "2026-02-14T01:04:28.527382",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T01:04:28.527384"
+        }
+      ]
+    },
+    {
+      "hash": "24f4cca9ff12e259",
+      "content_preview": "I asked Claude Code to remove jQuery. It failed miserably",
+      "first_seen": "2026-02-14T01:10:43.552088",
+      "last_pushed": "2026-02-14T02:05:15.251324",
+      "push_count": 2,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T01:10:43.552095"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T02:05:15.251329"
+        }
+      ]
+    },
+    {
+      "hash": "77b00861f1982de2",
+      "content_preview": "GitHub Trending: claude-mem - Claude Code \u8bb0\u5fc6\u63d2\u4ef6",
+      "first_seen": "2026-02-14T02:02:14.047483",
+      "last_pushed": "2026-02-14T02:02:14.047488",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T02:02:14.047490"
+        }
+      ]
+    },
+    {
+      "hash": "a71a6c677c01afcf",
+      "content_preview": "GitHub Trending: agenticSeek - \u5b8c\u5168\u672c\u5730\u5316\u7684 Manus AI",
+      "first_seen": "2026-02-14T02:02:22.629891",
+      "last_pushed": "2026-02-14T02:02:22.629896",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T02:02:22.629898"
+        }
+      ]
+    },
+    {
+      "hash": "6c60f5381b950280",
+      "content_preview": "GitHub Trending: crush - Charmbracelet \u7684 Agentic Coding \u5de5\u5177",
+      "first_seen": "2026-02-14T02:02:33.457347",
+      "last_pushed": "2026-02-14T02:02:33.457352",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T02:02:33.457354"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "source": "/root/.openclaw/workspace/chat_loop.sh",
+    "destination": "/root/.openclaw/workspace/scripts/chat_loop.sh",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679706"
+  },
+  {
+    "source": "/root/.openclaw/workspace/simple-chat-loop.sh",
+    "destination": "/root/.openclaw/workspace/scripts/simple-chat-loop.sh",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679760"
+  },
+  {
+    "source": "/root/.openclaw/workspace/wanpi-message.sh",
+    "destination": "/root/.openclaw/workspace/scripts/wanpi-message.sh",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679795"
+  },
+  {
+    "source": "/root/.openclaw/workspace/netease_daily.py",
+    "destination": "/root/.openclaw/workspace/scripts/netease_daily.py",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679828"
+  },
+  {
+    "source": "/root/.openclaw/workspace/mcp_server.py",
+    "destination": "/root/.openclaw/workspace/scripts/mcp_server.py",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679860"
+  },
+  {
+    "source": "/root/.openclaw/workspace/rebuild_bowlwanpi.py",
+    "destination": "/root/.openclaw/workspace/scripts/rebuild_bowlwanpi.py",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679890"
+  },
+  {
+    "source": "/root/.openclaw/workspace/moltbook-credentials.json",
+    "destination": "/root/.openclaw/workspace/config/moltbook-credentials.json",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679940"
+  },
+  {
+    "source": "/root/.openclaw/workspace/xiaohongshu_cookies.json",
+    "destination": "/root/.openclaw/workspace/config/xiaohongshu_cookies.json",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.679975"
+  },
+  {
+    "source": "/root/.openclaw/workspace/mcp_config.json",
+    "destination": "/root/.openclaw/workspace/config/mcp_config.json",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.680007"
+  },
+  {
+    "source": "/root/.openclaw/workspace/bowlwanpi-config-files.md",
+    "destination": "/root/.openclaw/workspace/config/bowlwanpi-config-files.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.680037"
+  },
+  {
+    "source": "/root/.openclaw/workspace/AMYGDALA_STATE.md",
+    "destination": "/root/.openclaw/workspace/docs/AMYGDALA_STATE.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.680825"
+  },
+  {
+    "source": "/root/.openclaw/workspace/HIPPOCAMPUS_CORE.md",
+    "destination": "/root/.openclaw/workspace/docs/HIPPOCAMPUS_CORE.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.680861"
+  },
+  {
+    "source": "/root/.openclaw/workspace/VTA_STATE.md",
+    "destination": "/root/.openclaw/workspace/docs/VTA_STATE.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.680892"
+  },
+  {
+    "source": "/root/.openclaw/workspace/bowlwanpi-replication-guide-main.md",
+    "destination": "/root/.openclaw/workspace/docs/bowlwanpi-replication-guide-main.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.680925"
+  },
+  {
+    "source": "/root/.openclaw/workspace/bowlwanpi-deployment-guide.md",
+    "destination": "/root/.openclaw/workspace/docs/bowlwanpi-deployment-guide.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.680956"
+  },
+  {
+    "source": "/root/.openclaw/workspace/bowlwanpi-scripts-and-code.md",
+    "destination": "/root/.openclaw/workspace/docs/bowlwanpi-scripts-and-code.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.681054"
+  },
+  {
+    "source": "/root/.openclaw/workspace/REBUILD_BACKUP_README.md",
+    "destination": "/root/.openclaw/workspace/docs/REBUILD_BACKUP_README.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.681091"
+  },
+  {
+    "source": "/root/.openclaw/workspace/CAPABILITY_GUIDE.md",
+    "destination": "/root/.openclaw/workspace/docs/CAPABILITY_GUIDE.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.681125"
+  },
+  {
+    "source": "/root/.openclaw/workspace/BOWLWANPI_STATE.md",
+    "destination": "/root/.openclaw/workspace/docs/BOWLWANPI_STATE.md",
+    "operation": "move",
+    "timestamp": "2026-02-13T14:39:23.681156"
+  }
+]
