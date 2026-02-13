@@ -77,24 +77,28 @@ class SelfCheckSystem:
         details = []
         
         try:
-            # 获取 cron 列表
+            # 获取 cron 列表 (JSON格式)
             result = subprocess.run(
-                ['openclaw', 'cron', 'list'],
+                ['openclaw', 'cron', 'list', '--json'],
                 capture_output=True, text=True, timeout=30
             )
             
             if result.returncode != 0:
                 return False, "无法读取 cron 列表", []
             
-            output = result.stdout
-            
-            # 解析任务（简化解析）
-            jobs = self._parse_cron_list(output)
+            # 解析 JSON 输出
+            try:
+                data = json.loads(result.stdout)
+                jobs = data.get('jobs', [])
+            except json.JSONDecodeError:
+                # 回退到文本解析
+                jobs = self._parse_cron_list(result.stdout)
             
             self.log(f"发现 {len(jobs)} 个定时任务", "INFO")
             
             for job in jobs:
                 job_issues = []
+                channel = None
                 
                 # 检查1: 通道配置
                 if job.get('delivery'):
@@ -106,7 +110,8 @@ class SelfCheckSystem:
                 
                 # 检查2: sessionTarget 和 payload 类型匹配
                 session_target = job.get('sessionTarget', '')
-                payload_kind = job.get('payload', {}).get('kind', '')
+                payload = job.get('payload', {})
+                payload_kind = payload.get('kind', '') if isinstance(payload, dict) else ''
                 
                 if session_target == 'main' and payload_kind != 'systemEvent':
                     job_issues.append(f"⚠️ main session 应该使用 systemEvent")
@@ -114,16 +119,18 @@ class SelfCheckSystem:
                     job_issues.append(f"⚠️ isolated session 应该使用 agentTurn")
                 
                 # 检查3: 连续错误
-                consecutive_errors = job.get('state', {}).get('consecutiveErrors', 0)
+                state = job.get('state', {})
+                consecutive_errors = state.get('consecutiveErrors', 0) if isinstance(state, dict) else 0
                 if consecutive_errors > 3:
                     job_issues.append(f"❌ 连续失败 {consecutive_errors} 次")
                 elif consecutive_errors > 0:
                     job_issues.append(f"⚠️ 最近有 {consecutive_errors} 次失败")
                 
                 # 检查4: 任务超时
-                last_error = job.get('state', {}).get('lastError', '')
-                if 'timeout' in last_error.lower():
-                    job_issues.append(f"⚠️ 上次执行超时")
+                if isinstance(state, dict):
+                    last_error = state.get('lastError', '') or ''
+                    if 'timeout' in last_error.lower():
+                        job_issues.append(f"⚠️ 上次执行超时")
                 
                 if job_issues:
                     issues.append({
@@ -135,7 +142,7 @@ class SelfCheckSystem:
                 details.append({
                     'name': job.get('name'),
                     'enabled': job.get('enabled'),
-                    'channel': channel if job.get('delivery') else None,
+                    'channel': channel,
                     'issues': job_issues
                 })
             
