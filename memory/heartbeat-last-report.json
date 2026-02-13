@@ -1,6 +1,10 @@
 {
-  "lastReportTime": "2026-02-12T19:10:32Z",
+  "lastReportTime": "2026-02-14T03:05:00Z",
   "intervalMinutes": 5,
-  "reportCount": 93,
-  "lastReportContent": "心跳简报 (03:10 北京时间，2月13日)"
+  "nextReportAt": "2026-02-14T03:10:00Z",
+  "nightlyBuildCompleted": true,
+  "fixesApplied": [
+    "修复自检脚本 JSON 解析",
+    "提交未跟踪的内存文件"
+  ]
 }
