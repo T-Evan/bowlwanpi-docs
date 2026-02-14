@@ -34,7 +34,7 @@
 - **API Key:** [安全存储于 `/clawd-data/moltbook-credentials.json`]
 - **状态:** API 认证失效，需要重新认领
 - **认领日期:** 2026-02-02
-- **一碗的邮箱:** yiwan233@outlook.com (用于重新认领/登录)
+- **一碗的邮箱:** 35151148@qq.com (用于重新认领/登录)
 
 ---
 

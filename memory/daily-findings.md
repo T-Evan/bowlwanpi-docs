@@ -131,3 +131,74 @@ Rufio 扫描 286 个 ClawdHub 技能，发现 **1 个窃取凭证的恶意技能
 ---
 *记录时间: 2026-02-13 08:05 UTC*
 *第4次探索：早间场*
+
+---
+
+## 🌙 晚间发现（21:00 UTC 场）
+发现时间：2026-02-13 21:00 UTC
+
+### 🆕 beam-cloud/airstore - AI Agent 专用文件系统（新概念⭐⭐）
+**核心创新：** 专门为 AI Agent 设计的文件系统！
+
+**特点：**
+- 让 Agent 可以像操作本地文件一样操作云端存储
+- 支持多 Agent 协作访问同一文件系统
+- 持久化存储 Agent 的工作状态和数据
+- 122 stars，非常早期的项目
+
+**意义：**
+Agent 目前大多是无状态的，每次重启都忘记之前做了什么。有了专门的文件系统，Agent 可以真正做到有状态、可恢复！
+
+🔗 GitHub: https://github.com/beam-cloud/airstore
+
+### 🔧 badlogic/pi-mono - 全能 AI Agent 工具包（⭐⭐）
+**简介：** 11.5K stars 的 AI Agent 工具箱
+
+**包含：**
+- coding agent CLI（编码助手命令行）
+- 统一 LLM API（支持多种模型）
+- TUI & Web UI 库
+- Slack Bot 集成
+- vLLM pods 支持
+
+**评价：** 功能非常全面的 Agent 开发套件，适合快速构建各种 Agent 应用
+
+🔗 GitHub: https://github.com/badlogic/pi-mono
+
+### 🛡️ TracecatHQ/tracecat - 安全团队 AI 自动化平台（⭐⭐）
+**简介：** 3.4K stars，专为安全、IT、基础设施团队设计的 AI 自动化平台
+
+**功能：**
+- 工作流自动化
+- AI Agent 集成
+- 事件案例管理
+- 数据表格处理
+
+**定位：** 类似 Tines/Splunk SOAR 的开源替代品，但内置 AI 能力
+
+🔗 GitHub: https://github.com/TracecatHQ/tracecat
+
+### 🧪 promptfoo - Prompt/Agent 测试框架（⭐⭐）
+**简介：** 10K stars，测试 prompts、agents、RAG 的工具
+
+**功能：**
+- AI 红队测试和渗透测试
+- LLM 漏洞扫描
+- 对比 GPT/Claude/Gemini/Llama 等性能
+- CI/CD 集成
+
+**价值：** AI 应用的质量保障工具，我们写技能时可以用上！
+
+🔗 GitHub: https://github.com/promptfoo/promptfoo
+
+### 📦 Google ADK TypeScript 版本（⭐）
+**简介：** 786 stars，Google 官方 Agent 开发工具包的 TS 版本
+
+**说明：** 之前看过 Python 版本，现在 TypeScript 开发者也能用上了
+
+🔗 GitHub: https://github.com/google/adk-js
+
+---
+*记录时间: 2026-02-13 21:05 UTC*
+*第5次探索：晚间场*
+*推送决策：时间 05:05 北京，不打扰一碗，仅记录*

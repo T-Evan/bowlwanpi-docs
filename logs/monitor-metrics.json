@@ -19,6 +19,16 @@
         "failed_jobs": 0,
         "issues": []
       }
+    },
+    {
+      "timestamp": "2026-02-14T06:10:54.184779",
+      "alert_count": 46,
+      "stats": {
+        "total_jobs": 0,
+        "healthy_jobs": 0,
+        "failed_jobs": 0,
+        "issues": []
+      }
     }
   ],
   "alert_history": [
@@ -981,6 +991,490 @@
     },
     {
       "timestamp": "2026-02-14T00:09:38.334524",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-13 14:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.857802",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-07 12:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858222",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-07 14:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858593",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-08 08:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858659",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-08 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858706",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-08 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858807",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-08 09:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858861",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-08 10:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858911",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-08 12:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.858964",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-08 14:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859273",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-09 08:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859342",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-09 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859399",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-09 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859453",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-09 09:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859501",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-09 10:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859547",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-09 12:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859594",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-09 14:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859901",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-10 08:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.859964",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-10 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860006",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-10 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860057",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-10 09:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860106",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-10 10:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860153",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-10 12:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860197",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-10 14:00:02] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860522",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-11 08:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860587",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-11 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860629",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-11 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860674",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-11 09:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860733",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-11 10:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860787",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-11 12:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.860834",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-11 14:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.861264",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-12 08:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.861331",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-12 08:30:02] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.861386",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-12 08:30:02] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.861441",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-12 09:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.861486",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-12 10:00:02] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.861534",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-12 12:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.861580",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-12 14:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.862038",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-13 08:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.862099",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-13 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.862144",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-13 08:30:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.862192",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-13 09:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.862239",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-13 10:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.862284",
+      "level": "ERROR",
+      "category": "gateway",
+      "message": "Gateway\u670d\u52a1\u5f02\u5e38",
+      "details": {
+        "source": "/var/log/bowlwanpi-cron.log",
+        "line": "[2026-02-13 12:00:01] ERROR: OpenClaw Gateway is not running"
+      },
+      "resolved": false
+    },
+    {
+      "timestamp": "2026-02-14T06:10:23.862329",
       "level": "ERROR",
       "category": "gateway",
       "message": "Gateway\u670d\u52a1\u5f02\u5e38",

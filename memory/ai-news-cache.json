@@ -297,5 +297,44 @@
     "hash": "1bc5b9774b3f4c97",
     "priority": 8,
     "discovered_at": "2026-02-13T22:07:20.828043"
+  },
+  {
+    "title": "Show HN: Skill that lets Claude Code/Codex spin up VMs and GPUs",
+    "url": "https://cloudrouter.dev/",
+    "hn_url": "https://news.ycombinator.com/item?id=47006393",
+    "author": "austinwang115",
+    "points": 37,
+    "comments": 4,
+    "source": "hackernews",
+    "created_at": "2026-02-14T03:02:17",
+    "hash": "9022bc59f125a714",
+    "priority": 8,
+    "discovered_at": "2026-02-14T05:07:47.716913"
+  },
+  {
+    "title": "The \"AI agent hit piece\" situation clarifies how dumb we are acting",
+    "url": "https://ardentperf.com/2026/02/13/the-scott-shambaugh-situation-clarifies-how-dumb-we-are-acting/",
+    "hn_url": "https://news.ycombinator.com/item?id=47006843",
+    "author": "darccio",
+    "points": 101,
+    "comments": 11,
+    "source": "hackernews",
+    "created_at": "2026-02-14T03:41:42",
+    "hash": "1791d5c700b622be",
+    "priority": 8,
+    "discovered_at": "2026-02-14T08:06:52.954485"
+  },
+  {
+    "title": "An AI Agent Published a Hit Piece on Me \u2013 More Things Have Happened",
+    "url": "https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me-part-2/",
+    "hn_url": "https://news.ycombinator.com/item?id=47009949",
+    "author": "scottshambaugh",
+    "points": 93,
+    "comments": 22,
+    "source": "hackernews",
+    "created_at": "2026-02-14T08:37:53",
+    "hash": "e9127f9c3d80540a",
+    "priority": 7,
+    "discovered_at": "2026-02-14T10:04:15.066488"
   }
 ]
