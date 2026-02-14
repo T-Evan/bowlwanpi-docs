@@ -2,10 +2,16 @@
   "tasks": [
     {
       "id": "task_002",
-      "content": "重新设置 Moltbook 登录（使用一碗邮箱 yiwan233@outlook.com）",
+      "content": "配置 Epic Awesome Gamer（填写 EPIC_EMAIL, EPIC_PASSWORD, GEMINI_API_KEY）",
       "priority": "medium",
-      "created": "2026-02-09",
-      "deadline": null
+      "created": "2026-02-14",
+      "deadline": null,
+      "details": {
+        "install_dir": "/opt/epic-awesome-gamer",
+        "config_file": "docker/.env",
+        "required_vars": ["EPIC_EMAIL", "EPIC_PASSWORD", "GEMINI_API_KEY"],
+        "notes": "需要关闭 Epic 账号的两步验证"
+      }
     }
   ],
   "completed": [

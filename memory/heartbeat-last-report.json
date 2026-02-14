@@ -1,10 +1,1 @@
-{
-  "lastReportTime": "2026-02-14T03:05:00Z",
-  "intervalMinutes": 5,
-  "nextReportAt": "2026-02-14T03:10:00Z",
-  "nightlyBuildCompleted": true,
-  "fixesApplied": [
-    "修复自检脚本 JSON 解析",
-    "提交未跟踪的内存文件"
-  ]
-}
+{"lastReportTime": "2026-02-15T02:00:01+08:00", "intervalMinutes": 5, "nextReportAt": "2026-02-15T02:05:01+08:00"}

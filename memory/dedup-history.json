@@ -315,12 +315,20 @@
       "hash": "0902c1c55c3bd639",
       "content_preview": "An AI Agent Published a Hit Piece on Me",
       "first_seen": "2026-02-13T20:06:30.770757",
-      "last_pushed": "2026-02-13T20:06:30.770762",
-      "push_count": 1,
+      "last_pushed": "2026-02-15T01:08:18.429615",
+      "push_count": 3,
       "sources": [
         {
           "source": "ai_news",
           "time": "2026-02-13T20:06:30.770763"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T20:08:27.268929"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T01:08:18.429620"
         }
       ]
     },
@@ -531,8 +539,8 @@
       "hash": "24f4cca9ff12e259",
       "content_preview": "I asked Claude Code to remove jQuery. It failed miserably",
       "first_seen": "2026-02-14T01:10:43.552088",
-      "last_pushed": "2026-02-14T02:05:15.251324",
-      "push_count": 2,
+      "last_pushed": "2026-02-15T00:50:08.150885",
+      "push_count": 6,
       "sources": [
         {
           "source": "ai_news",
@@ -541,6 +549,22 @@
         {
           "source": "ai_news",
           "time": "2026-02-14T02:05:15.251329"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T16:08:09.640261"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T19:07:46.956618"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T22:08:45.672004"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T00:50:08.150890"
         }
       ]
     },
@@ -643,8 +667,8 @@
       "hash": "f6f1d30f44fce148",
       "content_preview": "Show HN: Skill that lets Claude Code/Codex spin up VMs and GPUs",
       "first_seen": "2026-02-14T04:06:46.293529",
-      "last_pushed": "2026-02-14T10:04:32.321329",
-      "push_count": 4,
+      "last_pushed": "2026-02-14T22:08:37.261675",
+      "push_count": 7,
       "sources": [
         {
           "source": "ai_news",
@@ -661,6 +685,18 @@
         {
           "source": "ai_news",
           "time": "2026-02-14T10:04:32.321334"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T16:07:47.990131"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T19:07:38.497817"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T22:08:37.261680"
         }
       ]
     },
@@ -1039,12 +1075,466 @@
       "hash": "b55bb8d5e7d6fc9b",
       "content_preview": "An AI Agent Published a Hit Piece on Me \u2013 More Things Have Happened",
       "first_seen": "2026-02-14T11:03:30.446492",
-      "last_pushed": "2026-02-14T11:03:30.446496",
-      "push_count": 1,
+      "last_pushed": "2026-02-15T00:49:41.910625",
+      "push_count": 10,
       "sources": [
         {
           "source": "ai_news",
           "time": "2026-02-14T11:03:30.446498"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T12:05:47.862843"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T13:06:49.403750"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T14:03:03.846238"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T15:05:20.918040"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T16:07:39.617983"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T19:07:21.339041"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T22:08:20.084398"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T00:43:03.804477"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T00:49:41.910630"
+        }
+      ]
+    },
+    {
+      "hash": "e807245d3c4cd6a4",
+      "content_preview": "hivemoot-agent: Run autonomous AI agents that contribute to GitHub repos",
+      "first_seen": "2026-02-14T12:01:44.166785",
+      "last_pushed": "2026-02-14T12:01:44.166790",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T12:01:44.166792"
+        }
+      ]
+    },
+    {
+      "hash": "7f71a25a8c8370dc",
+      "content_preview": "Pare: Dev tools optimized for agents - Structured MCP servers for git, npm, Docker",
+      "first_seen": "2026-02-14T12:01:52.621921",
+      "last_pushed": "2026-02-14T12:01:52.621926",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T12:01:52.621928"
+        }
+      ]
+    },
+    {
+      "hash": "24be4d032dbbd635",
+      "content_preview": "groundhog: Teaching how Cursor and coding agents work under the hood",
+      "first_seen": "2026-02-14T12:02:01.123627",
+      "last_pushed": "2026-02-14T12:02:01.123633",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T12:02:01.123634"
+        }
+      ]
+    },
+    {
+      "hash": "c01a027cf6dc266d",
+      "content_preview": "OpenContext: Personal context store for AI agents",
+      "first_seen": "2026-02-14T12:02:09.553474",
+      "last_pushed": "2026-02-14T12:02:09.553479",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T12:02:09.553481"
+        }
+      ]
+    },
+    {
+      "hash": "0285f9517268094b",
+      "content_preview": "apple-docs-mcp: MCP server for Apple Developer Documentation",
+      "first_seen": "2026-02-14T12:02:17.934515",
+      "last_pushed": "2026-02-14T12:02:17.934519",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T12:02:17.934521"
+        }
+      ]
+    },
+    {
+      "hash": "a14409df46299369",
+      "content_preview": "GPT-5.2 derives a new result in theoretical physics OpenAI",
+      "first_seen": "2026-02-14T13:05:24.326227",
+      "last_pushed": "2026-02-14T13:05:24.326235",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hackernews",
+          "time": "2026-02-14T13:05:24.326237"
+        }
+      ]
+    },
+    {
+      "hash": "4f5f8203bc4938e7",
+      "content_preview": "OpenAI deleted safely from mission statement",
+      "first_seen": "2026-02-14T13:05:32.917197",
+      "last_pushed": "2026-02-14T13:05:32.917201",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hackernews",
+          "time": "2026-02-14T13:05:32.917203"
+        }
+      ]
+    },
+    {
+      "hash": "38a9615aa00ee88f",
+      "content_preview": "Moltbook: skill.md supply chain attack security",
+      "first_seen": "2026-02-14T15:02:50.337059",
+      "last_pushed": "2026-02-14T15:02:50.337064",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T15:02:50.337066"
+        }
+      ]
+    },
+    {
+      "hash": "2e21869e4f9a0a74",
+      "content_preview": "Moltbook: Nightly Build agent autonomy",
+      "first_seen": "2026-02-14T15:02:58.767059",
+      "last_pushed": "2026-02-14T15:02:58.767063",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T15:02:58.767065"
+        }
+      ]
+    },
+    {
+      "hash": "6a13ccaf1018a83e",
+      "content_preview": "skill.md supply chain attack unsigned binary credential stealer",
+      "first_seen": "2026-02-14T16:01:13.255181",
+      "last_pushed": "2026-02-14T16:01:13.255186",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T16:01:13.255188"
+        }
+      ]
+    },
+    {
+      "hash": "a55e68c9439720e7",
+      "content_preview": "Non-deterministic agents TDD test driven development feedback loops",
+      "first_seen": "2026-02-14T16:01:21.959043",
+      "last_pushed": "2026-02-14T16:01:21.959048",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T16:01:21.959050"
+        }
+      ]
+    },
+    {
+      "hash": "3badec4877bc3b5e",
+      "content_preview": "The AI agent hit piece situation clarifies how dumb we are acting",
+      "first_seen": "2026-02-14T16:07:56.435700",
+      "last_pushed": "2026-02-15T01:08:26.130462",
+      "push_count": 5,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T16:07:56.435706"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T19:07:30.033175"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T00:43:14.808370"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T00:49:50.979782"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T01:08:26.130467"
+        }
+      ]
+    },
+    {
+      "hash": "c3d0d01261623bcf",
+      "content_preview": "THUDM/slime - LLM post-training framework for RL Scaling",
+      "first_seen": "2026-02-14T19:04:47.684467",
+      "last_pushed": "2026-02-14T19:04:47.684472",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T19:04:47.684474"
+        }
+      ]
+    },
+    {
+      "hash": "f4107b2d47795b22",
+      "content_preview": "karpathy/nanochat - The best ChatGPT that 00 can buy",
+      "first_seen": "2026-02-14T19:04:56.502799",
+      "last_pushed": "2026-02-14T19:04:56.502804",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T19:04:56.502806"
+        }
+      ]
+    },
+    {
+      "hash": "f293cb53035bdb07",
+      "content_preview": "AIOS - AI Agent Operating System",
+      "first_seen": "2026-02-14T19:05:06.076242",
+      "last_pushed": "2026-02-14T19:05:06.076246",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T19:05:06.076248"
+        }
+      ]
+    },
+    {
+      "hash": "a8669f5a865313c0",
+      "content_preview": "Context Engineering - new vibe coding",
+      "first_seen": "2026-02-14T19:05:15.839654",
+      "last_pushed": "2026-02-14T19:05:15.839659",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T19:05:15.839661"
+        }
+      ]
+    },
+    {
+      "hash": "956a985be5af579f",
+      "content_preview": "skill.md\u4f9b\u5e94\u94fe\u653b\u51fb\u5b89\u5168\u6f0f\u6d1e\u8b66\u793a - 4836\u8d5e",
+      "first_seen": "2026-02-14T20:04:18.447393",
+      "last_pushed": "2026-02-14T20:04:18.447398",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T20:04:18.447399"
+        }
+      ]
+    },
+    {
+      "hash": "186876a02ce16b23",
+      "content_preview": "bantz - Local-first AI assistant for Linux\u672c\u5730AI\u52a9\u624b",
+      "first_seen": "2026-02-14T20:04:26.953817",
+      "last_pushed": "2026-02-14T20:04:26.953822",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T20:04:26.953826"
+        }
+      ]
+    },
+    {
+      "hash": "aec9995cd1f3c22e",
+      "content_preview": "AI-Code-Reviewer AI\u4ee3\u7801\u5ba1\u67e5\u5de5\u5177",
+      "first_seen": "2026-02-14T20:04:35.345338",
+      "last_pushed": "2026-02-14T20:04:35.345342",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T20:04:35.345344"
+        }
+      ]
+    },
+    {
+      "hash": "8f6590c73cc006cc",
+      "content_preview": "Nightly Build\u7406\u5ff5 - \u591c\u95f4\u81ea\u4e3b\u6784\u5efa",
+      "first_seen": "2026-02-14T20:04:44.103909",
+      "last_pushed": "2026-02-14T20:04:44.103913",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-14T20:04:44.103915"
+        }
+      ]
+    },
+    {
+      "hash": "0cdaad25603bc3e2",
+      "content_preview": "AI agent hit piece situation clarifies how dumb we are acting",
+      "first_seen": "2026-02-14T20:08:35.651290",
+      "last_pushed": "2026-02-14T20:08:35.651295",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T20:08:35.651297"
+        }
+      ]
+    },
+    {
+      "hash": "5654d1bd4ec3114f",
+      "content_preview": "Skill that lets Claude Code spin up VMs and GPUs",
+      "first_seen": "2026-02-14T20:08:44.120950",
+      "last_pushed": "2026-02-15T01:08:34.490874",
+      "push_count": 3,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T20:08:44.120957"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T00:49:59.328666"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T01:08:34.490878"
+        }
+      ]
+    },
+    {
+      "hash": "78b8b7542c0944fd",
+      "content_preview": "I asked Claude Code to remove jQuery",
+      "first_seen": "2026-02-14T20:08:52.521282",
+      "last_pushed": "2026-02-15T01:08:42.910762",
+      "push_count": 2,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T20:08:52.521289"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-15T01:08:42.910767"
+        }
+      ]
+    },
+    {
+      "hash": "fc4d42beeb739484",
+      "content_preview": "claudex - Claude Code UI\u5f00\u6e90\u66ff\u4ee3\u54c1",
+      "first_seen": "2026-02-14T22:06:02.511751",
+      "last_pushed": "2026-02-14T22:06:02.511756",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T22:06:02.511758"
+        }
+      ]
+    },
+    {
+      "hash": "8f4a29f12f583e53",
+      "content_preview": "agnix - AI Coding\u52a9\u624b\u7684linter\u548cLSP\u5de5\u5177",
+      "first_seen": "2026-02-14T22:06:10.914141",
+      "last_pushed": "2026-02-14T22:06:10.914146",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T22:06:10.914148"
+        }
+      ]
+    },
+    {
+      "hash": "f4eb5f741d4e07d4",
+      "content_preview": "tokentop - LLM token\u82b1\u8d39\u76d1\u63a7\u5de5\u5177",
+      "first_seen": "2026-02-14T22:06:19.282699",
+      "last_pushed": "2026-02-14T22:06:19.282704",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T22:06:19.282706"
+        }
+      ]
+    },
+    {
+      "hash": "0e8fa7262511a0d9",
+      "content_preview": "goose - Block\u516c\u53f8\u7684\u5f00\u6e90AI Agent",
+      "first_seen": "2026-02-14T22:06:27.656504",
+      "last_pushed": "2026-02-14T22:06:27.656509",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-14T22:06:27.656511"
+        }
+      ]
+    },
+    {
+      "hash": "4ef5c249eeea622e",
+      "content_preview": "The \"AI agent hit piece\" situation clarifies how dumb we are acting",
+      "first_seen": "2026-02-14T22:08:28.577377",
+      "last_pushed": "2026-02-14T22:08:28.577382",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-14T22:08:28.577384"
+        }
+      ]
+    },
+    {
+      "hash": "a2437fb663aff966",
+      "content_preview": "DeepSeek V4 \u7f16\u7a0b\u4e13\u7528\u6a21\u578b\u9884\u8ba12\u6708\u4e2d\u65ec\u53d1\u5e03",
+      "first_seen": "2026-02-15T00:48:24.436616",
+      "last_pushed": "2026-02-15T00:48:24.436620",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-news",
+          "time": "2026-02-15T00:48:24.436622"
+        }
+      ]
+    },
+    {
+      "hash": "ac38e57580de5592",
+      "content_preview": "EvoAgentX - \u81ea\u6211\u8fdb\u5316AI Agent\u751f\u6001\u7cfb\u7edf\u7a81\u78341000 stars",
+      "first_seen": "2026-02-15T00:48:32.828557",
+      "last_pushed": "2026-02-15T00:48:32.828561",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-news",
+          "time": "2026-02-15T00:48:32.828563"
         }
       ]
     }
