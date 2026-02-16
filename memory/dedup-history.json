@@ -1680,6 +1680,32 @@
           "time": "2026-02-17T05:08:10.261816"
         }
       ]
+    },
+    {
+      "hash": "f12fff4c1c68900b",
+      "content_preview": "GitHub Trending: alibaba/zvec \u8f7b\u91cf\u7ea7\u5411\u91cf\u6570\u636e\u5e93\uff08AI/LLM\u57fa\u7840\u8bbe\u65bd\uff09\u4eca\u65e5+1094 stars\uff0c\u9002\u5408\u505a\u672c\u5730RAG\u4e0eAgent\u68c0\u7d22\u5c42\u3002https://github.com...",
+      "first_seen": "2026-02-17T06:08:31.693794",
+      "last_pushed": "2026-02-17T06:08:31.693799",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T06:08:31.693800"
+        }
+      ]
+    },
+    {
+      "hash": "69510f1034d3f936",
+      "content_preview": "The Long Tail of LLM(\u5927\u8bed\u8a00\u6a21\u578b)-Assisted Decompilation",
+      "first_seen": "2026-02-17T06:09:54.979419",
+      "last_pushed": "2026-02-17T06:09:54.979424",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T06:09:54.979425"
+        }
+      ]
     }
   ]
 }
