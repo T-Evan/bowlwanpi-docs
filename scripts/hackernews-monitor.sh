@@ -27,14 +27,24 @@ if [ -z "$RESPONSE" ]; then
     exit 1
 fi
 
-# 解析并检查新帖子
-python3 << PYTHON_SCRIPT
+# 检查 JSON 有效性
+echo "$RESPONSE" | python3 -c "import sys, json; json.load(sys.stdin)" 2>/dev/null
+if [ $? -ne 0 ]; then
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERROR: Invalid JSON response" >> "$LOG_FILE"
+    exit 1
+fi
+
+# 解析并检查新帖子 - 使用管道传递数据
+echo "$RESPONSE" | python3 << 'PYTHON_SCRIPT'
 import sys, json, os
 
 cache_file = "/root/.openclaw/workspace/memory/hackernews-openclaw-cache.json"
 pending_file = "/tmp/bowlwanpi-hackernews-pending.txt"
 
 try:
+    response_text = sys.stdin.read()
+    data = json.loads(response_text)
+    
     # 读取缓存
     try:
         with open(cache_file, 'r') as f:
@@ -43,14 +53,12 @@ try:
         cache = []
     
     cached_ids = {item.get('objectID') for item in cache}
-    
-    data = json.loads('"""$RESPONSE"""'.replace('"""', '"'))
     hits = data.get('hits', [])
     new_posts = []
     
     for hit in hits:
         post_id = hit.get('objectID')
-        if post_id not in cached_ids:
+        if post_id and post_id not in cached_ids:
             new_posts.append(hit)
             cache.append(hit)
     
