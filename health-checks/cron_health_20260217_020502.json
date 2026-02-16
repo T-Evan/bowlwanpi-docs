@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-02-17T02:05:02.009958",
+  "summary": {
+    "cron_running": false,
+    "total_cron_jobs": 2
+  },
+  "tasks": {},
+  "errors": [
+    {
+      "severity": "critical",
+      "message": "cron 服务未运行",
+      "action": "systemctl start cron"
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "dependency",
+      "service": "OpenClaw Gateway",
+      "action": "检查 OpenClaw Gateway 是否已启动"
+    }
+  ]
+}

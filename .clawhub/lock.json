@@ -28,6 +28,14 @@
     "self-improving-agent": {
       "version": "1.0.5",
       "installedAt": 1771263508894
+    },
+    "session-cost": {
+      "version": "1.0.0",
+      "installedAt": 1771264938392
+    },
+    "openclaw-cost-guard": {
+      "version": "0.1.0",
+      "installedAt": 1771264951585
     }
   }
 }

@@ -20,18 +20,25 @@ check_gateway() {
     log "🔍 检查 Gateway..."
     
     local retry=0
-    local max_retry=3
+    local max_retry=2
     local status="fail"
     
     while [ $retry -lt $max_retry ]; do
+        # 方法1: 直接检查进程
         if pgrep -f "openclaw.*gateway" > /dev/null 2>&1; then
-            if curl -s http://localhost:3000/health > /dev/null 2>&1; then
+            # 方法2: 检查端口是否监听
+            if netstat -tlnp 2>/dev/null | grep -q ":${GATEWAY_PORT:-18789}"; then
+                status="ok"
+                break
+            fi
+            # 方法3: 使用 openclaw gateway status 检查
+            if openclaw gateway status 2>/dev/null | grep -q "running"; then
                 status="ok"
                 break
             fi
         fi
         retry=$((retry + 1))
-        sleep 2
+        sleep 1
     done
     
     if [ "$status" = "ok" ]; then

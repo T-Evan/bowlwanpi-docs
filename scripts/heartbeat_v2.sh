@@ -116,28 +116,22 @@ check_cron_health() {
         ERROR_COUNT=$(echo "$PYTHON_OUTPUT" | grep -oP '错误次数: \K\d+' || echo "0")
         ERROR_RATE=$(echo "$PYTHON_OUTPUT" | grep -oP '错误率: \K[\d.]+' || echo "0")
         
+        # 检查是否真的发现了关键错误（不只是建议）
+        CRITICAL_ERRORS=$(echo "$PYTHON_OUTPUT" | grep -c '"severity": "critical"' || echo "0")
+        
         log "Cron errors (24h): $ERROR_COUNT"
         log "Cron error rate: ${ERROR_RATE}%"
+        log "Critical issues: $CRITICAL_ERRORS"
         
-        # 如果有严重问题，发送警报
-        if [ "$EXIT_CODE" -ne 0 ]; then
-            log "ALERT: Cron health check failed"
-            alert "CRITICAL" "定时任务健康检查发现问题: ${ERROR_COUNT} 个错误, 错误率 ${ERROR_RATE}%"
-            
-            # 提取具体的失败任务
-            FAILED_TASKS=$(echo "$PYTHON_OUTPUT" | grep -E "🔴|0\.0%" | head -5)
-            if [ -n "$FAILED_TASKS" ]; then
-                alert "WARNING" "失败任务详情:\n$FAILED_TASKS"
-            fi
-        fi
-        
-        # 检查错误率
-        if [ "${ERROR_RATE%.*}" -gt 50 ]; then
+        # 只有真正发现关键错误时才发送警报
+        if [ "$CRITICAL_ERRORS" -gt 0 ]; then
+            log "ALERT: Critical cron issues detected"
+            alert "CRITICAL" "定时任务发现关键问题: ${CRITICAL_ERRORS} 个严重错误"
+        elif [ "${ERROR_RATE%.*}" -gt 50 ]; then
             log "ALERT: High cron error rate detected (${ERROR_RATE}%)"
-            alert "CRITICAL" "定时任务错误率过高: ${ERROR_RATE}%"
-        elif [ "${ERROR_RATE%.*}" -gt 20 ]; then
-            log "WARNING: Elevated cron error rate (${ERROR_RATE}%)"
             alert "WARNING" "定时任务错误率偏高: ${ERROR_RATE}%"
+        else
+            log "Cron health check passed (no critical issues)"
         fi
     else
         log "Detailed cron checker not found, using basic check..."

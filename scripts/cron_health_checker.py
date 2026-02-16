@@ -59,26 +59,38 @@ class CronHealthChecker:
         print("📋 检查 cron 服务状态...")
         
         try:
-            # 检查 cron 进程
+            # 方法1: 检查 crond 进程（大多数Linux发行版）
             result = subprocess.run(
-                ["pgrep", "-x", "cron"],
+                ["pgrep", "crond"],
                 capture_output=True,
                 text=True
             )
             
             if result.returncode == 0:
-                pid = result.stdout.strip()
+                pid = result.stdout.strip().split('\n')[0]  # 取第一个PID
                 self.results["summary"]["cron_running"] = True
                 self.results["summary"]["cron_pid"] = pid
                 print(f"  ✅ cron 服务运行中 (PID: {pid})")
             else:
-                self.results["summary"]["cron_running"] = False
-                self.results["errors"].append({
-                    "severity": "critical",
-                    "message": "cron 服务未运行",
-                    "action": "systemctl start cron"
-                })
-                print("  ❌ cron 服务未运行")
+                # 方法2: 尝试检查 cron 进程（某些系统）
+                result2 = subprocess.run(
+                    ["pgrep", "-x", "cron"],
+                    capture_output=True,
+                    text=True
+                )
+                if result2.returncode == 0:
+                    pid = result2.stdout.strip().split('\n')[0]
+                    self.results["summary"]["cron_running"] = True
+                    self.results["summary"]["cron_pid"] = pid
+                    print(f"  ✅ cron 服务运行中 (PID: {pid})")
+                else:
+                    self.results["summary"]["cron_running"] = False
+                    self.results["errors"].append({
+                        "severity": "critical",
+                        "message": "cron 服务未运行",
+                        "action": "systemctl start cron 或 service cron start"
+                    })
+                    print("  ❌ cron 服务未运行")
             
             # 检查 crontab
             result = subprocess.run(
