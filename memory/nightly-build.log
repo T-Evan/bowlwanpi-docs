@@ -11,3 +11,14 @@
 - 系统健康度从70分提升到90+
 
 Fixes #nightly-build-20260216
+
+---
+## 🔧 重建手册生成任务执行记录（cron:63fbb8ef-726f-4918-9fd8-f4ee796e1a93）
+- 执行时间（UTC）: 2026-02-16 18:17 -> 18:25
+- 生成器执行: ✅ `python3 skills/rebuild-generator/rebuild_generator.py`
+- UTC 对齐执行: ✅ `TZ=UTC python3 skills/rebuild-generator/rebuild_generator.py`
+- 摘要文件: ✅ `memory/rebuild-summary-2026-02-16.md`
+- 三记忆系统上传: ✅ memU / ✅ Hippocampus / ✅ MemOS
+- 能力扫描: ✅ 技能 34、MCP 3、记忆系统状态已核验
+- 备注: `openclaw cron list` 存在 gateway timeout，待后续低负载复查
+- 维护优化: 已修复 `skills/rebuild-generator/rebuild_generator.py` 的 MCP 配置扫描路径，兼容 `config/mcp_config.json`。

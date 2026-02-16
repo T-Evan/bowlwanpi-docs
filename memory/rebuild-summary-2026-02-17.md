@@ -1,10 +1,10 @@
 🥣 BowlWanpi 重建摘要
 
-生成时间: 2026-02-17T01:39:07.240795
+生成时间: 2026-02-17T02:25:05.063800
 
 ## 当前能力状态
 
-### 技能 (32 个)
+### 技能 (34 个)
 - bilibili-hot-monitor
 - advanced-skill-creator
 - ddg-search
@@ -15,9 +15,12 @@
 - skills
 - .clawhub
 - doubao-tts
-- ... 还有 22 个技能
+- ... 还有 24 个技能
 
-### MCP 服务 (0 个)
+### MCP 服务 (3 个)
+- bowlwanpi
+- memos-api-mcp
+- tavily-mcp
 
 ### 记忆系统
 - unified-memory

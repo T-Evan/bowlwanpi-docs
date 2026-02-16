@@ -41,15 +41,21 @@ def scan_capabilities():
     if skills_dir.exists():
         capabilities["skills"] = [d.name for d in skills_dir.iterdir() if d.is_dir()]
     
-    # 扫描 MCP 服务
-    mcp_config = WORKSPACE / "mcp_config.json"
-    if mcp_config.exists():
+    # 扫描 MCP 服务（兼容历史路径）
+    mcp_candidates = [
+        WORKSPACE / "mcp_config.json",
+        WORKSPACE / "config" / "mcp_config.json",
+    ]
+    for mcp_config in mcp_candidates:
+        if not mcp_config.exists():
+            continue
         try:
             with open(mcp_config) as f:
                 config = json.load(f)
                 capabilities["mcp_services"] = list(config.get("mcpServers", {}).keys())
-        except:
-            pass
+                break
+        except Exception:
+            continue
     
     # 扫描定时任务
     try:
