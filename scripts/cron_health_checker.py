@@ -55,11 +55,76 @@ class CronHealthChecker:
         return self.results
     
     def check_cron_service(self):
-        """检查 cron 服务状态"""
-        print("📋 检查 cron 服务状态...")
+        """检查 OpenClaw cron 服务状态"""
+        print("📋 检查 OpenClaw cron 服务状态...")
         
         try:
-            # 方法1: 检查 crond 进程（大多数Linux发行版）
+            # 方法1: 通过 cron 工具检查状态
+            result = subprocess.run(
+                ["openclaw", "cron", "status", "--json"],
+                capture_output=True,
+                text=True,
+                timeout=10
+            )
+            
+            if result.returncode == 0:
+                try:
+                    cron_status = json.loads(result.stdout)
+                    if cron_status.get("enabled", False):
+                        self.results["summary"]["cron_running"] = True
+                        self.results["summary"]["cron_jobs"] = cron_status.get("jobs", 0)
+                        self.results["summary"]["cron_type"] = "openclaw"
+                        print(f"  ✅ OpenClaw cron 运行中 ({cron_status.get('jobs', 0)} 个任务)")
+                    else:
+                        self.results["summary"]["cron_running"] = False
+                        self.results["errors"].append({
+                            "severity": "warning",
+                            "message": "OpenClaw cron 已禁用",
+                            "action": "openclaw cron enable"
+                        })
+                        print("  ⚠️ OpenClaw cron 已禁用")
+                except json.JSONDecodeError:
+                    # 如果解析失败，尝试检查 jobs.json
+                    self._check_cron_via_jobs_file()
+            else:
+                # 回退到检查 jobs.json 文件
+                self._check_cron_via_jobs_file()
+                
+        except Exception as e:
+            print(f"  ⚠️ 检查 OpenClaw cron 失败: {e}")
+            # 最后尝试检查系统 cron 作为参考
+            self._check_system_cron()
+    
+    def _check_cron_via_jobs_file(self):
+        """通过 jobs.json 文件检查 cron 状态"""
+        jobs_file = "/root/.openclaw/cron/jobs.json"
+        
+        if os.path.exists(jobs_file):
+            try:
+                with open(jobs_file, 'r') as f:
+                    jobs_data = json.load(f)
+                    job_count = len(jobs_data.get("jobs", []))
+                    enabled_jobs = len([j for j in jobs_data.get("jobs", []) if j.get("enabled", True)])
+                    
+                    self.results["summary"]["cron_running"] = True
+                    self.results["summary"]["cron_jobs"] = job_count
+                    self.results["summary"]["cron_enabled_jobs"] = enabled_jobs
+                    self.results["summary"]["cron_type"] = "openclaw"
+                    print(f"  ✅ OpenClaw cron 运行中 ({enabled_jobs}/{job_count} 个启用任务)")
+            except Exception as e:
+                self.results["summary"]["cron_running"] = False
+                self.results["errors"].append({
+                    "severity": "warning",
+                    "message": f"无法读取 cron jobs 文件: {e}",
+                    "action": "检查 OpenClaw 安装"
+                })
+                print(f"  ⚠️ 无法读取 cron jobs 文件: {e}")
+        else:
+            self._check_system_cron()
+    
+    def _check_system_cron(self):
+        """检查系统 cron 状态（备用）"""
+        try:
             result = subprocess.run(
                 ["pgrep", "crond"],
                 capture_output=True,
@@ -67,30 +132,15 @@ class CronHealthChecker:
             )
             
             if result.returncode == 0:
-                pid = result.stdout.strip().split('\n')[0]  # 取第一个PID
-                self.results["summary"]["cron_running"] = True
-                self.results["summary"]["cron_pid"] = pid
-                print(f"  ✅ cron 服务运行中 (PID: {pid})")
+                pid = result.stdout.strip().split('\n')[0]
+                self.results["summary"]["system_cron_running"] = True
+                self.results["summary"]["system_cron_pid"] = pid
+                print(f"  ℹ️ 系统 cron 运行中 (PID: {pid}) - 注意：这不是 OpenClaw cron")
             else:
-                # 方法2: 尝试检查 cron 进程（某些系统）
-                result2 = subprocess.run(
-                    ["pgrep", "-x", "cron"],
-                    capture_output=True,
-                    text=True
-                )
-                if result2.returncode == 0:
-                    pid = result2.stdout.strip().split('\n')[0]
-                    self.results["summary"]["cron_running"] = True
-                    self.results["summary"]["cron_pid"] = pid
-                    print(f"  ✅ cron 服务运行中 (PID: {pid})")
-                else:
-                    self.results["summary"]["cron_running"] = False
-                    self.results["errors"].append({
-                        "severity": "critical",
-                        "message": "cron 服务未运行",
-                        "action": "systemctl start cron 或 service cron start"
-                    })
-                    print("  ❌ cron 服务未运行")
+                self.results["summary"]["system_cron_running"] = False
+                print("  ⚠️ 系统 cron 未运行")
+        except Exception:
+            print("  ⚠️ 无法检查系统 cron")
             
             # 检查 crontab
             result = subprocess.run(

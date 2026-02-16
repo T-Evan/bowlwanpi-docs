@@ -1,7 +1,7 @@
 # 📊 系统状态统一报告
 
-**生成时间:** 2026-02-14 19:30:01  
-**系统健康度:** 80/100 (🟡 良好)
+**生成时间:** 2026-02-17 03:02:30  
+**系统健康度:** 70/100 (🟡 良好)
 
 ---
 
@@ -9,11 +9,12 @@
 
 | 指标 | 数值 | 状态 |
 |------|------|------|
-| CPU | 7.0% | ✅ |
-| 内存 | 44% | ✅ |
+| CPU | 2.4% | ✅ |
+| 内存 | 45% | ✅ |
 | 磁盘 | 54% | ✅ |
-| 负载 | 0.01 | ✅ |
-| 运行时间 | up 4 days, 21 hours, 31 minutes | - |
+| 负载 | 1.35 | 1
+✅ |
+| 运行时间 | up 2 hours, 8 minutes | - |
 
 ---
 
@@ -40,7 +41,7 @@
 | 项目 | 状态 | 详情 |
 |------|------|------|
 | 安全扫描 | 🔴 需关注 | 发现高风险问题 |
-| 定时任务 | ✅ | 错误率 87.5% |
+| 定时任务 | ✅ | 检查器未安装 |
 
 ---
 
@@ -48,7 +49,7 @@
 
 ```bash
 # 查看详细报告
-cat /root/.openclaw/workspace/health-checks/unified_report_20260214_19:30.md
+cat /root/.openclaw/workspace/health-checks/unified_report_20260217_03:02.md
 
 # 运行全面检查
 bash /root/.openclaw/workspace/scripts/unified_health_system.sh full
@@ -59,4 +60,4 @@ tail -20 /var/log/bowlwanpi-health.log
 
 ---
 
-*统一报告生成器 v1.0*
+*统一报告生成器 v1.1 (修复版)*

@@ -1,0 +1,21 @@
+{
+  "scan_time": "2026-02-17T03:03:57.537613",
+  "total_frictions": 1,
+  "by_severity": {
+    "high": 1,
+    "medium": 0,
+    "low": 0
+  },
+  "auto_fixable": 1,
+  "frictions": [
+    {
+      "id": "repeated_重启 Gateway",
+      "type": "repetition",
+      "severity": "high",
+      "title": "重复手动任务: 重启 Gateway",
+      "description": "今天手动执行了 3 次，建议自动化",
+      "auto_fixable": true,
+      "suggested_action": "创建自动化脚本: Gateway 经常崩溃需要手动重启"
+    }
+  ]
+}
