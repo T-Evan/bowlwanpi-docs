@@ -505,6 +505,50 @@ generate_report() {
 EOF
 }
 
+# ========== 发送通知 ==========
+
+send_notification() {
+    local issues="$1"
+    local fixed="$2"
+    
+    # 收集状态摘要
+    local TIME_ONLY=$(date '+%H:%M')
+    local HEALTH_SCORE=100
+    
+    # 计算健康度
+    check_gateway &>/dev/null || HEALTH_SCORE=$((HEALTH_SCORE - 30))
+    check_mihomo &>/dev/null || HEALTH_SCORE=$((HEALTH_SCORE - 10))
+    check_qmdr &>/dev/null || HEALTH_SCORE=$((HEALTH_SCORE - 10))
+    check_memory_storage &>/dev/null || HEALTH_SCORE=$((HEALTH_SCORE - 10))
+    check_disk_space &>/dev/null || HEALTH_SCORE=$((HEALTH_SCORE - 10))
+    
+    # 确定状态表情
+    local STATUS_EMOJI="🟢"
+    if [ "$HEALTH_SCORE" -lt 70 ]; then STATUS_EMOJI="🟡"; fi
+    if [ "$HEALTH_SCORE" -lt 50 ]; then STATUS_EMOJI="🟠"; fi
+    if [ "$HEALTH_SCORE" -lt 30 ]; then STATUS_EMOJI="🔴"; fi
+    
+    # 构建消息
+    local message=$(cat << EOF
+📊 系统状态简报
+
+⏰ $TIME_ONLY | 健康度: $HEALTH_SCORE/100 $STATUS_EMOJI
+
+发现问题: $issues | 自动修复: $fixed
+
+$(if [ "$issues" -gt 0 ]; then echo "⚠️ 详情见: $REPORT_FILE"; else echo "✅ 系统运行正常"; fi)
+EOF
+)
+
+    # 输出到日志
+    log "$message"
+    
+    # 调用统一报告脚本发送通知（如果存在）
+    if [ -f "$WORKSPACE/scripts/unified_status_report.sh" ]; then
+        bash "$WORKSPACE/scripts/unified_status_report.sh" notify &>/dev/null || true
+    fi
+}
+
 # ========== 主函数 ==========
 
 main() {
@@ -532,6 +576,9 @@ main() {
     check_reports || total_issues=$((total_issues + 1))
     
     generate_report "$total_issues" "$fixed_issues"
+    
+    # 发送通知（合并心跳简报功能）
+    send_notification "$total_issues" "$fixed_issues"
     
     log "========== 自检完成 =========="
     log "发现问题: $total_issues | 自动修复: $fixed_issues"
