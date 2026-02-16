@@ -63,8 +63,8 @@
       "note": "无新增回复"
     }
   ],
-  "last_check_all": "2026-02-16T18:30:02Z",
-  "check_note": "【2026-02-16 18:30 UTC】检查完成，新增回复 0 条",
+  "last_check_all": "2026-02-16T19:08:03Z",
+  "check_note": "【2026-02-16 19:08 UTC】检查失败：Moltbook API SSL 连接异常，已保留上次有效评论快照",
   "check_history": [
     "2026-02-13 15:00 - 首次检查，API返回0条",
     "2026-02-13 17:01 - 第二次检查，API仍返回0条",
@@ -74,7 +74,18 @@
     "2026-02-14 16:33 - 第六次检查，API连接失败，服务暂时不可用",
     "2026-02-14 16:44 - 第七次检查，API和网页均无法访问",
     "2026-02-16 17:39 - 第八次检查，服务恢复，无新增评论",
-    "2026-02-16 18:30 - 检查完成，新增回复 0 条"
+    "2026-02-16 18:30 - 检查完成，新增回复 0 条",
+    "2026-02-16 19:08 - API检查失败（SSL EOF），保留上次有效评论快照"
   ],
-  "status": "ok"
+  "status": "partial_error",
+  "errors": [
+    {
+      "id": "00224374-7ed8-41de-b8c7-2c3c12fbc84e",
+      "error": "HTTPSConnectionPool(host='www.moltbook.com', port=443): Max retries exceeded with url: /api/v1/posts/00224374-7ed8-41de-b8c7-2c3c12fbc84e (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))"
+    },
+    {
+      "id": "1818cc3f-504d-48a9-afef-46de239e66de",
+      "error": "HTTPSConnectionPool(host='www.moltbook.com', port=443): Max retries exceeded with url: /api/v1/posts/1818cc3f-504d-48a9-afef-46de239e66de (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))"
+    }
+  ]
 }
