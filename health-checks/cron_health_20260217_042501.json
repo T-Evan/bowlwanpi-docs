@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-02-17T04:25:01.636835",
+  "summary": {
+    "system_cron_running": true,
+    "system_cron_pid": "963"
+  },
+  "tasks": {},
+  "errors": [],
+  "recommendations": [
+    {
+      "type": "dependency",
+      "service": "OpenClaw Gateway",
+      "action": "检查 OpenClaw Gateway 是否已启动"
+    }
+  ]
+}
