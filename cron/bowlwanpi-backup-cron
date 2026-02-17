@@ -15,8 +15,11 @@ HOME=/root
 # 心跳简报 - 每5分钟生成并尝试发送报告
 */5 * * * * root /root/.openclaw/workspace/scripts/send-heartbeat-report.sh >> /var/log/bowlwanpi-reports.log 2>&1
 
-# Hacker News OpenClaw 监控 - 每小时检查一次
-0 * * * * root /root/.openclaw/workspace/scripts/hackernews-monitor.sh >> /var/log/bowlwanpi-hackernews.log 2>&1
+# Agent News 监控 - 每小时从 HN 筛选 Agent/AI 相关新闻
+0 * * * * root /root/.openclaw/workspace/scripts/agent-news-monitor.py >> /var/log/bowlwanpi-agent-news.log 2>&1
+
+# 旧的 Hacker News 监控（已停用，保留备用）
+# 0 * * * * root /root/.openclaw/workspace/scripts/hackernews-monitor.sh >> /var/log/bowlwanpi-hackernews.log 2>&1
 
 # 夜间构建 - 每天凌晨 3:00
 0 3 * * * root /root/.openclaw/workspace/scripts/nightly-build-enhanced.sh >> /var/log/bowlwanpi-nightly-build.log 2>&1

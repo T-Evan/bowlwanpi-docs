@@ -40,6 +40,10 @@
     "task-status": {
       "version": "1.0.0",
       "installedAt": 1771291563703
+    },
+    "hacker-news": {
+      "version": "1.0.0",
+      "installedAt": 1771291807926
     }
   }
 }
