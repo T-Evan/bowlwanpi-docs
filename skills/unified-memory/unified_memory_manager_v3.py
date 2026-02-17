@@ -75,12 +75,18 @@ class QMDRClient:
             return False, str(e)
     
     def index_document(self, filepath: str, metadata: Dict[str, Any] = None) -> bool:
-        """索引文档到 QMDR"""
+        """索引文档到 QMDR - 使用 update 命令增量更新"""
         if not os.path.exists(filepath):
             return False
         
-        # 使用 qmd add 添加文档
-        success, output = self._run_qmd(['add', filepath, '--collection', self.collection])
+        # QMD 使用 collection-based 索引，我们调用 update 来增量更新
+        # 这会重新扫描所有 collections 并索引新文件
+        success, output = self._run_qmd(['update'], timeout=60)
+        
+        # update 可能部分失败但前面 collections 成功，只要有 Indexed 输出就算成功
+        if 'Indexed:' in output or 'Indexing:' in output:
+            return True
+        
         return success
     
     def search(self, query: str, limit: int = 10) -> List[Dict[str, Any]]:
@@ -350,16 +356,24 @@ class UnifiedMemoryManagerV3:
                 print(f"MemOS store error: {e}")
         
         # 4. QMDR (本地向量)
-        # QMDR 自动索引文件，这里保存到本地文件即可
-        if self.enabled['qmdr']:
+        # 实时索引：保存到文件后立即索引
+        if self.enabled['qmdr'] and self.qmdr_client:
             try:
-                # 保存到本地记忆文件，QMDR 会定期重新索引
+                # 保存到本地记忆文件
                 daily_file = f"{WORKSPACE_MEMORY}/{datetime.now().strftime('%Y-%m-%d')}.md"
                 with open(daily_file, 'a', encoding='utf-8') as f:
                     f.write(f"\n## {datetime.now().strftime('%H:%M')}\n")
                     f.write(f"**User:** {user_message}\n\n")
                     f.write(f"**Assistant:** {assistant_message}\n")
-                results['qmdr'] = True
+                
+                # 实时索引该文件
+                index_success = self.qmdr_client.index_document(daily_file)
+                if index_success:
+                    results['qmdr'] = True
+                else:
+                    print(f"QMDR index warning: failed to index {daily_file}")
+                    # 文件已保存，标记为部分成功
+                    results['qmdr'] = True
             except Exception as e:
                 print(f"QMDR store error: {e}")
         
