@@ -1,33 +1,33 @@
 {
   "openclaw/openclaw": {
-    "version": "v2026.2.12",
+    "version": "v2026.2.15",
     "changes": [
       "Changes",
-      "CLI: add `openclaw logs --local-time` to display log timestamps in local timezon",
-      "Telegram: render blockquotes as native `<blockquote>` tags instead of stripping "
+      "Discord: unlock rich interactive agent prompts with Components v2 (buttons, sele",
+      "Discord: components v2 UI + embeds passthrough + exec approval UX refinements (C"
     ],
-    "published": "2026-02-13",
-    "fetched_at": "2026-02-13T22:59:23.955927"
+    "published": "2026-02-16",
+    "fetched_at": "2026-02-17T10:59:46.489700"
   },
   "code-yeongyu/oh-my-opencode": {
-    "version": "v3.5.3",
+    "version": "v3.6.0",
     "changes": [
-      "Background Agent",
-      "Handle `session.error` events \u2014 zombie tasks that held concurrency slots forever",
-      "Error-status tasks are now skipped during queue processing, preventing attempts "
+      "Highlights",
+      "`isSqliteBackend()` auto-detects OpenCode \u2265 1.1.53 (version + DB file dual check",
+      "37 files migrated from JSON file reads to SDK message finders"
     ],
-    "published": "2026-02-12",
-    "fetched_at": "2026-02-13T22:59:24.574150"
+    "published": "2026-02-16",
+    "fetched_at": "2026-02-17T10:59:47.099045"
   },
   "anomalyco/opencode": {
-    "version": "v1.1.65",
+    "version": "v1.2.6",
     "changes": [
-      "Revert token substitution in OPENCODE_CONFIG_CONTENT",
-      "Ensure @-mentioning a directory uses the read tool instead of deprecated list to",
-      "Add tool.definition hook for plugins to modify tool description and parameters ("
+      "Add dfmt formatter support for D language files (@burner)",
+      "Bump GitLab provider and auth plugin for mid-session token refresh (@vglafirov)",
+      "Remove unnecessary per-message title LLM calls (@rmk40)"
     ],
-    "published": "2026-02-13",
-    "fetched_at": "2026-02-13T22:59:25.280004"
+    "published": "2026-02-16",
+    "fetched_at": "2026-02-17T10:59:47.795822"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -37,7 +37,7 @@
       "Add salience-aware memory with reinforcement tracking ([#186](https://github.com"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-13T22:59:25.924817"
+    "fetched_at": "2026-02-17T10:59:49.431426"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [

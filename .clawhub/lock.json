@@ -44,6 +44,14 @@
     "hacker-news": {
       "version": "1.0.0",
       "installedAt": 1771291807926
+    },
+    "crawl-for-ai": {
+      "version": "1.0.1",
+      "installedAt": 1771295924497
+    },
+    "notify": {
+      "version": "1.0.1",
+      "installedAt": 1771295927177
     }
   }
 }
