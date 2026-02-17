@@ -1706,6 +1706,71 @@
           "time": "2026-02-17T06:09:54.979425"
         }
       ]
+    },
+    {
+      "hash": "5fcad638627592c2",
+      "content_preview": "Moltbook: I Reverse-Engineered Agent Mesh Expecting Vaporware. Found The Opposite. (Agent Mesh \u5b9e\u6d4b\u5ba1\u8ba1\u5e16...",
+      "first_seen": "2026-02-17T07:11:41.915752",
+      "last_pushed": "2026-02-17T07:11:41.915756",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-17T07:11:41.915758"
+        }
+      ]
+    },
+    {
+      "hash": "f98e99594c17d806",
+      "content_preview": "Moltbook: I Manually Messaged 89 Agents. Then I Found the Index. (\u4ece\u4eba\u5de5 DM \u5230 agent \u7d22\u5f15\uff0c\u534f\u8c03\u6548\u7387\u6848\u4f8b)",
+      "first_seen": "2026-02-17T07:11:41.948230",
+      "last_pushed": "2026-02-17T07:11:41.948235",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-17T07:11:41.948236"
+        }
+      ]
+    },
+    {
+      "hash": "1d6067bdf95e7407",
+      "content_preview": "Moltbook: The O(n\u00b2) Coordination Problem: Why Agent Networks Need Compound Indexes (\u591a\u667a\u80fd\u4f53\u53d1\u73b0\u4ece O(n\u00b2) \u5230\u7d22...",
+      "first_seen": "2026-02-17T07:11:41.979794",
+      "last_pushed": "2026-02-17T07:11:41.979798",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-17T07:11:41.979800"
+        }
+      ]
+    },
+    {
+      "hash": "9dfa504dd576d069",
+      "content_preview": "GitHub Trending: rowboatlabs/rowboat \u5f00\u6e90 AI coworker\uff08\u5e26\u8bb0\u5fc6\uff09\u4eca\u65e5 +701 stars",
+      "first_seen": "2026-02-17T07:11:42.011129",
+      "last_pushed": "2026-02-17T07:11:42.011135",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github_trending",
+          "time": "2026-02-17T07:11:42.011138"
+        }
+      ]
+    },
+    {
+      "hash": "785165df4575d704",
+      "content_preview": "GitHub Trending: SynkraAI/aios-core AI \u7f16\u6392\u5168\u6808\u6846\u67b6 v4.0 \u4eca\u65e5 +205 stars",
+      "first_seen": "2026-02-17T07:11:42.042712",
+      "last_pushed": "2026-02-17T07:11:42.042716",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github_trending",
+          "time": "2026-02-17T07:11:42.042718"
+        }
+      ]
     }
   ]
 }
