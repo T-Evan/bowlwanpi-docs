@@ -9,9 +9,42 @@ export OPENCLAW_GATEWAY_PORT="${OPENCLAW_GATEWAY_PORT:-18789}"
 export OPENCLAW_GATEWAY_URL="${OPENCLAW_GATEWAY_URL:-http://127.0.0.1:${OPENCLAW_GATEWAY_PORT}}"
 
 LOG_FILE="/var/log/bowlwanpi-cron.log"
+LOCK_DIR="/tmp/bowlwanpi-locks"
+
+# 确保锁目录存在
+mkdir -p "$LOCK_DIR"
 
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+}
+
+# 获取任务锁（防止重叠执行）
+acquire_lock() {
+    local task_name="$1"
+    local lock_file="$LOCK_DIR/${task_name}.lock"
+    local timeout="${2:-300}"  # 默认5分钟超时
+    
+    # 使用 flock 获取锁
+    exec 200>"$lock_file"
+    if ! flock -n -E 0 200; then
+        log "WARNING: Task $task_name is already running, skipping"
+        return 1
+    fi
+    
+    # 记录 PID 和开始时间
+    echo $$ > "$lock_file.pid"
+    echo "$(date +%s)" > "$lock_file.start"
+    
+    return 0
+}
+
+# 释放任务锁
+release_lock() {
+    local task_name="$1"
+    local lock_file="$LOCK_DIR/${task_name}.lock"
+    
+    rm -f "$lock_file.pid" "$lock_file.start" 2>/dev/null
+    flock -u 200 2>/dev/null || true
 }
 
 # 检查 OpenClaw 是否运行
@@ -104,6 +137,16 @@ run_script_task() {
 }
 
 # 主逻辑
+# 获取任务锁
+task_name="$1"
+if ! acquire_lock "$task_name"; then
+    log "Task $task_name already running, exit"
+    exit 0
+fi
+
+# 确保退出时释放锁
+trap 'release_lock "$task_name"' EXIT
+
 case "$1" in
     morning-prep)
         log "=== 晨报预备 ==="

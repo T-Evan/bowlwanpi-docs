@@ -1698,8 +1698,8 @@
       "hash": "69510f1034d3f936",
       "content_preview": "The Long Tail of LLM(\u5927\u8bed\u8a00\u6a21\u578b)-Assisted Decompilation",
       "first_seen": "2026-02-17T06:09:54.979419",
-      "last_pushed": "2026-02-17T10:11:10.116228",
-      "push_count": 4,
+      "last_pushed": "2026-02-17T14:04:25.770501",
+      "push_count": 5,
       "sources": [
         {
           "source": "ai_news",
@@ -1716,6 +1716,10 @@
         {
           "source": "ai_news",
           "time": "2026-02-17T10:11:10.116234"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T14:04:25.770506"
         }
       ]
     },
@@ -2019,6 +2023,97 @@
         {
           "source": "github_trending",
           "time": "2026-02-17T12:03:00.557339"
+        }
+      ]
+    },
+    {
+      "hash": "e0bbf03c90729845",
+      "content_preview": "letta-ai/letta-code: The memory-first coding agent - TypeScript",
+      "first_seen": "2026-02-17T13:05:07.300462",
+      "last_pushed": "2026-02-17T13:05:07.300466",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T13:05:07.300468"
+        }
+      ]
+    },
+    {
+      "hash": "266304d465b5aa5e",
+      "content_preview": "rowboatlabs/rowboat: Open-source AI coworker with memory - TypeScript",
+      "first_seen": "2026-02-17T13:05:07.555182",
+      "last_pushed": "2026-02-17T13:05:07.555186",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T13:05:07.555188"
+        }
+      ]
+    },
+    {
+      "hash": "5a334d044e63fe88",
+      "content_preview": "SynkraAI/aios-core: AI-Orchestrated System for Full Stack Development v4.0",
+      "first_seen": "2026-02-17T13:05:07.800721",
+      "last_pushed": "2026-02-17T13:05:07.800741",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T13:05:07.800743"
+        }
+      ]
+    },
+    {
+      "hash": "88221c25ff0a3666",
+      "content_preview": "Crush: Glamourous AI coding agent for your favourite terminal - https://github.com/charmbracelet/cru...",
+      "first_seen": "2026-02-17T14:03:40.879429",
+      "last_pushed": "2026-02-17T14:03:40.879434",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T14:03:40.879436"
+        }
+      ]
+    },
+    {
+      "hash": "0242020e49a87ffa",
+      "content_preview": "Opencode: AI coding agent, built for the terminal - https://github.com/sst/opencode",
+      "first_seen": "2026-02-17T14:03:41.138418",
+      "last_pushed": "2026-02-17T14:03:41.138424",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T14:03:41.138426"
+        }
+      ]
+    },
+    {
+      "hash": "68284ae9ba76ba4d",
+      "content_preview": "Manus launches Manus Agents for Telegram - https://manus.im/blog/manus-agents-telegram",
+      "first_seen": "2026-02-17T14:03:41.393628",
+      "last_pushed": "2026-02-17T14:03:41.393633",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "techmeme",
+          "time": "2026-02-17T14:03:41.393635"
+        }
+      ]
+    },
+    {
+      "hash": "b81922bf37110263",
+      "content_preview": "Plandex v2 - open source AI coding agent for large projects - https://github.com/plandex-ai/plandex",
+      "first_seen": "2026-02-17T14:03:41.643300",
+      "last_pushed": "2026-02-17T14:03:41.643305",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T14:03:41.643309"
         }
       ]
     }
