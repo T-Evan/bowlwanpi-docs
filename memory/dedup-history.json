@@ -1913,6 +1913,114 @@
           "time": "2026-02-17T10:09:31.151537"
         }
       ]
+    },
+    {
+      "hash": "579cfb12bcbebccf",
+      "content_preview": "Spotify CEO: \u6700\u4f18\u79c0\u7684\u5f00\u53d1\u80052026\u5e74\u6ca1\u5199\u4e00\u884c\u4ee3\u7801\uff0c\u5168\u9760AI\u751f\u6210\u548c\u76d1\u7763 - Vibe Coding\u8d8b\u52bf",
+      "first_seen": "2026-02-17T11:04:22.228488",
+      "last_pushed": "2026-02-17T11:04:22.228493",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "TheVerge",
+          "time": "2026-02-17T11:04:22.228494"
+        }
+      ]
+    },
+    {
+      "hash": "191b0216f232335f",
+      "content_preview": "Microsoft AI CEO Mustafa Suleyman: \u767d\u9886\u5de5\u4f5c\u5c06\u572812-18\u4e2a\u6708\u5185\u88abAI\u5b8c\u5168\u81ea\u52a8\u5316",
+      "first_seen": "2026-02-17T11:04:22.514665",
+      "last_pushed": "2026-02-17T11:04:22.514670",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "TheVerge",
+          "time": "2026-02-17T11:04:22.514671"
+        }
+      ]
+    },
+    {
+      "hash": "239b1e7f23f0c029",
+      "content_preview": "Unity\u5ba3\u5e03AI\u5c06\u80fdprompt\u751f\u6210\u5b8c\u6574\u4f11\u95f2\u6e38\u620f\uff0c\u8ba1\u52123\u6708GDC\u516c\u5e03",
+      "first_seen": "2026-02-17T11:04:22.801675",
+      "last_pushed": "2026-02-17T11:04:22.801680",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "TheVerge",
+          "time": "2026-02-17T11:04:22.801681"
+        }
+      ]
+    },
+    {
+      "hash": "6ceb9464ff027a4a",
+      "content_preview": "Simon Willison\u63d0\u51faCognitive Debt(\u8ba4\u77e5\u503a\u52a1)\u6982\u5ff5 - AI\u7f16\u7a0b\u65b0\u6311\u6218",
+      "first_seen": "2026-02-17T11:04:23.087931",
+      "last_pushed": "2026-02-17T11:04:23.087937",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "SimonWillison",
+          "time": "2026-02-17T11:04:23.087940"
+        }
+      ]
+    },
+    {
+      "hash": "0f51a56d15162ada",
+      "content_preview": "The Long Tail of LLM-Assisted Decompilation",
+      "first_seen": "2026-02-17T11:06:20.555867",
+      "last_pushed": "2026-02-17T12:03:44.028350",
+      "push_count": 2,
+      "sources": [
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T11:06:20.555874"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T12:03:44.028355"
+        }
+      ]
+    },
+    {
+      "hash": "607004ec53247b58",
+      "content_preview": "letta-ai/letta-code: The memory-first coding agent",
+      "first_seen": "2026-02-17T12:03:00.037124",
+      "last_pushed": "2026-02-17T12:03:00.037129",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github_trending",
+          "time": "2026-02-17T12:03:00.037130"
+        }
+      ]
+    },
+    {
+      "hash": "52cbab46303efaa1",
+      "content_preview": "rowboatlabs/rowboat: Open-source AI coworker with memory",
+      "first_seen": "2026-02-17T12:03:00.301784",
+      "last_pushed": "2026-02-17T12:03:00.301789",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github_trending",
+          "time": "2026-02-17T12:03:00.301790"
+        }
+      ]
+    },
+    {
+      "hash": "e05cddd6f8520c24",
+      "content_preview": "SynkraAI/aios-core: AI-Orchestrated System for Full Stack Development",
+      "first_seen": "2026-02-17T12:03:00.557332",
+      "last_pushed": "2026-02-17T12:03:00.557337",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github_trending",
+          "time": "2026-02-17T12:03:00.557339"
+        }
+      ]
     }
   ]
 }

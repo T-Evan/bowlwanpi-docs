@@ -30,8 +30,11 @@ HOME=/root
 # 晨报预备 - 每天上午 7:00
 0 7 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-prep >> /var/log/bowlwanpi-cron.log 2>&1
 
-# 网易云日推 - 每天上午 8:00
-0 8 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh netease-music >> /var/log/bowlwanpi-cron.log 2>&1
+# 网易云日推 - 每天上午 8:00（直接执行并发送）
+0 8 * * * root cd /root/.openclaw/workspace/netease-music && python3 daily_push_with_analysis.py 2>&1 | openclaw message send --channel feishu --target ou_a22ce6536f26dee3fec9397a9a1b87b5 --message - >> /var/log/bowlwanpi-cron.log 2>&1 || echo "[$(date '+%H:%M:%S')] 网易云推送失败" >> /var/log/bowlwanpi-cron.log
+
+# one-minute-news - 每天上午 8:00
+0 8 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh one-minute-news >> /var/log/bowlwanpi-cron.log 2>&1
 
 # 早晨简报 - 每天上午 8:30
 30 8 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-brief >> /var/log/bowlwanpi-cron.log 2>&1
@@ -50,6 +53,9 @@ HOME=/root
 
 # 信息收集 - 每天下午 14:00
 0 14 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh info-collect >> /var/log/bowlwanpi-cron.log 2>&1
+
+# GitHub Release 监控 - 每6小时
+0 */6 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh github-release >> /var/log/bowlwanpi-cron.log 2>&1
 
 # 晚间反思 - 每天下午 22:30
 30 22 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh evening-reflect >> /var/log/bowlwanpi-cron.log 2>&1

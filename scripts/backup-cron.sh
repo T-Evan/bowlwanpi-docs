@@ -177,6 +177,20 @@ case "$1" in
             run_agent_task "周回顾" "执行周回顾任务。总结本周关键进展、待办和下周重点，并发送给一碗。"
         fi
         ;;
+
+    one-minute-news)
+        log "=== One Minute News ==="
+        if check_openclaw; then
+            run_script_task "One Minute News" "/root/.openclaw/workspace/scripts/push_one_minute_news.py"
+        fi
+        ;;
+
+    github-release)
+        log "=== GitHub Release 监控 ==="
+        if check_openclaw; then
+            run_script_task "GitHub Release" "/root/.openclaw/workspace/scripts/push_github_release.py"
+        fi
+        ;;
     
     nightly-build)
         log "=== 夜间构建 ==="
