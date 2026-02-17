@@ -26,7 +26,7 @@ cleanup() {
 trap cleanup EXIT
 
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+    echo "[$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
 # 发送警报（带冷却时间，避免轰炸）

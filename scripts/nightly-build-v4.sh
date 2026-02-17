@@ -12,7 +12,7 @@ MEMORY_DIR="$WORKSPACE/memory"
 LOG_FILE="/var/log/bowlwanpi-nightly-build.log"
 
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+    echo "[$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
 }
 
 # ========== 1. 整理昨日记忆到 MEMORY.md ==========

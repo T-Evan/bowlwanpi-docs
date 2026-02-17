@@ -15,7 +15,7 @@ LOCK_DIR="/tmp/bowlwanpi-locks"
 mkdir -p "$LOCK_DIR"
 
 log() {
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+    echo "[$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
 # 获取任务锁（防止重叠执行）

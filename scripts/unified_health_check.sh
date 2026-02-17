@@ -19,14 +19,14 @@ P1_COUNT=0
 P1_DETAILS=""
 
 log() {
-    echo "[$(date '+%H:%M')] $1" >> "$LOG_FILE"
+    echo "[$(TZ='Asia/Shanghai' date '+%H:%M')] $1" >> "$LOG_FILE"
 }
 
 # ========== 告警分级记录 ==========
 record_alert() {
     local level="$1"  # P0, P1, P2
     local message="$2"
-    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    local timestamp=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
     
     # 记录到状态文件
     if [ ! -f "$ALERT_STATE" ]; then
@@ -180,7 +180,7 @@ status_summary() {
 should_report_p1() {
     # 每小时检查一次P1汇总
     local last_report_file="/tmp/bowlwanpi-p1-last-report"
-    local current_hour=$(date +%H)
+    local current_hour=$(TZ='Asia/Shanghai' date +%H)
     
     if [ -f "$last_report_file" ]; then
         local last_hour=$(cat "$last_report_file")
@@ -211,7 +211,7 @@ main() {
     [ "$alert_level" -lt 2 ] && ([ "$proxy_level" -eq 1 ] || [ "$status_level" -eq 1 ]) && alert_level=1
     
     # 生成报告
-    report="💓 系统健康 $(date +%H:%M)
+    report="💓 系统健康 $(TZ='Asia/Shanghai' date +%H:%M)
 
 $status
 
