@@ -9,6 +9,10 @@ SHELL=/bin/bash
 PATH=/root/.nvm/versions/node/v22.22.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOME=/root
 
+# Git Worktree 并行任务配置
+WORKSPACE=/root/.openclaw/workspace
+TASKS_WORKTREE=${WORKSPACE}-tasks
+
 # 统一自愈系统 - 每5分钟检查一次（已合并：心跳监控 + 代理检查 + 简报生成）
 */5 * * * * root /root/.openclaw/workspace/scripts/heartbeat.sh >> /var/log/bowlwanpi-heartbeat.log 2>&1
 
@@ -52,8 +56,8 @@ HOME=/root
 # B站热门 - 每天中午 12:00
 0 12 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh bilibili-hot >> /var/log/bowlwanpi-cron.log 2>&1
 
-# 信息收集 - 每天下午 14:00
-0 14 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh info-collect >> /var/log/bowlwanpi-cron.log 2>&1
+# 信息收集 - 每天下午 14:00 (使用 worktree 并行执行)
+0 14 * * * root cd /root/.openclaw/workspace && bash scripts/worktree-manager.sh run-task info-collect /root/.openclaw/workspace/scripts/backup-cron.sh info-collect >> /var/log/bowlwanpi-cron.log 2>&1
 
 # GitHub Release 监控 - 每6小时
 0 */6 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh github-release >> /var/log/bowlwanpi-cron.log 2>&1

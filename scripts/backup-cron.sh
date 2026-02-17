@@ -116,8 +116,27 @@ run_agent_task() {
 run_script_task() {
     local task_name="$1"
     local script_path="$2"
+    local use_worktree="${3:-false}"
 
     log "Running script task: $task_name ($script_path)"
+
+    if [ "$use_worktree" = "true" ] && [ -f "$WORKSPACE/scripts/worktree-manager.sh" ]; then
+        # 使用 worktree 执行，避免与主会话冲突
+        log "Using worktree for task: $task_name"
+        cd "$WORKSPACE"
+        bash scripts/worktree-manager.sh run-task "$task_name" python3 "$script_path" > /tmp/task-output.txt 2>>"$LOG_FILE"
+        local exit_code=$?
+        
+        if [ $exit_code -eq 0 ] && [ -f "/tmp/task-output.txt" ]; then
+            local output=$(cat /tmp/task-output.txt)
+            if [ -n "$output" ]; then
+                send_message "$output"
+                log "Script task sent: $task_name"
+            fi
+        fi
+        rm -f /tmp/task-output.txt
+        return $exit_code
+    fi
 
     if [ ! -f "$script_path" ]; then
         log "ERROR: Script not found: $script_path"
