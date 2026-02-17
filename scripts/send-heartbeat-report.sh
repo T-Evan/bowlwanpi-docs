@@ -1,6 +1,6 @@
 #!/bin/bash
 # BowlWanpi 心跳简报发送脚本
-# 每5分钟运行一次，读取最新状态并生成精简简报
+# 每5分钟运行一次，读取最新状态并生成精简简报（含代理状态）
 
 export HOME=/root
 export PATH=/root/.nvm/versions/node/v22.22.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -11,6 +11,16 @@ OUTPUT_FILE="/tmp/bowlwanpi-heartbeat-report.txt"
 
 extract_pct() {
     echo "$1" | grep -o '[0-9]\+' | head -1
+}
+
+check_agent() {
+    if pgrep -f "openclaw.*gateway\|clawd" > /dev/null 2>&1; then
+        echo "OK"
+    elif netstat -tlnp 2>/dev/null | grep -q ":18789"; then
+        echo "OK"
+    else
+        echo "FAIL"
+    fi
 }
 
 # 检查是否应该发送简报（至少间隔4分钟，避免重复）
@@ -32,18 +42,22 @@ if [ -z "$latest_status" ]; then
 fi
 
 # 解析状态
+agent_status=$(check_agent)
 gateway_status=$(echo "$latest_status" | grep "Gateway:" | tail -1 | sed 's/.*Gateway: //' | xargs)
 mihomo_status=$(echo "$latest_status" | grep "Mihomo:" | tail -1 | sed 's/.*Mihomo: //' | xargs)
 cpu_status=$(echo "$latest_status" | grep "CPU:" | tail -1 | sed 's/.*CPU: //' | xargs)
 mem_status=$(echo "$latest_status" | grep "Memory:" | tail -1 | sed 's/.*Memory: //' | xargs)
 disk_status=$(echo "$latest_status" | grep "Disk:" | tail -1 | sed 's/.*Disk: //' | xargs)
-load_status=$(echo "$latest_status" | grep "Load:" | tail -1 | sed 's/.*Load: //' | xargs)
 
 cpu_pct=$(extract_pct "$cpu_status")
 mem_pct=$(extract_pct "$mem_status")
 disk_pct=$(extract_pct "$disk_status")
 
 issues=()
+
+if [ "$agent_status" != "OK" ]; then
+    issues+=("Agent未运行")
+fi
 
 if [[ "$gateway_status" != OK* ]]; then
     issues+=("Gateway异常: ${gateway_status:-Unknown}")
@@ -74,7 +88,7 @@ if [ ${#issues[@]} -eq 0 ] && { [ "$current_hour" -ge 23 ] || [ "$current_hour" 
 fi
 
 if [ ${#issues[@]} -eq 0 ]; then
-    message="💓 自愈检查(${current_time_str}) 正常：CPU ${cpu_pct:-N/A}%｜内存 ${mem_pct:-N/A}%｜磁盘 ${disk_pct:-N/A}%"
+    message="💓 自愈检查(${current_time_str}) 正常：Agent OK｜CPU ${cpu_pct:-N/A}%｜内存 ${mem_pct:-N/A}%｜磁盘 ${disk_pct:-N/A}%"
 else
     issue_text=$(IFS='；'; echo "${issues[*]}")
     message="⚠️ 自愈检查(${current_time_str})：${issue_text}"
