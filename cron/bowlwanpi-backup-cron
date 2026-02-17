@@ -6,7 +6,7 @@
 # 验证: sudo cat /var/log/cron | grep bowlwanpi
 
 SHELL=/bin/bash
-PATH=/root/.nvm/versions/node/v22.22.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOME=/root
 
 # Git Worktree 并行任务配置

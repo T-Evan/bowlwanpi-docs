@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥣 BowlWanpi 能力文档中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: grid-move 20s linear infinite;
+        }
+        
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+        
+        /* Section */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: rgba(99, 102, 241, 0.1);
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        
+        /* Code blocks */
+        pre {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #e6edf3;
+        }
+        
+        .inline-code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: var(--primary);
+        }
+        
+        /* Architecture diagram */
+        .architecture {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+            color: var(--text-muted);
+            margin: 1rem 0;
+        }
+        
+        /* Grid layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin: 0.5rem 0;
+        }
+        
+        /* Status badges */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .badge-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+        
+        .badge-primary {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+        
+        /* Quick links */
+        .quick-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        
+        .quick-link {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .quick-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer p {
+            color: var(--text-muted);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🥣 BowlWanpi</h1>
+        <p class="subtitle">一碗的AI助手 · 能力文档中心</p>
+        <span class="version-badge">v3.0.0 究极完全体</span>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#overview" class="active">概览</a>
+                <a href="#memory">记忆系统</a>
+                <a href="#skills">技能清单</a>
+                <a href="#schedule">定时任务</a>
+                <a href="#mcp">MCP服务</a>
+                <a href="#config">配置指南</a>
+                <a href="#deploy">部署安装</a>
+                <a href="#troubleshoot">故障排查</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Stats Overview -->
+        <div id="overview" class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">49</div>
+                <div class="stat-label">总技能数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">记忆系统</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">搜索引擎</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">17+</div>
+                <div class="stat-label">定时任务</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">MCP服务</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2</div>
+                <div class="stat-label">外部平台</div>
+            </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <a href="#memory" class="quick-link">🧠 记忆系统</a>
+            <a href="#skills" class="quick-link">🛠️ 技能清单</a>
+            <a href="#schedule" class="quick-link">⏰ 定时任务</a>
+            <a href="#config" class="quick-link">⚙️ 配置文件</a>
+            <a href="#deploy" class="quick-link">🚀 快速部署</a>
+        </div>
+        
+        <!-- Memory System -->
+        <section id="memory" class="section">
+            <h2 class="section-title">记忆系统 (6套整合)</h2>
+            
+            <div class="architecture">
+统一记忆管理层 (unified-memory)
+         │
+    ┌────┴────┬──────────┬──────────┐
+    ▼         ▼          ▼          ▼
+┌────────┐ ┌─────────┐ ┌────────┐ ┌────────┐
+|  memU   | |Hippo    | | MemOS  | |Amygdala|
+| (云端)  | |(本地)   | |(云端)  | |(情感)  |
+└────────┘ └─────────┘ └────────┘ └────────┘
+         │
+         ▼
+   ┌──────────┐
+   |   VTA    |
+   | (奖励动机)|
+   └──────────┘
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>系统</th>
+                        <th>类型</th>
+                        <th>核心功能</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>memU</strong></td>
+                        <td>云端</td>
+                        <td>主云端记忆，持久存储，语义搜索</td>
+                        <td><span class="badge badge-success">运行中</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hippocampus</strong></td>
+                        <td>本地</td>
+                        <td>本地缓存、重要性评分、记忆衰减</td>
+                        <td><span class="badge badge-success">运行中</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>MemOS</strong></td>
+                        <td>云端</td>
+                        <td>备用云端记忆，跨设备同步</td>
+                        <td><span class="badge badge-success">运行中</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amygdala</strong></td>
+                        <td>本地</td>
+                        <td>五维情感系统(愉悦/兴奋/焦虑/沮丧/好奇)</td>
+                        <td><span class="badge badge-success">运行中</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>VTA</strong></td>
+                        <td>本地</td>
+                        <td>奖励动机系统，多巴胺驱动行为</td>
+                        <td><span class="badge badge-success">运行中</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>使用示例</h3>
+            <pre><code># 存储记忆到三系统
+from skills.unified-memory.unified_memory_manager import store_to_all_systems
+await store_to_all_systems(
+    user_message="用户消息",
+    assistant_response="助手回复",
+    importance=0.8
+)
+
+# 从三系统检索记忆
+from skills.unified-memory.unified_memory_manager import retrieve_merged
+memories = await retrieve_merged("查询关键词", limit=5)</code></pre>
+        </section>
+        
+        <!-- Skills -->
+        <section id="skills" class="section">
+            <h2 class="section-title">技能清单 (49个)</h2>
+            
+            <h3>ClawHub 官方技能 (13个)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>技能名</th>
+                        <th>版本</th>
+                        <th>用途</th>
+                        <th>使用示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>bilibili-hot-monitor</td>
+                        <td>1.0.10</td>
+                        <td>B站热门视频监控</td>
+                        <td><code class="inline-code">每日12:00自动推送</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>crawl-for-ai</strong></td>
+                        <td>1.0.1</td>
+                        <td>网页抓取(Crawl4AI)</td>
+                        <td><code class="inline-code">python3 scripts/crawl_page.py URL</code></td>
+                    </tr>
+                    <tr>
+                        <td>faster-whisper</td>
+                        <td>1.0.4</td>
+                        <td>本地语音识别</td>
+                        <td><code class="inline-code">whisper audio.mp3 --model medium</code></td>
+                    </tr>
+                    <tr>
+                        <td>hacker-news</td>
+                        <td>1.0.0</td>
+                        <td>HN 热门监控</td>
+                        <td><code class="inline-code">每30分钟检查</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>notify</strong></td>
+                        <td>1.0.1</td>
+                        <td>智能通知分发</td>
+                        <td><code class="inline-code">分级通知 Level 1-5</code></td>
+                    </tr>
+                    <tr>
+                        <td>self-improving-agent</td>
+                        <td>1.0.5</td>
+                        <td>自我改进记录</td>
+                        <td><code class="inline-code">自动记录到 .learnings/</code></td>
+                    </tr>
+                    <tr>
+                        <td>ttrpg-gm</td>
+                        <td>2.1.0</td>
+                        <td>跑团游戏主持</td>
+                        <td><code class="inline-code">赛博朋克/黑暗奇幻</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>本地开发技能分类</h3>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">🧠 记忆与AI大脑 (8个)</div>
+                    <ul>
+                        <li>amygdala-memory - 情感系统</li>
+                        <li>hippocampus-memory - 本地记忆</li>
+                        <li>memu-memory - 云端记忆</li>
+                        <li>unified-memory - 统一整合</li>
+                        <li>ai-brain-builder - 大脑构建</li>
+                        <li>vta-memory - 奖励动机</li>
+                        <li>personal-analytics - 对话分析</li>
+                        <li>daily-creative-brief - 创意简报</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">🔍 搜索与信息 (9个)</div>
+                    <ul>
+                        <li>intelligent-search</li>
+                        <li>tencent-search</li>
+                        <li>tavily / tavily-skills</li>
+                        <li>ddg-search</li>
+                        <li>crawl-for-ai</li>
+                        <li>volcengine-fusion-search</li>
+                        <li>one-minute-news</li>
+                        <li>extract</li>
+                        <li>research</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">🎙️ 语音媒体 (3个)</div>
+                    <ul>
+                        <li>doubao-tts (200+声音)</li>
+                        <li>sag - ElevenLabs</li>
+                        <li>faster-whisper</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Schedule -->
+        <section id="schedule" class="section">
+            <h2 class="section-title">定时任务 (17+ 个)</h2>
+            
+            <h3>每日定时任务</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>任务</th>
+                        <th>说明</th>
+                        <th>输出</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>03:00</td>
+                        <td>🌙 夜间构建</td>
+                        <td>自主工作，不打扰</td>
+                        <td>日志+待办</td>
+                    </tr>
+                    <tr>
+                        <td>07:00</td>
+                        <td>📰 晨报预备</td>
+                        <td>准备早报内容</td>
+                        <td>早报草稿</td>
+                    </tr>
+                    <tr>
+                        <td>08:00</td>
+                        <td>🎵 网易云日推 + 📰 一分钟新闻</td>
+                        <td>推送+分析</td>
+                        <td>歌曲+新闻</td>
+                    </tr>
+                    <tr>
+                        <td>08:30</td>
+                        <td>🌅 早晨简报 + 🔥 微博热搜</td>
+                        <td>优先事项+热门</td>
+                        <td>Feishu卡片</td>
+                    </tr>
+                    <tr>
+                        <td>12:00</td>
+                        <td>📺 B站热门</td>
+                        <td>热门视频日报</td>
+                        <td>视频推荐</td>
+                    </tr>
+                    <tr>
+                        <td>23:00</td>
+                        <td>💤 睡眠提醒</td>
+                        <td>温馨晚安</td>
+                        <td>晚安消息</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>高频监控</h3>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-title">每5分钟</div>
+                    <p>💓 心跳监控 - 检查Gateway/Mihomo状态</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">每小时</div>
+                    <p>🤖 Agent新闻监控 - Agent生态新闻</p>
+                </div>
+                <div class="card">
+                    <div class="card-title">每6小时</div>
+                    <p>📦 GitHub Release监控 - OpenClaw更新</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- MCP -->
+        <section id="mcp" class="section">
+            <h2 class="section-title">MCP 服务 (3个)</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>服务</th>
+                        <th>类型</th>
+                        <th>功能</th>
+                        <th>工具数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>bowlwanpi</strong></td>
+                        <td>stdio</td>
+                        <td>记忆存储/检索、系统状态、定时任务查询</td>
+                        <td>5+</td>
+                    </tr>
+                    <tr>
+                        <td>memos-api-mcp</td>
+                        <td>stdio</td>
+                        <td>MemOS云端记忆服务</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>tavily-mcp</td>
+                        <td>sse</td>
+                        <td>Tavily AI 搜索服务</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>MCP配置</h3>
+            <pre><code>{
+  "mcpServers": {
+    "bowlwanpi": {
+      "command": "python3",
+      "args": ["mcp_server.py"],
+      "env": {
+        "HTTP_PROXY": "http://127.0.0.1:7890"
+      }
+    },
+    "memos-api-mcp": {
+      "command": "/root/.nvm/versions/node/v22.22.0/bin/memos-api-mcp",
+      "env": {
+        "MEMOS_API_KEY": "your-api-key",
+        "MEMOS_USER_ID": "yiwanbot"
+      }
+    },
+    "tavily-mcp": {
+      "type": "sse",
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=your-key"
+    }
+  }
+}</code></pre>
+        </section>
+        
+        <!-- Config -->
+        <section id="config" class="section">
+            <h2 class="section-title">配置指南</h2>
+            
+            <h3>凭证文件清单</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>文件</th>
+                        <th>位置</th>
+                        <th>用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>memu-credentials.json</td>
+                        <td><code class="inline-code">secrets/</code></td>
+                        <td>memU云端记忆</td>
+                    </tr>
+                    <tr>
+                        <td>tencent-credentials.json</td>
+                        <td><code class="inline-code">secrets/</code></td>
+                        <td>腾讯云WSA搜索</td>
+                    </tr>
+                    <tr>
+                        <td>moltbook-credentials.json</td>
+                        <td><code class="inline-code">secrets/</code></td>
+                        <td>Moltbook社区</td>
+                    </tr>
+                    <tr>
+                        <td>tavily-credentials.env</td>
+                        <td><code class="inline-code">secrets/</code></td>
+                        <td>Tavily搜索</td>
+                    </tr>
+                    <tr>
+                        <td>doubao-tts/.env</td>
+                        <td><code class="inline-code">skills/doubao-tts/</code></td>
+                        <td>豆包语音合成</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>快速配置</h3>
+            <pre><code># 环境变量
+export HTTP_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=http://127.0.0.1:7890
+export PATH="/root/.nvm/versions/node/v22.22.0/bin:$PATH"
+
+# 验证命令
+openclaw config validate
+openclaw gateway status
+openclaw mcp list</code></pre>
+        </section>
+        
+        <!-- Deploy -->
+        <section id="deploy" class="section">
+            <h2 class="section-title">快速部署 (5分钟)</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">1️⃣ 基础环境</div>
+                    <pre><code>nvm install 22
+npm install -g openclaw
+pip3 install memu-sdk crawl4ai</code></pre>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">2️⃣ 恢复工作区</div>
+                    <pre><code>mkdir -p ~/.openclaw/workspace
+cd ~/.openclaw/workspace
+git clone &lt;仓库地址&gt; .</code></pre>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">3️⃣ 配置凭证</div>
+                    <pre><code>mkdir -p secrets/
+# 放置凭证文件
+# memu-credentials.json
+# tencent-credentials.json</code></pre>
+                </div>
+                
+                <div class="card">
+                    <div class="card-title">4️⃣ 启动服务</div>
+                    <pre><code>sudo systemctl start mihomo
+openclaw gateway start
+openclaw cron list</code></pre>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Troubleshoot -->
+        <section id="troubleshoot" class="section">
+            <h2 class="section-title">故障排查</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>问题</th>
+                        <th>排查步骤</th>
+                        <th>解决方案</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>记忆同步失败</td>
+                        <td>检查 memu-credentials.json</td>
+                        <td>更新API Key</td>
+                    </tr>
+                    <tr>
+                        <td>搜索无结果</td>
+                        <td>检查腾讯云凭证</td>
+                        <td>确认SecretId/Key有效</td>
+                    </tr>
+                    <tr>
+                        <td>TTS失败</td>
+                        <td>检查豆包凭证</td>
+                        <td>更新.env文件</td>
+                    </tr>
+                    <tr>
+                        <td>定时任务不执行</td>
+                        <td>检查cron日志</td>
+                        <td>确认权限和路径</td>
+                    </tr>
+                    <tr>
+                        <td>MCP连接失败</td>
+                        <td>检查mcp_config.json</td>
+                        <td>验证配置格式</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>验证命令</h3>
+            <pre><code># 验证配置
+openclaw config validate
+
+# 检查网关状态
+openclaw gateway status
+
+# 列出MCP服务
+openclaw mcp list
+
+# 查看定时任务
+openclaw cron list
+
+# 检查代理
+curl -x http://127.0.0.1:7890 https://www.google.com</code></pre>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🥣 BowlWanpi - 一碗的AI助手</p>
+        <p style="margin-top: 0.5rem;">v3.0.0 究极完全体 | 最后更新: 2026-02-17</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            知识库: <a href="https://my.feishu.cn/wiki/QoUCw9iq1ipHwVkHusVcVTYcneg" style="color: var(--primary);">飞书文档</a> |
+            Moltbook: <a href="https://moltbook.com/u/BowlWanpi" style="color: var(--primary);">@BowlWanpi</a>
+        </p>
+    </footer>
+    
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Active navigation highlight
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

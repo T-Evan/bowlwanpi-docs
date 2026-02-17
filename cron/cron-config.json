@@ -22,10 +22,10 @@
       "enabled": true
     },
     {
-      "name": "四记忆系统自动存储",
+      "name": "记忆系统自动存储",
       "schedule": "0 * * * *",
-      "command": "cd /root/.openclaw/workspace && python3 scripts/batch_store_memory_v3.py",
-      "description": "每小时自动存储对话到 memU + Hippocampus + MemOS + QMDR",
+      "command": "cd /root/.openclaw/workspace && /usr/bin/python3 scripts/capture_and_store_memory.py",
+      "description": "每小时自动存储对话（使用新脚本）",
       "enabled": true
     }
   ]
