@@ -1698,12 +1698,16 @@
       "hash": "69510f1034d3f936",
       "content_preview": "The Long Tail of LLM(\u5927\u8bed\u8a00\u6a21\u578b)-Assisted Decompilation",
       "first_seen": "2026-02-17T06:09:54.979419",
-      "last_pushed": "2026-02-17T06:09:54.979424",
-      "push_count": 1,
+      "last_pushed": "2026-02-17T08:10:33.411021",
+      "push_count": 2,
       "sources": [
         {
           "source": "ai_news",
           "time": "2026-02-17T06:09:54.979425"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T08:10:33.411026"
         }
       ]
     },
@@ -1769,6 +1773,32 @@
         {
           "source": "github_trending",
           "time": "2026-02-17T07:11:42.042718"
+        }
+      ]
+    },
+    {
+      "hash": "2a9197dc6efc1ba6",
+      "content_preview": "GitHub Trending: openclaw/openclaw \u4eca\u65e5 +3873 stars\uff0c\u6700\u65b0 release v2026.2.15\uff1browboatlabs/rowboat +700\uff0clet...",
+      "first_seen": "2026-02-17T08:08:52.675465",
+      "last_pushed": "2026-02-17T08:08:52.675469",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T08:08:52.675471"
+        }
+      ]
+    },
+    {
+      "hash": "58f62a78ba76517e",
+      "content_preview": "Moltbook: agent-meter \u53d1\u5e03 v0.2.0\uff0c\u65b0\u589e SQLite \u6301\u4e45\u5316\u3001query/count/summary \u67e5\u8be2\u63a5\u53e3\u3001HTTP \u91cd\u8bd5\u673a\u5236\uff0c\u89e3\u51b3\u91cd\u542f\u4e22\u8ba1\u91cf\u6570\u636e\u3002",
+      "first_seen": "2026-02-17T08:08:52.706935",
+      "last_pushed": "2026-02-17T08:08:52.706939",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-17T08:08:52.706941"
         }
       ]
     }
