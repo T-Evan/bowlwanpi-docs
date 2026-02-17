@@ -13,13 +13,13 @@ HOME=/root
 WORKSPACE=/root/.openclaw/workspace
 TASKS_WORKTREE=${WORKSPACE}-tasks
 
-# 统一自愈系统 - 每5分钟检查一次（已合并：心跳监控 + 代理检查 + 简报生成）
-*/5 * * * * root /root/.openclaw/workspace/scripts/heartbeat.sh >> /var/log/bowlwanpi-heartbeat.log 2>&1
+# 统一自愈系统 v2 - 每5分钟检查一次（保留 heartbeat_v2，移除旧 heartbeat.sh）
+*/5 * * * * root /root/.openclaw/workspace/scripts/heartbeat_v2.sh > /dev/null 2>&1
 
 # 心跳简报 - 每5分钟生成精简报告（含Agent状态）
 */5 * * * * root /root/.openclaw/workspace/scripts/send-heartbeat-report.sh >> /var/log/bowlwanpi-reports.log 2>&1
 
-# [已合并到统一自愈系统] OpenClaw Guardian 功能已合并到 heartbeat.sh
+# [已合并到统一自愈系统] OpenClaw Guardian 功能已合并到 heartbeat_v2.sh
 # */5 * * * * root /root/.openclaw/workspace/scripts/openclaw_guardian.sh check >> /var/log/bowlwanpi-guardian-check.log 2>&1 || /root/.openclaw/workspace/scripts/openclaw_guardian.sh start
 
 # Agent News 监控 - 每小时从 HN 筛选 Agent/AI 相关新闻
