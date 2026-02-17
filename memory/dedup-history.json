@@ -1698,8 +1698,8 @@
       "hash": "69510f1034d3f936",
       "content_preview": "The Long Tail of LLM(\u5927\u8bed\u8a00\u6a21\u578b)-Assisted Decompilation",
       "first_seen": "2026-02-17T06:09:54.979419",
-      "last_pushed": "2026-02-17T14:04:25.770501",
-      "push_count": 5,
+      "last_pushed": "2026-02-17T16:04:44.964141",
+      "push_count": 7,
       "sources": [
         {
           "source": "ai_news",
@@ -1720,6 +1720,14 @@
         {
           "source": "ai_news",
           "time": "2026-02-17T14:04:25.770506"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T15:03:43.256123"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T16:04:44.964146"
         }
       ]
     },
@@ -2114,6 +2122,110 @@
         {
           "source": "github",
           "time": "2026-02-17T14:03:41.643309"
+        }
+      ]
+    },
+    {
+      "hash": "a4b06d58f0cd60b7",
+      "content_preview": "Crush: Glamorous AI coding agent for your terminal - https://github.com/charmbracelet/crush",
+      "first_seen": "2026-02-17T15:02:54.830069",
+      "last_pushed": "2026-02-17T15:02:54.830074",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hn-cron-2026-02-17",
+          "time": "2026-02-17T15:02:54.830076"
+        }
+      ]
+    },
+    {
+      "hash": "eab830083f7667b7",
+      "content_preview": "Hyperbrowser MCP Server - Connect AI agents to the web through browsers - https://github.com/hyperbr...",
+      "first_seen": "2026-02-17T15:02:55.080856",
+      "last_pushed": "2026-02-17T15:02:55.080861",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hn-cron-2026-02-17",
+          "time": "2026-02-17T15:02:55.080863"
+        }
+      ]
+    },
+    {
+      "hash": "ff2b3c606c3d7aa9",
+      "content_preview": "Agent - A Local Computer-Use Operator for macOS - https://github.com/trycua/cua",
+      "first_seen": "2026-02-17T15:02:55.333252",
+      "last_pushed": "2026-02-17T15:02:55.333256",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hn-cron-2026-02-17",
+          "time": "2026-02-17T15:02:55.333258"
+        }
+      ]
+    },
+    {
+      "hash": "9787eb75f06797fd",
+      "content_preview": "Tabby: Self-hosted AI coding assistant - https://github.com/TabbyML/tabby",
+      "first_seen": "2026-02-17T15:02:58.075604",
+      "last_pushed": "2026-02-17T15:02:58.075609",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hn-cron-2026-02-17",
+          "time": "2026-02-17T15:02:58.075611"
+        }
+      ]
+    },
+    {
+      "hash": "8a07ec8139460080",
+      "content_preview": "Lightbox - Flight recorder for AI agents (record, replay, verify) - https://uselightbox.app",
+      "first_seen": "2026-02-17T15:02:58.325963",
+      "last_pushed": "2026-02-17T15:02:58.325968",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hn-cron-2026-02-17",
+          "time": "2026-02-17T15:02:58.325971"
+        }
+      ]
+    },
+    {
+      "hash": "2e130a9daf78d92a",
+      "content_preview": "Qwen3.5: Towards Native Multimodal Agents",
+      "first_seen": "2026-02-17T16:03:07.381399",
+      "last_pushed": "2026-02-17T16:03:07.381404",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "agent-news",
+          "time": "2026-02-17T16:03:07.381406"
+        }
+      ]
+    },
+    {
+      "hash": "da8aef7189925679",
+      "content_preview": "Study: Self-generated Agent Skills are useless",
+      "first_seen": "2026-02-17T16:03:07.632358",
+      "last_pushed": "2026-02-17T16:03:07.632362",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "agent-news",
+          "time": "2026-02-17T16:03:07.632364"
+        }
+      ]
+    },
+    {
+      "hash": "009de000a6cb3856",
+      "content_preview": "WebMCP Proposal",
+      "first_seen": "2026-02-17T16:03:07.884302",
+      "last_pushed": "2026-02-17T16:03:07.884307",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "agent-news",
+          "time": "2026-02-17T16:03:07.884309"
         }
       ]
     }
