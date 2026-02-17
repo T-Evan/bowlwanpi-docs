@@ -1,0 +1,83 @@
+[
+  {
+    "id": 47042396,
+    "title": "Dark web agent spotted bedroom wall clue to rescue girl from abuse",
+    "time": 1771290060,
+    "score": 40,
+    "comments": 4,
+    "by": "colinprince",
+    "url": "https://www.bbc.com/news/articles/cx2gn239exlo"
+  },
+  {
+    "id": 47040430,
+    "title": "Study: Self-generated Agent Skills are useless",
+    "time": 1771276556,
+    "score": 237,
+    "comments": 105,
+    "by": "mustaphah",
+    "url": "https://arxiv.org/abs/2602.12670"
+  },
+  {
+    "id": 47032876,
+    "title": "Qwen3.5: Towards Native Multimodal Agents",
+    "time": 1771234341,
+    "score": 377,
+    "comments": 179,
+    "by": "danielhanchen",
+    "url": "https://qwen.ai/blog?id=qwen3.5"
+  },
+  {
+    "id": 47039044,
+    "title": "Show HN: 2D Coulomb Gas Simulator",
+    "time": 1771269466,
+    "score": 27,
+    "comments": 5,
+    "by": "swesnow",
+    "url": "https://simonhalvdansson.github.io/2D-Coulomb-Gas-Tools/index_gpu.html"
+  },
+  {
+    "id": 47038270,
+    "title": "The long tail of LLM-assisted decompilation",
+    "time": 1771265956,
+    "score": 42,
+    "comments": 11,
+    "by": "knackers",
+    "url": "https://blog.chrislewis.au/the-long-tail-of-llm-assisted-decompilation/"
+  },
+  {
+    "id": 47037501,
+    "title": "WebMCP Proposal",
+    "time": 1771261700,
+    "score": 131,
+    "comments": 68,
+    "by": "Alifatisk",
+    "url": "https://webmachinelearning.github.io/webmcp/"
+  },
+  {
+    "id": 47036891,
+    "title": "Show HN: Simple org-mode web adapter",
+    "time": 1771258756,
+    "score": 52,
+    "comments": 5,
+    "by": "turth",
+    "url": "https://github.com/SpaceTurth/Org-Web-Adapter"
+  },
+  {
+    "id": 47039440,
+    "title": "Fff.nvim – Typo-resistant code search",
+    "time": 1771271550,
+    "score": 23,
+    "comments": 1,
+    "by": "neogoose",
+    "url": "https://github.com/dmtrKovalenko/fff.nvim"
+  },
+  {
+    "id": 47034087,
+    "title": "Evaluating AGENTS.md: are they helpful for coding agents?",
+    "time": 1771244139,
+    "score": 26,
+    "comments": 5,
+    "by": "mustaphah",
+    "url": "https://arxiv.org/abs/2602.11988"
+  }
+]

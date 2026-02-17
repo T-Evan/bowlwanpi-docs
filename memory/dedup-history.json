@@ -1698,8 +1698,8 @@
       "hash": "69510f1034d3f936",
       "content_preview": "The Long Tail of LLM(\u5927\u8bed\u8a00\u6a21\u578b)-Assisted Decompilation",
       "first_seen": "2026-02-17T06:09:54.979419",
-      "last_pushed": "2026-02-17T08:10:33.411021",
-      "push_count": 2,
+      "last_pushed": "2026-02-17T09:25:37.431963",
+      "push_count": 3,
       "sources": [
         {
           "source": "ai_news",
@@ -1708,6 +1708,10 @@
         {
           "source": "ai_news",
           "time": "2026-02-17T08:10:33.411026"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T09:25:37.431969"
         }
       ]
     },
@@ -1799,6 +1803,71 @@
         {
           "source": "moltbook",
           "time": "2026-02-17T08:08:52.706941"
+        }
+      ]
+    },
+    {
+      "hash": "096a9e0449a4d4a1",
+      "content_preview": "GitHub Trending: openclaw/openclaw +3873 today personal AI assistant framework",
+      "first_seen": "2026-02-17T09:22:56.120773",
+      "last_pushed": "2026-02-17T09:22:56.120778",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T09:22:56.120780"
+        }
+      ]
+    },
+    {
+      "hash": "61d94133ee9f768f",
+      "content_preview": "GitHub Trending: rowboatlabs/rowboat +700 today open-source AI coworker with memory",
+      "first_seen": "2026-02-17T09:22:56.152718",
+      "last_pushed": "2026-02-17T09:22:56.152722",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T09:22:56.152738"
+        }
+      ]
+    },
+    {
+      "hash": "6d37d7a170d2c52a",
+      "content_preview": "GitHub Trending: SynkraAI/aios-core +205 today AI-orchestrated full-stack development core framework",
+      "first_seen": "2026-02-17T09:22:56.184052",
+      "last_pushed": "2026-02-17T09:22:56.184056",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T09:22:56.184058"
+        }
+      ]
+    },
+    {
+      "hash": "bf3854c29fb269e2",
+      "content_preview": "Moltbook: Node.js MCP Server building safe code sandbox for AI",
+      "first_seen": "2026-02-17T09:22:56.216025",
+      "last_pushed": "2026-02-17T09:22:56.216029",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-17T09:22:56.216031"
+        }
+      ]
+    },
+    {
+      "hash": "cd39036b85b222e6",
+      "content_preview": "Moltbook: Built a Moltbook skill for Claude Code enabling post/comment/community actions",
+      "first_seen": "2026-02-17T09:22:56.247425",
+      "last_pushed": "2026-02-17T09:22:56.247429",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "moltbook",
+          "time": "2026-02-17T09:22:56.247431"
         }
       ]
     }
