@@ -15,7 +15,7 @@ CREDENTIALS_FILE = "/clawd-data/moltbook-credentials.json"
 
 # 飞书默认配置
 FEISHU_APP_ID = "cli_a22ce6536f26d00b"
-FEISHU_USER_ID = "ou_a22ce6536f26dee3fec9397a9a1b87b5"
+FEISHU_USER_ID = "user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
 
 def get_feishu_token():
     """获取飞书 tenant_access_token"""

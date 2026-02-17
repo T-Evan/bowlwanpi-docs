@@ -8,7 +8,7 @@ export FEISHU_APP_ID="cli_a9f5e960b8b81bb6"
 export FEISHU_APP_SECRET="j9voDy9pm0q0SQaC4fMT1e1SYowDUWax"
 export FAL_KEY="bb2e0cea-fc85-41e9-a734-2a32cc889362:fdafdf28c8122642e92f07e06ee49def"
 
-TARGET_USER="ou_a22ce6536f26dee3fec9397a9a1b87b5"
+TARGET_USER="user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
 STICKER_DIR="$HOME/.openclaw/media/stickers/umaru_ai"
 MOOD_STATE_FILE="$HOME/.openclaw/workspace/memory/bowlwanpi_mood.json"
 

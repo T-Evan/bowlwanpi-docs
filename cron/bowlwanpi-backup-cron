@@ -36,7 +36,7 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 0 7 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-prep >> /var/log/bowlwanpi-cron.log 2>&1
 
 # 网易云日推 - 每天上午 8:00（直接执行并发送）
-0 8 * * * root cd /root/.openclaw/workspace/netease-music && python3 daily_push_with_analysis.py 2>&1 | openclaw message send --channel feishu --target ou_a22ce6536f26dee3fec9397a9a1b87b5 --message - >> /var/log/bowlwanpi-cron.log 2>&1 || echo "[$(date '+%H:%M:%S')] 网易云推送失败" >> /var/log/bowlwanpi-cron.log
+0 8 * * * root cd /root/.openclaw/workspace/netease-music && python3 daily_push_with_analysis.py 2>&1 | openclaw message send --channel feishu --target user:ou_a22ce6536f26dee3fec9397a9a1b87b5 --message - >> /var/log/bowlwanpi-cron.log 2>&1 || echo "[$(date '+%H:%M:%S')] 网易云推送失败" >> /var/log/bowlwanpi-cron.log
 
 # one-minute-news - 每天上午 8:00
 0 8 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh one-minute-news >> /var/log/bowlwanpi-cron.log 2>&1

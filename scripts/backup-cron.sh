@@ -67,7 +67,7 @@ send_message() {
         # 使用 --message - 从标准输入读取，避免参数解析问题
         echo "$content" | openclaw message send \
             --channel feishu \
-            --target "ou_a22ce6536f26dee3fec9397a9a1b87b5" \
+            --target "user:ou_a22ce6536f26dee3fec9397a9a1b87b5" \
             --message - >> "$LOG_FILE" 2>&1
         return $?
     fi

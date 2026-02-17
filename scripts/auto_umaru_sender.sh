@@ -9,7 +9,7 @@ export FEISHU_APP_ID="cli_a9f5e960b8b81bb6"
 export FEISHU_APP_SECRET="j9voDy9pm0q0SQaC4fMT1e1SYowDUWax"
 
 # 目标用户
-TARGET_USER="ou_a22ce6536f26dee3fec9397a9a1b87b5"
+TARGET_USER="user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
 STICKER_DIR="$HOME/.openclaw/media/stickers/umaru_ai"
 
 # 检测文本情绪并发送小埋表情包

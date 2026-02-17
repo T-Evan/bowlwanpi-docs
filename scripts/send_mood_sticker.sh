@@ -4,7 +4,7 @@
 # 根据当前情绪自动选择合适的表情包
 #
 
-TARGET_USER="${1:-ou_a22ce6536f26dee3fec9397a9a1b87b5}"
+TARGET_USER="${1:-user:ou_a22ce6536f26dee3fec9397a9a1b87b5}"
 MOOD="${2:-happy}"
 
 export FEISHU_APP_ID="cli_a9f5e960b8b81bb6"

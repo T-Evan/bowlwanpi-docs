@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 
 # 飞书配置
-FEISHU_USER_ID = "ou_a22ce6536f26dee3fec9397a9a1b87b5"
+FEISHU_USER_ID = "user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
 
 def send_to_feishu(message):
     """发送消息到飞书"""

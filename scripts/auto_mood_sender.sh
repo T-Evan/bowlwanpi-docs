@@ -7,7 +7,7 @@ set -euo pipefail
 export FEISHU_APP_ID="cli_a9f5e960b8b81bb6"
 export FEISHU_APP_SECRET="j9voDy9pm0q0SQaC4fMT1e1SYowDUWax"
 
-TARGET_USER="${1:-ou_a22ce6536f26dee3fec9397a9a1b87b5}"
+TARGET_USER="${1:-user:ou_a22ce6536f26dee3fec9397a9a1b87b5}"
 INPUT_TEXT="${2:-}"
 STICKER_DIR="$HOME/.openclaw/media/stickers/umaru_ai"
 
