@@ -25,7 +25,8 @@ HOME=/root
 # 0 * * * * root /root/.openclaw/workspace/scripts/hackernews-monitor.sh >> /var/log/bowlwanpi-hackernews.log 2>&1
 
 # 夜间构建 - 每天凌晨 3:00
-0 3 * * * root /root/.openclaw/workspace/scripts/nightly-build-enhanced.sh >> /var/log/bowlwanpi-nightly-build.log 2>&1
+# v4.0: 三层次记忆提炼 + 自动修复 + Git提交
+0 3 * * * root /root/.openclaw/workspace/scripts/nightly-build-v4.sh >> /var/log/bowlwanpi-nightly-build.log 2>&1
 
 # 晨报预备 - 每天上午 7:00
 0 7 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-prep >> /var/log/bowlwanpi-cron.log 2>&1
