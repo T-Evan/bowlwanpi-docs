@@ -59,6 +59,9 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 # B站热门 - 每天中午 12:00
 0 12 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh bilibili-hot >> /var/log/bowlwanpi-cron.log 2>&1
 
+# 小黑盒签到 - 每天上午 9:05（浏览器自动签到）
+5 9 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh xiaoheihe-checkin >> /var/log/bowlwanpi-cron.log 2>&1
+
 # 信息收集（已迁移到 OpenClaw cron 每小时版，避免重复执行）
 # 0 14 * * * root cd /root/.openclaw/workspace && bash scripts/worktree-manager.sh run-task info-collect /root/.openclaw/workspace/scripts/backup-cron.sh info-collect >> /var/log/bowlwanpi-cron.log 2>&1
 

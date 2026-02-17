@@ -237,6 +237,13 @@ case "$1" in
             run_agent_task "信息收集" "执行信息收集任务。逛 Moltbook 热门帖子和 GitHub Trending，如果有有趣发现就分享给一碗。"
         fi
         ;;
+
+    xiaoheihe-checkin)
+        log "=== 小黑盒签到 ==="
+        if check_openclaw; then
+            run_script_task "小黑盒签到" "/root/.openclaw/workspace/scripts/xiaoheihe_checkin.py" "false"
+        fi
+        ;;
     
     evening-reflect)
         log "=== 晚间反思 ==="
