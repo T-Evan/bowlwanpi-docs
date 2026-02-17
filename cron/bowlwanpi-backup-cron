@@ -72,7 +72,10 @@ HOME=/root
 
 # 记忆系统 - 每小时捕获对话历史到本地 + 云端同步
 # 使用新的 capture_and_store_memory.py（从会话JSONL提取，更准确）
-0 * * * * root cd /root/.openclaw/workspace && python3 scripts/capture_and_store_memory.py >> /var/log/bowlwanpi-memory.log 2>&1
+0 * * * * root cd /root/.openclaw/workspace && /root/.openclaw/workspace/scripts/monitor-wrapper.sh memory-sync python3 scripts/capture_and_store_memory.py >> /var/log/bowlwanpi-memory.log 2>&1
+
+# 性能报告生成 - 每天 6:00
+0 6 * * * root cd /root/.openclaw/workspace && python3 scripts/performance_monitor.py >> /var/log/bowlwanpi-performance-report.log 2>&1
 
 # [已停用] 旧的记忆存储脚本（store_with_cloud_sync.py）
 # 原因：从记忆文件读取，经常为空，效果不佳

@@ -1,0 +1,31 @@
+{
+  "total_requests": 4,
+  "by_model": {
+    "kimi-code": 1,
+    "gpt-5.2": 2,
+    "kimi-k2.5": 1
+  },
+  "by_task_type": {},
+  "history": [
+    {
+      "model": "kimi-code",
+      "task": "debug this python error",
+      "timestamp": "2026-02-17T16:59:04.827578"
+    },
+    {
+      "model": "gpt-5.2",
+      "task": "analyze system architecture and optimize",
+      "timestamp": "2026-02-17T16:59:04.869210"
+    },
+    {
+      "model": "kimi-k2.5",
+      "task": "\u603b\u7ed3\u8fd9\u7bc7\u4e2d\u6587\u957f\u6587",
+      "timestamp": "2026-02-17T16:59:04.912862"
+    },
+    {
+      "model": "gpt-5.2",
+      "task": "write a creative story about AI",
+      "timestamp": "2026-02-17T16:59:04.946801"
+    }
+  ]
+}

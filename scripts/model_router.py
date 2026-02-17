@@ -1,238 +1,225 @@
 #!/usr/bin/env python3
 """
-智能模型路由器 - 根据任务类型自动选择 Kimi 或 GPT
-
-路由策略:
-- 代码/编程任务 → Kimi Code (擅长长上下文代码理解)
-- 复杂推理/多模态/高复杂度 → GPT-5.3 ( reasoning 能力强)
-- 日常对话/简单任务 → 默认 GPT-5.3
-- 中文长文本 → Kimi (上下文窗口 256k)
-
-使用方法:
-1. 直接调用: python3 model_router.py "你的问题"
-2. 获取推荐模型: python3 model_router.py --recommend "你的问题"
-3. 自动执行: python3 model_router.py --exec "你的问题"
+智能模型路由器 v1.0
+根据任务特征自动选择最适合的模型
 """
 
-import re
+import json
+import os
 import sys
-from typing import Tuple, List
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 
 # 模型配置
 MODELS = {
     "kimi-code": {
-        "id": "kimi-coding/kimi-for-coding",
-        "alias": "Kimi Code",
-        "strengths": ["代码", "编程", "debug", "长上下文", "中文技术文档"],
+        "id": "kimi-code/kimi-for-coding",
+        "name": "Kimi Code",
+        "strengths": ["code", "debug", "chinese", "long_context"],
         "context_window": 262144,
-        "reasoning": True,
-        "cost_level": "medium"
+        "cost_level": "low",
+        "latency": "fast"
     },
-    "gpt-5.3": {
-        "id": "crs/gpt-5.3-codex", 
-        "alias": "crs-gpt5.3",
-        "strengths": ["复杂推理", "多模态", "高阶思维", "数学", "分析"],
+    "gpt-5.2": {
+        "id": "crs/gpt-5.2-codex",
+        "name": "GPT-5.2",
+        "strengths": ["reasoning", "analysis", "multimodal", "creative", "complex"],
         "context_window": 200000,
-        "reasoning": True,
-        "cost_level": "high"
+        "cost_level": "medium",
+        "latency": "medium"
     },
     "kimi-k2.5": {
         "id": "kimi-coding/k2p5",
-        "alias": "kimi-k2.5",
-        "strengths": ["通用", "长文本", "中文", "日常"],
+        "name": "Kimi K2.5",
+        "strengths": ["chinese", "long_context", "summarization"],
         "context_window": 256000,
-        "reasoning": False,
-        "cost_level": "low"
+        "cost_level": "low",
+        "latency": "fast"
     }
 }
 
-# 关键词路由规则
-ROUTING_RULES = [
-    # 代码相关 → Kimi Code
-    {
-        "model": "kimi-code",
-        "keywords": [
-            "代码", "编程", "debug", "调试", "python", "javascript", "js",
-            "函数", "类", "算法", "leetcode", "bug", "报错", "error",
-            "git", "commit", "pr", "代码审查", "重构", "refactor",
-            "docker", "kubernetes", "k8s", "dockerfile", "yaml",
-            "sql", "数据库", "query", "优化", "performance",
-            "脚本", "自动化", "bash", "shell", "cli",
-            "cursor", "ide", "编辑器", "vscode", "配置"
-        ],
-        "priority": 10
+# 任务分类关键词
+TASK_PATTERNS = {
+    "code": {
+        "keywords": ["code", "debug", "error", "fix", "script", "python", "bash", "shell", "git", "programming", "function", "class", "api", "json", "yaml"],
+        "recommended": "kimi-code",
+        "reason": "Kimi Code 有 256K 上下文，代码理解能力最强"
     },
-    # 复杂推理 → GPT-5.3
-    {
-        "model": "gpt-5.3",
-        "keywords": [
-            "分析", "推理", "逻辑", "数学", "计算", "证明",
-            "多模态", "图像", "图片", "vision", "看这张",
-            "复杂", "深度", "系统思考", "架构设计", "设计模式",
-            "哲学", "抽象", "概念", "理论",
-            "预测", "趋势", "未来", "规划", "战略"
-        ],
-        "priority": 10
+    "reasoning": {
+        "keywords": ["analyze", "analysis", "research", "deep", "complex", "why", "how to", "strategy", "architecture", "design", "optimize", "improve"],
+        "recommended": "gpt-5.2",
+        "reason": "GPT-5.2 推理能力最强，适合深度分析"
     },
-    # 中文长文本 → Kimi
-    {
-        "model": "kimi-k2.5",
-        "keywords": [
-            "总结", "摘要", "长文", "文章", "文档", "pdf",
-            "小说", "故事", "历史", "文学", "阅读",
-            "翻译", "中文", "古文", "诗词"
-        ],
-        "priority": 5
+    "chinese_long": {
+        "keywords": ["中文", "总结", "摘要", "长文", "document", "summary", "translate chinese"],
+        "recommended": "kimi-k2.5",
+        "reason": "Kimi K2.5 中文处理能力优秀，成本低"
+    },
+    "creative": {
+        "keywords": ["creative", "write", "story", "poem", "imagine", "design", "innovation", "idea"],
+        "recommended": "gpt-5.2",
+        "reason": "GPT-5.2 创造力更强"
+    },
+    "quick_qa": {
+        "keywords": ["what is", "how do", "explain", "simple", "brief", "quick"],
+        "recommended": "gpt-5.2",
+        "reason": "GPT-5.2 响应快，综合能力均衡"
+    },
+    "multimodal": {
+        "keywords": ["image", "picture", "photo", "diagram", "chart", "visual", "describe"],
+        "recommended": "gpt-5.2",
+        "reason": "GPT-5.2 支持多模态（图像理解）"
     }
-]
+}
 
-
-def analyze_task(query: str) -> Tuple[str, float, str]:
-    """
-    分析任务并推荐模型
+class ModelRouter:
+    """智能模型路由器"""
     
-    返回: (模型ID, 置信度, 推荐理由)
-    """
-    query_lower = query.lower()
-    scores = {model: 0 for model in MODELS}
-    reasons = {model: [] for model in MODELS}
+    def __init__(self):
+        self.usage_log = Path("/root/.openclaw/workspace/memory/model-usage.json")
+        self.load_usage()
     
-    # 基于关键词匹配
-    for rule in ROUTING_RULES:
-        model = rule["model"]
-        priority = rule["priority"]
-        
-        for keyword in rule["keywords"]:
-            if keyword.lower() in query_lower:
-                scores[model] += priority
-                if len(reasons[model]) < 3:  # 最多记录3个理由
-                    reasons[model].append(f"匹配关键词: {keyword}")
-    
-    # 基于长度判断
-    if len(query) > 5000:
-        scores["kimi-code"] += 3
-        scores["kimi-k2.5"] += 2
-        reasons["kimi-code"].append("长文本输入(>5k字)")
-    
-    if len(query) > 30000:
-        scores["kimi-k2.5"] += 5
-        reasons["kimi-k2.5"].append("超长文本输入(>30k字)")
-    
-    # 基于特殊标记
-    if any(code_marker in query for code_marker in ["```", "def ", "class ", "import ", "function"]):
-        scores["kimi-code"] += 8
-        reasons["kimi-code"].append("包含代码块")
-    
-    if query.startswith(("/", "!")) or "命令" in query:
-        scores["kimi-code"] += 3
-        reasons["kimi-code"].append("可能是CLI命令相关")
-    
-    # 选择最高分
-    best_model = max(scores, key=scores.get)
-    confidence = min(scores[best_model] / 10, 1.0)  # 归一化到0-1
-    
-    # 生成推荐理由
-    if reasons[best_model]:
-        reason_text = "; ".join(reasons[best_model][:2])
-    else:
-        # 默认理由
-        if best_model == "gpt-5.3":
-            reason_text = "默认选择(通用复杂任务)"
-        elif best_model == "kimi-code":
-            reason_text = "默认选择(技术相关)"
+    def load_usage(self):
+        """加载使用统计"""
+        if self.usage_log.exists():
+            with open(self.usage_log, 'r') as f:
+                self.usage_data = json.load(f)
         else:
-            reason_text = "默认选择(日常对话)"
+            self.usage_data = {
+                "total_requests": 0,
+                "by_model": {},
+                "by_task_type": {},
+                "history": []
+            }
     
-    return MODELS[best_model]["id"], confidence, reason_text
-
-
-def get_model_for_task(query: str) -> str:
-    """简单接口：获取推荐模型ID"""
-    model_id, _, _ = analyze_task(query)
-    return model_id
-
-
-def print_recommendation(query: str):
-    """打印推荐结果"""
-    model_id, confidence, reason = analyze_task(query)
+    def save_usage(self):
+        """保存使用统计"""
+        os.makedirs(self.usage_log.parent, exist_ok=True)
+        with open(self.usage_log, 'w') as f:
+            json.dump(self.usage_data, f, indent=2)
     
-    print(f"📊 任务分析")
-    print(f"=" * 40)
-    print(f"查询: {query[:50]}..." if len(query) > 50 else f"查询: {query}")
-    print()
-    print(f"🎯 推荐模型: {model_id}")
-    print(f"置信度: {confidence*100:.0f}%")
-    print(f"理由: {reason}")
-    print()
-    
-    # 显示所有分数
-    print("📈 模型匹配度:")
-    for model_name, info in MODELS.items():
-        # 重新计算分数用于显示
-        query_lower = query.lower()
-        score = 0
-        for rule in ROUTING_RULES:
-            if rule["model"] == model_name:
-                for keyword in rule["keywords"]:
-                    if keyword.lower() in query_lower:
-                        score += rule["priority"]
+    def analyze_task(self, task_description: str) -> Tuple[str, float, str]:
+        """
+        分析任务并推荐模型
         
-        bar = "█" * min(score, 10) + "░" * (10 - min(score, 10))
-        print(f"  {info['alias']:15} [{bar}] {score}")
-
-
-def exec_with_model(query: str):
-    """使用推荐模型执行任务(通过OpenClaw)"""
-    import subprocess
+        Returns:
+            (model_key, confidence, reason)
+        """
+        task_lower = task_description.lower()
+        scores = {}
+        
+        # 计算每个任务类型的匹配分数
+        for task_type, config in TASK_PATTERNS.items():
+            score = 0
+            for keyword in config["keywords"]:
+                if keyword in task_lower:
+                    score += 1
+            if score > 0:
+                scores[task_type] = score
+        
+        if not scores:
+            # 默认使用 GPT-5.2
+            return "gpt-5.2", 0.5, "默认推荐，综合能力均衡"
+        
+        # 找出最高分的任务类型
+        best_task = max(scores, key=scores.get)
+        confidence = min(scores[best_task] / 3, 1.0)  # 归一化到 0-1
+        
+        config = TASK_PATTERNS[best_task]
+        return config["recommended"], confidence, config["reason"]
     
-    model_id, confidence, reason = analyze_task(query)
+    def route(self, task_description: str, force_model: Optional[str] = None) -> Dict:
+        """
+        路由到合适的模型
+        
+        Args:
+            task_description: 任务描述
+            force_model: 强制使用特定模型（可选）
+        
+        Returns:
+            路由结果
+        """
+        if force_model and force_model in MODELS:
+            model_key = force_model
+            confidence = 1.0
+            reason = f"强制指定: {MODELS[model_key]['name']}"
+        else:
+            model_key, confidence, reason = self.analyze_task(task_description)
+        
+        model_config = MODELS[model_key]
+        
+        result = {
+            "model_id": model_config["id"],
+            "model_name": model_config["name"],
+            "model_key": model_key,
+            "confidence": confidence,
+            "reason": reason,
+            "task_analyzed": task_description[:100],
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        # 记录使用
+        self._record_usage(model_key, task_description)
+        
+        return result
     
-    print(f"🤖 智能路由选择: {MODELS[model_id]['alias']}")
-    print(f"   理由: {reason}")
-    print(f"   置信度: {confidence*100:.0f}%")
-    print()
+    def _record_usage(self, model_key: str, task: str):
+        """记录使用情况"""
+        self.usage_data["total_requests"] += 1
+        
+        # 按模型统计
+        if model_key not in self.usage_data["by_model"]:
+            self.usage_data["by_model"][model_key] = 0
+        self.usage_data["by_model"][model_key] += 1
+        
+        # 历史记录（保留最近100条）
+        self.usage_data["history"].append({
+            "model": model_key,
+            "task": task[:100],
+            "timestamp": datetime.now().isoformat()
+        })
+        self.usage_data["history"] = self.usage_data["history"][-100:]
+        
+        self.save_usage()
     
-    # 使用 openclaw agent 命令执行
-    cmd = [
-        "openclaw", "agent",
-        "--model", model_id,
-        "--message", query
-    ]
+    def get_stats(self) -> Dict:
+        """获取使用统计"""
+        return self.usage_data
     
-    try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
-        print(result.stdout)
-        if result.stderr:
-            print("错误:", result.stderr, file=sys.stderr)
-    except subprocess.TimeoutExpired:
-        print("执行超时", file=sys.stderr)
-    except Exception as e:
-        print(f"执行错误: {e}", file=sys.stderr)
-
+    def print_recommendation(self, task: str):
+        """打印推荐结果"""
+        result = self.route(task)
+        
+        print(f"\n🎯 任务分析: {task[:60]}...")
+        print(f"📊 推荐模型: {result['model_name']}")
+        print(f"🆔 模型ID: {result['model_id']}")
+        print(f"📈 置信度: {result['confidence']:.0%}")
+        print(f"💡 推荐理由: {result['reason']}")
+        print()
+        
+        return result
 
 def main():
+    """CLI 入口"""
     if len(sys.argv) < 2:
-        print(__doc__)
-        print("\n用法:")
-        print(f"  python3 {sys.argv[0]} '你的问题'        # 查看推荐")
-        print(f"  python3 {sys.argv[0]} --recommend '问题' # 详细分析")
-        print(f"  python3 {sys.argv[0]} --exec '问题'      # 自动执行")
+        print("Usage: python3 model_router.py '<task description>'")
+        print("\nExamples:")
+        print('  python3 model_router.py "debug this python error"')
+        print('  python3 model_router.py "analyze system architecture"')
+        print('  python3 model_router.py "write a creative story"')
+        print()
+        print("Available models:")
+        for key, config in MODELS.items():
+            print(f"  - {key}: {config['name']}")
         sys.exit(1)
     
-    if sys.argv[1] == "--recommend":
-        query = sys.argv[2] if len(sys.argv) > 2 else ""
-        print_recommendation(query)
-    elif sys.argv[1] == "--exec":
-        query = sys.argv[2] if len(sys.argv) > 2 else ""
-        exec_with_model(query)
-    else:
-        # 默认: 简单推荐
-        query = sys.argv[1]
-        model_id, confidence, reason = analyze_task(query)
-        print(f"推荐模型: {model_id}")
-        print(f"置信度: {confidence*100:.0f}%")
-        print(f"理由: {reason}")
-
+    task = " ".join(sys.argv[1:])
+    router = ModelRouter()
+    result = router.print_recommendation(task)
+    
+    # 输出模型ID（用于脚本调用）
+    print(f"RECOMMENDED_MODEL={result['model_id']}")
 
 if __name__ == "__main__":
     main()
