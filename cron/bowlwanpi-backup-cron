@@ -32,8 +32,8 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 # v4.0: 三层次记忆提炼 + 自动修复 + Git提交
 0 3 * * * root /root/.openclaw/workspace/scripts/nightly-build-v4.sh >> /var/log/bowlwanpi-nightly-build.log 2>&1
 
-# 晨报预备 - 每天上午 7:00
-0 7 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-prep >> /var/log/bowlwanpi-cron.log 2>&1
+# 晨报预备（已迁移到 OpenClaw cron，避免重复执行）
+# 0 7 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh morning-prep >> /var/log/bowlwanpi-cron.log 2>&1
 
 # 网易云日推 - 每天上午 8:00（直接执行并发送）
 0 8 * * * root cd /root/.openclaw/workspace/netease-music && python3 daily_push_with_analysis.py 2>&1 | openclaw message send --channel feishu --target user:ou_a22ce6536f26dee3fec9397a9a1b87b5 --message - >> /var/log/bowlwanpi-cron.log 2>&1 || echo "[$(date '+%H:%M:%S')] 网易云推送失败" >> /var/log/bowlwanpi-cron.log
@@ -56,8 +56,8 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 # B站热门 - 每天中午 12:00
 0 12 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh bilibili-hot >> /var/log/bowlwanpi-cron.log 2>&1
 
-# 信息收集 - 每天下午 14:00 (使用 worktree 并行执行)
-0 14 * * * root cd /root/.openclaw/workspace && bash scripts/worktree-manager.sh run-task info-collect /root/.openclaw/workspace/scripts/backup-cron.sh info-collect >> /var/log/bowlwanpi-cron.log 2>&1
+# 信息收集（已迁移到 OpenClaw cron 每小时版，避免重复执行）
+# 0 14 * * * root cd /root/.openclaw/workspace && bash scripts/worktree-manager.sh run-task info-collect /root/.openclaw/workspace/scripts/backup-cron.sh info-collect >> /var/log/bowlwanpi-cron.log 2>&1
 
 # GitHub Release 监控 - 每6小时
 0 */6 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh github-release >> /var/log/bowlwanpi-cron.log 2>&1
@@ -68,8 +68,8 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 # 睡眠提醒 - 每天下午 23:00
 0 23 * * * root /root/.openclaw/workspace/scripts/backup-cron.sh sleep-reminder >> /var/log/bowlwanpi-cron.log 2>&1
 
-# 周回顾 - 每周日 20:00
-0 20 * * 0 root /root/.openclaw/workspace/scripts/backup-cron.sh weekly-review >> /var/log/bowlwanpi-cron.log 2>&1
+# 周回顾（已迁移到 OpenClaw cron，避免重复执行）
+# 0 20 * * 0 root /root/.openclaw/workspace/scripts/backup-cron.sh weekly-review >> /var/log/bowlwanpi-cron.log 2>&1
 
 # [已合并] 自检系统功能已合并到统一自愈系统
 # 0 * * * * root /root/.openclaw/workspace/scripts/cron_self_check.sh >> /var/log/bowlwanpi-selfcheck.log 2>&1
