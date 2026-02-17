@@ -9,11 +9,14 @@ SHELL=/bin/bash
 PATH=/root/.nvm/versions/node/v22.22.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOME=/root
 
-# 心跳监控 - 每5分钟检查一次系统状态
+# 统一自愈系统 - 每5分钟检查一次（已合并：心跳监控 + 代理检查 + 简报生成）
 */5 * * * * root /root/.openclaw/workspace/scripts/heartbeat.sh >> /var/log/bowlwanpi-heartbeat.log 2>&1
 
-# 心跳简报 - 每5分钟生成并尝试发送报告
+# 心跳简报 - 每5分钟生成精简报告（含Agent状态）
 */5 * * * * root /root/.openclaw/workspace/scripts/send-heartbeat-report.sh >> /var/log/bowlwanpi-reports.log 2>&1
+
+# [已合并到统一自愈系统] OpenClaw Guardian 功能已合并到 heartbeat.sh
+# */5 * * * * root /root/.openclaw/workspace/scripts/openclaw_guardian.sh check >> /var/log/bowlwanpi-guardian-check.log 2>&1 || /root/.openclaw/workspace/scripts/openclaw_guardian.sh start
 
 # Agent News 监控 - 每小时从 HN 筛选 Agent/AI 相关新闻
 0 * * * * root /root/.openclaw/workspace/scripts/agent-news-monitor.py >> /var/log/bowlwanpi-agent-news.log 2>&1
@@ -56,3 +59,6 @@ HOME=/root
 
 # 周回顾 - 每周日 20:00
 0 20 * * 0 root /root/.openclaw/workspace/scripts/backup-cron.sh weekly-review >> /var/log/bowlwanpi-cron.log 2>&1
+
+# [已合并] 自检系统功能已合并到统一自愈系统
+# 0 * * * * root /root/.openclaw/workspace/scripts/cron_self_check.sh >> /var/log/bowlwanpi-selfcheck.log 2>&1
