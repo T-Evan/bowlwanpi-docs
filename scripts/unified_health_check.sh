@@ -17,19 +17,29 @@ log() {
     echo "[$(date '+%H:%M')] $1" >> "$LOG_FILE"
 }
 
-# ========== 自愈检查 ==========
-healing_checks() {
+# ========== 代理健康检查 ==========
+check_proxy_health() {
     local issues=()
     local fixed=()
+    local PROXY_PORT=7890
     
-    # 1. 检查 Mihomo
+    # 1. 检查 Mihomo 进程
     if ! pgrep -f "mihomo" > /dev/null 2>&1; then
         if [ -f /root/mihomo/start.sh ]; then
             cd /root/mihomo && bash start.sh &
-            fixed+=("Mihomo已重启")
-            log "FIX: Mihomo restarted"
+            fixed+=("Mihomo进程已重启")
+            log "FIX: Mihomo process restarted"
         else
-            issues+=("Mihomo未运行，无法自动修复")
+            issues+=("⚠️ Mihomo未运行且无启动脚本")
+        fi
+    fi
+    
+    # 2. 检查代理端口连通性
+    if command -v curl >/dev/null 2>&1; then
+        local http_code
+        http_code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 5 --proxy "http://127.0.0.1:$PROXY_PORT" "https://www.google.com" 2>/dev/null || echo "000")
+        if [ "$http_code" != "200" ]; then
+            issues+=("⚠️ 代理端口$PROXY_PORT异常(HTTP $http_code)")
         fi
     fi
     
@@ -56,6 +66,11 @@ healing_checks() {
         echo "❌ 需关注: ${issues[*]}"
         return 1
     fi
+    
+    # 记录代理状态日志
+    local mihomo_status="✅"
+    pgrep -f "mihomo" > /dev/null 2>&1 || mihomo_status="❌"
+    log "Proxy: Mihomo$mihomo_status Port${PROXY_PORT}"
     
     return 0
 }
@@ -84,8 +99,8 @@ status_summary() {
 main() {
     log "=== 健康检查开始 ==="
     
-    # 执行自愈
-    healing_result=$(healing_checks)
+    # 执行自愈（含代理检查）
+    healing_result=$(check_proxy_health)
     
     # 获取状态
     status=$(status_summary)
