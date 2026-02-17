@@ -55,23 +55,52 @@ ${body}
 ⏰ 系统 cron 兜底任务 | $(date '+%H:%M')"
 }
 
-# 执行 Agent Turn 任务
+# 执行 Agent Turn 任务（旧 API 兼容，失败时仅记录）
 run_agent_task() {
     local task_name="$1"
     local message="$2"
-    
+
     log "Running task: $task_name"
-    
-    # 通过 API 触发 isolated agent session
-    curl -s -X POST "$OPENCLAW_GATEWAY_URL/api/v1/spawn" \
+
+    # 通过旧 HTTP API 触发（部分版本可能返回 Method Not Allowed）
+    local resp
+    resp=$(curl -s -X POST "$OPENCLAW_GATEWAY_URL/api/v1/spawn" \
         -H "Content-Type: application/json" \
         -d "{
             \"agentId\": \"main\",
             \"task\": \"$message\",
             \"timeoutSeconds\": 300
-        }" >> "$LOG_FILE" 2>&1
-    
+        }" 2>>"$LOG_FILE" || true)
+
+    if echo "$resp" | grep -qi "method not allowed"; then
+        log "WARNING: spawn API not supported on this gateway version"
+    fi
+
     log "Task completed: $task_name"
+}
+
+# 执行本地推送脚本并发送输出到飞书
+run_script_task() {
+    local task_name="$1"
+    local script_path="$2"
+
+    log "Running script task: $task_name ($script_path)"
+
+    if [ ! -f "$script_path" ]; then
+        log "ERROR: Script not found: $script_path"
+        return 1
+    fi
+
+    local output
+    output=$(python3 "$script_path" 2>>"$LOG_FILE")
+
+    if [ -z "$output" ]; then
+        log "ERROR: Script output is empty: $script_path"
+        return 1
+    fi
+
+    send_message "$output"
+    log "Script task sent: $task_name"
 }
 
 # 主逻辑
@@ -86,42 +115,42 @@ case "$1" in
     morning-brief)
         log "=== 早晨简报 ==="
         if check_openclaw; then
-            run_agent_task "早晨简报" "生成今日早晨简报。检查 memory/YYYY-MM-DD.md 查看昨日规划，生成包含以下内容的消息发给一碗：1) 每日意图 2) 今日优先事项 3) 待办任务 4) 行动建议。语气用干物妹小埋风格，活泼可爱～"
+            run_script_task "早晨简报" "/root/.openclaw/workspace/scripts/push_morning_brief.py"
         fi
         ;;
     
     netease-music)
         log "=== 网易云日推 ==="
         if check_openclaw; then
-            run_agent_task "网易云日推" "执行网易云音乐日推推送任务（带风格/情绪分析）。运行 /root/.openclaw/workspace/netease-music/daily_push_with_analysis.py 获取日推并发送给一碗。"
+            run_script_task "网易云日推" "/root/.openclaw/workspace/scripts/push_netease_music.py"
         fi
         ;;
     
     weibo-hot)
         log "=== 微博热搜 ==="
         if check_openclaw; then
-            run_agent_task "微博热搜" "执行微博热搜推送任务。获取 https://raw.githubusercontent.com/daifee/weibo-hot-search/main/latest-daily.md 并发送 TOP 10 给一碗。"
+            run_script_task "微博热搜" "/root/.openclaw/workspace/scripts/push_weibo_hot.py"
         fi
         ;;
     
     product-hunt)
         log "=== Product Hunt ==="
         if check_openclaw; then
-            run_agent_task "Product Hunt" "执行 Product Hunt 热门推送任务。获取 https://www.producthunt.com/feed 并发送 TOP 10 新产品给一碗。"
+            run_script_task "Product Hunt" "/root/.openclaw/workspace/scripts/push_producthunt.py"
         fi
         ;;
     
     zhihu-hot)
         log "=== 知乎热榜 ==="
         if check_openclaw; then
-            run_agent_task "知乎热榜" "执行知乎热榜推送任务。尝试获取知乎热榜并发送给一碗。"
+            run_script_task "知乎热榜" "/root/.openclaw/workspace/scripts/push_zhihu_hot.py"
         fi
         ;;
     
     bilibili-hot)
         log "=== B站热门 ==="
         if check_openclaw; then
-            run_agent_task "B站热门" "执行B站热门推送任务。获取B站全站排行榜并发送 TOP 10 给一碗。"
+            run_script_task "B站热门" "/root/.openclaw/workspace/scripts/push_bilibili_hot.py"
         fi
         ;;
     
