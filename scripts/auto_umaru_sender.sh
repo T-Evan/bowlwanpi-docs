@@ -4,9 +4,13 @@
 # 检测到情绪关键词时自动发送
 #
 
-# 飞书配置
-export FEISHU_APP_ID="cli_a9f5e960b8b81bb6"
-export FEISHU_APP_SECRET="j9voDy9pm0q0SQaC4fMT1e1SYowDUWax"
+# shellcheck source=/root/.openclaw/workspace/scripts/load-secrets.sh
+source /root/.openclaw/workspace/scripts/load-secrets.sh
+load_secret_env
+
+if ! require_env_vars FEISHU_APP_ID FEISHU_APP_SECRET; then
+    exit 1
+fi
 
 # 目标用户
 TARGET_USER="user:ou_a22ce6536f26dee3fec9397a9a1b87b5"

@@ -76,6 +76,26 @@
     "zhihu": {
       "version": "1.0.1",
       "installedAt": 1771324818405
+    },
+    "promitheus": {
+      "version": "1.0.3",
+      "installedAt": 1771336940724
+    },
+    "empathy": {
+      "version": "1.0.0",
+      "installedAt": 1771336952012
+    },
+    "personality-switcher": {
+      "version": "0.1.3",
+      "installedAt": 1771336963538
+    },
+    "ai-humanizer": {
+      "version": "2.1.0",
+      "installedAt": 1771336989242
+    },
+    "soulcraft": {
+      "version": "1.0.0",
+      "installedAt": 1771337055661
     }
   }
 }

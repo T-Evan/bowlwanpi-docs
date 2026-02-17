@@ -1,5 +1,0 @@
-2026-02-17 21:14:48,976 - INFO - Processing URL: https://www.douyin.com/video/7599980362898427178
-2026-02-17 21:14:58,784 - INFO - Attempting DOM extraction
-2026-02-17 21:14:58,788 - WARNING - No src extraction successful
-total=1 ok=0 failed=1
-[FAIL] 7599980362898427178 -> https://www.douyin.com/video/7599980362898427178

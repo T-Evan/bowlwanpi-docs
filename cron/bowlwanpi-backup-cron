@@ -93,6 +93,9 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 # 成本预算检查 - 每小时
 0 * * * * root cd /root/.openclaw/workspace && python3 scripts/cost_monitor.py budget >> /var/log/bowlwanpi-cost.log 2>&1
 
+# 任务队列生命周期维护 - 每天 09:10 自动归档过期/长时间待确认任务
+10 9 * * * root cd /root/.openclaw/workspace && python3 scripts/task_queue_maintenance.py >> /var/log/bowlwanpi-task-queue.log 2>&1
+
 # [已停用] 旧的记忆存储脚本（store_with_cloud_sync.py）
 # 原因：从记忆文件读取，经常为空，效果不佳
 # 0 * * * * root cd /root/.openclaw/workspace && python3 scripts/store_with_cloud_sync.py >> /var/log/bowlwanpi-cron.log 2>&1

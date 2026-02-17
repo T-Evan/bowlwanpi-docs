@@ -15,7 +15,7 @@ OUTPUT_FILE="/tmp/bowlwanpi-heartbeat-report.txt"
 
 # 降噪阈值
 NORMAL_INTERVAL_SEC=$((3 * 3600))
-WARN_COOLDOWN_SEC=$((30 * 60))
+WARN_COOLDOWN_SEC=$((60 * 60))
 CRITICAL_COOLDOWN_SEC=$((5 * 60))
 
 extract_pct() {

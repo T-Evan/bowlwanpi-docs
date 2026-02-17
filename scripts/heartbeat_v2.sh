@@ -10,6 +10,7 @@ WORKSPACE="/root/.openclaw/workspace"
 SCRIPTS_DIR="$WORKSPACE/scripts"
 CRON_HEALTH_STATE="/tmp/bowlwanpi-cron-health-last-run"
 CRON_HEALTH_INTERVAL_SEC=3600
+CRON_ERR_ALERT_STATE="/tmp/bowlwanpi-cron-error-alert-state"
 
 # 创建日志目录
 mkdir -p /var/log
@@ -171,8 +172,25 @@ check_cron_health() {
             recent_errors=$(tail -n 400 /var/log/bowlwanpi-cron.log | grep -Ei 'error|failed|exception' | wc -l)
             [[ "$recent_errors" =~ ^[0-9]+$ ]] || recent_errors=0
             log "Cron recent errors (tail): $recent_errors"
+
             if [ "$recent_errors" -gt 30 ]; then
-                alert "WARNING" "最近 cron 日志错误偏多: ${recent_errors} 条"
+                local now_ts last_ts last_count
+                now_ts=$(date +%s)
+                last_ts=0
+                last_count=0
+
+                if [ -f "$CRON_ERR_ALERT_STATE" ]; then
+                    IFS=',' read -r last_ts last_count < "$CRON_ERR_ALERT_STATE"
+                    [[ "$last_ts" =~ ^[0-9]+$ ]] || last_ts=0
+                    [[ "$last_count" =~ ^[0-9]+$ ]] || last_count=0
+                fi
+
+                if [ $((now_ts - last_ts)) -ge 3600 ] || [ $(( recent_errors > last_count ? recent_errors - last_count : last_count - recent_errors )) -ge 20 ]; then
+                    alert "WARNING" "最近 cron 日志错误偏多: ${recent_errors} 条"
+                    echo "${now_ts},${recent_errors}" > "$CRON_ERR_ALERT_STATE"
+                else
+                    log "Cron error warning suppressed by cooldown"
+                fi
             fi
         fi
     fi

@@ -1,0 +1,23 @@
+# Runtime health reports
+health-checks/*.json
+health-checks/*.md
+!health-checks/.gitkeep
+
+# Runtime memory state
+memory/heartbeat-last-report.json
+memory/dedup-history.json
+memory/model-usage.json
+memory/social-media-*.md
+memory/douyin-*.log
+memory/xiaohongshu-*.json
+memory/*-info-collect.md
+
+# Runtime stats
+stats/system-stats.json
+
+# Python bytecode/cache
+**/__pycache__/
+*.py[cod]
+
+# Temporary/runtime scratch files
+.tmp/

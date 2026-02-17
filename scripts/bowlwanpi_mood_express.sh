@@ -4,9 +4,13 @@
 # 结合对话内容分析和现有情绪系统
 #
 
-export FEISHU_APP_ID="${FEISHU_APP_ID:-cli_a9f5e960b8b81bb6}"
-export FEISHU_APP_SECRET="${FEISHU_APP_SECRET:-j9voDy9pm0q0SQaC4fMT1e1SYowDUWax}"
-export FAL_KEY="${FAL_KEY:-bb2e0cea-fc85-41e9-a734-2a32cc889362:fdafdf28c8122642e92f07e06ee49def}"
+# shellcheck source=/root/.openclaw/workspace/scripts/load-secrets.sh
+source /root/.openclaw/workspace/scripts/load-secrets.sh
+load_secret_env
+
+if ! require_env_vars FEISHU_APP_ID FEISHU_APP_SECRET; then
+    exit 1
+fi
 
 TARGET_USER="user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
 STICKER_DIR="$HOME/.openclaw/media/stickers/umaru_ai"
@@ -160,11 +164,20 @@ send_mood_sticker() {
     echo "🎀 碗皮当前心情: $mood"
     echo "🎭 生成小埋表情: $context"
     
+    if [ -z "${FAL_KEY:-}" ]; then
+        echo "ℹ️ 未配置 FAL_KEY，直接使用本地库存"
+        if send_local_fallback_sticker "$mood"; then
+            update_mood "$context" "$mood" >/dev/null
+            return 0
+        fi
+        return 1
+    fi
+
     # 调用AI生成
     local JSON_PAYLOAD=$(jq -n \
       --arg prompt "$prompt" \
       '{prompt: $prompt, num_images: 1, output_format: "jpeg", image_size: "square_hd"}')
-    
+
     local RESPONSE
     RESPONSE=$(curl -sS --max-time 25 -X POST "https://fal.run/xai/grok-imagine-image" \
       -H "Authorization: Key $FAL_KEY" \

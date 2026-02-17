@@ -124,6 +124,21 @@ def evaluate_rule(rule: dict[str, Any], linux_lines: list[str], jobs: list[dict[
     return RuleResult(task, owner, required, linux_active, openclaw_active, status, "not active")
 
 
+def build_suggestions(results: list[RuleResult]) -> list[str]:
+    suggestions: list[str] = []
+    for r in results:
+        if r.status == "conflict":
+            if r.owner == "linux":
+                suggestions.append(f"{r.task}: disable OpenClaw duplicate and keep Linux owner")
+            elif r.owner == "openclaw":
+                suggestions.append(f"{r.task}: comment Linux cron duplicate and keep OpenClaw owner")
+            else:
+                suggestions.append(f"{r.task}: keep only one scheduler owner")
+        elif r.status == "missing":
+            suggestions.append(f"{r.task}: create missing schedule on owner={r.owner}")
+    return suggestions
+
+
 def write_report(payload: dict[str, Any], report_dir: Path) -> tuple[Path, Path]:
     report_dir.mkdir(parents=True, exist_ok=True)
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
@@ -160,6 +175,13 @@ def write_report(payload: dict[str, Any], report_dir: Path) -> tuple[Path, Path]
             "",
         ]
     )
+
+    if payload.get("suggestions"):
+        lines.append("## Suggested Fixes")
+        lines.append("")
+        for item in payload["suggestions"]:
+            lines.append(f"- {item}")
+        lines.append("")
 
     md_path.write_text("\n".join(lines), encoding="utf-8")
     return json_path, md_path
@@ -220,6 +242,7 @@ def main() -> int:
             }
             for r in results
         ],
+        "suggestions": build_suggestions(results),
     }
 
     if args.report:
