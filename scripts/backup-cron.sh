@@ -82,11 +82,13 @@ send_simple_reminder() {
     local title="$1"
     local body="$2"
     
+    local cn_time
+    cn_time=$(TZ='Asia/Shanghai' date '+%H:%M')
     send_message "${title}
 
 ${body}
 
-⏰ 系统 cron 兜底任务 | $(date '+%H:%M')"
+⏰ 系统 cron 兜底任务（北京时间）| ${cn_time}"
 }
 
 # 执行 Agent Turn 任务（旧 API 兼容，失败时仅记录）
