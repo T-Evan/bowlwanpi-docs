@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "created": "2026-02-17T17:30:38.769962",
+  "daily_usage": {
+    "2026-02-17": {
+      "total_tokens": 4300,
+      "input_tokens": 3000,
+      "output_tokens": 1300,
+      "cost_usd": 0.009600000000000001,
+      "models": {
+        "crs/gpt-5.2-codex": {
+          "tokens": 1500,
+          "cost": 0.005
+        },
+        "kimi-code/kimi-for-coding": {
+          "tokens": 2800,
+          "cost": 0.0046
+        }
+      },
+      "tasks": {
+        "test-task": {
+          "tokens": 1500,
+          "cost": 0.005
+        },
+        "code-debug": {
+          "tokens": 2800,
+          "cost": 0.0046
+        }
+      }
+    }
+  },
+  "model_usage": {},
+  "task_usage": {},
+  "total_spent_usd": 0.009600000000000001
+}

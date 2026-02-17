@@ -81,6 +81,15 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 # 性能报告生成 - 每天 6:00
 0 6 * * * root cd /root/.openclaw/workspace && python3 scripts/performance_monitor.py >> /var/log/bowlwanpi-performance-report.log 2>&1
 
+# 主动进化分析 - 每天 4:00 (在夜间构建后)
+0 4 * * * root cd /root/.openclaw/workspace && python3 scripts/active_evolution.py detect >> /var/log/bowlwanpi-evolution.log 2>&1
+
+# 成本监控报告 - 每天 8:00
+0 8 * * * root cd /root/.openclaw/workspace && python3 scripts/cost_monitor.py report >> /var/log/bowlwanpi-cost.log 2>&1
+
+# 成本预算检查 - 每小时
+0 * * * * root cd /root/.openclaw/workspace && python3 scripts/cost_monitor.py budget >> /var/log/bowlwanpi-cost.log 2>&1
+
 # [已停用] 旧的记忆存储脚本（store_with_cloud_sync.py）
 # 原因：从记忆文件读取，经常为空，效果不佳
 # 0 * * * * root cd /root/.openclaw/workspace && python3 scripts/store_with_cloud_sync.py >> /var/log/bowlwanpi-cron.log 2>&1
