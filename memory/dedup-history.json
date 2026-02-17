@@ -1986,8 +1986,8 @@
       "hash": "0f51a56d15162ada",
       "content_preview": "The Long Tail of LLM-Assisted Decompilation",
       "first_seen": "2026-02-17T11:06:20.555867",
-      "last_pushed": "2026-02-17T12:03:44.028350",
-      "push_count": 2,
+      "last_pushed": "2026-02-17T18:03:48.849694",
+      "push_count": 3,
       "sources": [
         {
           "source": "ai_news",
@@ -1996,6 +1996,10 @@
         {
           "source": "ai_news",
           "time": "2026-02-17T12:03:44.028355"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T18:03:48.849699"
         }
       ]
     },
@@ -2308,6 +2312,71 @@
         {
           "source": "github",
           "time": "2026-02-17T17:03:02.857455"
+        }
+      ]
+    },
+    {
+      "hash": "78b2f10b635a2e27",
+      "content_preview": "Goose AI Agent - block/goose",
+      "first_seen": "2026-02-17T18:02:49.508073",
+      "last_pushed": "2026-02-17T18:02:49.508078",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T18:02:49.508080"
+        }
+      ]
+    },
+    {
+      "hash": "dabe4e2a11a49ada",
+      "content_preview": "Mastra AI Framework - Gatsby\u56e2\u961f",
+      "first_seen": "2026-02-17T18:02:49.540661",
+      "last_pushed": "2026-02-17T18:02:49.540666",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T18:02:49.540668"
+        }
+      ]
+    },
+    {
+      "hash": "61dc16707bb91ecf",
+      "content_preview": "vLLM\u63a8\u7406\u5f15\u64ce\u66f4\u65b0",
+      "first_seen": "2026-02-17T18:02:49.573401",
+      "last_pushed": "2026-02-17T18:02:49.573406",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T18:02:49.573408"
+        }
+      ]
+    },
+    {
+      "hash": "b198c1ae19f14152",
+      "content_preview": "Engram AI\u8bb0\u5fc6\u7cfb\u7edf",
+      "first_seen": "2026-02-17T18:02:49.606893",
+      "last_pushed": "2026-02-17T18:02:49.606898",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T18:02:49.606900"
+        }
+      ]
+    },
+    {
+      "hash": "66dc8b14503e1649",
+      "content_preview": "BitFun ADE Agentic IDE",
+      "first_seen": "2026-02-17T18:02:49.639959",
+      "last_pushed": "2026-02-17T18:02:49.639964",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T18:02:49.639966"
         }
       ]
     }

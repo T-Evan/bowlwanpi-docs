@@ -52,6 +52,30 @@
     "notify": {
       "version": "1.0.1",
       "installedAt": 1771295927177
+    },
+    "feishu-sticker": {
+      "version": "1.0.8",
+      "installedAt": 1771323506907
+    },
+    "tg-sticker-emoji-mood": {
+      "version": "2.0.0",
+      "installedAt": 1771323509247
+    },
+    "clawaifu-selfie": {
+      "version": "1.0.14",
+      "installedAt": 1771324682650
+    },
+    "xiaohongshu-mcp": {
+      "version": "1.0.0",
+      "installedAt": 1771324688371
+    },
+    "douyin-video-fetch": {
+      "version": "1.0.0",
+      "installedAt": 1771324699222
+    },
+    "zhihu": {
+      "version": "1.0.1",
+      "installedAt": 1771324818405
     }
   }
 }

@@ -7,17 +7,17 @@
       "Discord: components v2 UI + embeds passthrough + exec approval UX refinements (C"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-17T10:59:46.489700"
+    "fetched_at": "2026-02-17T18:00:03.391398"
   },
   "code-yeongyu/oh-my-opencode": {
-    "version": "v3.6.0",
+    "version": "v3.7.1",
     "changes": [
-      "Highlights",
-      "`isSqliteBackend()` auto-detects OpenCode \u2265 1.1.53 (version + DB file dual check",
-      "37 files migrated from JSON file reads to SDK message finders"
+      "462e2ec2 refactor: remove 3 orphaned files and prefix unused parameter",
+      "9acdd6b8 refactor: remove 3 orphaned files from call-omo-agent and delegate-task",
+      "1fb6a7cc refactor: remove 16 orphaned files from background-agent"
     ],
-    "published": "2026-02-16",
-    "fetched_at": "2026-02-17T10:59:47.099045"
+    "published": "2026-02-17",
+    "fetched_at": "2026-02-17T18:00:04.089745"
   },
   "anomalyco/opencode": {
     "version": "v1.2.6",
@@ -27,7 +27,7 @@
       "Remove unnecessary per-message title LLM calls (@rmk40)"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-17T10:59:47.795822"
+    "fetched_at": "2026-02-17T18:00:05.042698"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -37,7 +37,7 @@
       "Add salience-aware memory with reinforcement tracking ([#186](https://github.com"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-17T10:59:49.431426"
+    "fetched_at": "2026-02-17T18:00:05.892472"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [
