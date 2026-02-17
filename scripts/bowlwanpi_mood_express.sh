@@ -4,9 +4,9 @@
 # 结合对话内容分析和现有情绪系统
 #
 
-export FEISHU_APP_ID="cli_a9f5e960b8b81bb6"
-export FEISHU_APP_SECRET="j9voDy9pm0q0SQaC4fMT1e1SYowDUWax"
-export FAL_KEY="bb2e0cea-fc85-41e9-a734-2a32cc889362:fdafdf28c8122642e92f07e06ee49def"
+export FEISHU_APP_ID="${FEISHU_APP_ID:-cli_a9f5e960b8b81bb6}"
+export FEISHU_APP_SECRET="${FEISHU_APP_SECRET:-j9voDy9pm0q0SQaC4fMT1e1SYowDUWax}"
+export FAL_KEY="${FAL_KEY:-bb2e0cea-fc85-41e9-a734-2a32cc889362:fdafdf28c8122642e92f07e06ee49def}"
 
 TARGET_USER="user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
 STICKER_DIR="$HOME/.openclaw/media/stickers/umaru_ai"
@@ -91,6 +91,32 @@ analyze_my_mood() {
     echo "$mood"
 }
 
+# 本地库存兜底发送（FAL限额/失败时使用）
+send_local_fallback_sticker() {
+    local mood="$1"
+
+    local preferred
+    preferred=$(ls -t "$STICKER_DIR"/umaru_${mood}_*.jpg 2>/dev/null | head -1)
+
+    if [ -z "$preferred" ]; then
+        preferred=$(ls -t "$STICKER_DIR"/umaru_*.jpg 2>/dev/null | head -1)
+    fi
+
+    if [ -z "$preferred" ] || [ ! -f "$preferred" ]; then
+        echo "❌ 本地兜底失败：没有可用小埋库存"
+        return 1
+    fi
+
+    cd /root/.openclaw/workspace
+    if node skills/feishu-sticker/send.js --target "$TARGET_USER" --file "$preferred" >/dev/null 2>&1; then
+        echo "🧩 已使用本地库存兜底发送: $(basename "$preferred")"
+        return 0
+    fi
+
+    echo "❌ 本地兜底发送失败"
+    return 1
+}
+
 # 生成并发送对应情绪的小埋表情
 send_mood_sticker() {
     local mood="$1"
@@ -139,32 +165,50 @@ send_mood_sticker() {
       --arg prompt "$prompt" \
       '{prompt: $prompt, num_images: 1, output_format: "jpeg", image_size: "square_hd"}')
     
-    local RESPONSE=$(curl -s -X POST "https://fal.run/xai/grok-imagine-image" \
+    local RESPONSE
+    RESPONSE=$(curl -sS --max-time 25 -X POST "https://fal.run/xai/grok-imagine-image" \
       -H "Authorization: Key $FAL_KEY" \
       -H "Content-Type: application/json" \
-      -d "$JSON_PAYLOAD")
-    
-    local IMAGE_URL=$(echo "$RESPONSE" | jq -r '.images[0].url // empty')
-    
-    if [ -n "$IMAGE_URL" ]; then
-        # 下载
-        local TEMP_FILE="$STICKER_DIR/umaru_${mood}_$(date +%s).jpg"
-        curl -sL -o "$TEMP_FILE" "$IMAGE_URL"
-        
-        # 发送到飞书
-        cd /root/.openclaw/workspace
-        node skills/feishu-sticker/send.js \
-          --target "$TARGET_USER" \
-          --file "$TEMP_FILE" >/dev/null 2>&1
-        
+      -d "$JSON_PAYLOAD" 2>/dev/null || true)
+
+    local IMAGE_URL
+    IMAGE_URL=$(echo "$RESPONSE" | jq -r '.images[0].url // empty' 2>/dev/null)
+
+    if [ -z "$IMAGE_URL" ]; then
+        local fail_reason
+        fail_reason=$(echo "$RESPONSE" | jq -r '.detail // .error // .message // empty' 2>/dev/null)
+        [ -z "$fail_reason" ] && fail_reason="fal unavailable or quota/rate limit"
+        echo "⚠️ FAL 生成失败，切本地兜底: $fail_reason"
+        if send_local_fallback_sticker "$mood"; then
+            update_mood "$context" "$mood" >/dev/null
+            return 0
+        fi
+        return 1
+    fi
+
+    local TEMP_FILE="$STICKER_DIR/umaru_${mood}_$(date +%s).jpg"
+    if ! curl -sSL --max-time 20 -o "$TEMP_FILE" "$IMAGE_URL" || [ ! -s "$TEMP_FILE" ]; then
+        echo "⚠️ FAL 图片下载失败，切本地兜底"
+        if send_local_fallback_sticker "$mood"; then
+            update_mood "$context" "$mood" >/dev/null
+            return 0
+        fi
+        return 1
+    fi
+
+    cd /root/.openclaw/workspace
+    if node skills/feishu-sticker/send.js --target "$TARGET_USER" --file "$TEMP_FILE" >/dev/null 2>&1; then
         echo "✅ 已根据心情[$mood]发送小埋表情"
-        
-        # 更新情绪状态
-        update_mood "$context" "$mood"
-        
+        update_mood "$context" "$mood" >/dev/null
         return 0
     fi
-    
+
+    echo "⚠️ 飞书发送失败，切本地兜底"
+    if send_local_fallback_sticker "$mood"; then
+        update_mood "$context" "$mood" >/dev/null
+        return 0
+    fi
+
     return 1
 }
 

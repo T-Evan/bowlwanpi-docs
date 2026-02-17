@@ -1,20 +1,5 @@
 {
-  "tasks": [
-    {
-      "id": "task_002",
-      "content": "配置 Epic Awesome Gamer（填写 EPIC_EMAIL, EPIC_PASSWORD, GEMINI_API_KEY）",
-      "priority": "medium",
-      "created": "2026-02-14",
-      "deadline": "2026-02-20",
-      "status": "pending_confirmation",
-      "details": {
-        "install_dir": "/opt/epic-awesome-gamer",
-        "config_file": "docker/.env",
-        "required_vars": ["EPIC_EMAIL", "EPIC_PASSWORD", "GEMINI_API_KEY"],
-        "notes": "需要关闭 Epic 账号的两步验证。⚠️ 任务已过期，等待一碗确认是否继续"
-      }
-    }
-  ],
+  "tasks": [],
   "completed": [
     {
       "id": "task_001",
@@ -22,7 +7,27 @@
       "priority": "medium",
       "created": "2026-02-08",
       "completed_at": "2026-02-08T14:00:00+08:00"
+    },
+    {
+      "id": "task_002",
+      "content": "配置 Epic Awesome Gamer（填写 EPIC_EMAIL, EPIC_PASSWORD, GEMINI_API_KEY）",
+      "priority": "medium",
+      "created": "2026-02-14",
+      "deadline": "2026-02-20",
+      "status": "archived_by_user",
+      "details": {
+        "install_dir": "/opt/epic-awesome-gamer",
+        "config_file": "docker/.env",
+        "required_vars": [
+          "EPIC_EMAIL",
+          "EPIC_PASSWORD",
+          "GEMINI_API_KEY"
+        ],
+        "notes": "需要关闭 Epic 账号的两步验证。⚠️ 任务已过期，等待一碗确认是否继续"
+      },
+      "archived_at": "2026-02-17T13:46:09.567006Z",
+      "archive_reason": "用户确认归档并停止继续提醒"
     }
   ],
-  "lastUpdated": "2026-02-16"
+  "lastUpdated": "2026-02-17"
 }

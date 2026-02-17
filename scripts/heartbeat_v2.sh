@@ -8,6 +8,8 @@ HEARTBEAT_LOG="/var/log/bowlwanpi-heartbeat.log"
 ALERT_LOG="/var/log/bowlwanpi-alerts.log"
 WORKSPACE="/root/.openclaw/workspace"
 SCRIPTS_DIR="$WORKSPACE/scripts"
+CRON_HEALTH_STATE="/tmp/bowlwanpi-cron-health-last-run"
+CRON_HEALTH_INTERVAL_SEC=3600
 
 # 创建日志目录
 mkdir -p /var/log
@@ -102,25 +104,43 @@ check_system() {
 # ========== 详细的定时任务健康检查 ==========
 check_cron_health() {
     log ""
-    log "Checking cron health (detailed)..."
-    
-    # 运行详细的定时任务健康检查
-    if [ -f "$SCRIPTS_DIR/cron_health_checker.py" ]; then
-        log "Running detailed cron health check..."
-        
-        # 执行检查并捕获输出
-        PYTHON_OUTPUT=$(python3 "$SCRIPTS_DIR/cron_health_checker.py" 2>&1)
-        EXIT_CODE=$?
-        
-        # 提取关键信息（容错：grep 无匹配时返回空字符串）
-        ERROR_COUNT=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*错误次数: \([0-9][0-9]*\).*/\1/p' | tail -n 1)
-        ERROR_RATE=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*错误率: \([0-9][0-9]*\(\.[0-9][0-9]*\)\?\)%.*/\1/p' | tail -n 1)
-        TOTAL_RUNS=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*总执行次数: \([0-9][0-9]*\).*/\1/p' | tail -n 1)
+    log "Checking cron health..."
 
-        # 检查是否真的发现了关键错误（不只是建议）
+    local now_ts
+    now_ts=$(date +%s)
+    local last_ts=0
+    if [ -f "$CRON_HEALTH_STATE" ]; then
+        last_ts=$(cat "$CRON_HEALTH_STATE" 2>/dev/null)
+        [[ "$last_ts" =~ ^[0-9]+$ ]] || last_ts=0
+    fi
+
+    local run_detailed=0
+    if [ $((now_ts - last_ts)) -ge "$CRON_HEALTH_INTERVAL_SEC" ]; then
+        run_detailed=1
+        echo "$now_ts" > "$CRON_HEALTH_STATE"
+    fi
+
+    # 运行调度 owner 去重检查（轻量）
+    if [ -f "$SCRIPTS_DIR/cron_owner_guard.py" ]; then
+        if python3 "$SCRIPTS_DIR/cron_owner_guard.py" --check --quiet > /dev/null 2>&1; then
+            log "Cron owner guard: OK"
+        else
+            log "ALERT: Scheduler owner conflict detected"
+            alert "WARNING" "调度器去重检查发现冲突（Linux/OpenClaw）"
+        fi
+    fi
+
+    # 详细检查仅每小时执行一次，避免每5分钟产生大量噪声文件
+    if [ "$run_detailed" -eq 1 ] && [ -f "$SCRIPTS_DIR/cron_health_checker.py" ]; then
+        log "Running detailed cron health check (hourly)..."
+
+        PYTHON_OUTPUT=$(python3 "$SCRIPTS_DIR/cron_health_checker.py" 2>&1)
+
+        ERROR_COUNT=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*错误次数: \([0-9][0-9]*\).*//p' | tail -n 1)
+        ERROR_RATE=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*错误率: \([0-9][0-9]*\(\.[0-9][0-9]*\)\?\)%.*//p' | tail -n 1)
+        TOTAL_RUNS=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*总执行次数: \([0-9][0-9]*\).*//p' | tail -n 1)
         CRITICAL_ERRORS=$(echo "$PYTHON_OUTPUT" | grep -c '"severity": "critical"' || true)
 
-        # 数值兜底，避免 integer expression expected
         [[ "$ERROR_COUNT" =~ ^[0-9]+$ ]] || ERROR_COUNT=0
         [[ "$TOTAL_RUNS" =~ ^[0-9]+$ ]] || TOTAL_RUNS=0
         [[ "$CRITICAL_ERRORS" =~ ^[0-9]+$ ]] || CRITICAL_ERRORS=0
@@ -133,7 +153,6 @@ check_cron_health() {
         log "Cron runs (24h): $TOTAL_RUNS"
         log "Critical issues: $CRITICAL_ERRORS"
 
-        # 只有真正发现关键错误时才发送警报
         if [ "$CRITICAL_ERRORS" -gt 0 ]; then
             log "ALERT: Critical cron issues detected"
             alert "CRITICAL" "定时任务发现关键问题: ${CRITICAL_ERRORS} 个严重错误"
@@ -144,17 +163,16 @@ check_cron_health() {
             log "Cron health check passed (no critical issues)"
         fi
     else
-        log "Detailed cron checker not found, using basic check..."
-        
-        # 基本检查：查看今天的 cron 错误
+        log "Detailed cron check skipped (cooldown active)"
+
+        # 轻量级错误扫描：仅看最近日志，不生成新报告文件
         if [ -f "/var/log/bowlwanpi-cron.log" ]; then
-            TODAY=$(date '+%Y-%m-%d')
-            ERROR_COUNT=$(grep -c "$TODAY.*ERROR" /var/log/bowlwanpi-cron.log 2>/dev/null || echo "0")
-            
-            log "Basic cron errors (today): $ERROR_COUNT"
-            
-            if [ "$ERROR_COUNT" -gt 5 ]; then
-                alert "WARNING" "今日定时任务错误: $ERROR_COUNT 次"
+            local recent_errors
+            recent_errors=$(tail -n 400 /var/log/bowlwanpi-cron.log | grep -Ei 'error|failed|exception' | wc -l)
+            [[ "$recent_errors" =~ ^[0-9]+$ ]] || recent_errors=0
+            log "Cron recent errors (tail): $recent_errors"
+            if [ "$recent_errors" -gt 30 ]; then
+                alert "WARNING" "最近 cron 日志错误偏多: ${recent_errors} 条"
             fi
         fi
     fi
@@ -208,8 +226,9 @@ generate_health_report() {
 
 ## ⏰ 定时任务健康
 
-$(if [ -f "$WORKSPACE/health-checks/cron_health_${DATE}_*.md" ]; then
-    echo "📄 详细报告: $(ls -t $WORKSPACE/health-checks/cron_health_${DATE}_*.md | head -1)"
+$(LATEST_CRON_REPORT=$(ls -t "$WORKSPACE"/health-checks/cron_health_*.md 2>/dev/null | head -1)
+if [ -n "$LATEST_CRON_REPORT" ]; then
+    echo "📄 详细报告: $LATEST_CRON_REPORT"
 else
     echo "ℹ️ 详细定时任务检查未运行"
 fi)

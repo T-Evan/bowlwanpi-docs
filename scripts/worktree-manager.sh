@@ -12,7 +12,7 @@ TASKS_WORKTREE="${WORKSPACE}-tasks"
 BG_WORKTREE="${WORKSPACE}-background"
 
 log() {
-    echo "[$(TZ='Asia/Shanghai' date '+%H:%M:%S')] $1"
+    echo "[$(TZ='Asia/Shanghai' date '+%H:%M:%S')] $1" >&2
 }
 
 # ========== 初始化 Worktree ==========
@@ -40,69 +40,79 @@ init_worktrees() {
 }
 
 # ========== 同步 Worktree ==========
+sync_one_worktree() {
+    local wt_path="$1"
+    local wt_branch="$2"
+    local wt_label="$3"
+    local latest_commit="$4"
+
+    [ -d "$wt_path" ] || return 0
+
+    cd "$wt_path"
+    git checkout "$wt_branch" >/dev/null 2>&1 || true
+
+    # 避免覆盖未提交改动，脏目录只提示不强推同步
+    if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+        log "⚠️ ${wt_label} worktree 有未提交变更，跳过同步"
+        return 0
+    fi
+
+    git merge --ff-only "$latest_commit" >/dev/null 2>&1 ||     git merge "$latest_commit" --no-edit >/dev/null 2>&1 || true
+
+    log "✅ 同步${wt_label} worktree"
+}
+
 sync_worktrees() {
     log "🔄 同步 worktree..."
-    
+
     cd "$WORKSPACE"
-    
-    # 获取最新提交
-    local latest_commit=$(git rev-parse master)
-    
-    # 同步到任务 worktree
-    if [ -d "$TASKS_WORKTREE" ]; then
-        cd "$TASKS_WORKTREE"
-        git reset --hard "$latest_commit" 2>/dev/null || true
-        git checkout worktree-tasks 2>/dev/null || true
-        git merge master --no-edit 2>/dev/null || true
-        log "✅ 同步任务 worktree"
-    fi
-    
-    # 同步到后台 worktree
-    if [ -d "$BG_WORKTREE" ]; then
-        cd "$BG_WORKTREE"
-        git reset --hard "$latest_commit" 2>/dev/null || true
-        git checkout worktree-bg 2>/dev/null || true
-        git merge master --no-edit 2>/dev/null || true
-        log "✅ 同步后台 worktree"
-    fi
+
+    local latest_commit
+    latest_commit=$(git rev-parse HEAD 2>/dev/null) || {
+        log "❌ 无法获取主分支提交"
+        return 1
+    }
+
+    sync_one_worktree "$TASKS_WORKTREE" "worktree-tasks" "任务" "$latest_commit"
+    sync_one_worktree "$BG_WORKTREE" "worktree-bg" "后台" "$latest_commit"
 }
 
 # ========== 执行任务 ==========
 run_in_task_worktree() {
     local task_name="$1"
     shift
-    
+
     log "🎯 在任务 worktree 执行: $task_name"
-    
-    # 同步最新代码
-    sync_worktrees
-    
-    # 在任务 worktree 中执行命令
+
+    if [ ! -d "$TASKS_WORKTREE" ]; then
+        init_worktrees
+    else
+        sync_worktrees
+    fi
+
     cd "$TASKS_WORKTREE"
-    
-    # 设置环境变量区分 worktree
+
     export BOWLWANPI_WORKTREE="tasks"
     export BOWLWANPI_TASK_NAME="$task_name"
-    
-    # 执行命令
+
     "$@"
     local exit_code=$?
-    
-    # 如果执行成功，合并变更回主分支
-    if [ $exit_code -eq 0 ]; then
-        # 检查是否有变更需要合并
-        if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
-            log "📝 提交任务变更..."
-            git add -A
-            git commit -m "[worktree-tasks] $task_name - $(date '+%H:%M')" 2>/dev/null || true
-            
-            # 合并回主分支
+
+    if [ $exit_code -eq 0 ] && [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+        log "📝 检测到任务变更，提交到 worktree 分支"
+        git add -A
+        git commit -m "[worktree-tasks] $task_name - $(date '+%H:%M')" >/dev/null 2>&1 || true
+
+        # 主分支有未提交改动时，避免强行 merge 造成冲突
+        if [ -z "$(cd "$WORKSPACE" && git status --porcelain 2>/dev/null)" ]; then
             cd "$WORKSPACE"
-            git merge worktree-trees --no-edit 2>/dev/null || true
-            log "✅ 变更已合并到主分支"
+            git merge worktree-tasks --no-edit >/dev/null 2>&1 || true
+            log "✅ 变更已尝试合并到主分支"
+        else
+            log "⚠️ 主工作区有未提交改动，跳过自动合并"
         fi
     fi
-    
+
     return $exit_code
 }
 
@@ -110,24 +120,26 @@ run_in_task_worktree() {
 run_in_bg_worktree() {
     local task_name="$1"
     shift
-    
+
     log "🌙 在后台 worktree 执行: $task_name"
-    
-    # 同步最新代码
-    sync_worktrees
-    
+
+    if [ ! -d "$BG_WORKTREE" ]; then
+        init_worktrees
+    else
+        sync_worktrees
+    fi
+
     cd "$BG_WORKTREE"
-    
+
     export BOWLWANPI_WORKTREE="background"
     export BOWLWANPI_TASK_NAME="$task_name"
-    
-    # 后台执行
+
     nohup "$@" > "/tmp/bowlwanpi-bg-${task_name}.log" 2>&1 &
     local pid=$!
-    
+
     log "✅ 后台任务已启动 PID: $pid"
     echo "$pid" > "/tmp/bowlwanpi-bg-${task_name}.pid"
-    
+
     return 0
 }
 

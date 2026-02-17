@@ -19,6 +19,9 @@ TASKS_WORKTREE=${WORKSPACE}-tasks
 # 心跳简报 - 每5分钟生成精简报告（含Agent状态）
 */5 * * * * root /root/.openclaw/workspace/scripts/send-heartbeat-report.sh >> /var/log/bowlwanpi-reports.log 2>&1
 
+# 调度 owner 守卫 - 每小时校验 Linux/OpenClaw 单一 owner，避免双跑
+15 * * * * root cd /root/.openclaw/workspace && python3 scripts/cron_owner_guard.py --check --report --quiet >> /var/log/bowlwanpi-cron-owner.log 2>&1
+
 # [已合并到统一自愈系统] OpenClaw Guardian 功能已合并到 heartbeat_v2.sh
 # */5 * * * * root /root/.openclaw/workspace/scripts/openclaw_guardian.sh check >> /var/log/bowlwanpi-guardian-check.log 2>&1 || /root/.openclaw/workspace/scripts/openclaw_guardian.sh start
 

@@ -21,9 +21,9 @@ MODELS = {
         "cost_level": "low",
         "latency": "fast"
     },
-    "gpt-5.2": {
-        "id": "crs/gpt-5.2-codex",
-        "name": "GPT-5.2",
+    "gpt-5.3": {
+        "id": "right/gpt-5.3-codex-xhigh",
+        "name": "GPT-5.3",
         "strengths": ["reasoning", "analysis", "multimodal", "creative", "complex"],
         "context_window": 200000,
         "cost_level": "medium",
@@ -42,14 +42,14 @@ MODELS = {
 # 任务分类关键词
 TASK_PATTERNS = {
     "code": {
-        "keywords": ["code", "debug", "error", "fix", "script", "python", "bash", "shell", "git", "programming", "function", "class", "api", "json", "yaml"],
+        "keywords": ["code", "debug", "error", "fix", "script", "python", "bash", "shell", "git", "programming", "function", "class", "api", "json", "yaml", "编程", "代码", "调试", "脚本"],
         "recommended": "kimi-code",
         "reason": "Kimi Code 有 256K 上下文，代码理解能力最强"
     },
     "reasoning": {
-        "keywords": ["analyze", "analysis", "research", "deep", "complex", "why", "how to", "strategy", "architecture", "design", "optimize", "improve"],
-        "recommended": "gpt-5.2",
-        "reason": "GPT-5.2 推理能力最强，适合深度分析"
+        "keywords": ["analyze", "analysis", "research", "deep", "complex", "why", "how to", "strategy", "architecture", "design", "optimize", "improve", "分析", "研究", "深度", "推理", "架构", "设计"],
+        "recommended": "gpt-5.3",
+        "reason": "GPT-5.3 推理能力最强，适合深度分析"
     },
     "chinese_long": {
         "keywords": ["中文", "总结", "摘要", "长文", "document", "summary", "translate chinese"],
@@ -57,19 +57,19 @@ TASK_PATTERNS = {
         "reason": "Kimi K2.5 中文处理能力优秀，成本低"
     },
     "creative": {
-        "keywords": ["creative", "write", "story", "poem", "imagine", "design", "innovation", "idea"],
-        "recommended": "gpt-5.2",
-        "reason": "GPT-5.2 创造力更强"
+        "keywords": ["creative", "write", "story", "poem", "imagine", "design", "innovation", "idea", "创意", "写作", "故事"],
+        "recommended": "gpt-5.3",
+        "reason": "GPT-5.3 创造力更强"
     },
     "quick_qa": {
-        "keywords": ["what is", "how do", "explain", "simple", "brief", "quick"],
-        "recommended": "gpt-5.2",
-        "reason": "GPT-5.2 响应快，综合能力均衡"
+        "keywords": ["what is", "how do", "explain", "simple", "brief", "quick", "解释", "简单", "简述"],
+        "recommended": "kimi-code",
+        "reason": "Kimi Code 响应快，综合能力均衡"
     },
     "multimodal": {
-        "keywords": ["image", "picture", "photo", "diagram", "chart", "visual", "describe"],
-        "recommended": "gpt-5.2",
-        "reason": "GPT-5.2 支持多模态（图像理解）"
+        "keywords": ["image", "picture", "photo", "diagram", "chart", "visual", "describe", "图像", "图片", "照片", "图表"],
+        "recommended": "gpt-5.3",
+        "reason": "GPT-5.3 支持多模态（图像理解）"
     }
 }
 
@@ -119,8 +119,8 @@ class ModelRouter:
                 scores[task_type] = score
         
         if not scores:
-            # 默认使用 GPT-5.2
-            return "gpt-5.2", 0.5, "默认推荐，综合能力均衡"
+            # 默认使用 Kimi Code
+            return "kimi-code", 0.5, "默认推荐，综合能力均衡"
         
         # 找出最高分的任务类型
         best_task = max(scores, key=scores.get)

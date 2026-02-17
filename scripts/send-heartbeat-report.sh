@@ -1,13 +1,22 @@
 #!/bin/bash
-# BowlWanpi 心跳简报发送脚本
-# 每5分钟运行一次，读取最新状态并生成精简简报（含代理状态）
+# BowlWanpi 心跳简报发送脚本（降噪版）
+# 每5分钟运行一次，但只在异常/状态变化/长间隔摘要时输出
+
+set -u
 
 export HOME=/root
 export PATH=/root/.nvm/versions/node/v22.22.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 LOG_FILE="/var/log/bowlwanpi-heartbeat.log"
 LAST_REPORT_FILE="/tmp/bowlwanpi-last-report-time"
+LAST_SIGNATURE_FILE="/tmp/bowlwanpi-last-report-signature"
+LAST_LEVEL_FILE="/tmp/bowlwanpi-last-report-level"
 OUTPUT_FILE="/tmp/bowlwanpi-heartbeat-report.txt"
+
+# 降噪阈值
+NORMAL_INTERVAL_SEC=$((3 * 3600))
+WARN_COOLDOWN_SEC=$((30 * 60))
+CRITICAL_COOLDOWN_SEC=$((5 * 60))
 
 extract_pct() {
     echo "$1" | grep -o '[0-9]\+' | head -1
@@ -23,20 +32,21 @@ check_agent() {
     fi
 }
 
-# 检查是否应该发送简报（至少间隔4分钟，避免重复）
-current_time=$(date +%s)
-last_report=0
-if [ -f "$LAST_REPORT_FILE" ]; then
-    last_report=$(cat "$LAST_REPORT_FILE")
-fi
-
-if [ $((current_time - last_report)) -lt 240 ]; then
-    exit 0
-fi
+read_int_file() {
+    local f="$1"
+    if [ -f "$f" ]; then
+        local v
+        v=$(cat "$f" 2>/dev/null)
+        if [[ "$v" =~ ^[0-9]+$ ]]; then
+            echo "$v"
+            return
+        fi
+    fi
+    echo "0"
+}
 
 # 读取最新日志状态
-latest_status=$(tail -30 "$LOG_FILE" 2>/dev/null | grep -E "(Gateway:|Mihomo:|CPU:|Memory:|Disk:|Load:)" | tail -10)
-
+latest_status=$(tail -30 "$LOG_FILE" 2>/dev/null | grep -E "(Gateway:|Mihomo:|CPU:|Memory:|Disk:)" | tail -10)
 if [ -z "$latest_status" ]; then
     exit 0
 fi
@@ -54,49 +64,98 @@ mem_pct=$(extract_pct "$mem_status")
 disk_pct=$(extract_pct "$disk_status")
 
 issues=()
+level="normal"
 
 if [ "$agent_status" != "OK" ]; then
     issues+=("Agent未运行")
+    level="critical"
 fi
 
 if [[ "$gateway_status" != OK* ]]; then
     issues+=("Gateway异常: ${gateway_status:-Unknown}")
+    level="critical"
 fi
 
 if [[ "$mihomo_status" != OK* ]]; then
     issues+=("Mihomo异常: ${mihomo_status:-Unknown}")
+    [ "$level" = "normal" ] && level="warning"
 fi
 
-if [[ "$cpu_pct" =~ ^[0-9]+$ ]] && [ "$cpu_pct" -ge 85 ]; then
+if [[ "$cpu_pct" =~ ^[0-9]+$ ]] && [ "$cpu_pct" -ge 90 ]; then
     issues+=("CPU偏高: ${cpu_pct}%")
+    [ "$level" = "normal" ] && level="warning"
 fi
 
-if [[ "$mem_pct" =~ ^[0-9]+$ ]] && [ "$mem_pct" -ge 85 ]; then
+if [[ "$mem_pct" =~ ^[0-9]+$ ]] && [ "$mem_pct" -ge 90 ]; then
     issues+=("内存偏高: ${mem_pct}%")
+    [ "$level" = "normal" ] && level="warning"
 fi
 
-if [[ "$disk_pct" =~ ^[0-9]+$ ]] && [ "$disk_pct" -ge 85 ]; then
+if [[ "$disk_pct" =~ ^[0-9]+$ ]] && [ "$disk_pct" -ge 90 ]; then
     issues+=("磁盘偏高: ${disk_pct}%")
+    [ "$level" = "normal" ] && level="warning"
 fi
 
+current_ts=$(date +%s)
 current_time_str=$(date "+%H:%M")
 current_hour=$(date +%H)
+last_report=$(read_int_file "$LAST_REPORT_FILE")
+last_signature=$(cat "$LAST_SIGNATURE_FILE" 2>/dev/null || echo "")
+last_level=$(cat "$LAST_LEVEL_FILE" 2>/dev/null || echo "normal")
+elapsed=$((current_ts - last_report))
 
-# 深夜时段(23:00-08:00)只报告异常
-if [ ${#issues[@]} -eq 0 ] && { [ "$current_hour" -ge 23 ] || [ "$current_hour" -lt 8 ]; }; then
+# 统一签名，避免同类噪声反复提示
+signature="${level}|${agent_status}|${gateway_status}|${mihomo_status}|${cpu_pct:-na}|${mem_pct:-na}|${disk_pct:-na}|$(IFS=';'; echo "${issues[*]}")"
+
+# 深夜时段（23:00-08:00）仅保留 warning/critical
+if [ "$level" = "normal" ] && { [ "$current_hour" -ge 23 ] || [ "$current_hour" -lt 8 ]; }; then
     exit 0
 fi
 
-if [ ${#issues[@]} -eq 0 ]; then
-    message="💓 自愈检查(${current_time_str}) 正常：Agent OK｜CPU ${cpu_pct:-N/A}%｜内存 ${mem_pct:-N/A}%｜磁盘 ${disk_pct:-N/A}%"
-else
-    issue_text=$(IFS='；'; echo "${issues[*]}")
-    message="⚠️ 自愈检查(${current_time_str})：${issue_text}"
+should_send=0
+
+case "$level" in
+    critical)
+        if [ "$signature" != "$last_signature" ] || [ "$elapsed" -ge "$CRITICAL_COOLDOWN_SEC" ]; then
+            should_send=1
+        fi
+        ;;
+    warning)
+        if [ "$signature" != "$last_signature" ] || [ "$elapsed" -ge "$WARN_COOLDOWN_SEC" ]; then
+            should_send=1
+        fi
+        ;;
+    normal)
+        # 异常恢复时立即报一次；否则仅做长间隔摘要
+        if [ "$last_level" != "normal" ] || [ "$elapsed" -ge "$NORMAL_INTERVAL_SEC" ]; then
+            should_send=1
+        fi
+        ;;
+esac
+
+if [ "$should_send" -eq 0 ]; then
+    exit 0
 fi
 
-# 写入消息队列文件，由主会话或其他脚本读取发送
-echo "$message" > "$OUTPUT_FILE"
-echo "$current_time" > "$LAST_REPORT_FILE"
+if [ "$level" = "normal" ]; then
+    if [ "$last_level" != "normal" ]; then
+        message="✅ 自愈恢复(${current_time_str})：系统已恢复正常｜Agent OK｜CPU ${cpu_pct:-N/A}%｜内存 ${mem_pct:-N/A}%｜磁盘 ${disk_pct:-N/A}%"
+    else
+        message="💓 自愈摘要(${current_time_str})：系统正常｜Agent OK｜CPU ${cpu_pct:-N/A}%｜内存 ${mem_pct:-N/A}%｜磁盘 ${disk_pct:-N/A}%"
+    fi
+elif [ "$level" = "warning" ]; then
+    issue_text=$(IFS='；'; echo "${issues[*]}")
+    message="⚠️ 自愈告警(${current_time_str})：${issue_text}"
+else
+    issue_text=$(IFS='；'; echo "${issues[*]}")
+    message="🚨 自愈紧急(${current_time_str})：${issue_text}"
+fi
 
-# 写入简报日志（精简）
+# 写入队列文件（由外部流程读取并决定是否发送）
+echo "$message" > "$OUTPUT_FILE"
+
+echo "$current_ts" > "$LAST_REPORT_FILE"
+echo "$signature" > "$LAST_SIGNATURE_FILE"
+echo "$level" > "$LAST_LEVEL_FILE"
+
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] ${message}" >> "/var/log/bowlwanpi-reports.log"

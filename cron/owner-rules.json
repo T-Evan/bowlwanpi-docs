@@ -1,0 +1,138 @@
+{
+  "rules": [
+    {
+      "task": "morning-prep",
+      "owner": "openclaw",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh morning-prep"
+      ],
+      "openclaw_names": [
+        "晨报预备"
+      ]
+    },
+    {
+      "task": "info-collect",
+      "owner": "openclaw",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh info-collect",
+        "run-task info-collect"
+      ],
+      "openclaw_names": [
+        "信息收集-每小时"
+      ]
+    },
+    {
+      "task": "weekly-review",
+      "owner": "openclaw",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh weekly-review"
+      ],
+      "openclaw_names": [
+        "周回顾"
+      ]
+    },
+    {
+      "task": "one-minute-news",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh one-minute-news"
+      ],
+      "openclaw_names": [
+        "one-minute-news"
+      ]
+    },
+    {
+      "task": "morning-brief",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh morning-brief"
+      ],
+      "openclaw_names": [
+        "早晨简报"
+      ]
+    },
+    {
+      "task": "weibo-hot",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh weibo-hot"
+      ],
+      "openclaw_names": [
+        "微博热搜推送"
+      ]
+    },
+    {
+      "task": "product-hunt",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh product-hunt"
+      ],
+      "openclaw_names": [
+        "Product Hunt热门推送"
+      ]
+    },
+    {
+      "task": "zhihu-hot",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh zhihu-hot"
+      ],
+      "openclaw_names": [
+        "知乎热榜推送"
+      ]
+    },
+    {
+      "task": "bilibili-hot",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh bilibili-hot"
+      ],
+      "openclaw_names": [
+        "B站热门推送"
+      ]
+    },
+    {
+      "task": "github-release",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "backup-cron.sh github-release"
+      ],
+      "openclaw_names": [
+        "GitHub Release监控推送"
+      ]
+    },
+    {
+      "task": "nightly-build",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "nightly-build-v4.sh",
+        "backup-cron.sh nightly-build"
+      ],
+      "openclaw_names": [
+        "夜间构建"
+      ]
+    },
+    {
+      "task": "memory-sync-hourly",
+      "owner": "linux",
+      "required": true,
+      "linux_patterns": [
+        "capture_and_store_memory.py"
+      ],
+      "openclaw_names": [
+        "对话历史批量存储"
+      ]
+    }
+  ]
+}

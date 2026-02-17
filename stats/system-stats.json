@@ -13,13 +13,13 @@
       }
     },
     "memory-sync": {
-      "count": 1,
-      "total_duration_ms": 567,
-      "avg_duration_ms": 567,
-      "success": 1,
+      "count": 3,
+      "total_duration_ms": 17722,
+      "avg_duration_ms": 5907,
+      "success": 3,
       "fail": 0,
       "models_used": {
-        "unknown": 1
+        "unknown": 3
       }
     },
     "health-check": {
@@ -36,9 +36,9 @@
   "models": {},
   "daily": {
     "2026-02-17": {
-      "tasks": 3,
+      "tasks": 5,
       "tokens": 0,
-      "duration_ms": 2691
+      "duration_ms": 19846
     }
   },
   "hourly_tokens": []

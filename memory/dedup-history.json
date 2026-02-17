@@ -1698,8 +1698,8 @@
       "hash": "69510f1034d3f936",
       "content_preview": "The Long Tail of LLM(\u5927\u8bed\u8a00\u6a21\u578b)-Assisted Decompilation",
       "first_seen": "2026-02-17T06:09:54.979419",
-      "last_pushed": "2026-02-17T17:03:51.535038",
-      "push_count": 8,
+      "last_pushed": "2026-02-17T20:04:01.589028",
+      "push_count": 10,
       "sources": [
         {
           "source": "ai_news",
@@ -1732,6 +1732,14 @@
         {
           "source": "ai_news",
           "time": "2026-02-17T17:03:51.535043"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T19:05:01.264480"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T20:04:01.589033"
         }
       ]
     },
@@ -1986,8 +1994,8 @@
       "hash": "0f51a56d15162ada",
       "content_preview": "The Long Tail of LLM-Assisted Decompilation",
       "first_seen": "2026-02-17T11:06:20.555867",
-      "last_pushed": "2026-02-17T18:03:48.849694",
-      "push_count": 3,
+      "last_pushed": "2026-02-17T21:04:14.017855",
+      "push_count": 4,
       "sources": [
         {
           "source": "ai_news",
@@ -2000,6 +2008,10 @@
         {
           "source": "ai_news",
           "time": "2026-02-17T18:03:48.849699"
+        },
+        {
+          "source": "ai_news",
+          "time": "2026-02-17T21:04:14.017860"
         }
       ]
     },
@@ -2377,6 +2389,149 @@
         {
           "source": "github",
           "time": "2026-02-17T18:02:49.639966"
+        }
+      ]
+    },
+    {
+      "hash": "3e30b3de07613d4f",
+      "content_preview": "obra/superpowers - An agentic skills framework & software development methodology",
+      "first_seen": "2026-02-17T19:03:40.767438",
+      "last_pushed": "2026-02-17T19:03:40.767443",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T19:03:40.767445"
+        }
+      ]
+    },
+    {
+      "hash": "738b8a253dd11d41",
+      "content_preview": "anthropics/claude-quickstarts - Projects to get started with Claude API",
+      "first_seen": "2026-02-17T19:03:41.072655",
+      "last_pushed": "2026-02-17T19:03:41.072660",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T19:03:41.072662"
+        }
+      ]
+    },
+    {
+      "hash": "1b6c816cd81456ee",
+      "content_preview": "SynkraAI/aios-core - AI-Orchestrated System for Full Stack Development",
+      "first_seen": "2026-02-17T19:03:41.357632",
+      "last_pushed": "2026-02-17T19:03:41.357637",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T19:03:41.357639"
+        }
+      ]
+    },
+    {
+      "hash": "1a4751a80f9246c1",
+      "content_preview": "davila7/claude-code-templates - CLI tool for configuring Claude Code",
+      "first_seen": "2026-02-17T19:03:41.652526",
+      "last_pushed": "2026-02-17T19:03:41.652531",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github-trending",
+          "time": "2026-02-17T19:03:41.652533"
+        }
+      ]
+    },
+    {
+      "hash": "3d96285ab1ba6c98",
+      "content_preview": "Qwen3.5: Towards Native Multimodal Agents - https://qwen.ai/blog?id=qwen3.5",
+      "first_seen": "2026-02-17T20:03:22.443880",
+      "last_pushed": "2026-02-17T20:03:22.443885",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hackernews",
+          "time": "2026-02-17T20:03:22.443887"
+        }
+      ]
+    },
+    {
+      "hash": "4829fee40e9b18a5",
+      "content_preview": "WebMCP Proposal - https://webmachinelearning.github.io/webmcp/",
+      "first_seen": "2026-02-17T20:03:22.765435",
+      "last_pushed": "2026-02-17T20:03:22.765439",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hackernews",
+          "time": "2026-02-17T20:03:22.765441"
+        }
+      ]
+    },
+    {
+      "hash": "c788d044df2400e8",
+      "content_preview": "Study: Self-generated Agent Skills are useless - https://arxiv.org/abs/2602.12670",
+      "first_seen": "2026-02-17T20:03:23.066343",
+      "last_pushed": "2026-02-17T20:03:23.066348",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "hackernews",
+          "time": "2026-02-17T20:03:23.066350"
+        }
+      ]
+    },
+    {
+      "hash": "2d64da5d762bcabe",
+      "content_preview": "GitHub Trending: system-prompts-and-models-of-ai-tools - \u6536\u5f55\u4e86 Cursor\u3001Claude Code\u3001Devin \u7b49 AI \u5de5\u5177\u7cfb\u7edf\u63d0\u793a\u8bcd",
+      "first_seen": "2026-02-17T21:03:16.413984",
+      "last_pushed": "2026-02-17T21:03:16.413989",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T21:03:16.413991"
+        }
+      ]
+    },
+    {
+      "hash": "eef07c2f5264c4fc",
+      "content_preview": "GitHub: MCP\u751f\u6001\u7206\u53d1 - Microsoft\u53d1\u5e03mcp-for-beginners\u6559\u7a0b (14K stars)",
+      "first_seen": "2026-02-17T21:03:16.669832",
+      "last_pushed": "2026-02-17T21:03:16.669838",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T21:03:16.669840"
+        }
+      ]
+    },
+    {
+      "hash": "a736a7ea3c98ae4d",
+      "content_preview": "GitHub: nocturne_memory - \u57fa\u4e8eURI\u7684\u4e2d\u6587AI\u5916\u6302MCP\u8bb0\u5fc6\u5e93",
+      "first_seen": "2026-02-17T21:03:16.920842",
+      "last_pushed": "2026-02-17T21:03:16.920847",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T21:03:16.920849"
+        }
+      ]
+    },
+    {
+      "hash": "f3e294408358d906",
+      "content_preview": "GitHub: Context7 MCP Server - \u4e3aLLM\u63d0\u4f9b\u6700\u65b0\u4ee3\u7801\u6587\u6863 (45K stars)",
+      "first_seen": "2026-02-17T21:03:17.179615",
+      "last_pushed": "2026-02-17T21:03:17.179620",
+      "push_count": 1,
+      "sources": [
+        {
+          "source": "github",
+          "time": "2026-02-17T21:03:17.179622"
         }
       ]
     }

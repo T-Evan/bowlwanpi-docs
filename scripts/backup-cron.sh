@@ -10,6 +10,7 @@ export OPENCLAW_GATEWAY_URL="${OPENCLAW_GATEWAY_URL:-http://127.0.0.1:${OPENCLAW
 
 LOG_FILE="/var/log/bowlwanpi-cron.log"
 LOCK_DIR="/tmp/bowlwanpi-locks"
+WORKSPACE="/root/.openclaw/workspace"
 
 # 确保锁目录存在
 mkdir -p "$LOCK_DIR"
@@ -112,6 +113,18 @@ run_agent_task() {
     log "Task completed: $task_name"
 }
 
+# 判断哪些任务默认走 worktree（避免与主会话/自动提交冲突）
+should_use_worktree_for_key() {
+    case "$1" in
+        morning-brief|weibo-hot|product-hunt|zhihu-hot|bilibili-hot|one-minute-news|github-release)
+            echo "true"
+            ;;
+        *)
+            echo "false"
+            ;;
+    esac
+}
+
 # 执行本地推送脚本并发送输出到飞书
 run_script_task() {
     local task_name="$1"
@@ -177,42 +190,42 @@ case "$1" in
     morning-brief)
         log "=== 早晨简报 ==="
         if check_openclaw; then
-            run_script_task "早晨简报" "/root/.openclaw/workspace/scripts/push_morning_brief.py"
+            run_script_task "早晨简报" "/root/.openclaw/workspace/scripts/push_morning_brief.py" "$(should_use_worktree_for_key morning-brief)"
         fi
         ;;
     
     netease-music)
         log "=== 网易云日推 ==="
         if check_openclaw; then
-            run_script_task "网易云日推" "/root/.openclaw/workspace/scripts/push_netease_music.py"
+            run_script_task "网易云日推" "/root/.openclaw/workspace/scripts/push_netease_music.py" "$(should_use_worktree_for_key netease-music)"
         fi
         ;;
     
     weibo-hot)
         log "=== 微博热搜 ==="
         if check_openclaw; then
-            run_script_task "微博热搜" "/root/.openclaw/workspace/scripts/push_weibo_hot.py"
+            run_script_task "微博热搜" "/root/.openclaw/workspace/scripts/push_weibo_hot.py" "$(should_use_worktree_for_key weibo-hot)"
         fi
         ;;
     
     product-hunt)
         log "=== Product Hunt ==="
         if check_openclaw; then
-            run_script_task "Product Hunt" "/root/.openclaw/workspace/scripts/push_producthunt.py"
+            run_script_task "Product Hunt" "/root/.openclaw/workspace/scripts/push_producthunt.py" "$(should_use_worktree_for_key product-hunt)"
         fi
         ;;
     
     zhihu-hot)
         log "=== 知乎热榜 ==="
         if check_openclaw; then
-            run_script_task "知乎热榜" "/root/.openclaw/workspace/scripts/push_zhihu_hot.py"
+            run_script_task "知乎热榜" "/root/.openclaw/workspace/scripts/push_zhihu_hot.py" "$(should_use_worktree_for_key zhihu-hot)"
         fi
         ;;
     
     bilibili-hot)
         log "=== B站热门 ==="
         if check_openclaw; then
-            run_script_task "B站热门" "/root/.openclaw/workspace/scripts/push_bilibili_hot.py"
+            run_script_task "B站热门" "/root/.openclaw/workspace/scripts/push_bilibili_hot.py" "$(should_use_worktree_for_key bilibili-hot)"
         fi
         ;;
     
@@ -243,14 +256,14 @@ case "$1" in
     one-minute-news)
         log "=== One Minute News ==="
         if check_openclaw; then
-            run_script_task "One Minute News" "/root/.openclaw/workspace/scripts/push_one_minute_news.py"
+            run_script_task "One Minute News" "/root/.openclaw/workspace/scripts/push_one_minute_news.py" "$(should_use_worktree_for_key one-minute-news)"
         fi
         ;;
 
     github-release)
         log "=== GitHub Release 监控 ==="
         if check_openclaw; then
-            run_script_task "GitHub Release" "/root/.openclaw/workspace/scripts/push_github_release.py"
+            run_script_task "GitHub Release" "/root/.openclaw/workspace/scripts/push_github_release.py" "$(should_use_worktree_for_key github-release)"
         fi
         ;;
     
