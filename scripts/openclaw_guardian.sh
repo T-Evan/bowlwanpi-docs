@@ -13,6 +13,8 @@ LOG_DIR="/var/log"
 PID_FILE="/tmp/openclaw_guardian.pid"
 GUARDIAN_LOG="$LOG_DIR/openclaw-guardian.log"
 ALERT_COOLDOWN=300
+OPENCLAW_GATEWAY_PORT="${OPENCLAW_GATEWAY_PORT:-18789}"
+OPENCLAW_GATEWAY_URL="${OPENCLAW_GATEWAY_URL:-http://127.0.0.1:${OPENCLAW_GATEWAY_PORT}}"
 
 # 状态文件
 STATUS_FILE="$WORKSPACE/.guardian_status.json"
@@ -82,7 +84,7 @@ check_gateway_health() {
             return 1
         fi
         
-        if curl -s --max-time 3 http://localhost:3000/health > /dev/null 2>&1; then
+        if curl -s --max-time 3 "$OPENCLAW_GATEWAY_URL/health" > /dev/null 2>&1; then
             return 0
         fi
         

@@ -112,22 +112,32 @@ check_cron_health() {
         PYTHON_OUTPUT=$(python3 "$SCRIPTS_DIR/cron_health_checker.py" 2>&1)
         EXIT_CODE=$?
         
-        # 提取关键信息
-        ERROR_COUNT=$(echo "$PYTHON_OUTPUT" | grep -oP '错误次数: \K\d+' || echo "0")
-        ERROR_RATE=$(echo "$PYTHON_OUTPUT" | grep -oP '错误率: \K[\d.]+' || echo "0")
-        
+        # 提取关键信息（容错：grep 无匹配时返回空字符串）
+        ERROR_COUNT=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*错误次数: \([0-9][0-9]*\).*/\1/p' | tail -n 1)
+        ERROR_RATE=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*错误率: \([0-9][0-9]*\(\.[0-9][0-9]*\)\?\)%.*/\1/p' | tail -n 1)
+        TOTAL_RUNS=$(echo "$PYTHON_OUTPUT" | sed -n 's/.*总执行次数: \([0-9][0-9]*\).*/\1/p' | tail -n 1)
+
         # 检查是否真的发现了关键错误（不只是建议）
-        CRITICAL_ERRORS=$(echo "$PYTHON_OUTPUT" | grep -c '"severity": "critical"' || echo "0")
-        
+        CRITICAL_ERRORS=$(echo "$PYTHON_OUTPUT" | grep -c '"severity": "critical"' || true)
+
+        # 数值兜底，避免 integer expression expected
+        [[ "$ERROR_COUNT" =~ ^[0-9]+$ ]] || ERROR_COUNT=0
+        [[ "$TOTAL_RUNS" =~ ^[0-9]+$ ]] || TOTAL_RUNS=0
+        [[ "$CRITICAL_ERRORS" =~ ^[0-9]+$ ]] || CRITICAL_ERRORS=0
+        [[ "$ERROR_RATE" =~ ^[0-9]+(\.[0-9]+)?$ ]] || ERROR_RATE=0
+        ERROR_RATE_INT=${ERROR_RATE%.*}
+        [[ "$ERROR_RATE_INT" =~ ^[0-9]+$ ]] || ERROR_RATE_INT=0
+
         log "Cron errors (24h): $ERROR_COUNT"
         log "Cron error rate: ${ERROR_RATE}%"
+        log "Cron runs (24h): $TOTAL_RUNS"
         log "Critical issues: $CRITICAL_ERRORS"
-        
+
         # 只有真正发现关键错误时才发送警报
         if [ "$CRITICAL_ERRORS" -gt 0 ]; then
             log "ALERT: Critical cron issues detected"
             alert "CRITICAL" "定时任务发现关键问题: ${CRITICAL_ERRORS} 个严重错误"
-        elif [ "${ERROR_RATE%.*}" -gt 50 ]; then
+        elif [ "$ERROR_COUNT" -ge 5 ] && [ "$ERROR_RATE_INT" -gt 50 ]; then
             log "ALERT: High cron error rate detected (${ERROR_RATE}%)"
             alert "WARNING" "定时任务错误率偏高: ${ERROR_RATE}%"
         else

@@ -4,7 +4,9 @@
 
 export HOME=/root
 export PATH=/root/.nvm/versions/node/v22.22.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-export OPENCLAW_GATEWAY_URL="http://localhost:3000"
+# 默认跟随当前 OpenClaw 服务端口（可被环境变量覆盖）
+export OPENCLAW_GATEWAY_PORT="${OPENCLAW_GATEWAY_PORT:-18789}"
+export OPENCLAW_GATEWAY_URL="${OPENCLAW_GATEWAY_URL:-http://127.0.0.1:${OPENCLAW_GATEWAY_PORT}}"
 
 LOG_FILE="/var/log/bowlwanpi-cron.log"
 
@@ -14,8 +16,8 @@ log() {
 
 # 检查 OpenClaw 是否运行
 check_openclaw() {
-    if ! curl -s "$OPENCLAW_GATEWAY_URL/health" > /dev/null 2>&1; then
-        log "ERROR: OpenClaw Gateway is not running"
+    if ! curl -sf --max-time 3 "$OPENCLAW_GATEWAY_URL/health" > /dev/null 2>&1; then
+        log "ERROR: OpenClaw Gateway is not reachable (${OPENCLAW_GATEWAY_URL})"
         return 1
     fi
     return 0
@@ -74,6 +76,13 @@ run_agent_task() {
 
 # 主逻辑
 case "$1" in
+    morning-prep)
+        log "=== 晨报预备 ==="
+        if check_openclaw; then
+            run_agent_task "晨报预备" "执行晨报预备任务。提前检查今日重点事项和可推送信息，整理成待发送草稿，供 8:30 早晨简报使用。"
+        fi
+        ;;
+
     morning-brief)
         log "=== 早晨简报 ==="
         if check_openclaw; then
@@ -131,6 +140,13 @@ case "$1" in
     sleep-reminder)
         log "=== 睡眠提醒 ==="
         send_simple_reminder "💤 睡眠提醒" "一碗～该休息啦！明天再继续探索吧，晚安 💤"
+        ;;
+
+    weekly-review)
+        log "=== 周回顾 ==="
+        if check_openclaw; then
+            run_agent_task "周回顾" "执行周回顾任务。总结本周关键进展、待办和下周重点，并发送给一碗。"
+        fi
         ;;
     
     nightly-build)
