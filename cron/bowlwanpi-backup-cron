@@ -68,3 +68,11 @@ HOME=/root
 
 # [已合并] 自检系统功能已合并到统一自愈系统
 # 0 * * * * root /root/.openclaw/workspace/scripts/cron_self_check.sh >> /var/log/bowlwanpi-selfcheck.log 2>&1
+
+# 记忆系统 - 每小时捕获对话历史到本地 + 云端同步
+# 使用新的 capture_and_store_memory.py（从会话JSONL提取，更准确）
+0 * * * * root cd /root/.openclaw/workspace && python3 scripts/capture_and_store_memory.py >> /var/log/bowlwanpi-memory.log 2>&1
+
+# [已停用] 旧的记忆存储脚本（store_with_cloud_sync.py）
+# 原因：从记忆文件读取，经常为空，效果不佳
+# 0 * * * * root cd /root/.openclaw/workspace && python3 scripts/store_with_cloud_sync.py >> /var/log/bowlwanpi-cron.log 2>&1
