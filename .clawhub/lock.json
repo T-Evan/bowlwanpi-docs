@@ -36,6 +36,10 @@
     "openclaw-cost-guard": {
       "version": "0.1.0",
       "installedAt": 1771264951585
+    },
+    "task-status": {
+      "version": "1.0.0",
+      "installedAt": 1771291563703
     }
   }
 }
