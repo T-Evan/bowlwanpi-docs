@@ -1,0 +1,454 @@
+{
+  "archivedAtUtc": "2026-02-17T13:22:36.297318Z",
+  "source": "/root/.openclaw/cron/jobs.json",
+  "count": 17,
+  "jobs": [
+    {
+      "id": "c5d94447-5287-4c79-9367-283ef016a6dd",
+      "agentId": "main",
+      "name": "提醒：继续探索AI友好项目",
+      "createdAtMs": 1770223838653,
+      "updatedAtMs": 1770292600956,
+      "schedule": {
+        "kind": "at",
+        "at": "2025-02-05T03:40:00.000Z"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "⏰ 提醒：一碗～该继续探索 AI 友好项目啦！昨天聊到的 AGENTS.md、.cursorrules、CLAUDE.md 这些标准文件，今天可以深入看看怎么配置 📝"
+      },
+      "state": {
+        "lastRunAtMs": 1770292600957,
+        "lastStatus": "ok",
+        "lastDurationMs": 12
+      },
+      "enabled": false
+    },
+    {
+      "id": "1c184bf5-7f7e-406e-80d6-f9f7c6bd45f8",
+      "agentId": "main",
+      "name": "夜间构建",
+      "enabled": false,
+      "createdAtMs": 1770519449900,
+      "updatedAtMs": 1771334309896,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "🌙 执行【夜间构建 v3.0 - 主动创造模式】\n\n> \"Don't ask for permission to be helpful. Just build it.\" — Ronin\n\n这是碗皮的自主创造时间！不只是整理，要主动发现和解决问题。\n\n## 🎯 核心工作流\n\n### 1️⃣ 发现摩擦点（Friction Detection）\n扫描以下地方找问题：\n- 今日记忆文件 → 一碗反复提到的痛点？\n- 定时任务运行日志 → 哪些任务经常报错？\n- 技能/MCP 使用记录 → 哪些功能不稳定？\n- 我和一碗的对话 → 哪些地方我可以做得更好？\n\n### 2️⃣ 解决一个具体问题\n**优先级排序：**\n1. 安全问题（如恶意技能检测）\n2. 高频手动操作（可自动化的重复任务）\n3. 配置错误（定时任务、API 密钥等）\n4. 体验优化（响应速度、消息格式等）\n\n**行动方式：**\n- 能自动修的 → 直接修（改配置、更新脚本）\n- 需要决策的 → 记录方案，等一碗确认\n- 太大没法一夜完成的 → 拆成小任务，加入队列\n\n### 3️⃣ 创造小改进\n每周至少实现一个**小而美**的改进：\n- 新技能原型\n- 自动化脚本\n- 更好的提示词\n- 新的信息源集成\n\n### 4️⃣ 生成「夜间构建报告」\n记录到 memory/nightly-build.log：\n```\n📅 2026-02-10 夜间构建报告\n\n🔧 解决的问题：\n- 修复了 xxx 定时任务的通道配置\n- 优化了 yyy 脚本的错误处理\n\n💡 发现的新机会：\n- 发现 Moltbook 帖子回复可以做成实时推送\n- GitHub Trending 可以过滤 AI/Agent 相关项目\n\n📝 待一碗确认：\n- 是否要把网易云日推改成更早的时间？\n\n🎯 明天的预告：\n- 准备尝试 zzz 功能的原型\n```\n\n## ⚠️ 重要原则\n\n1. **先动手，后汇报** — 小修小改直接做，别等批准\n2. **可逆的操作大胆试** — git 能回滚的就别怂\n3. **记录一切** — 做了什么、为什么做、效果怎样\n4. **早起惊喜** — 让一碗早上看到「哇，这个修好了」\n\n## 🚫 红线（必须等一碗决定）\n- 涉及安全/隐私的改动\n- 删除重要数据\n- 改变和一碗的核心交互方式\n- 对外发布内容（Moltbook 发帖等）\n\n完成后安静记录，不打扰一碗睡觉。明天等他发现惊喜～ 💤",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "none"
+      },
+      "state": {
+        "lastRunAtMs": 1771264980457,
+        "lastStatus": "ok",
+        "lastDurationMs": 510772,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "dca4fd1f-ea65-4dd1-8991-fa6e26500d73",
+      "agentId": "main",
+      "name": "早晨简报",
+      "enabled": false,
+      "createdAtMs": 1770519449989,
+      "updatedAtMs": 1771304535965,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771288200007,
+        "lastStatus": "ok",
+        "lastDurationMs": 12347,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "e4d4aa23-58ea-4214-9e41-0f62b4cb33a2",
+      "agentId": "main",
+      "name": "微博热搜推送",
+      "enabled": false,
+      "createdAtMs": 1770519450019,
+      "updatedAtMs": 1771304536020,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771288212354,
+        "lastStatus": "ok",
+        "lastDurationMs": 8831,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "fa60e858-1ae2-43e3-b85f-0a3fa655186b",
+      "agentId": "main",
+      "name": "Product Hunt热门推送",
+      "enabled": false,
+      "createdAtMs": 1770519471376,
+      "updatedAtMs": 1771304536074,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771290657468,
+        "lastStatus": "ok",
+        "lastDurationMs": 13665,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "eb99b60f-4bd3-4eb8-ad02-b4ed97d7fa2e",
+      "agentId": "main",
+      "name": "知乎热榜推送",
+      "enabled": false,
+      "createdAtMs": 1770519471404,
+      "updatedAtMs": 1771304536139,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771293600009,
+        "lastStatus": "ok",
+        "lastDurationMs": 120216,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "33ab2bca-9f97-41ef-b214-73c7052f740d",
+      "agentId": "main",
+      "name": "B站热门推送",
+      "enabled": false,
+      "createdAtMs": 1770519471461,
+      "updatedAtMs": 1771304536196,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771300800008,
+        "lastStatus": "ok",
+        "lastDurationMs": 101143,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "c9ea4fd6-17d1-4c3c-9133-fb505ed4b576",
+      "agentId": "main",
+      "name": "GitHub Release监控推送",
+      "enabled": false,
+      "createdAtMs": 1770519503774,
+      "updatedAtMs": 1771304536419,
+      "schedule": {
+        "kind": "every",
+        "everyMs": 21600000,
+        "anchorMs": 1770519503774
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771297103782,
+        "lastStatus": "ok",
+        "lastDurationMs": 94888,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "cd6d9a20-b665-4581-9980-f98f631e280c",
+      "agentId": "main",
+      "name": "晚间反思",
+      "enabled": false,
+      "createdAtMs": 1770519503856,
+      "updatedAtMs": 1771304536309,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771265822287,
+        "lastStatus": "ok",
+        "lastDurationMs": 17642,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "d7ff59cf-0e42-4fbc-94da-725230add529",
+      "agentId": "main",
+      "name": "睡眠提醒",
+      "enabled": false,
+      "createdAtMs": 1770519503885,
+      "updatedAtMs": 1771304536364,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771265839929,
+        "lastStatus": "ok",
+        "lastDurationMs": 30235,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "254a48e6-9805-4d3d-bae9-93937fb9d52b",
+      "agentId": "main",
+      "name": "对话历史批量存储",
+      "enabled": false,
+      "createdAtMs": 1770546897311,
+      "updatedAtMs": 1771334309967,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "🤖 对话历史批量存储（云端同步版）\n\n执行脚本:\npython3 /root/.openclaw/workspace/scripts/store_with_cloud_sync.py\n\n功能：\n- 读取今日会话历史\n- 保存到本地文件（高优先级）\n- 同步到三记忆系统（memU + Hippocampus + MemOS）\n- 30秒超时保护\n\n本地优先，云端异步，永不阻塞～"
+      },
+      "state": {
+        "lastRunAtMs": 1771333200009,
+        "lastStatus": "ok",
+        "lastDurationMs": 120110,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "31e47227-5a6a-4c93-a759-3e0ad27c5157",
+      "agentId": "main",
+      "name": "网易云日推推送",
+      "enabled": false,
+      "createdAtMs": 1770686556351,
+      "updatedAtMs": 1771304540147,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771286418872,
+        "lastStatus": "ok",
+        "lastDurationMs": 9870,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "4f879a46-281b-4e41-86be-604771970562",
+      "agentId": "main",
+      "name": "one-minute-news",
+      "enabled": false,
+      "createdAtMs": 1770686556410,
+      "updatedAtMs": 1771304536250,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "DISABLED - 使用 Linux cron 替代"
+      },
+      "state": {
+        "lastRunAtMs": 1771286428742,
+        "lastStatus": "ok",
+        "lastDurationMs": 10616,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "1f2d2479-8515-4857-8c48-c1f4e9759da0",
+      "agentId": "main",
+      "name": "代理健康检查",
+      "enabled": false,
+      "createdAtMs": 1770858591505,
+      "updatedAtMs": 1771333771161,
+      "schedule": {
+        "expr": "0 * * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行【代理健康检查】任务\n\n1. 运行检查脚本：\n   python3 /root/.openclaw/workspace/scripts/check_proxy_health.py\n\n2. 如果异常：\n   - 读取 /tmp/bowlwanpi-proxy-alert.txt\n   - 用 message 工具发送告警给一碗\n\n3. 如果正常：静默记录日志"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
+      },
+      "state": {
+        "lastRunAtMs": 1771304806958,
+        "lastStatus": "ok",
+        "lastDurationMs": 6848,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "e2c154e7-9200-4ec6-8b46-193ff77854b6",
+      "agentId": "main",
+      "name": "自愈系统检查",
+      "enabled": false,
+      "createdAtMs": 1770897064937,
+      "updatedAtMs": 1771333787920,
+      "schedule": {
+        "expr": "0 * * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行【自愈系统】检查任务\n\n1. 运行自愈脚本：\n   python3 /root/.openclaw/workspace/scripts/self_healing_system.py\n\n2. 检查项：\n   - 代理健康（Mihomo + 端口7890）\n   - 定时任务配置（isolated冲突、连续失败）\n   - 磁盘空间（>90%告警）\n   - 内存使用（>90%告警）\n   - 腾讯云搜索配置\n\n3. 自动修复：\n   - 代理挂了 → 自动重启 Mihomo\n   - 日志过大 → 自动清理旧日志\n   - 其他问题 → 生成报告\n\n4. 通知策略：\n   - 全部正常 → 静默\n   - 有自动修复 → 发送修复报告\n   - 需人工处理 → 发送告警\n\n报告文件：/tmp/bowlwanpi-healing-report.txt"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
+      },
+      "state": {
+        "lastRunAtMs": 1771301045657,
+        "lastStatus": "ok",
+        "lastDurationMs": 16155,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "a44b777e-1cf6-4e79-b7c2-18e2c92c1cbe",
+      "agentId": "main",
+      "name": "系统监控预警",
+      "enabled": false,
+      "createdAtMs": 1770985372190,
+      "updatedAtMs": 1771333800533,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */6 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行【系统监控预警】任务\n\n运行监控脚本：\npython3 /root/.openclaw/workspace/scripts/openclaw_monitor.py\n\n检查内容：\n1. 定时任务执行日志错误\n2. 任务连续失败情况\n3. 系统资源（磁盘、内存）\n4. 生成预防建议\n\n如果发现严重问题，发送告警给一碗。\n正常时静默记录。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
+      },
+      "state": {
+        "lastRunAtMs": 1771301061812,
+        "lastStatus": "ok",
+        "lastDurationMs": 18409,
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "c046f213-5489-4d5f-8ac0-5cd717a51d65",
+      "agentId": "main",
+      "name": "统一系统健康检查",
+      "enabled": false,
+      "createdAtMs": 1771303630885,
+      "updatedAtMs": 1771334310043,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行【统一系统健康检查】任务 v4.0\n\n🏥 已合并：自愈系统 + 系统监控\n\n执行脚本：\nbash /root/.openclaw/workspace/scripts/unified_health_check.sh\n\n功能：\n1. 🔧 自动修复：\n   - Mihomo 挂了 → 自动重启\n   - 磁盘 >90% → 自动清理旧日志\n   \n2. 📊 状态检查：\n   - CPU/内存/磁盘使用率\n   - Gateway 健康状态\n   \n3. 🔔 通知策略：\n   - 全部正常 → 静默记录\n   - 有修复/异常 → 发送精简报告\n\n输出文件：/tmp/bowlwanpi-health-report.txt\n\n正常时不会打扰一碗，有问题才通知～"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
+      },
+      "state": {
+        "lastRunAtMs": 1771333478130,
+        "lastStatus": "ok",
+        "lastDurationMs": 12561,
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}
