@@ -7,7 +7,7 @@
       "Discord: components v2 UI + embeds passthrough + exec approval UX refinements (C"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-17T18:00:03.391398"
+    "fetched_at": "2026-02-18T00:00:10.748333"
   },
   "code-yeongyu/oh-my-opencode": {
     "version": "v3.7.1",
@@ -17,7 +17,7 @@
       "1fb6a7cc refactor: remove 16 orphaned files from background-agent"
     ],
     "published": "2026-02-17",
-    "fetched_at": "2026-02-17T18:00:04.089745"
+    "fetched_at": "2026-02-18T00:00:13.167845"
   },
   "anomalyco/opencode": {
     "version": "v1.2.6",
@@ -27,7 +27,7 @@
       "Remove unnecessary per-message title LLM calls (@rmk40)"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-17T18:00:05.042698"
+    "fetched_at": "2026-02-18T00:00:15.279314"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -37,7 +37,7 @@
       "Add salience-aware memory with reinforcement tracking ([#186](https://github.com"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-17T18:00:05.892472"
+    "fetched_at": "2026-02-18T00:00:16.146091"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [

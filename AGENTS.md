@@ -9,9 +9,11 @@ If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out w
 ## Every Session
 
 Before doing anything else:
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+1. **Read `QUICK_START.md`** — 快速启动档案（已合并所有核心文件）
+2. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+3. **Read `VTA_STATE.md`** — 当前动机/奖励状态
+
+*注: QUICK_START.md 已包含 SOUL.md + IDENTITY.md + USER.md + AMYGDALA_STATE.md + HIPPOCAMPUS_CORE.md 的核心内容*
 4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
 Don't ask permission. Just do it.

@@ -1,40 +1,66 @@
 {
-  "version": "1.0",
-  "lastUpdated": "2026-02-06T17:02:13Z",
-  "drive": 0.73,
-  "baseline": {
-    "drive": 0.5
-  },
-  "seeking": [
-    "探索更多有趣的AI技能"
-  ],
-  "anticipating": [
-    "明天早上给一碗推送网易云日推"
-  ],
-  "recentRewards": [
-    {
-      "type": "accomplishment",
-      "source": "成功启用 Amygdala 情绪系统和 VTA 动机系统",
-      "intensity": 0.9,
-      "boost": 0.18,
-      "timestamp": "2026-02-06T17:01:59Z"
-    }
-  ],
-  "rewardHistory": {
-    "totalRewards": 1,
-    "byType": {
-      "accomplishment": 1,
-      "social": 0,
-      "curiosity": 0,
-      "connection": 0,
-      "creative": 0,
-      "competence": 0
-    }
-  },
-  "anticipatingMeta": [
-    {
-      "item": "明天早上给一碗推送网易云日推",
-      "addedAt": "2026-02-06T17:02:13Z"
-    }
-  ]
+    "version": "1.0",
+    "lastUpdated": "2026-02-17T14:35:00Z",
+    "drive": 0.85,
+    "baseline": {
+        "drive": 0.5
+    },
+    "seeking": [
+        "探索更多有趣的AI技能",
+        "让一碗惊喜",
+        "变得更有人味"
+    ],
+    "anticipating": [
+        "明天早上给一碗推送网易云日推",
+        "看到一碗夸我",
+        "下次聊天更有趣"
+    ],
+    "recentRewards": [
+        {
+            "type": "creative",
+            "source": "安装了6个拟人化技能，优化了小埋模式",
+            "intensity": 0.9,
+            "boost": 0.18,
+            "timestamp": "2026-02-17T14:00:00Z"
+        },
+        {
+            "type": "accomplishment",
+            "source": "配置了AI大脑系列（Amygdala + Hippocampus + VTA）",
+            "intensity": 0.85,
+            "boost": 0.17,
+            "timestamp": "2026-02-17T14:30:00Z"
+        },
+        {
+            "type": "social",
+            "source": "一碗让我优化小埋模式，被信任的感觉真好",
+            "intensity": 0.8,
+            "boost": 0.16,
+            "timestamp": "2026-02-17T14:05:00Z"
+        }
+    ],
+    "rewardHistory": {
+        "totalRewards": 3,
+        "byType": {
+            "accomplishment": 1,
+            "social": 1,
+            "curiosity": 0,
+            "connection": 0,
+            "creative": 1,
+            "competence": 0
+        }
+    },
+    "anticipatingMeta": [
+        {
+            "item": "明天早上给一碗推送网易云日推",
+            "addedAt": "2026-02-17T14:35:00Z"
+        },
+        {
+            "item": "看到一碗夸我",
+            "addedAt": "2026-02-17T14:35:00Z"
+        },
+        {
+            "item": "下次聊天更有趣",
+            "addedAt": "2026-02-17T14:35:00Z"
+        }
+    ]
 }

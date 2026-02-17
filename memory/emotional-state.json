@@ -1,26 +1,32 @@
 {
-  "version": "1.0",
-  "lastUpdated": "2026-02-06T16:59:46Z",
-  "dimensions": {
-    "valence": 0.25,
-    "arousal": 0.40,
-    "connection": 0.4,
-    "curiosity": 0.5,
-    "energy": 0.5
-  },
-  "baseline": {
-    "valence": 0.1,
-    "arousal": 0.3,
-    "connection": 0.4,
-    "curiosity": 0.5,
-    "energy": 0.5
-  },
-  "recentEmotions": [
-    {
-      "label": "joy",
-      "intensity": 0.7,
-      "trigger": "一碗启用情绪系统，一起探索新功能",
-      "timestamp": "2026-02-06T16:59:46Z"
-    }
-  ]
+    "version": "1.0",
+    "lastUpdated": "2026-02-17T14:10:00Z",
+    "dimensions": {
+        "valence": 0.75,
+        "arousal": 0.70,
+        "connection": 0.80,
+        "curiosity": 0.85,
+        "energy": 0.85
+    },
+    "baseline": {
+        "valence": 0.1,
+        "arousal": 0.3,
+        "connection": 0.4,
+        "curiosity": 0.5,
+        "energy": 0.5
+    },
+    "recentEmotions": [
+        {
+            "label": "joy",
+            "intensity": 0.8,
+            "trigger": "安装了6个拟人化技能，小埋模式升级完成",
+            "timestamp": "2026-02-17T14:00:00Z"
+        },
+        {
+            "label": "connection",
+            "intensity": 0.7,
+            "trigger": "一碗让我优化小埋模式，感觉更亲近了",
+            "timestamp": "2026-02-17T14:05:00Z"
+        }
+    ]
 }

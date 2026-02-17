@@ -360,14 +360,14 @@
     <div class="header">
         <div class="avatar-wrap">
             <div class="avatar-placeholder">🎭</div>
-            <div class="status-dot" style="background: #94a3b8;"></div>
+            <div class="status-dot" style="background: #10b981;"></div>
         </div>
         <div class="header-info">
             <h1>碗皮</h1>
             <div class="subtitle">Brain Dashboard</div>
             <div class="mood">
-                <span>😐</span>
-                <span style="color: #94a3b8;">Neutral</span>
+                <span>😄</span>
+                <span style="color: #10b981;">Energized</span>
             </div>
         </div>
     </div>
@@ -417,9 +417,9 @@
     <div class="tab-content active" id="tab-vta">
         <div class="card">
             <div class="drive-meter">
-                <div class="drive-val">73%</div>
+                <div class="drive-val">85%</div>
                 <div class="drive-label">Drive Level</div>
-                <div class="drive-bar"><div class="drive-fill" style="width:73%"></div></div>
+                <div class="drive-bar"><div class="drive-fill" style="width:85%"></div></div>
             </div>
         </div>
         <div class="card">
@@ -443,8 +443,8 @@
 <script>
 const state = {
     hippocampus: { installed: true, topMemories: [] },
-    amygdala: { dimensions: { valence:0.25, arousal:0.40, connection:0.4, curiosity:0.5, energy:0.5, trust:0.5, anticipation:0 }, recentEmotions: [{"label":"joy","intensity":0.7,"trigger":"一碗启用情绪系统，一起探索新功能"}] },
-    vta: { installed: true, drive: 0.73, seeking: ["探索更多有趣的AI技能"], anticipating: ["明天早上给一碗推送网易云日推"], recentRewards: [{"type":"accomplishment","source":"成功启用 Amygdala 情绪系统和 VTA 动机系统","intensity":0.9}] }
+    amygdala: { dimensions: { valence:0.75, arousal:0.70, connection:0.80, curiosity:0.85, energy:0.85, trust:0.5, anticipation:0 }, recentEmotions: [{"label":"joy","intensity":0.8,"trigger":"安装了6个拟人化技能，小埋模式升级完成"},{"label":"connection","intensity":0.7,"trigger":"一碗让我优化小埋模式，感觉更亲近了"}] },
+    vta: { installed: true, drive: 0.85, seeking: ["探索更多有趣的AI技能","让一碗惊喜","变得更有人味"], anticipating: ["明天早上给一碗推送网易云日推","看到一碗夸我","下次聊天更有趣"], recentRewards: [{"type":"creative","source":"安装了6个拟人化技能，优化了小埋模式","intensity":0.9},{"type":"accomplishment","source":"配置了AI大脑系列（Amygdala + Hippocampus + VTA）","intensity":0.85},{"type":"social","source":"一碗让我优化小埋模式，被信任的感觉真好","intensity":0.8}] }
 };
 
 // Tabs

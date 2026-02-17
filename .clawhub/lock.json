@@ -96,6 +96,22 @@
     "soulcraft": {
       "version": "1.0.0",
       "installedAt": 1771337055661
+    },
+    "ai-daily-briefing": {
+      "version": "1.0.0",
+      "installedAt": 1771338731732
+    },
+    "openclaw-github-assistant": {
+      "version": "2.0.1",
+      "installedAt": 1771338743338
+    },
+    "vta-memory": {
+      "version": "1.2.0",
+      "installedAt": 1771338844236
+    },
+    "task-decomposer": {
+      "version": "1.0.0",
+      "installedAt": 1771339681188
     }
   }
 }

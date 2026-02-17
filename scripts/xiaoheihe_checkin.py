@@ -75,11 +75,64 @@ async def get_page_text(page) -> str:
         return ""
 
 
+async def get_store_login_state(page) -> bool | None:
+    """Read login state from Nuxt store when available."""
+    try:
+        value = await page.evaluate(
+            """() => {
+                try {
+                    const app = window.useNuxtApp?.();
+                    const state = app?.$pinia?.state?.value?.UserStore?.is_logined;
+                    return typeof state === 'boolean' ? state : null;
+                } catch (e) {
+                    return null;
+                }
+            }"""
+        )
+        if isinstance(value, bool):
+            return value
+    except Exception:
+        pass
+    return None
+
+
+async def has_top_login_button(page) -> bool:
+    """Detect the top-right login button (logged-out indicator)."""
+    locator = page.locator("button:has-text('登录')")
+    try:
+        count = await locator.count()
+    except Exception:
+        return False
+
+    for index in range(min(count, 5)):
+        item = locator.nth(index)
+        try:
+            if not await item.is_visible():
+                continue
+            box = await item.bounding_box()
+            if box and box.get("y", 9999) < 180:
+                return True
+        except Exception:
+            continue
+    return False
+
+
 async def is_logged_in(page) -> bool:
+    store_state = await get_store_login_state(page)
+    if store_state is not None:
+        return store_state
+
     text = await get_page_text(page)
     if not text:
         return False
-    return not all(keyword in text for keyword in LOGIN_PROMPT_KEYWORDS)
+
+    if all(keyword in text for keyword in LOGIN_PROMPT_KEYWORDS):
+        return False
+    if "扫码快捷登录" in text:
+        return False
+    if await has_top_login_button(page):
+        return False
+    return True
 
 
 async def click_first_visible_text(page, text_candidates: tuple[str, ...]) -> str | None:
@@ -101,6 +154,19 @@ async def click_first_visible_text(page, text_candidates: tuple[str, ...]) -> st
             except Exception:
                 continue
     return None
+
+
+async def open_login_modal(page) -> bool:
+    clicked = await click_first_visible_text(page, ("登录", "注册/登录"))
+    if not clicked:
+        return False
+
+    for _ in range(10):
+        text = await get_page_text(page)
+        if "扫码快捷登录" in text:
+            return True
+        await page.wait_for_timeout(500)
+    return False
 
 
 async def wait_for_login(page, timeout_seconds: int) -> bool:
@@ -186,11 +252,20 @@ async def run(headless: bool, allow_qr_login: bool, login_wait_seconds: int) -> 
         logged_in = await is_logged_in(page)
 
         if not logged_in and allow_qr_login:
-            await click_first_visible_text(page, ("登录", "注册/登录"))
-            await page.wait_for_timeout(1800)
-            await page.screenshot(path=str(qr_file), full_page=True)
+            opened = await open_login_modal(page)
+            if not opened:
+                await page.screenshot(path=str(screenshot_file), full_page=True)
+                await browser.close()
+                return (
+                    False,
+                    f"⚠️ 小黑盒未能打开登录弹窗（截图：{screenshot_file}，时间：{now_cn()}）。",
+                )
 
+            await page.screenshot(path=str(qr_file), full_page=True)
             logged_in = await wait_for_login(page, login_wait_seconds)
+            if logged_in:
+                await page.wait_for_timeout(1200)
+
             if not logged_in:
                 await page.screenshot(path=str(screenshot_file), full_page=True)
                 await browser.close()
@@ -208,12 +283,11 @@ async def run(headless: bool, allow_qr_login: bool, login_wait_seconds: int) -> 
             )
 
         ok, route = await attempt_checkin(page)
+        text = await get_page_text(page)
+        already_done = contains_any(text, ALREADY_DONE_KEYWORDS)
         await save_cookies(context)
         await page.screenshot(path=str(screenshot_file), full_page=True)
         await browser.close()
-
-        text = await get_page_text(page)
-        already_done = contains_any(text, ALREADY_DONE_KEYWORDS)
 
         if ok:
             if already_done:

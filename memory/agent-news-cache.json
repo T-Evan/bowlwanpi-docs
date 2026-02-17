@@ -88,5 +88,32 @@
     "comments": 0,
     "by": "elayabharath",
     "url": "https://glitchycam.com"
+  },
+  {
+    "id": 47049776,
+    "title": "Launch HN: Sonarly (YC W26) – AI agent to triage and fix your production alerts",
+    "time": 1771347789,
+    "score": 6,
+    "comments": 0,
+    "by": "Dimittri",
+    "url": "https://sonarly.com/"
+  },
+  {
+    "id": 47049227,
+    "title": "Show HN: I taught LLMs to play Magic: The Gathering against each other",
+    "time": 1771345369,
+    "score": 19,
+    "comments": 12,
+    "by": "GregorStocks",
+    "url": "https://mage-bench.com/"
+  },
+  {
+    "id": 47049848,
+    "title": "Show HN: Continue – Source-controlled AI checks, enforceable in CI",
+    "time": 1771348094,
+    "score": 9,
+    "comments": 1,
+    "by": "sestinj",
+    "url": "https://docs.continue.dev"
   }
 ]
