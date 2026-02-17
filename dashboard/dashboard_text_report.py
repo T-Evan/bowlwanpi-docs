@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
-"""
-仪表盘截图推送工具
-定期截图并发送到飞书
+"""Dashboard text report generator for cron delivery.
 
 Usage:
-  python3 dashboard_screenshot.py send      # 截图并发送
-  python3 dashboard_screenshot.py preview   # 仅生成预览
+  python3 dashboard_text_report.py send
+  python3 dashboard_text_report.py preview
 """
 
 import json
-import os
 import subprocess
 import sys
 from datetime import datetime
-from pathlib import Path
 
 def get_dashboard_data():
     """获取仪表盘数据"""
@@ -101,16 +97,9 @@ XP: {bar(xp_percent)} {bowl.get('xp', 0)}/{bowl.get('xp_to_next', 100)}
 """
     return report
 
-def send_to_feishu(message):
-    """发送到飞书"""
-    # 使用 message 工具发送
-    # 这里只是打印，实际调用需要通过 OpenClaw
-    print(message)
-    return True
-
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python3 dashboard_screenshot.py [send|preview]")
+        print("Usage: python3 dashboard_text_report.py [send|preview]")
         return
     
     command = sys.argv[1]
@@ -121,13 +110,12 @@ def main():
     # 生成报告
     report = generate_text_report(data)
     
-    if command == "preview":
-        print(report)
-    elif command == "send":
-        print("生成的报告:")
-        print(report)
-        print("\n" + "="*50)
-        print("已准备好发送，可以通过 OpenClaw message 工具发送")
+    if command in {"preview", "send"}:
+        # Keep output clean so cron agents can return this body directly.
+        print(report.strip())
+    else:
+        print("Usage: python3 dashboard_text_report.py [send|preview]")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
