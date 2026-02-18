@@ -180,23 +180,35 @@ def fetch_weekly_breakouts(limit=5):
     return output
 
 
-def print_release_snapshot(cache):
-    print("🐙 GitHub 版本快照（用于稳定追踪）")
-    print("-")
+def collect_release_snapshot(cache):
+    snapshot = []
     for repo, name in REPOS:
         release = get_latest_release(repo)
         if not release:
             release = cache.get(repo)
         if not release:
-            print(f"• {name}: 暂无数据")
+            snapshot.append({"name": name, "version": "unknown", "published": "unknown"})
             continue
         cache[repo] = release
-        print(f"• {name}: {release.get('version', 'unknown')}（{release.get('published', 'unknown')}）")
+        snapshot.append(
+            {
+                "name": name,
+                "version": release.get("version", "unknown"),
+                "published": release.get("published", "unknown"),
+            }
+        )
+    return snapshot
+
+
+def print_release_snapshot(snapshot):
+    print("🐙 GitHub 版本快照（用于稳定追踪）")
+    print("-")
+    for item in snapshot:
+        print(f"• {item['name']}: {item['version']}（{item['published']}）")
     print("")
 
 
-def print_weekly_breakouts():
-    projects = fetch_weekly_breakouts(limit=5)
+def print_weekly_breakouts(projects):
     print("🔥 本周新爆发 AI 项目（精选 5 个）")
     print("")
 
@@ -214,12 +226,36 @@ def print_weekly_breakouts():
         print("")
 
 
+def build_signature(snapshot, projects):
+    core = {
+        "snapshot": snapshot,
+        "projects": [
+            {
+                "name": p.get("name"),
+                "stars": p.get("stars"),
+            }
+            for p in projects
+        ],
+    }
+    return json.dumps(core, ensure_ascii=False, sort_keys=True)
+
+
 if __name__ == "__main__":
     cache = load_cache()
 
-    print_release_snapshot(cache)
-    print_weekly_breakouts()
+    snapshot = collect_release_snapshot(cache)
+    projects = fetch_weekly_breakouts(limit=5)
+
+    new_signature = build_signature(snapshot, projects)
+    old_signature = cache.get("last_push_signature", "")
+
+    # 优化推送噪音：版本和爆发榜都没变化时保持静默
+    if new_signature == old_signature:
+        print("NO_REPLY")
+    else:
+        print_release_snapshot(snapshot)
+        print_weekly_breakouts(projects)
+        print("⏰ 每6小时自动更新")
+        cache["last_push_signature"] = new_signature
 
     save_cache(cache)
-
-    print("⏰ 每6小时自动更新")
