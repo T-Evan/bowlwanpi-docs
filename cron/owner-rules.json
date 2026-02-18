@@ -19,8 +19,13 @@
         "backup-cron.sh info-collect",
         "run-task info-collect"
       ],
+      "openclaw_ids": [
+        "ef48aebb-80a5-473d-b0fd-dbe0e4749475"
+      ],
       "openclaw_names": [
-        "信息收集-每小时"
+        "信息收集-每小时",
+        "信息收集-每6小时",
+        "综合信息收集-每6小时"
       ]
     },
     {
