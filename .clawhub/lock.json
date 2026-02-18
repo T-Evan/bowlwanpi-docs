@@ -124,6 +124,10 @@
     "bilibili-hot-monitor": {
       "version": "1.0.21",
       "installedAt": 1771431738313
+    },
+    "tavily-search": {
+      "version": "1.0.0",
+      "installedAt": 1771432539998
     }
   }
 }
