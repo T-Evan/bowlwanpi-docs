@@ -120,6 +120,14 @@
     "x-hot-topics-daily": {
       "version": "1.0.0",
       "installedAt": 1771425724817
+    },
+    "topic-monitor": {
+      "version": "1.3.4",
+      "installedAt": 1771431722839
+    },
+    "bilibili-hot-monitor": {
+      "version": "1.0.21",
+      "installedAt": 1771431738313
     }
   }
 }

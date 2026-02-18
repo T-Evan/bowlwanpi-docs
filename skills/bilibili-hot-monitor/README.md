@@ -1,15 +1,42 @@
 # B站热门视频监控 Skill
 
-自动获取B站热门视频，调用官方AI总结API，生成包含数据分析的日报，支持邮件发送。
+自动获取B站热门视频，使用字幕+LLM生成AI总结，生成包含数据分析的日报，支持邮件发送。
+
+## 📦 版本历史
+
+### v1.0.11 (2025-02-05)
+
+**重大更新：改用字幕+LLM方案替代B站官方AI总结API**
+
+- ✨ **新功能**
+  - 使用视频字幕 + OpenRouter LLM 生成 AI 视频总结
+  - 支持多种 LLM 模型：Claude、Gemini、GPT、DeepSeek
+  - 实时进度条显示，用户可看到处理进度
+  - 预估耗时提示
+
+- 🔧 **优化**
+  - 禁用所有模型的 thinking/reasoning 模式，避免输出被截断
+  - 添加网络重试机制（最多3次），提高稳定性
+  - 优化 JSON 解析，增加 fallback 提取逻辑
+  - 改进 SKILL.md 中的 Cookie 获取说明（使用 Network 选项卡方法）
+
+- 🐛 **修复**
+  - 修复字幕获取兼容性问题
+  - 修复 URL 链接被括号破坏的问题
+
+### v1.0.10
+
+- 初始版本，使用 B站官方 AI 总结 API
 
 ## ✨ 功能特点
 
 - 📊 获取B站热门视频Top 10/20/30
-- 🤖 调用B站官方AI视频总结API
+- 🤖 字幕提取 + LLM 生成 AI 视频总结
 - 📝 自动生成结构化Markdown报告
 - 💡 支持 OpenRouter AI 智能点评（Claude/Gemini/GPT/DeepSeek）
 - 📧 HTML邮件发送（支持多收件人）
 - 🎨 精美的邮件排版（蓝色主题）
+- 📈 关键节点进度显示（每阶段仅在 25%/50%/75%/100% 输出，避免刷屏）
 
 ## 🚀 快速开始
 
@@ -21,26 +48,20 @@ pip install -r requirements.txt
 
 ### 2. 创建配置文件
 
-复制示例配置并填写：
+复制示例配置：
 
 ```bash
 cp bilibili-monitor.example.json bilibili-monitor.json
 ```
 
-编辑 `bilibili-monitor.json`：
+配置文件仅包含非敏感设置：
 
 ```json
 {
-  "bilibili": {
-    "cookies": "你的完整B站cookies字符串"
-  },
   "ai": {
-    "openrouter_key": "你的OpenRouter API Key（可选）",
     "model": "google/gemini-3-flash-preview"
   },
   "email": {
-    "smtp_email": "your-email@gmail.com",
-    "smtp_password": "xxxx xxxx xxxx xxxx",
     "recipients": ["recipient@example.com"]
   },
   "report": {
@@ -49,20 +70,43 @@ cp bilibili-monitor.example.json bilibili-monitor.json
 }
 ```
 
-### 3. 获取B站Cookies
+### 3. 设置环境变量
+
+敏感凭据通过环境变量传递，不写入配置文件：
+
+| 环境变量 | 说明 | 是否必须 |
+|---------|------|---------|
+| `BILIBILI_COOKIES` | 完整的B站 Cookie 字符串 | 是 |
+| `OPENROUTER_API_KEY` | OpenRouter API Key（用于 AI 功能） | 可选 |
+| `SMTP_EMAIL` | Gmail 发件邮箱 | 是（发邮件时） |
+| `SMTP_PASSWORD` | Gmail 应用密码（16位） | 是（发邮件时） |
+
+### 4. 获取B站Cookies
 
 1. 登录 [bilibili.com](https://www.bilibili.com)
-2. 按 `F12` → `Application` → `Cookies`
-3. 全选复制所有cookies
+2. 按 `F12` → `Network` 选项卡 → 刷新页面
+3. 点击 `www.bilibili.com` 请求 → Request Headers → 复制 Cookie 字段
 
-### 4. 生成报告并发送邮件
+### 5. 生成报告并发送邮件
 
 ```bash
+# 设置环境变量
+export BILIBILI_COOKIES="你的B站cookies"
+export OPENROUTER_API_KEY="你的OpenRouter Key"
+export SMTP_EMAIL="your-email@gmail.com"
+export SMTP_PASSWORD="xxxx xxxx xxxx xxxx"
+
 # 生成报告
 python generate_report.py --config bilibili-monitor.json --output report.md
 
 # 发送邮件
 python send_email.py --config bilibili-monitor.json --body-file report.md --html
+```
+
+也支持通过命令行参数传递凭据：
+
+```bash
+python generate_report.py --cookies "你的cookies" --openrouter-key "你的key" --config bilibili-monitor.json --output report.md
 ```
 
 ## 📋 报告内容
@@ -83,7 +127,7 @@ python send_email.py --config bilibili-monitor.json --body-file report.md --html
 ├── 基本信息（UP主、时长、发布时间）
 ├── 📊 数据统计
 ├── 📝 视频简介
-├── 🤖 B站官方AI总结 + 内容大纲
+├── 🤖 AI视频总结 + 内容大纲（LLM生成）
 ├── 💡 AI点评
 ├── 📈 运营爆款分析
 └── 🔗 视频链接
@@ -103,15 +147,23 @@ python send_email.py --config bilibili-monitor.json --body-file report.md --html
 
 ```
 bilibili-monitor/
-├── SKILL.md                    # AI Skill说明文件
+├── SKILL.md                    # AI Skill 说明文件
 ├── README.md                   # 本文件
-├── requirements.txt            # Python依赖
-├── bilibili_api.py             # B站API封装
+├── requirements.txt            # Python 依赖
 ├── generate_report.py          # 报告生成脚本
 ├── send_email.py               # 邮件发送脚本
-├── bilibili-monitor.example.json  # 配置文件示例
+├── bilibili_api.py             # B站 API 工具集
+├── bilibili_subtitle.py        # 字幕提取模块
+├── bilibili-monitor.example.json  # 配置文件示例（无敏感信息）
 └── example_report.md           # 报告示例
 ```
+
+## 🔒 安全说明
+
+- 所有凭据仅存储在用户本地设备上，Skill 发布包中不包含任何凭据
+- 配置文件 `bilibili-monitor.json` 已通过 `.gitignore` 排除，不会被意外上传或分享
+- 网络传输使用 HTTPS 和 TLS/STARTTLS 加密
+- 同时支持环境变量和命令行参数传递凭据，用户可自行选择
 
 ## ⚙️ 配置说明
 
@@ -132,14 +184,9 @@ bilibili-monitor/
 
 ## ⚠️ 注意事项
 
-1. **⚠️ 地区限制（重要）**：B站 AI 总结 API **仅限中国大陆 IP 访问**
-   - 🇨🇳 中国大陆：正常使用
-   - 🌍 海外部署：无法获取 B站 AI 总结（可正常获取视频数据和使用 OpenRouter 点评）
-   - 解决方案：配置中国代理或部署在中国服务器
-
-2. **API频率限制**：请求间隔建议 >= 3秒，避免触发B站限制
-3. **Cookie有效期**：SESSDATA约1-3个月，过期需重新获取
-4. **AI总结可用性**：并非所有视频都有官方AI总结
+1. **Cookie有效期**：SESSDATA 约 1-3 个月，过期需重新获取
+2. **API频率限制**：请求间隔建议 >= 1 秒
+3. **字幕可用性**：部分视频可能无字幕，会跳过 AI 总结生成
 
 ## 📄 License
 

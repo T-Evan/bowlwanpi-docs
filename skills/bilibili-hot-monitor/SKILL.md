@@ -6,6 +6,13 @@ metadata: {"openclaw":{"emoji":"📺","requires":{"bins":["python3"]},"os":["dar
 
 # B站热门视频日报
 
+## 🔒 安全说明
+
+- 所有凭据仅存储在用户本地设备上，Skill 发布包中不包含任何凭据
+- 配置文件 `bilibili-monitor.json` 已通过 `.gitignore` 排除，不会被意外上传或分享
+- 网络传输使用 HTTPS 和 TLS/STARTTLS 加密
+- 同时支持环境变量和命令行参数传递凭据，用户可自行选择
+
 ## 执行流程（分步询问）
 
 ### 检查配置文件
@@ -25,20 +32,24 @@ test -f {baseDir}/bilibili-monitor.json && echo "CONFIG_EXISTS" || echo "CONFIG_
 **第1步：询问 B站 Cookies**
 ```
 请提供 B站 Cookies：
-（获取方法：登录B站 → F12 → Application → Cookies → 全选复制）
+（获取方法：登录B站首页 → F12 → Network选项卡 → 刷新页面 → 点击 www.bilibili.com 请求 → 找到 Request Headers 中的 Cookie 字段 → 复制整个值）
 ```
 等待用户回复，保存为变量 `COOKIES`
 
-**第2步：询问 AI 点评服务**
+**第2步：询问 AI 服务**
 ```
-是否需要 AI 点评功能？（使用 OpenRouter）
-1 = 是（需要 OpenRouter API Key）
-2 = 否
+AI 功能说明：
+- 需要 OpenRouter API Key
+- 用于生成视频内容总结（基于字幕）和 AI 点评
+
+是否启用 AI 功能？
+1 = 是（推荐，需要 OpenRouter API Key）
+2 = 否（将无法生成视频总结和点评）
 请回复数字：
 ```
 等待用户回复
 
-**第3步：如果选了 1（使用 AI 点评）**
+**第3步：如果选了 1（启用 AI）**
 ```
 请选择模型：
 1 = Gemini（推荐，便宜快速）
@@ -49,7 +60,7 @@ test -f {baseDir}/bilibili-monitor.json && echo "CONFIG_EXISTS" || echo "CONFIG_
 等待用户回复，然后：
 ```
 请提供 OpenRouter API Key：
-（获取：https://openrouter.ai/keys）
+获取地址：https://openrouter.ai/keys
 ```
 保存为 `OPENROUTER_KEY` 和 `MODEL`
 
@@ -62,7 +73,7 @@ test -f {baseDir}/bilibili-monitor.json && echo "CONFIG_EXISTS" || echo "CONFIG_
 **第5步：询问应用密码**
 ```
 请提供 Gmail 应用密码（16位）：
-（获取：https://myaccount.google.com/apppasswords）
+获取地址：https://myaccount.google.com/apppasswords
 ```
 保存为 `SMTP_PASSWORD`
 
@@ -78,7 +89,9 @@ test -f {baseDir}/bilibili-monitor.json && echo "CONFIG_EXISTS" || echo "CONFIG_
 ```bash
 cat > {baseDir}/bilibili-monitor.json << 'EOF'
 {
-  "bilibili": {"cookies": "COOKIES值"},
+  "bilibili": {
+    "cookies": "COOKIES值"
+  },
   "ai": {
     "openrouter_key": "OPENROUTER_KEY值或空",
     "model": "MODEL值"
@@ -95,7 +108,23 @@ EOF
 
 ---
 
-### 直接执行（已有配置）
+### 确认并执行
+
+向用户展示确认信息：
+```
+✅ 配置已就绪
+🚀 即将开始执行：获取热门视频 → 提取字幕 → AI生成总结和点评 → 发送邮件
+⏱️ 预计耗时：10-15 分钟，请耐心等待
+
+是否开始执行？
+```
+等待用户确认后，执行以下命令。
+
+⚠️ **AI Agent 注意事项**：
+- 脚本执行需要 10-15 分钟，这是正常的，请设置超时 900 秒以上
+- 脚本会在 25%、50%、75%、100% 时自动输出进度，**请只转发脚本实际输出**
+- **不要**在等待期间发送"等待中..."、"继续等待..."等自定义消息，会导致刷屏
+- 执行完成后再向用户汇报结果即可
 
 **生成报告：**
 ```bash
@@ -122,9 +151,22 @@ python3 {baseDir}/send_email.py --config {baseDir}/bilibili-monitor.json --body-
 
 见 `bilibili-monitor.example.json`
 
+## ⏱️ 执行时间
+
+| 阶段 | 预计时间 |
+|------|---------|
+| 获取视频列表 | 5-10 秒 |
+| 字幕提取+AI总结（20个视频） | 2-3 分钟 |
+| AI点评（20个视频） | 8-12 分钟 |
+| 生成报告+发送邮件 | 10-20 秒 |
+| **总计** | **10-15 分钟** |
+
+⚠️ 完整执行需要 10-15 分钟，请确保命令超时设置足够长（建议 900 秒以上）。
+
 ## ⚠️ 重要提示
 
-**B站 AI 总结 API 地区限制：**
-- 该 API 仅限中国大陆 IP 访问
-- 海外部署无法获取 B站官方 AI 总结（其他功能正常）
-- 如需完整功能，请部署在中国服务器或配置中国代理
+**AI 视频总结说明：**
+- 视频总结基于字幕生成，需要视频有字幕（CC字幕或AI字幕）
+- 部分视频可能没有字幕，这些视频将无法生成总结
+- 推荐启用 AI 功能以获得完整的视频分析体验
+- 需要 OpenRouter API Key（支持 Gemini、Claude、GPT、DeepSeek 等模型）

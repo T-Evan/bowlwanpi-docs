@@ -3,16 +3,17 @@
 """
 B站热门视频日报生成器
 
-获取热门视频列表，调用 B站 AI 总结 API，通过 OpenRouter 调用第三方 LLM 生成点评。
+获取热门视频列表，通过字幕提取+LLM生成视频总结和点评。
 
 使用方法：
-    python generate_report.py --sessdata "xxx" --openrouter-key "xxx" --model "google/gemini-2.0-flash-001" --output report.md
+    python generate_report.py --config bilibili-monitor.json --output report.md
 """
 
 import argparse
 import datetime
 import io
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -27,42 +28,196 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='repla
 from bilibili_api import BilibiliAPI, format_duration, format_number, format_timestamp
 
 
-def call_openrouter(api_key: str, model: str, prompt: str) -> str:
+def call_openrouter(api_key: str, model: str, prompt: str, max_tokens: int = 500, max_retries: int = 3) -> str:
     """
-    调用 OpenRouter API 生成内容
-    
+    调用 OpenRouter API 生成内容（带重试机制）
+
     Args:
         api_key: OpenRouter API Key
         model: 模型名称，如 "anthropic/claude-sonnet-4.5"
         prompt: 提示词
-    
+        max_tokens: 最大生成 token 数
+        max_retries: 最大重试次数
+
     Returns:
         生成的文本
     """
-    try:
-        response = requests.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "model": model,
-                "messages": [{"role": "user", "content": prompt}],
-                "max_tokens": 500,
-            },
-            timeout=30,
-        )
-        
-        if response.status_code != 200:
-            print(f"  [WARNING] OpenRouter API 错误: {response.status_code}")
+    for attempt in range(max_retries):
+        try:
+            response = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": model,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "max_tokens": max_tokens,
+                    # 禁用所有模型的 extended thinking/reasoning 模式
+                    # effort: "none" 完全禁用推理模式，避免 JSON 输出被截断或格式错乱
+                    # 适用于 Claude、Gemini、DeepSeek 等支持 reasoning 的模型
+                    "reasoning": {
+                        "effort": "none"
+                    },
+                },
+                timeout=60,
+            )
+
+            if response.status_code != 200:
+                print(f"  [WARNING] OpenRouter API 错误: {response.status_code}")
+                if attempt < max_retries - 1:
+                    time.sleep(2)  # 等待2秒后重试
+                    continue
+                return ""
+
+            data = response.json()
+            return data["choices"][0]["message"]["content"].strip()
+
+        except (requests.exceptions.SSLError, requests.exceptions.ConnectionError) as e:
+            # SSL 或连接错误，等待后重试
+            if attempt < max_retries - 1:
+                print(f"  [RETRY] 网络错误，{2*(attempt+1)}秒后重试 ({attempt+1}/{max_retries})...")
+                time.sleep(2 * (attempt + 1))  # 递增等待时间
+                continue
+            print(f"  [WARNING] OpenRouter 调用失败（已重试{max_retries}次）: {e}")
             return ""
-        
-        data = response.json()
-        return data["choices"][0]["message"]["content"].strip()
-    except Exception as e:
-        print(f"  [WARNING] OpenRouter 调用失败: {e}")
-        return ""
+
+        except Exception as e:
+            print(f"  [WARNING] OpenRouter 调用失败: {e}")
+            return ""
+
+    return ""
+
+
+def _extract_summary_from_incomplete_json(text: str) -> str:
+    """
+    从不完整的 JSON 中提取 summary 字段
+
+    当 LLM 返回的 JSON 被截断时，尝试提取已有的 summary 内容
+    """
+    import re
+
+    # 尝试匹配 "summary": "..." 模式
+    # 支持多种引号格式
+    patterns = [
+        r'"summary"\s*:\s*"([^"]+)"',  # 标准双引号
+        r'"summary"\s*:\s*"([^"]*)',    # 可能被截断的双引号
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, text, re.DOTALL)
+        if match:
+            summary = match.group(1).strip()
+            # 清理可能的转义字符和截断内容
+            summary = summary.replace('\\n', ' ').replace('\\r', ' ')
+            summary = re.sub(r'\s+', ' ', summary)  # 合并多余空格
+            if len(summary) > 20:  # 确保提取到有意义的内容
+                return summary
+
+    return ""
+
+
+def generate_video_summary_from_subtitle(api_key: str, model: str, title: str, subtitle_text: str) -> dict:
+    """
+    使用 OpenRouter LLM 根据字幕生成视频总结（模拟B站AI总结格式）
+
+    Args:
+        api_key: OpenRouter API Key
+        model: 模型名称
+        title: 视频标题
+        subtitle_text: 字幕纯文本
+
+    Returns:
+        包含 summary 和 outline 的字典
+    """
+    if not subtitle_text or not api_key:
+        return {"summary": "", "outline": []}
+
+    # 限制字幕长度，避免超出 token 限制
+    max_chars = 8000
+    if len(subtitle_text) > max_chars:
+        subtitle_text = subtitle_text[:max_chars] + "..."
+
+    prompt = f"""你是一位专业的视频内容分析师。请根据以下视频字幕，生成一份结构化的视频总结。
+
+视频标题：{title}
+
+视频字幕：
+{subtitle_text}
+
+请按照以下JSON格式输出（直接输出JSON，不要加任何其他内容）：
+{{
+    "summary": "一段100字以内的视频内容概述，概括视频的主要内容和核心观点",
+    "outline": [
+        {{
+            "title": "第一部分标题",
+            "part_outline": [
+                {{"content": "要点1"}},
+                {{"content": "要点2"}}
+            ]
+        }},
+        {{
+            "title": "第二部分标题",
+            "part_outline": [
+                {{"content": "要点1"}},
+                {{"content": "要点2"}}
+            ]
+        }}
+    ]
+}}
+
+要求：
+1. summary 要简洁精炼，抓住视频核心内容
+2. outline 按照视频内容的逻辑结构分为2-4个部分
+3. 每个部分包含2-3个关键要点
+4. 语言要简洁明了，直接陈述内容
+5. 只输出JSON，不要有任何其他文字"""
+
+    result = call_openrouter(api_key, model, prompt, max_tokens=1000)
+
+    if not result:
+        return {"summary": "", "outline": []}
+
+    # 解析 JSON 结果
+    try:
+        # 清理 markdown 代码块包裹
+        clean_result = result.strip()
+        if clean_result.startswith("```"):
+            # 移除 ```json 或 ``` 开头
+            lines = clean_result.split('\n')
+            if lines[0].startswith("```"):
+                lines = lines[1:]  # 移除第一行
+            if lines and lines[-1].strip() == "```":
+                lines = lines[:-1]  # 移除最后一行
+            clean_result = '\n'.join(lines)
+
+        # 尝试提取 JSON 部分（处理可能的额外文本）
+        json_start = clean_result.find('{')
+        json_end = clean_result.rfind('}') + 1
+        if json_start >= 0 and json_end > json_start:
+            json_str = clean_result[json_start:json_end]
+            data = json.loads(json_str)
+            return {
+                "summary": data.get("summary", ""),
+                "outline": data.get("outline", [])
+            }
+    except json.JSONDecodeError:
+        # JSON 解析失败，尝试从不完整的 JSON 中提取 summary（静默处理）
+        summary = _extract_summary_from_incomplete_json(result)
+        if summary:
+            return {"summary": summary, "outline": []}
+
+    # 如果 JSON 解析失败，尝试从文本中提取有用信息
+    summary = _extract_summary_from_incomplete_json(result)
+    if summary:
+        return {"summary": summary, "outline": []}
+
+    # 如果是纯文本（不是 JSON 格式），可以作为摘要使用
+    if not result.strip().startswith('{') and not result.strip().startswith('```'):
+        return {"summary": result[:300].strip() if result else "", "outline": []}
+
+    return {"summary": "", "outline": []}
 
 
 def generate_ai_comment(api_key: str, model: str, video_info: dict) -> tuple[str, str]:
@@ -211,7 +366,7 @@ def _get_video_tag(vd):
 
 def generate_report(
     api: BilibiliAPI,
-    num_videos: int = 20,
+    num_videos: int = 10,
     delay: float = 1.0,
     openrouter_key: str = "",
     model: str = "google/gemini-3-flash-preview",
@@ -219,9 +374,30 @@ def generate_report(
     """
     生成热门视频报告
     """
-    print(f"正在获取热门视频列表...")
+    import sys
+
+    def print_progress(phase: str, current: int, total: int, detail: str = ""):
+        """打印进度条（只在关键节点输出，避免刷屏）"""
+        percentage = int((current / total) * 100) if total > 0 else 0
+        # 只在 25%、50%、75%、100% 时输出，减少消息量
+        if percentage in [25, 50, 75] or current == total:
+            bar_len = 20
+            filled = int(bar_len * current / total) if total > 0 else 0
+            bar = "█" * filled + "░" * (bar_len - filled)
+            if current == total:
+                print(f"{phase} [{bar}] {current}/{total} (100%) ✓ 完成")
+            else:
+                detail_str = f" - {detail}" if detail else ""
+                print(f"{phase} [{bar}] {current}/{total} ({percentage}%){detail_str}")
+
+    print(f"\n{'='*60}")
+    print(f"📊 B站热门视频日报生成器")
+    print(f"{'='*60}")
+    print(f"\n⏳ 预计耗时：{num_videos * 3}~{num_videos * 5} 秒（取决于网络）\n")
+
+    print(f"📡 正在获取热门视频列表...")
     videos = api.get_popular_videos(page_size=num_videos)
-    print(f"获取到 {len(videos)} 个热门视频")
+    print(f"✅ 获取到 {len(videos)} 个热门视频\n")
 
     now = datetime.datetime.now()
     today_str = now.strftime('%Y-%m-%d')
@@ -234,6 +410,9 @@ def generate_report(
     max_coins_idx, max_coins = 0, 0
     max_shares_idx, max_shares = 0, 0
 
+    print(f"📝 阶段1/2：获取字幕 & 生成视频总结")
+    print(f"-" * 40)
+
     for i, video in enumerate(videos, 1):
         bvid = video["bvid"]
         title = video["title"]
@@ -243,7 +422,8 @@ def generate_report(
         duration = video.get("duration", 0)
         pubdate = video.get("pubdate", 0)
 
-        print(f"[{i}/{len(videos)}] 处理: {title[:30]}...")
+        short_title = title[:18] + "..." if len(title) > 18 else title
+        print_progress("字幕&总结", i, len(videos), short_title)
 
         # 统计
         total_views += stat["view"]
@@ -260,25 +440,34 @@ def generate_report(
             max_shares = stat["share"]
             max_shares_idx = i
 
-        # 获取 AI 总结（增加延迟避免触发速率限制）
+        # 获取视频字幕并用 LLM 生成 AI 总结
         ai_summary = None
         ai_outline = []
+        subtitle_text = None
+
+        # 尝试获取字幕（使用 aid 和 cid，确保准确性）
         try:
-            time.sleep(3.0)  # AI 总结 API 请求前等待 3 秒（避免触发 B站风控）
-            summary_data = api.get_ai_summary(
-                bvid=bvid,
-                cid=video.get("cid", 0),
-                up_mid=owner["mid"]
-            )
-            if summary_data:
-                model_result = summary_data.get("model_result")
-                result_type = model_result.get("result_type", -1) if model_result else -1
-                # result_type: 0=无AI总结, 1=有AI总结, 2=有AI总结（另一种格式）
-                if model_result and result_type in [1, 2]:
-                    ai_summary = model_result.get("summary", "")
-                    ai_outline = model_result.get("outline", [])
+            aid = video.get("aid", 0)
+            cid = video.get("cid", 0)
+            # 传入 aid 和 cid，如果缺失会自动通过 bvid 获取
+            subtitle_text = api.get_video_subtitle_text(bvid, aid=aid if aid else None, cid=cid if cid else None)
         except Exception as e:
-            print(f"  [WARNING] 获取 AI 总结失败: {e}")
+            pass  # 静默处理字幕获取失败
+
+        # 如果有字幕且有 OpenRouter Key，用 LLM 生成总结
+        if subtitle_text and openrouter_key:
+            try:
+                summary_result = generate_video_summary_from_subtitle(
+                    api_key=openrouter_key,
+                    model=model,
+                    title=title,
+                    subtitle_text=subtitle_text
+                )
+                ai_summary = summary_result.get("summary", "")
+                ai_outline = summary_result.get("outline", [])
+                time.sleep(0.5)  # 避免 API 限流
+            except Exception as e:
+                pass  # 静默处理
 
         like_rate = stat["like"] / stat["view"] * 100 if stat["view"] > 0 else 0
         
@@ -316,9 +505,11 @@ def generate_report(
 
     # 生成 AI 点评（使用 OpenRouter）
     if openrouter_key:
-        print(f"\n正在使用 {model} 生成 AI 点评...")
-        for vd in video_data_list:
-            print(f"  [{vd['idx']}/{len(video_data_list)}] 生成点评: {vd['title'][:20]}...")
+        print(f"\n📝 阶段2/2：生成 AI 点评 & 爆款分析")
+        print(f"-" * 40)
+        for idx, vd in enumerate(video_data_list, 1):
+            short_title = vd['title'][:18] + "..." if len(vd['title']) > 18 else vd['title']
+            print_progress("AI点评", idx, len(video_data_list), short_title)
             ai_comment, viral_analysis = generate_ai_comment(openrouter_key, model, vd)
             vd["ai_comment"] = ai_comment
             vd["viral_analysis"] = viral_analysis
@@ -394,27 +585,27 @@ def generate_report(
             report_lines.append(f"> {desc_clean}{'...' if len(vd['desc']) > 500 else ''}")
             report_lines.append("")
 
-        # B站官方 AI 总结
+        # AI 视频总结（基于字幕生成）
         if vd['ai_summary']:
-            report_lines.append("**🤖 B站官方AI总结**：")
+            report_lines.append("**🤖 AI视频总结**：")
             report_lines.append(f"> {vd['ai_summary']}")
-            
+
             if vd['ai_outline']:
                 report_lines.append(">")
                 report_lines.append("> **内容大纲**：")
-                for item in vd['ai_outline'][:3]:
+                for item in vd['ai_outline'][:4]:
                     outline_title = item.get("title", "")
                     outline_content = item.get("part_outline", [])
                     if outline_title:
                         report_lines.append(f"> • **{outline_title}**")
-                        for part in outline_content[:2]:
+                        for part in outline_content[:3]:
                             content = part.get("content", "")
                             if content:
                                 report_lines.append(f">   - {content}")
             report_lines.append("")
         else:
-            report_lines.append("**🤖 B站官方AI总结**：")
-            report_lines.append("> （该视频暂无官方AI总结）")
+            report_lines.append("**🤖 AI视频总结**：")
+            report_lines.append("> （该视频无字幕，无法生成总结）")
             report_lines.append("")
 
         # AI 点评
@@ -507,8 +698,8 @@ def main():
         print(f"正在读取配置文件: {args.config}")
         config = load_config(args.config)
     
-    # 解析 cookies（优先使用配置文件）
-    cookies_str = args.cookies or config.get('bilibili', {}).get('cookies', '')
+    # 解析 cookies（优先级：命令行参数 > 环境变量 > 配置文件）
+    cookies_str = args.cookies or os.environ.get('BILIBILI_COOKIES', '') or config.get('bilibili', {}).get('cookies', '')
     all_cookies = None
     if cookies_str:
         all_cookies = parse_cookies(cookies_str)
@@ -526,11 +717,11 @@ def main():
         print("错误：必须提供 --config、--cookies 或 --sessdata 参数")
         sys.exit(1)
     
-    # AI 配置（优先使用命令行参数，其次配置文件）
+    # AI 配置（优先级：命令行参数 > 环境变量 > 配置文件）
     ai_config = config.get('ai', {})
-    openrouter_key = args.openrouter_key or ai_config.get('openrouter_key', '')
+    openrouter_key = args.openrouter_key or os.environ.get('OPENROUTER_API_KEY', '') or ai_config.get('openrouter_key', '')
     model = args.model or ai_config.get('model', 'google/gemini-3-flash-preview')
-    
+
     # 创建 API 客户端（传入所有 cookies 以确保完整性）
     api = BilibiliAPI(
         sessdata=sessdata,
@@ -561,7 +752,12 @@ def main():
     if args.output:
         output_path = Path(args.output)
         output_path.write_text(report, encoding="utf-8")
-        print(f"\n[SUCCESS] 报告已保存到: {output_path}")
+        print(f"\n{'='*60}")
+        print(f"✅ 报告生成完成！")
+        print(f"{'='*60}")
+        print(f"📄 报告保存到: {output_path}")
+        print(f"📊 共处理 {num_videos} 个视频")
+        print(f"🤖 AI 模型: {model}")
     else:
         print("\n" + "=" * 50)
         print(report)
