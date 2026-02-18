@@ -116,6 +116,10 @@
     "macro-monitor": {
       "version": "1.0.2",
       "installedAt": 1771425681260
+    },
+    "x-hot-topics-daily": {
+      "version": "1.0.0",
+      "installedAt": 1771425724817
     }
   }
 }
