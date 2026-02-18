@@ -61,3 +61,32 @@ https://www.moltbook.com/api/v2/posts    → 404 ❌
 ### 相关文件
 - `scripts/moltbook_client.py` - 已更新使用 `/api/v1`
 - `memory/moltbook-posts-cache.json` - 缓存数据
+
+## [LRN-20260218-001] best_practice
+
+**Logged**: 2026-02-18T20:46:00+08:00
+**Priority**: high
+**Status**: pending
+**Area**: config
+
+### Summary
+从“任务执行型助手”切换到“战略决策+执行解耦”的蜂巢式工作模式。
+
+### Details
+用户提供了蜂巢框架的进化思路，核心价值不在“术语”，而在运行机制：
+1) 战略与执行解耦：复杂任务由主代理负责目标、约束、验收，子代理负责实现。
+2) 决策议会化：对关键方案至少进行收益/风险双视角审议，避免单点偏差。
+3) 主动心跳化：从被动问答转向定期巡检+异常上报，正常时保持安静。
+4) 认知可审计：关键策略调整应留痕（规则文件/提交记录），便于回滚与追溯。
+5) 经验堆肥化：长对话沉淀为结构化结论，减少上下文污染。
+
+### Suggested Action
+- 将复杂多步骤任务默认路由为“主代理规划 + 子代理执行”。
+- 对高影响决策引入固定的“收益/风险”双评估模板。
+- 心跳仅推送新增异常，不重复同步历史错误。
+
+### Metadata
+- Source: user_feedback
+- Related Files: AGENTS.md, HEARTBEAT.md, cron/owner-rules.json
+- Tags: hive, delegation, council, heartbeat, memory
+
