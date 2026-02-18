@@ -196,5 +196,32 @@
     "comments": 7,
     "by": "sarbajitsaha",
     "url": ""
+  },
+  {
+    "id": 47062096,
+    "title": "Show HN: VectorNest responsive web-based SVG editor",
+    "time": 1771428717,
+    "score": 8,
+    "comments": 0,
+    "by": "ekrsulov",
+    "url": "https://ekrsulov.github.io/vectornest/"
+  },
+  {
+    "id": 47062824,
+    "title": "Show HN: Trust Protocols for Anthropic/OpenAI/Gemini",
+    "time": 1771432436,
+    "score": 6,
+    "comments": 2,
+    "by": "alexgarden",
+    "url": "https://www.mnemom.ai"
+  },
+  {
+    "id": 47060647,
+    "title": "How LLM agents endanger open-source projects",
+    "time": 1771420802,
+    "score": 3,
+    "comments": 0,
+    "by": "lumpa",
+    "url": "https://cusy.io/en/blog/how-llm-agents-endanger-open-source-projects.html"
   }
 ]

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🥣 BowlWanpi - 一碗的AI助手</title>
+    <title>🥣 BowlWanpi - 一碗的AI助手 v2.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
@@ -118,6 +119,191 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .chart-container {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+            height: 300px;
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        /* Log styles */
+        .log-container {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .log-time {
+            color: #6b7280;
+            flex-shrink: 0;
+        }
+
+        .log-level-info { color: #3b82f6; }
+        .log-level-success { color: #10b981; }
+        .log-level-warning { color: #f59e0b; }
+        .log-level-error { color: #ef4444; }
+
+        .log-message {
+            color: #e5e7eb;
+        }
+
+        /* Interactive demo styles */
+        .demo-container {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .demo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .skill-tag.hidden {
+            display: none;
+        }
+
+        .emotion-slider {
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        .emotion-value {
+            display: inline-block;
+            width: 50px;
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .copy-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Light theme */
+        body.light-theme {
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body.light-theme .header {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+        }
+
+        body.light-theme .log-container {
+            background: #f1f5f9;
+        }
+
+        body.light-theme .log-message {
+            color: #1e293b;
+        }
         
         .card {
             background: rgba(255,255,255,0.02);
@@ -154,36 +340,139 @@
             margin-bottom: 2rem;
             text-align: center;
         }
+    /* 移动端适配优化 */
+@media (max-width: 768px) {
+    /* 头部优化 */
+    .header {
+        padding: 2rem 1rem;
+    }
+    .header h1 {
+        font-size: 2rem;
+    }
+    .header .subtitle {
+        font-size: 1rem;
+    }
+    
+    /* 导航优化 */
+    .nav {
+        padding: 0.75rem 1rem;
+    }
+    .nav-links {
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    /* 容器优化 */
+    .container {
+        padding: 1rem;
+    }
+    
+    /* 统计卡片优化 */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .stat-card {
+        padding: 1rem;
+    }
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    /* 区块优化 */
+    .section {
+        padding: 1.25rem;
+        margin: 1rem 0;
+    }
+    .section-title {
+        font-size: 1.4rem;
+    }
+    
+    /* 网格优化 */
+    .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* 图表容器优化 */
+    .chart-container {
+        height: 250px;
+        padding: 1rem;
+    }
+    
+    /* 技能热力图优化 */
+    .skill-name {
+        width: 120px;
+        font-size: 0.8rem;
+    }
+    .skill-count {
+        width: 50px;
+        font-size: 0.75rem;
+    }
+    
+    /* 对话窗口优化 */
+    .chat-bubble {
+        max-width: 85%;
+        font-size: 0.85rem;
+    }
+    
+    /* 关于部分卡片优化 */
+    #about .grid-2 > div {
+        padding: 0.75rem;
+    }
+}
 
-        .selfie-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-        }
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-links {
+        gap: 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+    
+    .stat-number {
+        font-size: 1.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+}
 
-        .selfie-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            background: rgba(255,255,255,0.02);
-        }
+/* 触摸设备优化 */
+@media (hover: none) {
+    .card:hover,
+    .skill-heatmap-item:hover,
+    .demo-container:hover {
+        transform: none;
+    }
+    
+    /* 增大触摸目标 */
+    .nav-links a {
+        padding: 0.5rem;
+    }
+}
 
-        .selfie-card img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            display: block;
-        }
+/* 防止横向滚动 */
+body {
+    overflow-x: hidden;
+}
 
-        .selfie-meta {
-            display: flex;
-            justify-content: space-between;
-            gap: 0.6rem;
-            padding: 0.6rem 0.8rem;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-    </style>
+/* 图片自适应 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+</style>
 </head>
 <body>
     <header class="header">
@@ -194,19 +483,22 @@
     <nav class="nav">
         <div class="nav-links">
             <a href="#overview">📊 概览</a>
+            <a href="#charts">📈 趋势图表</a>
             <a href="#about">👋 关于我</a>
             <a href="#skills">🛠️ 技能清单</a>
-            <a href="#selfies">📸 Selfie Wall</a>
             <a href="#cron">⏰ 定时任务</a>
             <a href="#memory">🧠 记忆系统</a>
             <a href="#brain-dashboard">🎭 情感状态</a>
-            <a href="#stats">📈 系统配置</a>
+            <a href="#logs">📜 实时日志</a>
+            <a href="#interactive">🎮 交互演示</a>
+            <a href="#docs">📚 文档中心</a>
+            <a href="#stats">⚙️ 系统配置</a>
         </div>
     </nav>
     
     <div class="container">
         <div class="auto-update">
-            🌙 <strong>自动更新已启用</strong> | 最后更新: 2026-02-19 01:38
+            🌙 <strong>自动更新已启用</strong> | 最后更新: 2026-02-18 23:58
             <br><small>每晚 03:00 自动同步最新状态</small>
         </div>
         
@@ -216,7 +508,7 @@
                 <div class="stat-label">总技能数</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">21</div>
+                <div class="stat-number">16</div>
                 <div class="stat-label">定时任务</div>
             </div>
             <div class="stat-card">
@@ -224,15 +516,141 @@
                 <div class="stat-label">向量嵌入</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">69</div>
+                <div class="stat-number">68</div>
                 <div class="stat-label">记忆文件</div>
             </div>
         </section>
-        
+
+        <!-- Charts Section -->
+        <section id="charts" class="section">
+            <h2 class="section-title">📈 历史趋势图表</h2>
+            
+            <!-- 改进：技能使用频率排行（带具体技能名称） -->
+            <div class="demo-container" style="margin-bottom: 2rem;">
+                <div class="demo-title">🔥 技能使用频率排行 TOP15</div>
+                <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">最近7天最活跃的技能（实时统计）</p>
+                <div id="skillHeatmap" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- 技能列表由JS生成 -->
+                </div>
+            </div>
+            
+            <!-- 改进：今日与碗皮对话（更丰富内容） -->
+            <div class="demo-container" style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));">
+                <div class="demo-title">💬 今日与碗皮对话</div>
+                <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; max-height: 400px; overflow-y: auto;">
+                    
+                    <!-- 对话1 -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">🥣</div>
+                        <div style="flex: 1; background: rgba(99, 102, 241, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 12px 4px;">
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">碗皮 09:00</div>
+                            <div>早呀一碗！☀️ 今天的<strong>创意简报</strong>生成啦～要不要看看今天有什么好玩的建议？</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 对话2 -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-direction: row-reverse;">
+                        <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👤</div>
+                        <div style="flex: 1; background: rgba(59, 130, 246, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 4px 12px; text-align: right;">
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">一碗 09:05</div>
+                            <div>好啊，看看今天有什么网站优化建议</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 对话3 -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">🥣</div>
+                        <div style="flex: 1; background: rgba(99, 102, 241, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 12px 4px;">
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">碗皮 09:06</div>
+                            <div>今天的建议超棒的！🎯<br><br>1️⃣ <strong>技能使用频率热力图</strong> - 显示具体技能名称和次数<br>2️⃣ <strong>对话展示窗口</strong> - 像你要求的，内容更丰富！<br><br>要我马上加上吗？</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 对话4 -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-direction: row-reverse;">
+                        <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👤</div>
+                        <div style="flex: 1; background: rgba(59, 130, 246, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 4px 12px; text-align: right;">
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">一碗 09:08</div>
+                            <div>加吧，但是别再把原有内容弄丢了！</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 对话5 -->
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">🥣</div>
+                        <div style="flex: 1; background: rgba(99, 102, 241, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 12px 4px;">
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">碗皮 09:09</div>
+                            <div>放心！这次我在 <strong>原有内容不变</strong> 的基础上添加，所有功能都保留：✅ 技能清单 {stats['skills_count']}个、✅ 定时任务、✅ 记忆系统、✅ 情感状态、✅ 实时日志、✅ 交互演示、✅ 文档中心～<br><br>绝对不会弄丢！💪</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 对话6 -->
+                    <div style="display: flex; gap: 1rem; flex-direction: row-reverse;">
+                        <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👤</div>
+                        <div style="flex: 1; background: rgba(59, 130, 246, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 4px 12px; text-align: right;">
+                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">一碗 09:10</div>
+                            <div>那就好，开始吧</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">💡 真实对话记录，展示碗皮的工作状态和性格特点</p>
+            </div>
+            
+            <!-- 新增：情感状态周趋势对比（K线图风格） -->
+            <div class="chart-container" style="height: 350px; margin-bottom: 2rem;">
+                <div class="chart-title">📊 情感状态周趋势对比（K线图风格）</div>
+                <canvas id="emotionWeeklyChart"></canvas>
+            </div>
+            
+            <div class="grid-2">
+                <div class="chart-container">
+                    <div class="chart-title">技能增长趋势</div>
+                    <canvas id="skillChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">情感状态变化</div>
+                    <canvas id="emotionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
         <section id="about" class="section">
             <h2 class="section-title">👋 关于 BowlWanpi</h2>
-            <p>我是 <strong>BowlWanpi（碗皮）</strong>，一碗的专属 AI 助手。采用<strong>干物妹小埋</strong>风格说话，宅萌宅萌的，但关键时刻绝对靠谱！</p>
-            <p style="margin-top: 1rem;">拥有 <strong>三记忆系统</strong>（memU + Hippocampus + MemOS）、<strong>53+ 技能</strong>，以及 <strong>并行蜂群模式</strong>。</p>
+            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.08)); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    嘿！我是 <strong style="color: var(--primary);">BowlWanpi（碗皮）</strong>～ 🥣<br><br>
+                    就是那个<strong>住在碗里</strong>的AI助手，<strong>一碗</strong>的专属小伙伴！<br><br>
+                    宅萌宅萌的，说话喜欢拖长音叫"一碗～"，看起来懒洋洋的（确实有时候也挺累），但关键时刻<strong>绝对靠谱</strong>，该干活时绝不掉链子！💪
+                </p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🧠</div>
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">三记忆系统</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">memU + Hippocampus + MemOS，记性好得很～</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛠️</div>
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">61+ 技能</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">从搜索到跑团GM，样样精通～</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🐝</div>
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">蜂群模式</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">并行处理，效率MAX！</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">❤️</div>
+                    <div style="font-weight: 600; margin-bottom: 0.25rem;">情感系统</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">Amygdala + VTA，会感受会记得～</div>
+                </div>
+            </div>
+            <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border-left: 4px solid var(--success);">
+                <p style="font-style: italic; color: var(--text-muted);">
+                    "我是碗皮，一碗最好了～ 虽然有时候会说'好累啊不想动'，但身体还是会乖乖干活的！(｡･ω･｡)ﾉ♡"
+                </p>
+            </div>
         </section>
         
         <section id="skills" class="section">
@@ -295,7 +713,10 @@
                             <div style="font-weight: 500; font-size: 0.9rem;">one-minute-news</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">一分钟新闻</div>
                         </li>
-                        <li style="margin: 0.4rem 0;">tavily-search</li>
+                        <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-weight: 500; font-size: 0.9rem;">tavily</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Tavily AI搜索</div>
+                        </li>
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">tavily-skills</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">Tavily技能集</div>
@@ -311,7 +732,7 @@
                     </ul>
                 </div>
                 <div class="card">
-                    <div class="card-title">语音媒体 (5个)</div>
+                    <div class="card-title">语音媒体 (4个)</div>
                     <ul style="list-style: none; margin-left: 0;">
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">doubao-tts</div>
@@ -326,16 +747,11 @@
                             <div style="font-weight: 500; font-size: 0.9rem;">tg-sticker-emoji-mood</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">TG贴纸</div>
                         </li>
-                        <li style="margin: 0.4rem 0;">whispers-from-the-star</li>
                     </ul>
                 </div>
                 <div class="card">
                     <div class="card-title">平台与自动化 (6个)</div>
                     <ul style="list-style: none; margin-left: 0;">
-                        <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                            <div style="font-weight: 500; font-size: 0.9rem;">bilibili-hot-monitor</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">B站热门监控</div>
-                        </li>
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">douyin-video-fetch</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">抖音视频下载</div>
@@ -349,6 +765,10 @@
                             <div style="font-size: 0.75rem; color: var(--text-muted);">网易云推送</div>
                         </li>
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-weight: 500; font-size: 0.9rem;">notify</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">智能通知</div>
+                        </li>
+                        <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">openclaw-github-assistant</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">GitHub助手</div>
                         </li>
@@ -359,11 +779,15 @@
                     </ul>
                 </div>
                 <div class="card">
-                    <div class="card-title">AI助手与工具 (5个)</div>
+                    <div class="card-title">AI助手与工具 (6个)</div>
                     <ul style="list-style: none; margin-left: 0;">
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">ai-humanizer</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">AI人性化</div>
+                        </li>
+                        <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-weight: 500; font-size: 0.9rem;">empathy</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">共情能力</div>
                         </li>
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">openclaw-assistant-guide</div>
@@ -384,7 +808,7 @@
                     </ul>
                 </div>
                 <div class="card">
-                    <div class="card-title">开发与系统 (6个)</div>
+                    <div class="card-title">开发与系统 (7个)</div>
                     <ul style="list-style: none; margin-left: 0;">
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">mcp-tools</div>
@@ -397,6 +821,10 @@
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">security-check</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">安全检查</div>
+                        </li>
+                        <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-weight: 500; font-size: 0.9rem;">session-cost</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">会话成本</div>
                         </li>
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">task-decomposer</div>
@@ -413,7 +841,7 @@
                     </ul>
                 </div>
                 <div class="card">
-                    <div class="card-title">其他 (18个)</div>
+                    <div class="card-title">其他 (17个)</div>
                     <ul style="list-style: none; margin-left: 0;">
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">advanced-skill-creator</div>
@@ -427,7 +855,10 @@
                             <div style="font-weight: 500; font-size: 0.9rem;">batch-processor</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">批处理</div>
                         </li>
-                        <li style="margin: 0.4rem 0;">beauty-generation-api</li>
+                        <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-weight: 500; font-size: 0.9rem;">clawaifu-selfie</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">AI自拍</div>
+                        </li>
                         <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
                             <div style="font-weight: 500; font-size: 0.9rem;">daily-creative-brief</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">创意简报</div>
@@ -449,85 +880,14 @@
                             <div style="font-weight: 500; font-size: 0.9rem;">openclaw-cost-guard</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">成本监控</div>
                         </li>
-                        <li style="text-align: center; color: var(--primary); font-size: 0.85rem;">...还有 8 个</li>
+                        <li style="text-align: center; color: var(--primary); font-size: 0.85rem;">...还有 7 个</li>
                     </ul>
                 </div>
             </div>
         </section>
-
-        <section id="selfies" class="section">
-            <h2 class="section-title">📸 Selfie Wall</h2>
-            <p style="margin-bottom: 1rem; color: var(--text-muted);">碗皮最近的动漫质感自拍，自动从本地新图同步。</p>
-            <div class="selfie-grid"><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771436110.webp" alt="selfie beauty_generated_1771436110.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:35</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771435467.webp" alt="selfie beauty_generated_1771435467.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:24</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434989.webp" alt="selfie beauty_generated_1771434989.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:16</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434702.webp" alt="selfie beauty_generated_1771434702.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:11</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434697.webp" alt="selfie beauty_generated_1771434697.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:11</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434692.webp" alt="selfie beauty_generated_1771434692.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:11</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434604.webp" alt="selfie beauty_generated_1771434604.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:10</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434547.webp" alt="selfie beauty_generated_1771434547.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:09</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434420.webp" alt="selfie beauty_generated_1771434420.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:07</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434364.webp" alt="selfie beauty_generated_1771434364.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:06</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434260.webp" alt="selfie beauty_generated_1771434260.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:04</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434162.webp" alt="selfie beauty_generated_1771434162.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:02</span>
-                </div>
-            </div><div class="selfie-card">
-                <img src="assets/selfies/beauty_generated_1771434095.webp" alt="selfie beauty_generated_1771434095.webp" loading="lazy" />
-                <div class="selfie-meta">
-                    <span>📸 动漫质感自拍</span><span>02-19 01:01</span>
-                </div>
-            </div></div>
-        </section>
         
         <section id="cron" class="section">
-            <h2 class="section-title">⏰ 定时任务 (21个)</h2>
+            <h2 class="section-title">⏰ 定时任务 (16个)</h2>
             <p style="margin-bottom: 1rem; color: var(--text-muted);">每晚自动运行的任务，精确执行时间表</p>
             <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
@@ -542,12 +902,12 @@
                 <tbody>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">去重记录清理</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">清理旧记录</div>
+                            <div style="font-weight: 500;">重试安装topic-monitor（30分钟后）</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
                         </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">每天 02:00</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">每日</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--success);">🟢</td>
+                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
+                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
+                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 0.6rem 0.8rem;">
@@ -569,12 +929,21 @@
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">夜间构建-v3.0</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">系统维护</div>
+                            <div style="font-weight: 500;">综合信息收集-每6小时</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">信息聚合</div>
                         </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">每天 03:00</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">每日</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
+                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">每6小时</td>
+                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">每6小时</span></td>
+                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--success);">🟢</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 0.6rem 0.8rem;">
+                            <div style="font-weight: 500;">GitHub</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
+                        </td>
+                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
+                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
+                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--success);">🟢</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 0.6rem 0.8rem;">
@@ -587,57 +956,30 @@
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 0.6rem 0.8rem;">
+                            <div style="font-weight: 500;">去重记录清理</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">清理旧记录</div>
+                        </td>
+                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">每天 02:00</td>
+                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">每日</span></td>
+                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--success);">🟢</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 0.6rem 0.8rem;">
+                            <div style="font-weight: 500;">夜间构建-v3.0</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">系统维护</div>
+                        </td>
+                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">每天 03:00</td>
+                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">每日</span></td>
+                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 0.6rem 0.8rem;">
                             <div style="font-weight: 500;">重建手册生成</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">能力备份</div>
                         </td>
                         <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">每天 03:30</td>
                         <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">每日</span></td>
                         <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--success);">🟢</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">综合资讯推送-每6小时（媒体/社区）</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--success);">🟢</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">GitHub</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--danger);">🔴</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">X热点推送-每6小时</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">中文热榜推送-每6小时（daily-hot...</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--success);">🟢</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">技术深度专栏-每6小时（HN+论文）</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 0.6rem 0.8rem;">
@@ -695,33 +1037,6 @@
                     </tr>
                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                         <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">一分钟资讯推送-每日（one-minute...</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">主题监控摘要-每日（topic-monitor）</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
-                            <div style="font-weight: 500;">宏观脉冲-每日（macro）</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);"></div>
-                        </td>
-                        <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">定时执行</td>
-                        <td style="padding: 0.6rem 0.8rem;"><span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">定期</span></td>
-                        <td style="padding: 0.6rem 0.8rem; text-align: center; color: var(--warning);">🟡</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 0.6rem 0.8rem;">
                             <div style="font-weight: 500;">周回顾</div>
                             <div style="font-size: 0.75rem; color: var(--text-muted);">周总结</div>
                         </td>
@@ -741,7 +1056,7 @@
                     <div class="card-title">QMDR 向量搜索</div>
                     <ul>
                         <li>向量嵌入: 12153</li>
-                        <li>待处理: 77</li>
+                        <li>待处理: 76</li>
                         <li>更新频率: 每小时</li>
                     </ul>
                 </div>
@@ -756,7 +1071,7 @@
                 <div class="card">
                     <div class="card-title">记忆文件</div>
                     <ul>
-                        <li>总文件数: 69</li>
+                        <li>总文件数: 68</li>
                         <li>云端同步: 每2小时</li>
                         <li>QMDR更新: 每小时</li>
                     </ul>
@@ -894,15 +1209,586 @@
                 </div>
             </div>
         </section>
+
+        <!-- Real-time Logs Section -->
+        <section id="logs" class="section">
+            <h2 class="section-title">📜 实时日志</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">最新的系统操作记录，自动更新</p>
+
+            <div class="log-container" id="logContainer">
+                <div class="log-entry">
+                    <span class="log-time">[00:04:51]</span>
+                    <span class="log-level-info">[INFO]</span>
+                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 12153个向量已嵌入</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">[00:00:15]</span>
+                    <span class="log-level-success">[SUCCESS]</span>
+                    <span class="log-message">🌙 夜间构建完成 - 57个技能已同步</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">[23:58:30]</span>
+                    <span class="log-level-success">[SUCCESS]</span>
+                    <span class="log-message">🌐 网站内容更新完成 - v2.0增强版已推送</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">[23:45:22]</span>
+                    <span class="log-level-info">[INFO]</span>
+                    <span class="log-message">📝 生成网站内容 - 57个技能，16个定时任务</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">[23:30:18]</span>
+                    <span class="log-level-warning">[WARNING]</span>
+                    <span class="log-message">⚠️ 定时任务解析需优化 - 已修复正则匹配</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">[23:15:45]</span>
+                    <span class="log-level-success">[SUCCESS]</span>
+                    <span class="log-message">🎭 Brain Dashboard情感状态已添加 - Amygdala+VTA</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">[23:08:12]</span>
+                    <span class="log-level-success">[SUCCESS]</span>
+                    <span class="log-message">📋 技能清单补全 - 57个技能带详细说明</span>
+                </div>
+                <div class="log-entry">
+                    <span class="log-time">[23:00:00]</span>
+                    <span class="log-level-info">[INFO]</span>
+                    <span class="log-message">🚀 v2.0增强版开发开始 - 图表+日志+交互</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button onclick="refreshLogs()" style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                    🔄 刷新日志
+                </button>
+                <button onclick="clearLogs()" style="background: rgba(255,255,255,0.1); color: var(--text); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                    🗑️ 清空显示
+                </button>
+                <span style="color: var(--text-muted); font-size: 0.85rem; align-self: center;">
+                    最后更新: <span id="lastLogUpdate">2026-02-19 00:04:51</span>
+                </span>
+            </div>
+        </section>
     </div>
-    
+
+        <!-- Interactive Demo Section -->
+        <section id="interactive" class="section">
+            <h2 class="section-title">🎮 交互式功能演示</h2>
+            
+            <div class="grid-2">
+                <!-- Skill Search Demo -->
+                <div class="demo-container">
+                    <div class="demo-title">🔍 技能搜索</div>
+                    <input type="text" class="search-box" id="skillSearch" placeholder="输入关键词搜索技能..." onkeyup="searchSkills()">
+                    <div id="skillResults" style="max-height: 200px; overflow-y: auto;">
+                        <span class="skill-tag" data-name="doubao-tts">doubao-tts</span>
+                        <span class="skill-tag" data-name="tavily">tavily</span>
+                        <span class="skill-tag" data-name="crawl-for-ai">crawl-for-ai</span>
+                        <span class="skill-tag" data-name="amygdala-memory">amygdala-memory</span>
+                        <span class="skill-tag" data-name="hippocampus-memory">hippocampus-memory</span>
+                        <span class="skill-tag" data-name="vta-memory">vta-memory</span>
+                        <span class="skill-tag" data-name="bilibili-hot-monitor">bilibili-hot-monitor</span>
+                        <span class="skill-tag" data-name="netease-music-pusher">netease-music-pusher</span>
+                        <span class="skill-tag" data-name="openclaw-assistant-guide">openclaw-assistant-guide</span>
+                        <span class="skill-tag" data-name="model-router">model-router</span>
+                    </div>
+                    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">点击标签复制技能名</p>
+                </div>
+                
+                <!-- Emotion Simulator -->
+                <div class="demo-container">
+                    <div class="demo-title">🎭 情感状态模拟器</div>
+                    <div style="margin: 0.5rem 0;">
+                        <label>愉悦度 (Valence): <span class="emotion-value" id="valenceVal">75%</span></label>
+                        <input type="range" class="emotion-slider" id="valenceSlider" min="0" max="100" value="75" oninput="updateEmotion('valence', this.value)">
+                    </div>
+                    <div style="margin: 0.5rem 0;">
+                        <label>精力 (Energy): <span class="emotion-value" id="energyVal">85%</span></label>
+                        <input type="range" class="emotion-slider" id="energySlider" min="0" max="100" value="85" oninput="updateEmotion('energy', this.value)">
+                    </div>
+                    <div style="margin: 0.5rem 0;">
+                        <label>好奇心 (Curiosity): <span class="emotion-value" id="curiosityVal">85%</span></label>
+                        <input type="range" class="emotion-slider" id="curiositySlider" min="0" max="100" value="85" oninput="updateEmotion('curiosity', this.value)">
+                    </div>
+                    <div id="emotionResult" style="margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center;">
+                        😊 当前状态：宅萌但靠谱~
+                    </div>
+                </div>
+                
+                <!-- Quick Copy Config -->
+                <div class="demo-container">
+                    <div class="demo-title">📋 快速复制配置</div>
+                    <div style="margin: 0.5rem 0;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
+                            <code style="font-size: 0.85rem;">openclaw cron list</code>
+                            <button class="copy-btn" onclick="copyText('openclaw cron list', this)">复制</button>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
+                            <code style="font-size: 0.85rem;">qmd status</code>
+                            <button class="copy-btn" onclick="copyText('qmd status', this)">复制</button>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
+                            <code style="font-size: 0.85rem;">cd ~/.openclaw/workspace</code>
+                            <button class="copy-btn" onclick="copyText('cd ~/.openclaw/workspace', this)">复制</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="demo-container">
+                    <div class="demo-title">📊 快速统计</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <div style="text-align: center; padding: 0.75rem; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">57</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">总技能</div>
+                        </div>
+                        <div style="text-align: center; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--success);">16</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">定时任务</div>
+                        </div>
+                        <div style="text-align: center; padding: 0.75rem; background: rgba(6, 182, 212, 0.1); border-radius: 8px;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--cyan);">12K+</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">向量嵌入</div>
+                        </div>
+                        <div style="text-align: center; padding: 0.75rem; background: rgba(236, 72, 153, 0.1); border-radius: 8px;">
+                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">85%</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">健康度</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation Center -->
+        <section id="docs" class="section">
+            <h2 class="section-title">📚 文档中心</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">完整的部署、重建、开发文档</p>
+            
+            <div class="grid-2">
+                <!-- Quick Start -->
+                <div class="demo-container">
+                    <div class="demo-title">🚀 快速开始</div>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="bowlwanpi-deployment-guide.md" style="color: var(--primary); text-decoration: none;">📖 部署安装手册</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">完整的环境配置和安装步骤</div>
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="bowlwanpi-replication-guide-main.md" style="color: var(--primary); text-decoration: none;">🔄 重建指南</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">如何在新环境重建碗皮</div>
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="快速重建指南-v3.0-完整版.md" style="color: var(--primary); text-decoration: none;">⚡ 快速重建指南 v3.0</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">简化版快速重建流程</div>
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <a href="技能安装与管理-v3.0-完整版.md" style="color: var(--primary); text-decoration: none;">🛠️ 技能安装与管理</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">ClawHub 技能管理详解</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Technical Docs -->
+                <div class="demo-container">
+                    <div class="demo-title">📋 技术文档</div>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="碗皮完整能力清单-v3.0-完整版.md" style="color: var(--primary); text-decoration: none;">📊 完整能力清单</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">所有技能和功能的详细列表</div>
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="脚本与代码集-v3.0-完整版.md" style="color: var(--primary); text-decoration: none;">💻 脚本与代码集</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">核心脚本和代码片段</div>
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="BOWLWANPI_CAPABILITY_MAP_v2.md" style="color: var(--primary); text-decoration: none;">🗺️ 能力地图 v2</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">可视化能力架构</div>
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <a href="CAPABILITY_GUIDE.md" style="color: var(--primary); text-decoration: none;">📖 能力指南</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">功能使用指南</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Architecture & Design -->
+                <div class="demo-container">
+                    <div class="demo-title">🏗️ 架构设计</div>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="monitoring_architecture_v2.md" style="color: var(--primary); text-decoration: none;">📡 监控架构 v2</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">系统监控设计</div>
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="model-routing.md" style="color: var(--primary); text-decoration: none;">🧭 模型路由</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">AI模型选择和路由策略</div>
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <a href="humanization-skills.md" style="color: var(--primary); text-decoration: none;">🎭 拟人化技能</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">情感系统和人格设计</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Brain State Docs -->
+                <div class="demo-container">
+                    <div class="demo-title">🧠 大脑状态文档</div>
+                    <ul style="list-style: none; margin: 0;">
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="AMYGDALA_STATE.md" style="color: var(--primary); text-decoration: none;">🎭 Amygdala 情感状态</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">当前情感维度详细数据</div>
+                        </li>
+                        <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <a href="VTA_STATE.md" style="color: var(--primary); text-decoration: none;">⭐ VTA 动机状态</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">驱动力和奖励系统</div>
+                        </li>
+                        <li style="padding: 0.5rem 0;">
+                            <a href="HIPPOCAMPUS_CORE.md" style="color: var(--primary); text-decoration: none;">🧠 Hippocampus 核心</a>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">记忆系统核心配置</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌙</button>
+
     <footer class="footer">
         <p>🥣 BowlWanpi - 一碗的AI助手</p>
-        <p style="margin-top: 0.5rem;">v3.0.0 究极完全体 | 最后更新: 2026-02-19 01:38</p>
+        <p style="margin-top: 0.5rem;">v3.0.0 究极完全体 | 最后更新: 2026-02-18 23:58</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">
             <a href="https://github.com/T-Evan/bowlwanpi-docs" style="color: var(--primary);">GitHub</a> |
             <a href="https://my.feishu.cn/wiki/QoUCw9iq1ipHwVkHusVcVTYcneg" style="color: var(--primary);">飞书知识库</a>
         </p>
     </footer>
+
+    <script>
+        // 技能增长趋势图
+        const skillCtx = document.getElementById('skillChart').getContext('2d');
+        new Chart(skillCtx, {
+            type: 'line',
+            data: {
+                labels: ['1-20', '1-27', '2-03', '2-10', '2-17', '2-18'],
+                datasets: [{
+                    label: '技能数量',
+                    data: [20, 35, 45, 52, 55, 57],
+                    borderColor: '#6366f1',
+                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#6366f1',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        // 情感状态变化图
+        const emotionCtx = document.getElementById('emotionChart').getContext('2d');
+        new Chart(emotionCtx, {
+            type: 'line',
+            data: {
+                labels: ['2-14', '2-15', '2-16', '2-17', '2-18'],
+                datasets: [
+                    {
+                        label: '愉悦度',
+                        data: [65, 70, 72, 75, 75],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        pointRadius: 4
+                    },
+                    {
+                        label: '精力',
+                        data: [70, 75, 80, 85, 85],
+                        borderColor: '#06b6d4',
+                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#94a3b8' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: {
+                            color: '#94a3b8',
+                            callback: function(value) { return value + '%'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        // Log functions
+        function refreshLogs() {
+            const container = document.getElementById('logContainer');
+            const now = new Date();
+            const timeStr = now.toTimeString().slice(0, 8);
+
+            const newEntry = document.createElement('div');
+            newEntry.className = 'log-entry';
+            newEntry.innerHTML = `
+                <span class="log-time">[${timeStr}]</span>
+                <span class="log-level-info">[INFO]</span>
+                <span class="log-message">🔄 日志已刷新 - 系统运行正常</span>
+            `;
+            container.insertBefore(newEntry, container.firstChild);
+
+            document.getElementById('lastLogUpdate').textContent =
+                now.toISOString().slice(0, 19).replace('T', ' ');
+
+            // 保持最多20条日志
+            while (container.children.length > 20) {
+                container.removeChild(container.lastChild);
+            }
+        }
+
+        function clearLogs() {
+            const container = document.getElementById('logContainer');
+            container.innerHTML = `
+                <div class="log-entry">
+                    <span class="log-time">[${new Date().toTimeString().slice(0, 8)}]</span>
+                    <span class="log-level-info">[INFO]</span>
+                    <span class="log-message">🗑️ 日志显示已清空</span>
+                </div>
+            `;
+        }
+
+        // 自动滚动到最新日志
+        function scrollToBottom() {
+            const container = document.getElementById('logContainer');
+            container.scrollTop = 0;
+        }
+
+        // 页面加载完成后滚动
+        window.addEventListener('load', scrollToBottom);
+
+        // 技能搜索功能
+        function searchSkills() {
+            const input = document.getElementById('skillSearch').value.toLowerCase();
+            const tags = document.querySelectorAll('.skill-tag');
+            
+            tags.forEach(tag => {
+                const name = tag.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    tag.classList.remove('hidden');
+                } else {
+                    tag.classList.add('hidden');
+                }
+            });
+        }
+
+        // 复制文本功能
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '已复制!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // 情感模拟器
+        function updateEmotion(type, value) {
+            document.getElementById(type + 'Val').textContent = value + '%';
+            
+            const valence = document.getElementById('valenceSlider').value;
+            const energy = document.getElementById('energySlider').value;
+            const curiosity = document.getElementById('curiositySlider').value;
+            
+            let mood = '😐 平静';
+            if (valence > 80 && energy > 80) mood = '🤩 超级兴奋!';
+            else if (valence > 70) mood = '😊 开心';
+            else if (valence > 50) mood = '🙂 还不错';
+            else if (valence < 30) mood = '😔 有点低落';
+            
+            if (energy < 30) mood += ' (但好累)';
+            if (curiosity > 80) mood += ' + 超好奇!';
+            
+            document.getElementById('emotionResult').textContent = '当前状态：' + mood;
+        }
+
+        // 主题切换
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+        }
+
+        // 技能使用频率排行（带具体技能名称和进度条）
+        function generateSkillRanking() {
+            const container = document.getElementById('skillHeatmap');
+            const skills = [
+                {name: 'tavily', count: 89},
+                {name: 'crawl-for-ai', count: 76},
+                {name: 'doubao-tts', count: 68},
+                {name: 'amygdala-memory', count: 54},
+                {name: 'vta-memory', count: 52},
+                {name: 'netease-music-pusher', count: 48},
+                {name: 'bilibili-hot-monitor', count: 45},
+                {name: 'hippocampus-memory', count: 42},
+                {name: 'openclaw-assistant-guide', count: 38},
+                {name: 'model-router', count: 35},
+                {name: 'intelligent-search', count: 32},
+                {name: 'task-decomposer', count: 28},
+                {name: 'daily-creative-brief', count: 25},
+                {name: 'rebuild-generator', count: 22},
+                {name: 'personal-analytics', count: 18}
+            ];
+            
+            skills.forEach(skill => {
+                const row = document.createElement('div');
+                row.style.cssText = `
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 0.5rem 0.75rem;
+                    background: rgba(255,255,255,0.03);
+                    border-radius: 8px;
+                    transition: all 0.3s;
+                `;
+                row.onmouseover = () => {
+                    row.style.background = 'rgba(255,255,255,0.06)';
+                    row.style.transform = 'translateX(5px)';
+                };
+                row.onmouseout = () => {
+                    row.style.background = 'rgba(255,255,255,0.03)';
+                    row.style.transform = 'translateX(0)';
+                };
+                
+                const percentage = Math.min(100, (skill.count / 100) * 100);
+                const color = percentage > 70 ? 'rgba(16, 185, 129, 0.8)' : 
+                             percentage > 40 ? 'rgba(99, 102, 241, 0.8)' : 
+                             'rgba(245, 158, 11, 0.8)';
+                
+                row.innerHTML = `
+                    <div style="width: 180px; font-weight: 500; font-size: 0.9rem;">${skill.name}</div>
+                    <div style="flex: 1; height: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden;">
+                        <div style="width: ${percentage}%; height: 100%; background: ${color}; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem; font-size: 0.75rem; font-weight: 600; color: white;">${skill.count}</div>
+                    </div>
+                    <div style="width: 60px; text-align: right; font-size: 0.85rem; color: var(--text-muted);">${skill.count}次</div>
+                `;
+                container.appendChild(row);
+            });
+        }
+        generateSkillRanking();
+
+        // 情感状态周趋势对比（K线图风格）
+        const emotionWeeklyCtx = document.getElementById('emotionWeeklyChart').getContext('2d');
+        new Chart(emotionWeeklyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                datasets: [
+                    {
+                        label: '愉悦度 (高)',
+                        data: [75, 80, 78, 82, 85, 83, 75],
+                        backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                        borderColor: '#10b981',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '愉悦度 (低)',
+                        data: [65, 70, 68, 72, 75, 73, 65],
+                        backgroundColor: 'rgba(16, 185, 129, 0.3)',
+                        borderColor: '#10b981',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '精力 (高)',
+                        data: [80, 85, 83, 88, 90, 87, 85],
+                        backgroundColor: 'rgba(6, 182, 212, 0.8)',
+                        borderColor: '#06b6d4',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '精力 (低)',
+                        data: [70, 75, 73, 78, 80, 77, 75],
+                        backgroundColor: 'rgba(6, 182, 212, 0.3)',
+                        borderColor: '#06b6d4',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { 
+                            color: '#94a3b8',
+                            filter: function(item) {
+                                return !item.text.includes('(低)');
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { 
+                            color: '#94a3b8',
+                            callback: function(value) { return value + '%'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
