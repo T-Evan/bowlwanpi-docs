@@ -112,6 +112,10 @@
     "github-ai-trends": {
       "version": "1.1.0",
       "installedAt": 1771421896404
+    },
+    "openai-whisper": {
+      "version": "1.0.0",
+      "installedAt": 1771423577397
     }
   }
 }

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Transcribe audio using faster-whisper
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd .. && pwd)"
-"$SCRIPT_DIR/.venv/bin/python" "$SCRIPT_DIR/scripts/transcribe.py" "$@"
