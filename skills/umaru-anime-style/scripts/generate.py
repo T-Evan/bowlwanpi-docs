@@ -4,8 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import re
 import shlex
 import subprocess
+from datetime import datetime
+from pathlib import Path
 
 BASE = (
     "Premium anime-style girl portrait, anime texture, clean lineart, rich cel-shading, "
@@ -26,6 +29,24 @@ def build_prompt(scene: str, mood: str, action: str) -> str:
     return ", ".join(parts)
 
 
+def _slug(text: str) -> str:
+    cleaned = re.sub(r"[^a-zA-Z0-9]+", "-", text.lower()).strip("-")
+    return cleaned[:28] if cleaned else "na"
+
+
+def _extract_generated_file(stdout: str, output_dir: str) -> Path | None:
+    # Prefer explicit file line from the upstream script output.
+    match = re.search(r"File:\s*(/\S+)", stdout)
+    if match:
+        p = Path(match.group(1))
+        if p.exists():
+            return p
+
+    # Fallback: newest generated file in output dir.
+    files = sorted(Path(output_dir).glob("beauty_generated_*.*"), key=lambda x: x.stat().st_mtime, reverse=True)
+    return files[0] if files else None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--scene", default="a cozy gamer bedroom")
@@ -39,8 +60,26 @@ def main() -> int:
         "python3 /root/.openclaw/workspace/skills/beauty-generation-api/scripts/generate.py "
         f"--prompt {shlex.quote(prompt)} --output-dir {shlex.quote(args.output_dir)}"
     )
-    proc = subprocess.run(cmd, shell=True)
-    return proc.returncode
+    proc = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+
+    if proc.stdout:
+        print(proc.stdout, end="")
+    if proc.stderr:
+        print(proc.stderr, end="")
+
+    if proc.returncode != 0:
+        return proc.returncode
+
+    generated = _extract_generated_file(proc.stdout or "", args.output_dir)
+    if not generated:
+        return 0
+
+    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+    filename = f"umaru_{ts}_m-{_slug(args.mood)}_s-{_slug(args.scene)}_a-{_slug(args.action)}{generated.suffix}"
+    target = generated.with_name(filename)
+    generated.rename(target)
+    print(f"Renamed: {target}")
+    return 0
 
 
 if __name__ == "__main__":

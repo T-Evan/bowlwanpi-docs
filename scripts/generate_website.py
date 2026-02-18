@@ -335,7 +335,14 @@ def collect_selfies(limit=18):
     """同步最新自拍图到 docs/assets/selfies，返回展示数据。"""
     SELFIE_DIR.mkdir(parents=True, exist_ok=True)
     selfies = []
-    patterns = ["beauty_generated_*.webp", "beauty_generated_*.png", "beauty_generated_*.jpg"]
+    patterns = [
+        "beauty_generated_*.webp",
+        "beauty_generated_*.png",
+        "beauty_generated_*.jpg",
+        "umaru_*.webp",
+        "umaru_*.png",
+        "umaru_*.jpg",
+    ]
 
     files = []
     for pattern in patterns:
