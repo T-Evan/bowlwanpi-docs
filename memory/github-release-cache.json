@@ -1,23 +1,23 @@
 {
   "openclaw/openclaw": {
-    "version": "v2026.2.15",
+    "version": "v2026.2.17",
     "changes": [
       "Changes",
-      "Discord: unlock rich interactive agent prompts with Components v2 (buttons, sele",
-      "Discord: components v2 UI + embeds passthrough + exec approval UX refinements (C"
+      "Agents/Anthropic: add opt-in 1M context beta header support for Opus/Sonnet via ",
+      "Agents/Models: support Anthropic Sonnet 4.6 (`anthropic/claude-sonnet-4-6`) acro"
     ],
-    "published": "2026-02-16",
-    "fetched_at": "2026-02-18T00:00:10.748333"
+    "published": "2026-02-18",
+    "fetched_at": "2026-02-18T12:00:03.036438"
   },
   "code-yeongyu/oh-my-opencode": {
-    "version": "v3.7.1",
+    "version": "v3.7.2",
     "changes": [
-      "462e2ec2 refactor: remove 3 orphaned files and prefix unused parameter",
-      "9acdd6b8 refactor: remove 3 orphaned files from call-omo-agent and delegate-task",
-      "1fb6a7cc refactor: remove 16 orphaned files from background-agent"
+      "c21e0b09 fix(cli-run): strip ANSI codes in think block test assertions for CI co",
+      "2f659e9b fix(cli-run): improve agent header and think block spacing",
+      "d9751bd5 fix(cli-run): deduplicate tool headers and message counter resets on re"
     ],
     "published": "2026-02-17",
-    "fetched_at": "2026-02-18T00:00:13.167845"
+    "fetched_at": "2026-02-18T12:00:03.745126"
   },
   "anomalyco/opencode": {
     "version": "v1.2.6",
@@ -27,7 +27,7 @@
       "Remove unnecessary per-message title LLM calls (@rmk40)"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-18T00:00:15.279314"
+    "fetched_at": "2026-02-18T12:00:04.673843"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -37,7 +37,7 @@
       "Add salience-aware memory with reinforcement tracking ([#186](https://github.com"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-18T00:00:16.146091"
+    "fetched_at": "2026-02-18T12:00:05.476154"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [

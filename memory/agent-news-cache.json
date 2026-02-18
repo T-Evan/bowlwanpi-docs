@@ -115,5 +115,59 @@
     "comments": 1,
     "by": "sestinj",
     "url": "https://docs.continue.dev"
+  },
+  {
+    "id": 47051866,
+    "title": "The OpenClaw bot that defamed an OSS maintainer is a human crypto bro [video]",
+    "time": 1771356327,
+    "score": 10,
+    "comments": 1,
+    "by": "pocksuppet",
+    "url": "https://www.youtube.com/watch?v=xYFvi4hK7wI"
+  },
+  {
+    "id": 47051758,
+    "title": "The Homeland Security Forum Where ICE Agents Talk Shit About Other Agents",
+    "time": 1771355904,
+    "score": 7,
+    "comments": 0,
+    "by": "rawgabbit",
+    "url": "https://www.wired.com/story/hsi-forum-ice-agents/"
+  },
+  {
+    "id": 47051956,
+    "title": "An AI Agent Published a Hit Piece on Me – Forensics and More Fallout",
+    "time": 1771356705,
+    "score": 37,
+    "comments": 16,
+    "by": "scottshambaugh",
+    "url": "https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me-part-3/"
+  },
+  {
+    "id": 47047301,
+    "title": "Show HN: I built the Million Dollar Homepage for agents",
+    "time": 1771335105,
+    "score": 3,
+    "comments": 2,
+    "by": "talboren",
+    "url": "https://onemillionpixels.ai/"
+  },
+  {
+    "id": 47053210,
+    "title": "Forget MCP, Bash Is All You Need",
+    "time": 1771361768,
+    "score": 5,
+    "comments": 0,
+    "by": "nr378",
+    "url": "https://deadneurons.substack.com/p/forget-mcp-bash-is-all-you-need"
+  },
+  {
+    "id": 47054873,
+    "title": "Run LLMs locally in Flutter with <200ms latency",
+    "time": 1771370483,
+    "score": 22,
+    "comments": 1,
+    "by": "rish2497",
+    "url": "https://github.com/ramanujammv1988/edge-veda"
   }
 ]

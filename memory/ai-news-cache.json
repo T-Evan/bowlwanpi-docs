@@ -375,5 +375,44 @@
     "hash": "3ca8f1d81c8e7d56",
     "priority": 5,
     "discovered_at": "2026-02-18T02:02:11.757839"
+  },
+  {
+    "title": "Claude Sonnet 4.6",
+    "url": "https://www.anthropic.com/news/claude-sonnet-4-6",
+    "hn_url": "https://news.ycombinator.com/item?id=47050488",
+    "author": "adocomplete",
+    "points": 410,
+    "comments": 43,
+    "source": "hackernews",
+    "created_at": "2026-02-18T01:48:52",
+    "hash": "7488e4b11db0b01b",
+    "priority": 12,
+    "discovered_at": "2026-02-18T04:01:06.985259"
+  },
+  {
+    "title": "An AI Agent Published a Hit Piece on Me \u2013 Forensics and More Fallout",
+    "url": "https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me-part-3/",
+    "hn_url": "https://news.ycombinator.com/item?id=47051956",
+    "author": "scottshambaugh",
+    "points": 37,
+    "comments": 7,
+    "source": "hackernews",
+    "created_at": "2026-02-18T03:31:45",
+    "hash": "da7ce2c0541d7abd",
+    "priority": 7,
+    "discovered_at": "2026-02-18T05:00:44.187206"
+  },
+  {
+    "title": "Run LLMs locally in Flutter with <200ms latency",
+    "url": "https://github.com/ramanujammv1988/edge-veda",
+    "hn_url": "https://news.ycombinator.com/item?id=47054873",
+    "author": "rish2497",
+    "points": 22,
+    "comments": 1,
+    "source": "hackernews",
+    "created_at": "2026-02-18T07:21:23",
+    "hash": "229bf3eacf20d97a",
+    "priority": 5,
+    "discovered_at": "2026-02-18T08:02:45.482200"
   }
 ]
