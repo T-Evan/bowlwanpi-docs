@@ -80,6 +80,28 @@ def fmt_num(n: int) -> str:
     return f"{n / 1000:.1f}k" if n >= 1000 else str(n)
 
 
+def to_zh_intro(en_desc: str) -> str:
+    """Very lightweight EN->ZH summary for repo descriptions."""
+    d = (en_desc or "").strip()
+    if not d:
+        return "暂无中文简介"
+
+    low = d.lower()
+    if "configuration" in low and "claude" in low:
+        return "Claude Code 配置集合，包含 agents/skills/hooks/commands 等实战模板。"
+    if "ui/ux" in low or "design intelligence" in low:
+        return "面向多平台的 AI UI/UX 设计增强工具。"
+    if "agent harness" in low:
+        return "面向 AI 代理的工程化运行框架，强调稳定性与可扩展性。"
+    if "phone agent" in low:
+        return "开源手机 Agent 模型与框架，目标是让 AI Phone 更易用。"
+    if "token-oriented" in low or "notation" in low:
+        return "面向 LLM 提示词的紧凑结构化格式，强调可读性与 token 效率。"
+
+    # Generic fallback: keep concise and readable.
+    return "该项目聚焦 AI/LLM 场景，适合关注其近期增长与落地能力。"
+
+
 def fetch_weekly_breakouts(limit=5):
     now = datetime.now(timezone.utc)
     pushed_since = (now - timedelta(days=7)).strftime("%Y-%m-%d")
@@ -147,6 +169,7 @@ def fetch_weekly_breakouts(limit=5):
                 "forks": forks,
                 "language": lang,
                 "description": desc,
+                "description_zh": to_zh_intro(desc),
                 "comment": comment,
             }
         )
@@ -185,7 +208,8 @@ def print_weekly_breakouts():
         print(f"{idx}. {p['name']}")
         print(f"   链接：{p['url']}")
         print(f"   数据：⭐ {fmt_num(p['stars'])} · 🍴 {fmt_num(p['forks'])} · {p['language']}")
-        print(f"   简介：{p['description']}")
+        print(f"   简介(EN)：{p['description']}")
+        print(f"   简介(中文)：{p['description_zh']}")
         print(f"   碗皮评价：{p['comment']}")
         print("")
 
