@@ -1,10 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "bilibili-hot-monitor": {
-      "version": "1.0.10",
-      "installedAt": 1770138254034
-    },
     "sag": {
       "version": "1.0.0",
       "installedAt": 1770142671587
@@ -112,6 +108,10 @@
     "openai-whisper": {
       "version": "1.0.0",
       "installedAt": 1771423577397
+    },
+    "daily-hot-news": {
+      "version": "1.0.1",
+      "installedAt": 1771425604159
     }
   }
 }
