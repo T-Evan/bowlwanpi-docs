@@ -169,7 +169,7 @@
       "Heartbeat/Telegram: strip configured `responsePrefix` before heartbeat ack detection (with boundary-safe matching) so prefixed `HEARTBEAT_OK` replies are correctly suppressed instead of leaking into DMs. (#18602)"
     ],
     "published": "2026-02-18",
-    "fetched_at": "2026-02-18T21:31:26.461831"
+    "fetched_at": "2026-02-18T13:45:13.486362+00:00"
   },
   "code-yeongyu/oh-my-opencode": {
     "version": "v3.7.3",
@@ -178,7 +178,7 @@
       "b1c43aeb @codeg-dev has signed the CLA in code-yeongyu/oh-my-opencode#1927"
     ],
     "published": "2026-02-18",
-    "fetched_at": "2026-02-18T21:31:27.110389"
+    "fetched_at": "2026-02-18T13:45:14.112637+00:00"
   },
   "anomalyco/opencode": {
     "version": "v1.2.6",
@@ -222,7 +222,7 @@
       "feat(opencode): add `dfmt` formatter support for D language files (#13867)"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-18T21:31:27.788360"
+    "fetched_at": "2026-02-18T13:45:14.818270+00:00"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -244,44 +244,44 @@
       "Update README.md ([#300](https://github.com/NevaMind-AI/memU/issues/300)) ([1075d7c](https://github.com/NevaMind-AI/memU/commit/1075d7c9ec3a272846c9fdb8c22ec58ff73cf6e7))"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-18T21:31:28.442219"
+    "fetched_at": "2026-02-18T13:45:15.455564+00:00"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [
     {
       "time": "2026-02-09T08:58:00Z",
       "result": "no_updates",
-      "details": "\u6240\u6709\u4ed3\u5e93\u7248\u672c\u65e0\u53d8\u5316\uff0cblader/napkin \u8fd4\u56de404"
+      "details": "所有仓库版本无变化，blader/napkin 返回404"
     },
     {
       "time": "2026-02-09T14:58:00Z",
       "result": "no_updates",
-      "details": "\u6240\u67094\u4e2a\u4ed3\u5e93\u7248\u672c\u5747\u65e0\u66f4\u65b0"
+      "details": "所有4个仓库版本均无更新"
     },
     {
       "time": "2026-02-09T20:58:00Z",
       "result": "update_found",
-      "details": "openclaw/openclaw: v2026.2.6 \u2192 v2026.2.9"
+      "details": "openclaw/openclaw: v2026.2.6 → v2026.2.9"
     },
     {
       "time": "2026-02-10T08:58:00Z",
       "result": "no_updates",
-      "details": "\u6240\u67094\u4e2a\u4ed3\u5e93\u7248\u672c\u5747\u65e0\u66f4\u65b0"
+      "details": "所有4个仓库版本均无更新"
     },
     {
       "time": "2026-02-10T14:58:00Z",
       "result": "no_updates",
-      "details": "\u6240\u67094\u4e2a\u4ed3\u5e93\u7248\u672c\u5747\u65e0\u66f4\u65b0"
+      "details": "所有4个仓库版本均无更新"
     },
     {
       "time": "2026-02-10T20:58:00Z",
       "result": "update_found",
-      "details": "code-yeongyu/oh-my-opencode: v3.4.0 \u2192 v3.5.0; anomalyco/opencode: v1.1.53 \u2192 v1.1.55"
+      "details": "code-yeongyu/oh-my-opencode: v3.4.0 → v3.5.0; anomalyco/opencode: v1.1.53 → v1.1.55"
     },
     {
       "time": "2026-02-11T02:58:00Z",
       "result": "update_found",
-      "details": "code-yeongyu/oh-my-opencode: v3.5.0 \u2192 v3.5.1; anomalyco/opencode: v1.1.55 \u2192 v1.1.56"
+      "details": "code-yeongyu/oh-my-opencode: v3.5.0 → v3.5.1; anomalyco/opencode: v1.1.55 → v1.1.56"
     }
   ]
 }

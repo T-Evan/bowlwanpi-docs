@@ -74,7 +74,49 @@ git_commit() {
 }
 
 # ============================================
-# 3. 创建今日记忆文件
+# 3. 更新 GitHub Pages 网站
+# ============================================
+update_website() {
+    log "检查网站更新..."
+    
+    cd "$WORKSPACE"
+    
+    # 检查 docs/ 目录是否有变更
+    if git diff --quiet docs/ 2>/dev/null && git diff --staged --quiet docs/ 2>/dev/null; then
+        log "网站内容无变更，跳过更新"
+        return 0
+    fi
+    
+    # 更新统计数据（技能数、任务数等）
+    SKILL_COUNT=$(ls -1 skills/ 2>/dev/null | wc -l)
+    CRON_COUNT=$(openclaw cron list 2>/dev/null | grep -c "enabled.*true" || echo "0")
+    TODAY=$(date +"%Y-%m-%d")
+    
+    # 更新 index.html 中的统计数据
+    sed -i "s/总技能数<\/div>.*<div class=\"stat-number\">[0-9]*/总技能数<\/div>\n                <div class=\"stat-number\">$SKILL_COUNT/" docs/index.html 2>/dev/null || true
+    sed -i "s/最后更新: [0-9]*/最后更新: $TODAY/" docs/index.html 2>/dev/null || true
+    
+    # 提交到 gh-pages 分支
+    if [ -d "/tmp/bowlwanpi-docs" ]; then
+        cd /tmp/bowlwanpi-docs
+        git pull origin gh-pages 2>/dev/null || true
+        cp "$WORKSPACE/docs/index.html" .
+        git add .
+        git commit -m "🌙 Nightly update: $TODAY
+- Auto-sync from workspace
+- Skills: $SKILL_COUNT | Tasks: $CRON_COUNT
+- Updated: $(date +"%Y-%m-%d %H:%M")" 2>/dev/null || true
+        git push origin gh-pages 2>/dev/null || warn "网站推送失败，请检查token"
+        log "网站更新完成"
+    else
+        warn "网站目录不存在，跳过更新"
+    fi
+    
+    cd "$WORKSPACE"
+}
+
+# ============================================
+# 4. 创建今日记忆文件
 # ============================================
 create_daily_memory() {
     TODAY=$(date +"%Y-%m-%d")
@@ -114,6 +156,7 @@ main() {
     
     cleanup_health_checks
     git_commit
+    update_website
     create_daily_memory
     
     echo "" | tee -a "$LOG_FILE"
