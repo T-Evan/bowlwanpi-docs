@@ -46,6 +46,11 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
   - Tavily: `skills/intelligent-search/.env`
   - 腾讯云: `/root/.openclaw/workspace/secrets/tencent-credentials.json`
 
+### Tavily Skill Routing
+- **默认:** `tavily-skills`（完整流程：search / extract / crawl / research）
+- **轻量查询:** `tavily-search`（快速检索 + 简单抽取）
+- **执行策略:** 复杂研究优先 `tavily-skills`，单次快查优先 `tavily-search`
+
 ---
 
 ## TTS (语音合成) 偏好
