@@ -44,14 +44,21 @@ def get_latest_release(repo):
                 line = line.strip()
                 if line.startswith('- ') or line.startswith('* ') or line.startswith('###'):
                     clean = line.replace('- ', '').replace('* ', '').replace('### ', '').strip()
-                    if clean and len(clean) > 5:
-                        changes.append(clean[:80])
-                if len(changes) >= 3:
-                    break
+                    if clean and len(clean) > 1:
+                        changes.append(clean)
+
+            # 去重并保留原顺序，按用户要求输出完整变更内容
+            deduped_changes = []
+            seen = set()
+            for item in changes:
+                if item in seen:
+                    continue
+                seen.add(item)
+                deduped_changes.append(item)
             
             return {
                 'version': data.get('tag_name', 'unknown'),
-                'changes': changes if changes else ['暂无详细更新内容'],
+                'changes': deduped_changes if deduped_changes else ['暂无详细更新内容'],
                 'published': data.get('published_at', '')[:10],
                 'fetched_at': datetime.now().isoformat()
             }

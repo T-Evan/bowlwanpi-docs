@@ -21,8 +21,8 @@ sys.path.insert(0, str(WORKSPACE))
 sys.path.insert(0, str(WORKSPACE / "skills/memu-memory"))
 sys.path.insert(0, str(WORKSPACE / "skills/hippocampus-memory"))
 
-def get_recent_conversations():
-    """获取今日会话历史"""
+def get_recent_conversations(hours=24):
+    """获取最近N小时的会话历史"""
     try:
         # 读取今日记忆文件
         today = datetime.now().strftime('%Y-%m-%d')
@@ -184,12 +184,18 @@ def run_sync_with_timeout(conversations):
 
 def main():
     """主函数"""
+    import argparse
+    parser = argparse.ArgumentParser(description='对话历史批量存储 - 云端同步版')
+    parser.add_argument('--recent-hours', type=int, default=24, help='只同步最近N小时的对话')
+    args = parser.parse_args()
+    
     print("🤖 对话历史批量存储 - 云端同步版")
     print(f"⏰ 执行时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"📅 同步范围: 最近 {args.recent_hours} 小时")
     print("-" * 40)
     
     # 1. 获取会话
-    conversations = get_recent_conversations()
+    conversations = get_recent_conversations(hours=args.recent_hours)
     print(f"📥 找到 {len(conversations)} 组对话")
     
     # 2. 保存到本地（高优先级，必须成功）

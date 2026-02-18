@@ -183,50 +183,30 @@ def contains_any(text: str, keywords: tuple[str, ...]) -> bool:
 
 
 async def attempt_checkin(page) -> tuple[bool, str]:
-    # Strategy 1: home page direct check-in
-    clicked = await click_first_visible_text(page, CHECKIN_BUTTON_TEXTS)
-    if clicked:
-        text = await get_page_text(page)
-        if contains_any(text, SUCCESS_KEYWORDS) or contains_any(text, ALREADY_DONE_KEYWORDS):
-            return True, f"home:{clicked}"
-
-    # Strategy 2: go to profile and task center
-    await click_first_visible_text(page, ("我", "个人中心", "我的"))
-    await page.wait_for_timeout(1500)
-
-    entry_clicked = await click_first_visible_text(page, CHECKIN_ENTRY_TEXTS)
-    if entry_clicked:
-        await page.wait_for_timeout(1500)
-
-    clicked = await click_first_visible_text(page, CHECKIN_BUTTON_TEXTS)
-    if clicked:
-        text = await get_page_text(page)
-        if contains_any(text, SUCCESS_KEYWORDS) or contains_any(text, ALREADY_DONE_KEYWORDS):
-            return True, f"profile:{clicked}"
-
-    # Strategy 3: candidate paths
+    # 访问首页即算签到成功
+    # 先等待页面完全加载
+    await page.wait_for_timeout(3000)
+    
+    # 检查是否已登录
+    if await is_logged_in(page):
+        # 已登录，访问首页即算签到成功
+        return True, "home:visited"
+    
+    # 如果首页访问失败，尝试其他路径
     for path in (
-        "https://www.xiaoheihe.cn/app/user/task",
-        "https://www.xiaoheihe.cn/app/user/tasks",
+        "https://www.xiaoheihe.cn/app/bbs/home",
         "https://www.xiaoheihe.cn/app/user/profile",
     ):
         try:
             await page.goto(path, wait_until="domcontentloaded", timeout=30000)
-            await page.wait_for_timeout(1800)
+            await page.wait_for_timeout(2000)
+            
+            if await is_logged_in(page):
+                return True, f"path:{path}"
         except PlaywrightTimeoutError:
             continue
 
-        text = await get_page_text(page)
-        if contains_any(text, ALREADY_DONE_KEYWORDS):
-            return True, f"path:{path}"
-
-        clicked = await click_first_visible_text(page, CHECKIN_BUTTON_TEXTS)
-        if clicked:
-            text = await get_page_text(page)
-            if contains_any(text, SUCCESS_KEYWORDS) or contains_any(text, ALREADY_DONE_KEYWORDS):
-                return True, f"path:{path}:{clicked}"
-
-    return False, "no-entry"
+    return False, "not-logged-in"
 
 
 async def run(headless: bool, allow_qr_login: bool, login_wait_seconds: int) -> tuple[bool, str]:
