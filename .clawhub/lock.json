@@ -112,6 +112,10 @@
     "daily-hot-news": {
       "version": "1.0.1",
       "installedAt": 1771425604159
+    },
+    "macro-monitor": {
+      "version": "1.0.2",
+      "installedAt": 1771425681260
     }
   }
 }
