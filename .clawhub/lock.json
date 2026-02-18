@@ -33,10 +33,6 @@
       "version": "1.0.1",
       "installedAt": 1771295924497
     },
-    "notify": {
-      "version": "1.0.1",
-      "installedAt": 1771295927177
-    },
     "feishu-sticker": {
       "version": "1.0.8",
       "installedAt": 1771323506907
@@ -60,10 +56,6 @@
     "promitheus": {
       "version": "1.0.3",
       "installedAt": 1771336940724
-    },
-    "empathy": {
-      "version": "1.0.0",
-      "installedAt": 1771336952012
     },
     "personality-switcher": {
       "version": "0.1.3",
