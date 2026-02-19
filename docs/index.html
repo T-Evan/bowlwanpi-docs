@@ -484,6 +484,7 @@ img {
         <div class="nav-links">
             <a href="#overview">📊 概览</a>
             <a href="#charts">📈 趋势图表</a>
+            <a href="#selfies">📸 自拍照</a>
             <a href="#about">👋 关于我</a>
             <a href="#skills">🛠️ 技能清单</a>
             <a href="#cron">⏰ 定时任务</a>
@@ -612,6 +613,16 @@ img {
                     <div class="chart-title">情感状态变化</div>
                     <canvas id="emotionChart"></canvas>
                 </div>
+            </div>
+        </section>
+
+        <!-- 自拍照展示区域 -->
+        <section id="selfies" class="section">
+            <h2 class="section-title">📸 碗皮的自拍照</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">记录工作中的点点滴滴，每一张都是一个故事～</p>
+            
+            <div id="selfieGallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                <!-- 自拍照将通过JS动态加载 -->
             </div>
         </section>
 
@@ -1219,7 +1230,7 @@ img {
                 <div class="log-entry">
                     <span class="log-time">[00:04:51]</span>
                     <span class="log-level-info">[INFO]</span>
-                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 20383个向量已嵌入</span>
+                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 21328个向量已嵌入</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">[00:00:15]</span>
@@ -1452,6 +1463,24 @@ img {
             </div>
         </section>
 
+        <section class="section">
+            <h2 class="section-title">🎮 游戏系统实时面板</h2>
+            <div class="demo-container" id="gameSystemPanel">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;">
+                    <div class="stat-card"><div class="stat-label">等级</div><div class="stat-value" id="gs-level">Lv.1</div></div>
+                    <div class="stat-card"><div class="stat-label">XP</div><div class="stat-value" id="gs-xp">0/100</div></div>
+                    <div class="stat-card"><div class="stat-label">赛季</div><div class="stat-value" id="gs-season">T1</div></div>
+                    <div class="stat-card"><div class="stat-label">赛季代币</div><div class="stat-value" id="gs-token">0</div></div>
+                    <div class="stat-card"><div class="stat-label">羁绊</div><div class="stat-value" id="gs-bond">0</div></div>
+                    <div class="stat-card"><div class="stat-label">连胜</div><div class="stat-value" id="gs-streak">0天</div></div>
+                </div>
+                <div style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
+                    🏆 成就 <span id="gs-ach">0</span> | 🎯 日/周/赛季 <span id="gs-q">0/0/0</span> | 🛒 主题 <span id="gs-theme">-</span> | 🌳 天赋点 <span id="gs-tp">0</span>
+                </div>
+                <div style="margin-top:0.5rem;color:var(--text-muted);font-size:0.8rem;">最后更新: <span id="gs-updated">-</span></div>
+            </div>
+        </section>
+
         <!-- Theme Toggle Button -->
         <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌙</button>
 
@@ -1661,8 +1690,104 @@ img {
             });
         }
 
+        async function loadGameSystemData() {
+            try {
+                const response = await fetch('data/game-system.json?t=' + Date.now());
+                if (!response.ok) return;
+                const g = await response.json();
+                document.getElementById('gs-level').textContent = `Lv.${g.level} ${g.title || ''}`.trim();
+                document.getElementById('gs-xp').textContent = `${g.xp_current}/${g.xp_to_next}`;
+                document.getElementById('gs-season').textContent = `T${g.season_tier}`;
+                document.getElementById('gs-token').textContent = String(g.season_tokens ?? 0);
+                document.getElementById('gs-bond').textContent = String(g.bond ?? 0);
+                document.getElementById('gs-streak').textContent = `${g.streak ?? 0}天`;
+                document.getElementById('gs-ach').textContent = String(g.achievements ?? 0);
+                document.getElementById('gs-q').textContent = `${g.daily_done ?? 0}/${g.weekly_done ?? 0}/${g.season_done ?? 0}`;
+                document.getElementById('gs-theme').textContent = g.shop_theme || '-';
+                document.getElementById('gs-tp').textContent = String(g.talent_points ?? 0);
+                document.getElementById('gs-updated').textContent = g.updated || '-';
+            } catch (e) {
+                console.error('加载游戏系统数据失败:', e);
+            }
+        }
+
         // 初始化所有图表
         initCharts();
+        loadGameSystemData();
+        setInterval(loadGameSystemData, 30000);
+
+        // 加载自拍照
+        async function loadSelfies() {
+            try {
+                const response = await fetch('data/selfies.json');
+                const selfies = await response.json();
+                const container = document.getElementById('selfieGallery');
+                
+                selfies.forEach((selfie, index) => {
+                    const card = document.createElement('div');
+                    card.style.cssText = `
+                        background: var(--bg-card);
+                        border: 1px solid var(--border);
+                        border-radius: 16px;
+                        overflow: hidden;
+                        transition: all 0.3s;
+                    `;
+                    
+                    // 能量条颜色
+                    let energyColor = '#10b981';
+                    if (selfie.energy < 60) energyColor = '#f59e0b';
+                    if (selfie.energy < 40) energyColor = '#ef4444';
+                    
+                    card.innerHTML = `
+                        <div style="position: relative; overflow: hidden;">
+                            <img src="assets/selfies/${selfie.filename}" 
+                                 alt="${selfie.title}" 
+                                 style="width: 100%; height: 250px; object-fit: cover; display: block;"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div style="display: none; width: 100%; height: 250px; background: linear-gradient(135deg, var(--primary), var(--secondary)); align-items: center; justify-content: center; font-size: 4rem;">
+                                🥣
+                            </div>
+                            <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; color: white;">
+                                ${selfie.timestamp.split('T')[0]}
+                            </div>
+                        </div>
+                        <div style="padding: 1.25rem;">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text);">${selfie.title}</h3>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem; line-height: 1.5;">${selfie.background}</p>
+                            <div style="background: rgba(255,255,255,0.05); padding: 0.75rem; border-radius: 8px; margin-bottom: 0.75rem;">
+                                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">💭 当时的心情</div>
+                                <div style="font-size: 0.95rem; color: var(--text);">${selfie.mood}</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="font-size: 0.8rem; color: var(--text-muted);">能量:</span>
+                                <div style="flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                                    <div style="width: ${selfie.energy}%; height: 100%; background: ${energyColor}; border-radius: 3px;"></div>
+                                </div>
+                                <span style="font-size: 0.8rem; color: ${energyColor}; font-weight: 600;">${selfie.energy}%</span>
+                            </div>
+                            <div style="margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                                ${selfie.tags.map(tag => `<span style="background: rgba(99, 102, 241, 0.2); color: var(--primary); padding: 2px 10px; border-radius: 12px; font-size: 0.75rem;">#${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                    
+                    card.onmouseover = () => {
+                        card.style.transform = 'translateY(-4px)';
+                        card.style.borderColor = 'var(--primary)';
+                    };
+                    card.onmouseout = () => {
+                        card.style.transform = 'translateY(0)';
+                        card.style.borderColor = 'var(--border)';
+                    };
+                    
+                    container.appendChild(card);
+                });
+            } catch (e) {
+                console.error('加载自拍照失败:', e);
+            }
+        }
+        
+        loadSelfies();
 
         // Log functions
         function refreshLogs() {
