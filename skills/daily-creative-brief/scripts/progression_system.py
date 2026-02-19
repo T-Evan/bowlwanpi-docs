@@ -117,6 +117,48 @@ TITLE_RULES = [
     {"level": 12, "title": "成长引擎"},
 ]
 
+TALENT_TREE = {
+    "focus_training": {
+        "name": "专注训练",
+        "max_level": 5,
+        "cost": [1, 1, 2, 2, 3],
+        "effect": "每级 +1 连胜加成上限",
+    },
+    "skill_mastery": {
+        "name": "技能精通",
+        "max_level": 5,
+        "cost": [1, 1, 2, 2, 3],
+        "effect": "每级 skill 任务 +2 XP",
+    },
+    "social_sync": {
+        "name": "沟通同频",
+        "max_level": 5,
+        "cost": [1, 1, 2, 2, 3],
+        "effect": "每级 content 任务 +2 XP 且 +1 羁绊",
+    },
+}
+
+SEASON_SHOP = {
+    "xp_booster": {
+        "name": "XP 增幅芯片",
+        "cost": 8,
+        "max_count": 3,
+        "effect": "每个 +5% 任务 XP（上限 +15%）",
+    },
+    "bond_charm": {
+        "name": "羁绊挂件",
+        "cost": 6,
+        "max_count": 5,
+        "effect": "每个 +1 羁绊获取",
+    },
+    "streak_shield": {
+        "name": "连胜护盾",
+        "cost": 10,
+        "max_count": 2,
+        "effect": "保留道具（后续可接入连胜保护）",
+    },
+}
+
 
 @dataclass
 class LevelState:
@@ -185,6 +227,10 @@ class ProgressionSystem:
             "quest_points": 0,
             "bond": 0,
             "season_tier": 1,
+            "season_tokens": 0,
+            "spent_talent_points": 0,
+            "talents": {k: 0 for k in TALENT_TREE},
+            "shop_inventory": {k: 0 for k in SEASON_SHOP},
             "achievements": [],
             "quests": {
                 "daily": {"period": "", "stats": {}, "completed": []},
@@ -223,6 +269,10 @@ class ProgressionSystem:
                 "total_points": int(data.get("total_points", 0)),
                 "bond": int(data.get("bond", 0)),
                 "season_tier": int(data.get("season_tier", 1)),
+                "season_tokens": int(data.get("season_tokens", 0)),
+                "spent_talent_points": int(data.get("spent_talent_points", 0)),
+                "talents": {**defaults["talents"], **data.get("talents", {})},
+                "shop_inventory": {**defaults["shop_inventory"], **data.get("shop_inventory", {})},
             }
         )
         return data
@@ -231,11 +281,29 @@ class ProgressionSystem:
         with open(LEVEL_FILE, "w", encoding="utf-8") as f:
             json.dump(self.data, f, ensure_ascii=False, indent=2)
 
+    def _talent_level(self, talent_id: str) -> int:
+        return int(self.data.get("talents", {}).get(talent_id, 0))
+
+    def _available_talent_points(self) -> int:
+        earned = int(self.data.get("season_tier", 1)) - 1
+        spent = int(self.data.get("spent_talent_points", 0))
+        return max(0, earned - spent)
+
     def _task_xp(self, task_type: str, difficulty: str, streak: int) -> int:
         base = XP_BY_DIFFICULTY.get(difficulty, XP_BY_DIFFICULTY["普通"])
         bonus = XP_BY_TYPE_BONUS.get(task_type, 0)
-        streak_bonus = min(20, streak * 2)
-        return base + bonus + streak_bonus
+
+        if task_type == "skill":
+            bonus += self._talent_level("skill_mastery") * 2
+        if task_type == "content":
+            bonus += self._talent_level("social_sync") * 2
+
+        streak_cap = 20 + self._talent_level("focus_training")
+        streak_bonus = min(streak_cap, streak * 2)
+
+        raw = base + bonus + streak_bonus
+        booster = min(3, int(self.data.get("shop_inventory", {}).get("xp_booster", 0)))
+        return int(raw * (1 + 0.05 * booster))
 
     def _quest_stat_bump(self, stats: Dict[str, int], task_type: str, difficulty: str) -> None:
         stats["tasks"] = int(stats.get("tasks", 0)) + 1
@@ -269,17 +337,24 @@ class ProgressionSystem:
                 completed.add(qid)
                 gained += int(quest["reward_xp"])
                 self.data["quest_points"] = int(self.data.get("quest_points", 0)) + int(quest["reward_points"])
+                kind = (
+                    "daily"
+                    if quest in DAILY_QUESTS
+                    else ("weekly" if quest in WEEKLY_QUESTS else "season")
+                )
+                reward_tokens = 0
+                if kind == "season":
+                    reward_tokens = max(1, int(quest["reward_points"]) // 10)
+                    self.data["season_tokens"] = int(self.data.get("season_tokens", 0)) + reward_tokens
+
                 reward_events.append(
                     {
                         "id": qid,
                         "name": quest["name"],
                         "reward_xp": quest["reward_xp"],
                         "reward_points": quest["reward_points"],
-                        "kind": (
-                            "daily"
-                            if quest in DAILY_QUESTS
-                            else ("weekly" if quest in WEEKLY_QUESTS else "season")
-                        ),
+                        "reward_tokens": reward_tokens,
+                        "kind": kind,
                     }
                 )
 
@@ -352,6 +427,99 @@ class ProgressionSystem:
             "season": self._quest_board(season, SEASON_QUESTS),
         }
 
+    def shop_status(self) -> Dict[str, Any]:
+        inventory = self.data.get("shop_inventory", {})
+        items = []
+        for item_id, cfg in SEASON_SHOP.items():
+            items.append(
+                {
+                    "id": item_id,
+                    "name": cfg["name"],
+                    "cost": cfg["cost"],
+                    "owned": int(inventory.get(item_id, 0)),
+                    "max_count": cfg["max_count"],
+                    "effect": cfg["effect"],
+                }
+            )
+        return {
+            "season_tokens": int(self.data.get("season_tokens", 0)),
+            "items": items,
+        }
+
+    def buy_item(self, item_id: str) -> Dict[str, Any]:
+        if item_id not in SEASON_SHOP:
+            return {"ok": False, "error": f"未知商品: {item_id}"}
+
+        cfg = SEASON_SHOP[item_id]
+        inventory = self.data.setdefault("shop_inventory", {k: 0 for k in SEASON_SHOP})
+        owned = int(inventory.get(item_id, 0))
+        tokens = int(self.data.get("season_tokens", 0))
+
+        if owned >= int(cfg["max_count"]):
+            return {"ok": False, "error": "已达购买上限"}
+        if tokens < int(cfg["cost"]):
+            return {"ok": False, "error": "赛季代币不足"}
+
+        self.data["season_tokens"] = tokens - int(cfg["cost"])
+        inventory[item_id] = owned + 1
+        self._save()
+
+        return {
+            "ok": True,
+            "item": cfg["name"],
+            "owned": inventory[item_id],
+            "season_tokens": self.data["season_tokens"],
+        }
+
+    def talents_status(self) -> Dict[str, Any]:
+        talents = self.data.setdefault("talents", {k: 0 for k in TALENT_TREE})
+        rows = []
+        for talent_id, cfg in TALENT_TREE.items():
+            level = int(talents.get(talent_id, 0))
+            next_cost = cfg["cost"][level] if level < cfg["max_level"] else None
+            rows.append(
+                {
+                    "id": talent_id,
+                    "name": cfg["name"],
+                    "level": level,
+                    "max_level": cfg["max_level"],
+                    "next_cost": next_cost,
+                    "effect": cfg["effect"],
+                }
+            )
+        return {
+            "available_points": self._available_talent_points(),
+            "spent_points": int(self.data.get("spent_talent_points", 0)),
+            "talents": rows,
+        }
+
+    def upgrade_talent(self, talent_id: str) -> Dict[str, Any]:
+        if talent_id not in TALENT_TREE:
+            return {"ok": False, "error": f"未知天赋: {talent_id}"}
+
+        cfg = TALENT_TREE[talent_id]
+        talents = self.data.setdefault("talents", {k: 0 for k in TALENT_TREE})
+        level = int(talents.get(talent_id, 0))
+
+        if level >= int(cfg["max_level"]):
+            return {"ok": False, "error": "天赋已满级"}
+
+        need = int(cfg["cost"][level])
+        available = self._available_talent_points()
+        if available < need:
+            return {"ok": False, "error": f"天赋点不足，需要 {need} 点"}
+
+        talents[talent_id] = level + 1
+        self.data["spent_talent_points"] = int(self.data.get("spent_talent_points", 0)) + need
+        self._save()
+
+        return {
+            "ok": True,
+            "talent": cfg["name"],
+            "level": talents[talent_id],
+            "available_points": self._available_talent_points(),
+        }
+
     def record_task(
         self,
         description: str,
@@ -372,6 +540,9 @@ class ProgressionSystem:
 
         # Bond grows faster for communication-oriented tasks.
         bond_gain = 2 if task_type == "content" else 1
+        bond_gain += int(self.data.get("shop_inventory", {}).get("bond_charm", 0))
+        if task_type == "content":
+            bond_gain += self._talent_level("social_sync")
         self.data["bond"] = min(9999, int(self.data.get("bond", 0)) + bond_gain)
 
         quest_rewards = self._update_quests(task_type, difficulty, timestamp)
@@ -448,6 +619,8 @@ class ProgressionSystem:
         self._save()
         state = dict(self.data)
         state["quest_board"] = self.get_quest_status()
+        state["shop"] = self.shop_status()
+        state["talent_board"] = self.talents_status()
         return state
 
 
@@ -463,7 +636,16 @@ def main() -> None:
     record.add_argument("--difficulty", default="普通", choices=["简单", "普通", "困难", "史诗"])
 
     sub.add_parser("status", help="Show progression status")
-    sub.add_parser("quests", help="Show current daily/weekly quest board")
+    sub.add_parser("quests", help="Show current daily/weekly/season quest board")
+    sub.add_parser("shop", help="Show season shop")
+
+    buy = sub.add_parser("buy", help="Buy one season shop item")
+    buy.add_argument("item_id", choices=list(SEASON_SHOP.keys()))
+
+    sub.add_parser("talents", help="Show talent tree status")
+
+    up = sub.add_parser("upgrade-talent", help="Upgrade one talent")
+    up.add_argument("talent_id", choices=list(TALENT_TREE.keys()))
 
     args = parser.parse_args()
     system = ProgressionSystem()
@@ -473,6 +655,14 @@ def main() -> None:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     elif args.cmd == "quests":
         print(json.dumps(system.get_quest_status(), ensure_ascii=False, indent=2))
+    elif args.cmd == "shop":
+        print(json.dumps(system.shop_status(), ensure_ascii=False, indent=2))
+    elif args.cmd == "buy":
+        print(json.dumps(system.buy_item(args.item_id), ensure_ascii=False, indent=2))
+    elif args.cmd == "talents":
+        print(json.dumps(system.talents_status(), ensure_ascii=False, indent=2))
+    elif args.cmd == "upgrade-talent":
+        print(json.dumps(system.upgrade_talent(args.talent_id), ensure_ascii=False, indent=2))
     else:
         print(json.dumps(system.status(), ensure_ascii=False, indent=2))
 

@@ -120,7 +120,8 @@ def main() -> None:
         print("🎯 任务完成奖励：")
         for quest in result["quest_rewards"]:
             scope = {"daily": "日常", "weekly": "周常", "season": "赛季"}.get(quest.get("kind"), "任务")
-            print(f"  ✅ [{scope}] {quest['name']} (+{quest['reward_xp']} XP, +{quest['reward_points']}点)")
+            token_text = f", +{quest.get('reward_tokens', 0)}代币" if quest.get('reward_tokens', 0) else ""
+            print(f"  ✅ [{scope}] {quest['name']} (+{quest['reward_xp']} XP, +{quest['reward_points']}点{token_text})")
 
     print(
         f"🎮 当前状态: Lv.{result['level']} {result['title']} | XP: {result['exp_current']}/{result['xp_to_next']} | 连胜: {result['streak']}天"

@@ -30,6 +30,20 @@ python3 skills/daily-creative-brief/scripts/progression_system.py status
 python3 skills/daily-creative-brief/scripts/progression_system.py quests
 ```
 
+查看赛季商店与购买：
+
+```bash
+python3 skills/daily-creative-brief/scripts/progression_system.py shop
+python3 skills/daily-creative-brief/scripts/progression_system.py buy xp_booster
+```
+
+查看天赋树与升级：
+
+```bash
+python3 skills/daily-creative-brief/scripts/progression_system.py talents
+python3 skills/daily-creative-brief/scripts/progression_system.py upgrade-talent social_sync
+```
+
 ## XP 规则
 
 - 难度基础分：
@@ -64,6 +78,10 @@ python3 skills/daily-creative-brief/scripts/progression_system.py quests
 - 能力进化：当周完成 4 个 skill 任务（+70 XP, +12点）
 
 ## 赛季系统（按月）
+
+- 完成赛季任务会获得赛季代币（用于赛季商店）
+- 赛季商店当前可购买：XP 增幅芯片、羁绊挂件、连胜护盾
+- 赛季阶位越高，可用天赋点越多（每提升 1 个阶位 +1 天赋点）
 
 - 赛季周期：每自然月（例如 `2026-02`）
 - 赛季任务：
