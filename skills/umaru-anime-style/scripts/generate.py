@@ -17,14 +17,27 @@ BASE = (
 )
 
 
-def build_prompt(scene: str, mood: str, action: str) -> str:
+def build_prompt(scene: str, mood: str, action: str, mode: str, expression: str, persona: str) -> str:
     parts = [BASE]
+
+    if persona:
+        parts.append(persona)
     if mood:
         parts.append(f"{mood} expression")
+    if expression:
+        parts.append(expression)
+
+    # Mirror mode is better for full-body / outfit storytelling; direct mode for close-up emotions.
+    if mode == "mirror":
+        parts.append("mirror selfie composition, full-body anime shot, clear outfit details")
+    else:
+        parts.append("close-up direct selfie, eye contact, warm smile, not a mirror selfie")
+
     if action:
         parts.append(action)
     if scene:
         parts.append(f"in {scene}")
+
     parts.append("high quality illustration")
     return ", ".join(parts)
 
@@ -52,10 +65,16 @@ def main() -> int:
     parser.add_argument("--scene", default="a cozy gamer bedroom")
     parser.add_argument("--mood", default="playful")
     parser.add_argument("--action", default="holding a game controller")
+    parser.add_argument("--mode", choices=["mirror", "direct"], default="direct")
+    parser.add_argument("--expression", default="gentle caring expression")
+    parser.add_argument(
+        "--persona",
+        default="anime virtual girlfriend vibe, gentle, caring, cute, emotionally present",
+    )
     parser.add_argument("--output-dir", default="/root/.openclaw/workspace/tmp")
     args = parser.parse_args()
 
-    prompt = build_prompt(args.scene, args.mood, args.action)
+    prompt = build_prompt(args.scene, args.mood, args.action, args.mode, args.expression, args.persona)
     cmd = (
         "python3 /root/.openclaw/workspace/skills/beauty-generation-api/scripts/generate.py "
         f"--prompt {shlex.quote(prompt)} --output-dir {shlex.quote(args.output_dir)}"

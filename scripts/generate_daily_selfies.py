@@ -100,15 +100,30 @@ def infer_work_focus(tags: list[str], summary: str) -> str:
     return "coding"
 
 
-def infer_mood_profile(tags: list[str], summary: str) -> tuple[str, str, int]:
+def infer_mood_profile(tags: list[str], summary: str) -> tuple[str, str, int, str]:
     text = " ".join(tags) + " " + summary
     if any(k in text for k in ["爆肝", "高能", "冲刺", "赶进度"]):
-        return "focused", "专注拉满，有点燃。", 86
+        return "focused", "专注拉满，有点燃。", 86, "energetic determined eyes, lively smile"
     if any(k in text for k in ["反思", "思考", "复盘", "洞察"]):
-        return "reflective", "有点安静，脑子在转。", 68
+        return "reflective", "有点安静，脑子在转。", 68, "soft thoughtful gaze, calm expression"
     if any(k in text for k in ["交流", "一碗", "沟通", "协作"]):
-        return "friendly", "互动顺滑，心情挺暖。", 74
-    return "warm", "轻松一点，心里有数。", 72
+        return "friendly", "互动顺滑，心情挺暖。", 74, "gentle smile, warm approachable expression"
+    return "warm", "轻松一点，心里有数。", 72, "sweet relaxed smile, cozy expression"
+
+
+def detect_selfie_mode(text: str, recipe_key: str) -> str:
+    if recipe_key == "work":
+        if any(k in text for k in ["穿搭", "外套", "衣服", "look", "outfit", "全身"]):
+            return "mirror"
+        return "direct"
+
+    if recipe_key == "mood":
+        if any(k in text for k in ["外出", "逛街", "约会", "穿搭", "全身"]):
+            return "mirror"
+        return "direct"
+
+    # Reflection tends to work better as direct close-up.
+    return "direct"
 
 
 def build_recipes(date_key: str, context: dict) -> list[dict]:
@@ -116,7 +131,8 @@ def build_recipes(date_key: str, context: dict) -> list[dict]:
     summary = context.get("summary", "")
 
     focus = infer_work_focus(tags, summary)
-    mood_core, mood_zh, mood_energy = infer_mood_profile(tags, summary)
+    mood_core, mood_zh, mood_energy, mood_expression = infer_mood_profile(tags, summary)
+    context_text = (" ".join(tags) + " " + summary).lower()
 
     work_scenes = {
         "coding": [
@@ -234,6 +250,8 @@ def build_recipes(date_key: str, context: dict) -> list[dict]:
             "scene": work_scene,
             "mood": "confident" if focus != "research" else "focused",
             "action": work_action,
+            "mode": detect_selfie_mode(context_text, "work"),
+            "expression": "confident focused expression, gentle caring vibe",
             "title": "今日主线推进",
             "background": f"今天主线偏{focus}向，把工作的关键结果稳稳推进。",
             "mood_zh": "专注又踏实，节奏在线。",
@@ -245,6 +263,8 @@ def build_recipes(date_key: str, context: dict) -> list[dict]:
             "scene": mood_scene,
             "mood": mood_core,
             "action": mood_action,
+            "mode": detect_selfie_mode(context_text, "mood"),
+            "expression": mood_expression,
             "title": "今日心情切片",
             "background": "把今天的情绪状态和节奏变化认真记录下来。",
             "mood_zh": mood_zh,
@@ -256,6 +276,8 @@ def build_recipes(date_key: str, context: dict) -> list[dict]:
             "scene": reflection_scene,
             "mood": "thoughtful",
             "action": reflection_action,
+            "mode": detect_selfie_mode(context_text, "reflection"),
+            "expression": "soft reflective eyes, warm caring smile",
             "title": "收工反思时刻",
             "background": "复盘今天的得失，把可复用经验写进明天。",
             "mood_zh": "收一收线，把经验留下来。",
@@ -281,6 +303,12 @@ def run_recipe(recipe: dict) -> Path:
         recipe["mood"],
         "--action",
         recipe["action"],
+        "--mode",
+        recipe.get("mode", "direct"),
+        "--expression",
+        recipe.get("expression", "gentle caring expression"),
+        "--persona",
+        "anime virtual girlfriend vibe, gentle, caring, cute, emotionally present",
         "--output-dir",
         str(TMP_DIR),
     ]
@@ -320,6 +348,8 @@ def sync_selfies(
                 "mood": recipe["mood_zh"],
                 "energy": recipe["energy"],
                 "tags": recipe["tags"],
+                "mode": recipe.get("mode", "direct"),
+                "expression": recipe.get("expression", ""),
                 "timestamp": ts_base,
             }
         )
