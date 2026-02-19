@@ -15,6 +15,35 @@ OUT_FILE = WORKSPACE / "docs/data/diary.json"
 DATE_RE = re.compile(r"^#\s*(\d{4}-\d{2}-\d{2})")
 TIME_LINE_RE = re.compile(r"\*\*(\d{1,2}:\d{2})")
 
+NOISE_PATTERNS = [
+    "优先事项",
+    "定时任务",
+    "微博热搜",
+    "知乎热榜",
+    "B站热门",
+    "github",
+    "cron",
+    "heartbeat",
+    "提醒",
+    "咨询",
+]
+
+MEANINGFUL_HINTS = [
+    "完成",
+    "修复",
+    "新增",
+    "学习",
+    "思考",
+    "感受",
+    "反思",
+    "成长",
+    "交流",
+    "一碗",
+    "技能",
+    "经验",
+    "突破",
+]
+
 
 def load_selfies_by_date() -> dict:
     if not SELFIES_FILE.exists():
@@ -39,25 +68,46 @@ def load_selfies_by_date() -> dict:
     return by_date
 
 
-def extract_events(text: str, max_events: int = 30) -> list:
+def is_noise(line: str) -> bool:
+    low = line.lower()
+    if line.startswith("- ["):
+        return True
+    if any(p in low for p in NOISE_PATTERNS):
+        return True
+    return False
+
+
+def is_meaningful(line: str) -> bool:
+    low = line.lower()
+    return any(k in low for k in MEANINGFUL_HINTS)
+
+
+def extract_events(text: str, max_events: int = 20) -> list:
     events = []
+    seen = set()
+
     for raw in text.splitlines():
         line = raw.strip()
         if not line:
             continue
         if line.startswith("<!--") or line.startswith("---"):
             continue
+        if is_noise(line):
+            continue
 
         t = TIME_LINE_RE.search(line)
         if t:
             cleaned = re.sub(r"\*\*", "", line)
-            events.append({"time": t.group(1), "text": cleaned})
+            if cleaned not in seen:
+                events.append({"time": t.group(1), "text": cleaned})
+                seen.add(cleaned)
             continue
 
         if line.startswith("- ") or line.startswith("### "):
             cleaned = re.sub(r"^[-#\s]+", "", line)
-            if cleaned:
+            if cleaned and is_meaningful(cleaned) and cleaned not in seen:
                 events.append({"time": "", "text": cleaned})
+                seen.add(cleaned)
 
         if len(events) >= max_events:
             break
