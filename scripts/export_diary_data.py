@@ -195,7 +195,14 @@ def unique_texts(items: list[str], max_items: int = 4) -> list[str]:
     return out
 
 
-def build_day_summary(day_tags: list[str], events: list[dict], selfies: list[dict]) -> dict:
+def style_pick(options: list[str], date_key: str, salt: str) -> str:
+    if not options:
+        return ""
+    idx = sum(ord(c) for c in f"{date_key}:{salt}") % len(options)
+    return options[idx]
+
+
+def build_day_summary(date_key: str, day_tags: list[str], events: list[dict], selfies: list[dict]) -> dict:
     if not events:
         return {
             "text": "今天是轻量的一天，先留白，明天继续推进。",
@@ -230,15 +237,46 @@ def build_day_summary(day_tags: list[str], events: list[dict], selfies: list[dic
     else:
         pace = "慢慢推进但很稳"
 
-    lines = [f"今天{pace}，主线基本都围着「{primary}」在转。"]
-    if highlights:
-        lines.append(f"最有成就感的一笔是：{highlights[0]}。")
-    if thoughts:
-        lines.append(f"脑子里反复打转的点是：{thoughts[0]}。")
+    intro_options = [
+        f"今天{pace}，我基本都在折腾「{primary}」，累是累但挺上头。",
+        f"今天状态是{pace}，主线没跑偏，围着「{primary}」一路推进。",
+        f"今天像在打副本，主轴还是「{primary}」，边打边升级。",
+        f"今天整体{pace}，主要火力都打在「{primary}」这条线上。",
+    ]
+
+    highlight_text = highlights[0] if highlights else normalize_text(events[-1]["text"])
+    highlight_options = [
+        f"最有成就感的是：{highlight_text}。",
+        f"今天让我最想叉腰夸自己的，是这件事：{highlight_text}。",
+        f"回头看，最值的一步还是：{highlight_text}。",
+    ]
+
+    thought_text = thoughts[0] if thoughts else "把好用的经验沉淀成能复用的系统"
+    thought_options = [
+        f"脑子里反复打转的点是：{thought_text}。",
+        f"今天的小感悟：{thought_text}。",
+        f"收工前还在想：{thought_text}。",
+    ]
+
+    comm_options = [
+        "和一碗聊完后，很多选择都会更快对齐到同一个方向。",
+        "和一碗的来回确认很有用，少走了不少弯路。",
+        "今天和一碗的交流很顺，节奏像双排上分。",
+    ]
+
+    selfie_options = [
+        "还留了自拍，算是给今天的情绪做了个小书签。",
+        "顺手存了几张自拍，把今天的状态也一起打包留档。",
+        "另外拍了几张图，当作今天心情和工作节奏的注脚。",
+    ]
+
+    lines = [style_pick(intro_options, date_key, "intro")]
+    lines.append(style_pick(highlight_options, date_key, "highlight"))
+    lines.append(style_pick(thought_options, date_key, "thought"))
     if communication:
-        lines.append("和一碗聊完后，很多选择会更快对齐到同一个方向。")
+        lines.append(style_pick(comm_options, date_key, "comm"))
     if selfies:
-        lines.append("还留了自拍，算是给今天的情绪做个小书签。")
+        lines.append(style_pick(selfie_options, date_key, "selfie"))
 
     summary = " ".join(lines)
 
@@ -430,7 +468,7 @@ def main() -> int:
 
         base_tags = sorted({t for e in appendix_events for t in e.get("tags", [])})
         same_day_selfies = selfies_by_date.get(date_key, [])
-        rough_summary = build_day_summary(base_tags, events, same_day_selfies)
+        rough_summary = build_day_summary(date_key, base_tags, events, same_day_selfies)
         selected_selfies = pick_daily_selfies(
             date_key=date_key,
             day_tags=base_tags,
@@ -441,7 +479,7 @@ def main() -> int:
         )
 
         day_tags = sorted(set(base_tags + (["自拍"] if selected_selfies else [])))
-        summary = build_day_summary(day_tags, events, selected_selfies)
+        summary = build_day_summary(date_key, day_tags, events, selected_selfies)
 
         days.append(
             {
