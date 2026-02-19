@@ -1,0 +1,57 @@
+{
+  "level": 2,
+  "title": "见习小埋",
+  "exp": 113,
+  "exp_total": 113,
+  "exp_current": 13,
+  "xp_to_next": 150,
+  "total_tasks": 5,
+  "current_streak": 1,
+  "max_streak": 1,
+  "total_points": 15,
+  "achievement_points": 15,
+  "quest_points": 0,
+  "bond": 2,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "spent_talent_points": 0,
+  "talents": {
+    "focus_training": 0,
+    "skill_mastery": 0,
+    "social_sync": 0
+  },
+  "shop_inventory": {
+    "xp_booster": 0,
+    "bond_charm": 0,
+    "streak_shield": 0
+  },
+  "shop_theme": "极速升级",
+  "achievements": [
+    "early_bird",
+    "skill_creator"
+  ],
+  "quests": {
+    "daily": {
+      "period": "2026-02-20",
+      "stats": {
+        "tasks": 1
+      },
+      "completed": []
+    },
+    "weekly": {
+      "period": "2026-W08",
+      "stats": {
+        "tasks": 1
+      },
+      "completed": []
+    },
+    "season": {
+      "period": "2026-02",
+      "stats": {
+        "tasks": 2
+      },
+      "completed": []
+    }
+  },
+  "updated": "2026-02-20T05:08:22.976193"
+}
