@@ -122,13 +122,16 @@ def main() -> None:
             print(f"  ✅ {quest['name']} (+{quest['reward_xp']} XP, +{quest['reward_points']}点)")
 
     print(
-        f"🎮 当前状态: Lv.{result['level']} | XP: {result['exp_current']}/{result['xp_to_next']} | 连胜: {result['streak']}天"
+        f"🎮 当前状态: Lv.{result['level']} {result['title']} | XP: {result['exp_current']}/{result['xp_to_next']} | 连胜: {result['streak']}天"
     )
+    print(f"🤝 羁绊值: {result['bond']} (+{result['bond_gained']})")
     print(f"🔥 动力值: {drive:.1%}")
 
     notify_lines = []
     if result["level_up"]:
         notify_lines.append(f"🎉 升级啦！现在是 Lv.{result['level']}！")
+    if result.get("title_changed"):
+        notify_lines.append(f"👑 新称号：{result['title']}")
     for ach in result.get("new_achievements", []):
         notify_lines.append(f"🏆 解锁成就：{ach['icon']} {ach['name']} (+{ach['points']}点)")
     for quest in result.get("quest_rewards", []):
@@ -136,7 +139,7 @@ def main() -> None:
 
     if notify_lines:
         notify_lines.append(
-            f"\n当前进度：Lv.{result['level']} | XP {result['exp_current']}/{result['xp_to_next']} | 连胜 {result['streak']} 天"
+            f"\n当前进度：Lv.{result['level']} {result['title']} | XP {result['exp_current']}/{result['xp_to_next']} | 连胜 {result['streak']} 天 | 羁绊 {result['bond']}"
         )
         send_progression_notification("\n".join(notify_lines))
 

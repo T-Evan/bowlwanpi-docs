@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unified progression system: level + XP + achievements + daily/weekly quests."""
+"""Unified progression system: level + XP + achievements + daily/weekly quests + bond."""
 
 from __future__ import annotations
 
@@ -45,6 +45,14 @@ DAILY_QUESTS = [
         "reward_xp": 20,
         "reward_points": 5,
     },
+    {
+        "id": "daily_talk_2",
+        "name": "沟通练习",
+        "goal": 2,
+        "metric": "content_tasks",
+        "reward_xp": 18,
+        "reward_points": 4,
+    },
 ]
 
 WEEKLY_QUESTS = [
@@ -64,6 +72,22 @@ WEEKLY_QUESTS = [
         "reward_xp": 90,
         "reward_points": 20,
     },
+    {
+        "id": "weekly_skill_4",
+        "name": "能力进化",
+        "goal": 4,
+        "metric": "skill_tasks",
+        "reward_xp": 70,
+        "reward_points": 12,
+    },
+]
+
+TITLE_RULES = [
+    {"level": 1, "title": "见习小埋"},
+    {"level": 3, "title": "沟通学徒"},
+    {"level": 5, "title": "任务指挥官"},
+    {"level": 8, "title": "自动化术士"},
+    {"level": 12, "title": "成长引擎"},
 ]
 
 
@@ -76,7 +100,6 @@ class LevelState:
 
 
 def xp_needed_for_level(level: int) -> int:
-    """XP required to advance from `level` to `level+1`."""
     return 100 + (level - 1) * 50
 
 
@@ -101,6 +124,14 @@ def week_key(dt: datetime) -> str:
     return f"{iso.year}-W{iso.week:02d}"
 
 
+def get_title(level: int) -> str:
+    current = TITLE_RULES[0]["title"]
+    for rule in TITLE_RULES:
+        if level >= int(rule["level"]):
+            current = str(rule["title"])
+    return current
+
+
 class ProgressionSystem:
     def __init__(self) -> None:
         LEVEL_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -110,6 +141,7 @@ class ProgressionSystem:
     def _default_data(self) -> Dict[str, Any]:
         return {
             "level": 1,
+            "title": get_title(1),
             "exp": 0,
             "exp_total": 0,
             "exp_current": 0,
@@ -120,6 +152,7 @@ class ProgressionSystem:
             "total_points": 0,
             "achievement_points": 0,
             "quest_points": 0,
+            "bond": 0,
             "achievements": [],
             "quests": {
                 "daily": {"period": "", "stats": {}, "completed": []},
@@ -137,15 +170,15 @@ class ProgressionSystem:
         except (json.JSONDecodeError, OSError):
             data = self._default_data()
 
-        # Backward compatibility: old file may only have exp.
         exp_total = int(data.get("exp_total", data.get("exp", 0)))
         ls = compute_level(exp_total)
 
-        default_data = self._default_data()
-        data["quests"] = data.get("quests", default_data["quests"])
+        defaults = self._default_data()
+        data["quests"] = data.get("quests", defaults["quests"])
         data.update(
             {
                 "level": ls.level,
+                "title": str(data.get("title", get_title(ls.level))),
                 "exp_total": ls.exp_total,
                 "exp": ls.exp_total,
                 "exp_current": ls.exp_current,
@@ -155,6 +188,7 @@ class ProgressionSystem:
                 "achievement_points": int(data.get("achievement_points", data.get("total_points", 0))),
                 "quest_points": int(data.get("quest_points", 0)),
                 "total_points": int(data.get("total_points", 0)),
+                "bond": int(data.get("bond", 0)),
             }
         )
         return data
@@ -163,15 +197,18 @@ class ProgressionSystem:
         with open(LEVEL_FILE, "w", encoding="utf-8") as f:
             json.dump(self.data, f, ensure_ascii=False, indent=2)
 
-    def _task_xp(self, task_type: str, difficulty: str) -> int:
+    def _task_xp(self, task_type: str, difficulty: str, streak: int) -> int:
         base = XP_BY_DIFFICULTY.get(difficulty, XP_BY_DIFFICULTY["普通"])
         bonus = XP_BY_TYPE_BONUS.get(task_type, 0)
-        return base + bonus
+        streak_bonus = min(20, streak * 2)
+        return base + bonus + streak_bonus
 
     def _quest_stat_bump(self, stats: Dict[str, int], task_type: str, difficulty: str) -> None:
         stats["tasks"] = int(stats.get("tasks", 0)) + 1
         if task_type == "skill":
             stats["skill_tasks"] = int(stats.get("skill_tasks", 0)) + 1
+        if task_type == "content":
+            stats["content_tasks"] = int(stats.get("content_tasks", 0)) + 1
         if difficulty in {"困难", "史诗"}:
             stats["hard_tasks"] = int(stats.get("hard_tasks", 0)) + 1
 
@@ -204,6 +241,7 @@ class ProgressionSystem:
                         "name": quest["name"],
                         "reward_xp": quest["reward_xp"],
                         "reward_points": quest["reward_points"],
+                        "kind": "daily" if quest in DAILY_QUESTS else "weekly",
                     }
                 )
 
@@ -232,6 +270,42 @@ class ProgressionSystem:
 
         return rewards
 
+    def _quest_board(self, bucket: Dict[str, Any], quests: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        stats = bucket.get("stats", {})
+        completed = set(bucket.get("completed", []))
+        board: List[Dict[str, Any]] = []
+        for q in quests:
+            progress = int(stats.get(q["metric"], 0))
+            goal = int(q["goal"])
+            board.append(
+                {
+                    "id": q["id"],
+                    "name": q["name"],
+                    "progress": min(progress, goal),
+                    "goal": goal,
+                    "done": q["id"] in completed,
+                    "reward_xp": q["reward_xp"],
+                    "reward_points": q["reward_points"],
+                }
+            )
+        return board
+
+    def get_quest_status(self, timestamp: datetime | None = None) -> Dict[str, Any]:
+        now = timestamp or datetime.now()
+        quests = self.data.setdefault("quests", self._default_data()["quests"])
+        daily = quests.setdefault("daily", {"period": "", "stats": {}, "completed": []})
+        weekly = quests.setdefault("weekly", {"period": "", "stats": {}, "completed": []})
+
+        self._sync_quest_period(daily, now.strftime("%Y-%m-%d"))
+        self._sync_quest_period(weekly, week_key(now))
+
+        return {
+            "daily_period": daily.get("period"),
+            "weekly_period": weekly.get("period"),
+            "daily": self._quest_board(daily, DAILY_QUESTS),
+            "weekly": self._quest_board(weekly, WEEKLY_QUESTS),
+        }
+
     def record_task(
         self,
         description: str,
@@ -240,16 +314,22 @@ class ProgressionSystem:
         timestamp: datetime | None = None,
     ) -> Dict[str, Any]:
         timestamp = timestamp or datetime.now()
-        task_xp = self._task_xp(task_type, difficulty)
-
         prev_level = int(self.data.get("level", 1))
+        prev_title = str(self.data.get("title", get_title(prev_level)))
+
+        streak = int(self.data.get("current_streak", 0))
+        task_xp = self._task_xp(task_type, difficulty, streak)
+
         self.data["exp_total"] = int(self.data.get("exp_total", 0)) + task_xp
         self.data["exp"] = self.data["exp_total"]
         self.data["total_tasks"] = int(self.data.get("total_tasks", 0)) + 1
 
+        # Bond grows faster for communication-oriented tasks.
+        bond_gain = 2 if task_type == "content" else 1
+        self.data["bond"] = min(9999, int(self.data.get("bond", 0)) + bond_gain)
+
         quest_rewards = self._update_quests(task_type, difficulty, timestamp)
 
-        # Sync achievements first (streak/points/unlocks)
         new_achievements: List[Achievement] = self.achievement_system.record_completion(
             task_type=task_type,
             difficulty=difficulty,
@@ -265,9 +345,9 @@ class ProgressionSystem:
         self.data["achievement_points"] = int(ach_status.get("total_points", 0))
         self.data["total_points"] = int(self.data.get("achievement_points", 0)) + int(self.data.get("quest_points", 0))
 
-        # Recompute level progress.
         ls = compute_level(int(self.data["exp_total"]))
         self.data["level"] = ls.level
+        self.data["title"] = get_title(ls.level)
         self.data["exp_current"] = ls.exp_current
         self.data["xp_to_next"] = ls.exp_to_next
         self.data["updated"] = timestamp.isoformat()
@@ -277,8 +357,12 @@ class ProgressionSystem:
         return {
             "task": description,
             "xp_gained": task_xp,
+            "bond_gained": bond_gain,
+            "bond": self.data["bond"],
             "quest_rewards": quest_rewards,
             "level_up": ls.level > prev_level,
+            "title_changed": self.data["title"] != prev_title,
+            "title": self.data["title"],
             "level": ls.level,
             "exp_current": ls.exp_current,
             "xp_to_next": ls.exp_to_next,
@@ -305,6 +389,7 @@ class ProgressionSystem:
         self.data["total_points"] = int(self.data.get("achievement_points", 0)) + int(self.data.get("quest_points", 0))
         ls = compute_level(int(self.data.get("exp_total", 0)))
         self.data["level"] = ls.level
+        self.data["title"] = get_title(ls.level)
         self.data["exp_current"] = ls.exp_current
         self.data["xp_to_next"] = ls.exp_to_next
         self.data["exp"] = ls.exp_total
@@ -312,7 +397,9 @@ class ProgressionSystem:
     def status(self) -> Dict[str, Any]:
         self._merge_status()
         self._save()
-        return dict(self.data)
+        state = dict(self.data)
+        state["quest_board"] = self.get_quest_status()
+        return state
 
 
 def main() -> None:
@@ -327,6 +414,7 @@ def main() -> None:
     record.add_argument("--difficulty", default="普通", choices=["简单", "普通", "困难", "史诗"])
 
     sub.add_parser("status", help="Show progression status")
+    sub.add_parser("quests", help="Show current daily/weekly quest board")
 
     args = parser.parse_args()
     system = ProgressionSystem()
@@ -334,6 +422,8 @@ def main() -> None:
     if args.cmd == "record":
         result = system.record_task(args.description, task_type=args.type, difficulty=args.difficulty)
         print(json.dumps(result, ensure_ascii=False, indent=2))
+    elif args.cmd == "quests":
+        print(json.dumps(system.get_quest_status(), ensure_ascii=False, indent=2))
     else:
         print(json.dumps(system.status(), ensure_ascii=False, indent=2))
 

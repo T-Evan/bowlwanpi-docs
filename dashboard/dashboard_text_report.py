@@ -27,6 +27,10 @@ def load_progression_fallback():
         "achievements": [],
         "daily_completed": 0,
         "weekly_completed": 0,
+        "title": "见习小埋",
+        "bond": 0,
+        "daily_total": 3,
+        "weekly_total": 3,
     }
     if LEVEL_FILE.exists():
         try:
@@ -38,6 +42,8 @@ def load_progression_fallback():
             bowl["total_quests"] = int(data.get("total_tasks", bowl["total_quests"]))
             bowl["streak_days"] = int(data.get("current_streak", bowl["streak_days"]))
             bowl["achievements"] = data.get("achievements", bowl["achievements"])
+            bowl["title"] = data.get("title", bowl["title"])
+            bowl["bond"] = int(data.get("bond", bowl["bond"]))
             quests = data.get("quests", {})
             bowl["daily_completed"] = len(quests.get("daily", {}).get("completed", []))
             bowl["weekly_completed"] = len(quests.get("weekly", {}).get("completed", []))
@@ -130,13 +136,13 @@ CPU  {bar(cpu)} {cpu:.0f}%
 📝 今日记忆: {'✅' if memory.get('today_file_exists') else '❌'}
 📁 记忆文件: {memory.get('daily_files_count', 0)} 个
 
-🎮 **碗皮等级**  Lv.{bowl.get('level', 1)}
+🎮 **碗皮等级**  Lv.{bowl.get('level', 1)} · {bowl.get('title', '见习小埋')}
 ```
 XP: {bar(xp_percent)} {xp_value}/{xp_to_next}
 ```
-📋 任务: {bowl.get('total_quests', 0)} | 🔥 连胜: {bowl.get('streak_days', 0)} 天
+📋 任务: {bowl.get('total_quests', 0)} | 🔥 连胜: {bowl.get('streak_days', 0)} 天 | 🤝 羁绊: {bowl.get('bond', 0)}
 🏆 成就: {len(bowl.get('achievements', []))} 个
-🎯 日常/周常: {bowl.get('daily_completed', 0)}/{bowl.get('weekly_completed', 0)} 已完成
+🎯 日常: {bowl.get('daily_completed', 0)}/{bowl.get('daily_total', 3)} | 周常: {bowl.get('weekly_completed', 0)}/{bowl.get('weekly_total', 3)}
 
 💡 *每小时自动更新*
 """

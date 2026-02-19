@@ -6,7 +6,7 @@
 - 自动成就解锁
 - 自动每日任务 / 每周任务奖励
 
-- `scripts/progression_system.py`：统一管理 XP、等级、成就、连胜
+- `scripts/progression_system.py`：统一管理 XP、等级、称号、成就、连胜、羁绊、任务面板
 - `scripts/log_creation.py`：记录任务完成并自动奖励
 - `dashboard/dashboard_text_report.py`：读取真实进度并展示
 
@@ -24,6 +24,12 @@ python3 skills/daily-creative-brief/scripts/log_creation.py "完成中文热榜�
 python3 skills/daily-creative-brief/scripts/progression_system.py status
 ```
 
+查看任务面板（每日/每周进度）：
+
+```bash
+python3 skills/daily-creative-brief/scripts/progression_system.py quests
+```
+
 ## XP 规则
 
 - 难度基础分：
@@ -36,6 +42,8 @@ python3 skills/daily-creative-brief/scripts/progression_system.py status
   - auto +6
   - content +4
   - explore +3
+- 连胜加成：
+  - 每日连胜额外 +2 XP（上限 +20）
 
 ## 升级曲线
 
@@ -48,8 +56,12 @@ python3 skills/daily-creative-brief/scripts/progression_system.py status
 
 - 每日专注：当天完成 3 个任务（+25 XP, +5点）
 - 每日精进：当天完成 1 个 skill 任务（+20 XP, +5点）
+- 每日专注：当天完成 3 个任务（+25 XP, +5点）
+- 每日精进：当天完成 1 个 skill 任务（+20 XP, +5点）
+- 沟通练习：当天完成 2 个 content 任务（+18 XP, +4点）
 - 周度建设者：当周完成 10 个任务（+80 XP, +15点）
 - 周度挑战：当周完成 3 个困难/史诗任务（+90 XP, +20点）
+- 能力进化：当周完成 4 个 skill 任务（+70 XP, +12点）
 
 ## 数据文件
 
