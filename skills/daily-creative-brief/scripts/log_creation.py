@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -12,6 +13,36 @@ from progression_system import ProgressionSystem
 
 WORKSPACE = Path("/root/.openclaw/workspace")
 BRAIN_FILE = WORKSPACE / "memory/bowlwanpi-brain.json"
+DEFAULT_FEISHU_TARGET = "user:ou_a22ce6536f26dee3fec9397a9a1b87b5"
+
+
+def send_progression_notification(message: str) -> None:
+    """Push progression milestone to Feishu via OpenClaw CLI."""
+    if not message.strip():
+        return
+    try:
+        subprocess.run(
+            [
+                "openclaw",
+                "message",
+                "send",
+                "--channel",
+                "feishu",
+                "--target",
+                DEFAULT_FEISHU_TARGET,
+                "--message",
+                "-",
+            ],
+            input=message,
+            text=True,
+            cwd=str(WORKSPACE),
+            check=False,
+            timeout=15,
+            capture_output=True,
+        )
+    except (OSError, subprocess.SubprocessError):
+        # Notification failure should never block progression recording.
+        pass
 
 
 def update_brain_drive(task_description: str) -> float:
@@ -94,6 +125,20 @@ def main() -> None:
         f"🎮 当前状态: Lv.{result['level']} | XP: {result['exp_current']}/{result['xp_to_next']} | 连胜: {result['streak']}天"
     )
     print(f"🔥 动力值: {drive:.1%}")
+
+    notify_lines = []
+    if result["level_up"]:
+        notify_lines.append(f"🎉 升级啦！现在是 Lv.{result['level']}！")
+    for ach in result.get("new_achievements", []):
+        notify_lines.append(f"🏆 解锁成就：{ach['icon']} {ach['name']} (+{ach['points']}点)")
+    for quest in result.get("quest_rewards", []):
+        notify_lines.append(f"🎯 完成任务：{quest['name']} (+{quest['reward_xp']} XP)")
+
+    if notify_lines:
+        notify_lines.append(
+            f"\n当前进度：Lv.{result['level']} | XP {result['exp_current']}/{result['xp_to_next']} | 连胜 {result['streak']} 天"
+        )
+        send_progression_notification("\n".join(notify_lines))
 
 
 if __name__ == "__main__":
