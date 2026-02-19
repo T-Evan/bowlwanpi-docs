@@ -1,167 +1,155 @@
 {
-  "updated": "2026-02-19T17:34:14.320110",
+  "updated": "2026-02-20T03:00:01.265671",
   "entries": [
     {
-      "time": "17:30:01",
-      "level": "ERROR",
-      "source": "heartbeat",
-      "message": "Cron recent errors (tail): 6"
-    },
-    {
-      "time": "17:30:01",
+      "time": "02:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": ""
     },
     {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking services..."
-    },
-    {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "OpenClaw Gateway: OK"
-    },
-    {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Mihomo Proxy: OK"
-    },
-    {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Cron Service: OK"
-    },
-    {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": ""
-    },
-    {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Generating health report..."
-    },
-    {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Health report saved: /root/.openclaw/workspace/health-checks/heartbeat_2026-02-19.md"
-    },
-    {
-      "time": "17:30:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": ""
-    },
-    {
-      "time": "17:30:01",
+      "time": "02:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check completed ==="
     },
     {
-      "time": "17:30:01",
+      "time": "02:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": ""
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": ""
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "================================"
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "💓 Heartbeat Monitor v2.0"
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "================================"
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": ""
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "=== Heartbeat check started ==="
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Checking Gateway..."
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Gateway: OK (process running)"
+    },
+    {
+      "time": "03:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Checking Mihomo..."
+    },
+    {
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;34m[DATA]\u001b[0m 技能趋势: 53,54,55,56,57,58,59"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;34m[DATA]\u001b[0m 能量趋势: 63,71,70,69,77,76,75"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 🌐 更新网站 HTML 内容..."
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m ✅ HTML 统计数据已更新"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 时间戳更新验证通过"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 🚀 部署网站到 GitHub Pages..."
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 网站部署成功!"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 🔗 https://t-evan.github.io/bowlwanpi-docs/"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 📄 今日记忆文件已存在: 2026-02-19.md"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "📊 统计: 59 技能 | 21 任务 | 21328 向量"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "🔗 网站: https://t-evan.github.io/bowlwanpi-docs/"
     },
     {
-      "time": "17:34:14",
+      "time": "03:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "══════════════════════════════════════════"
-    },
-    {
-      "time": "9.484470",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "0.828741",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
     },
     {
       "time": "7.720880",
@@ -240,6 +228,18 @@
       "level": "INFO",
       "source": "news",
       "message": "发现 3 条新新闻（并行版）"
+    },
+    {
+      "time": "3.294193",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 4 条新新闻（并行版）"
+    },
+    {
+      "time": "3.537868",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 5 条新新闻（并行版）"
     }
   ]
 }

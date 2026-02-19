@@ -169,7 +169,7 @@
       "Heartbeat/Telegram: strip configured `responsePrefix` before heartbeat ack detection (with boundary-safe matching) so prefixed `HEARTBEAT_OK` replies are correctly suppressed instead of leaking into DMs. (#18602)"
     ],
     "published": "2026-02-18",
-    "fetched_at": "2026-02-18T22:18:04.955599+00:00"
+    "fetched_at": "2026-02-19T16:18:03.732066+00:00"
   },
   "code-yeongyu/oh-my-opencode": {
     "version": "v3.7.4",
@@ -228,7 +228,7 @@
       "fix(readme): swap installation instructions for international languages"
     ],
     "published": "2026-02-18",
-    "fetched_at": "2026-02-18T22:18:05.519302+00:00"
+    "fetched_at": "2026-02-19T16:18:04.723856+00:00"
   },
   "anomalyco/opencode": {
     "version": "v1.2.6",
@@ -272,7 +272,7 @@
       "feat(opencode): add `dfmt` formatter support for D language files (#13867)"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-18T22:18:06.253278+00:00"
+    "fetched_at": "2026-02-19T16:18:05.461446+00:00"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -294,7 +294,7 @@
       "Update README.md ([#300](https://github.com/NevaMind-AI/memU/issues/300)) ([1075d7c](https://github.com/NevaMind-AI/memU/commit/1075d7c9ec3a272846c9fdb8c22ec58ff73cf6e7))"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-18T22:18:06.898566+00:00"
+    "fetched_at": "2026-02-19T16:18:06.113069+00:00"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [
@@ -334,5 +334,13 @@
       "details": "code-yeongyu/oh-my-opencode: v3.5.0 → v3.5.1; anomalyco/opencode: v1.1.55 → v1.1.56"
     }
   ],
-  "last_push_signature": "{\"projects\": [{\"name\": \"affaan-m/everything-claude-code\", \"stars\": 47886}, {\"name\": \"nextlevelbuilder/ui-ux-pro-max-skill\", \"stars\": 32507}, {\"name\": \"code-yeongyu/oh-my-opencode\", \"stars\": 32163}, {\"name\": \"zai-org/Open-AutoGLM\", \"stars\": 23504}, {\"name\": \"toon-format/toon\", \"stars\": 22687}], \"snapshot\": [{\"name\": \"OpenClaw\", \"published\": \"2026-02-18\", \"version\": \"v2026.2.17\"}, {\"name\": \"Oh My OpenCode\", \"published\": \"2026-02-18\", \"version\": \"v3.7.4\"}, {\"name\": \"OpenCode 桌面版\", \"published\": \"2026-02-16\", \"version\": \"v1.2.6\"}, {\"name\": \"memU 记忆系统\", \"published\": \"2026-02-06\", \"version\": \"v1.4.0\"}]}"
+  "last_push_signature": "{\"projects\": [{\"name\": \"affaan-m/everything-claude-code\", \"stars\": 48280}, {\"name\": \"nextlevelbuilder/ui-ux-pro-max-skill\", \"stars\": 32721}, {\"name\": \"code-yeongyu/oh-my-opencode\", \"stars\": 32296}, {\"name\": \"zai-org/Open-AutoGLM\", \"stars\": 23521}, {\"name\": \"toon-format/toon\", \"stars\": 22705}], \"snapshot\": [{\"name\": \"OpenClaw\", \"published\": \"2026-02-18\", \"version\": \"v2026.2.17\"}, {\"name\": \"Oh My OpenCode\", \"published\": \"2026-02-18\", \"version\": \"v3.7.4\"}, {\"name\": \"OpenCode 桌面版\", \"published\": \"2026-02-16\", \"version\": \"v1.2.6\"}, {\"name\": \"memU 记忆系统\", \"published\": \"2026-02-06\", \"version\": \"v1.4.0\"}, {\"name\": \"Evolver 自进化系统\", \"published\": \"2026-02-19\", \"version\": \"v1.14.0\"}]}",
+  "autogame-17/evolver": {
+    "version": "v1.14.0",
+    "changes": [
+      "暂无详细更新内容"
+    ],
+    "published": "2026-02-19",
+    "fetched_at": "2026-02-19T16:18:06.705969+00:00"
+  }
 }

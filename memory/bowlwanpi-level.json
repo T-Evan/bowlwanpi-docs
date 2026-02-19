@@ -1,29 +1,80 @@
 {
-  "level": 1,
-  "exp": 85,
-  "total_tasks": 4,
+  "level": 6,
+  "exp": 1142,
+  "total_tasks": 25,
   "achievements": [
-    "skill_creator"
+    "count_10",
+    "early_bird",
+    "hard_worker",
+    "night_owl",
+    "skill_creator",
+    "type_auto",
+    "type_content",
+    "type_skill"
   ],
-  "updated": "2026-02-14T12:01:57.000000",
-  "exp_total": 85,
-  "exp_current": 85,
-  "xp_to_next": 100,
-  "current_streak": 1,
-  "max_streak": 1,
-  "total_points": 0,
+  "updated": "2026-02-20T02:08:43.939881",
+  "exp_total": 1142,
+  "exp_current": 142,
+  "xp_to_next": 350,
+  "current_streak": 2,
+  "max_streak": 2,
+  "total_points": 205,
   "quests": {
     "daily": {
-      "period": "",
-      "stats": {},
-      "completed": []
+      "period": "2026-02-20",
+      "stats": {
+        "tasks": 8,
+        "skill_tasks": 3,
+        "content_tasks": 2,
+        "hard_tasks": 2
+      },
+      "completed": [
+        "daily_focus_3",
+        "daily_skill_1",
+        "daily_talk_2"
+      ]
     },
     "weekly": {
-      "period": "",
-      "stats": {},
+      "period": "2026-W08",
+      "stats": {
+        "tasks": 21,
+        "content_tasks": 6,
+        "hard_tasks": 6,
+        "skill_tasks": 7
+      },
+      "completed": [
+        "weekly_builder_10",
+        "weekly_hard_3",
+        "weekly_skill_4"
+      ]
+    },
+    "season": {
+      "period": "2026-02",
+      "stats": {
+        "tasks": 21,
+        "content_tasks": 6,
+        "hard_tasks": 6,
+        "skill_tasks": 7
+      },
       "completed": []
     }
   },
-  "achievement_points": 0,
-  "quest_points": 0
+  "achievement_points": 130,
+  "quest_points": 75,
+  "title": "任务指挥官",
+  "bond": 27,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "spent_talent_points": 0,
+  "talents": {
+    "focus_training": 0,
+    "skill_mastery": 0,
+    "social_sync": 0
+  },
+  "shop_inventory": {
+    "xp_booster": 0,
+    "bond_charm": 0,
+    "streak_shield": 0
+  },
+  "shop_theme": "极速升级"
 }

@@ -1,48 +1,814 @@
 [
   {
-    "filename": "daily_20260219_1_umaru_20260219-203621_m-confident_s-a-creative-desk-with-game-ui_a-typing-while-reviewing-daily.webp",
+    "filename": "daily_20260219_1_umaru_20260219-212834_m-confident_s-a-web-design-workspace-with-_a-fine-tuning-page-layout-and-.webp",
     "title": "今日主线推进",
-    "background": "把当天工作的主线沉淀成可复用成果。",
+    "background": "今天主线偏web向，把工作的关键结果稳稳推进。",
     "mood": "专注又踏实，节奏在线。",
     "energy": 82,
     "tags": [
+      "web",
       "交流",
       "工作",
       "思考",
       "成长",
       "技能"
     ],
-    "timestamp": "2026-02-19T20:36:31"
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-19T21:40:00"
   },
   {
-    "filename": "daily_20260219_2_umaru_20260219-203627_m-friendly_s-a-cozy-room-with-soft-light-_a-taking-a-short-break-and-smi.webp",
+    "filename": "daily_20260219_2_umaru_20260219-212838_m-reflective_s-a-cozy-beanbag-nook-with-fai_a-taking-a-short-break-and-bre.webp",
     "title": "今日心情切片",
-    "background": "把今天的情绪状态也认真记录下来。",
-    "mood": "轻松一点，心里有数。",
-    "energy": 74,
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
     "tags": [
       "交流",
       "心情",
       "思考",
       "成长",
+      "技能",
       "自拍",
       "记录"
     ],
-    "timestamp": "2026-02-19T20:36:31"
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-19T21:40:00"
   },
   {
-    "filename": "daily_20260219_3_umaru_20260219-203631_m-thoughtful_s-a-night-desk-with-notebook-t_a-writing-daily-reflection-not.webp",
+    "filename": "daily_20260219_3_umaru_20260219-212843_m-thoughtful_s-a-reading-corner-with-paper-_a-closing-the-day-with-a-short.webp",
     "title": "收工反思时刻",
-    "background": "复盘今天学到的经验和和一碗的沟通收获。",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
     "mood": "收一收线，把经验留下来。",
-    "energy": 66,
+    "energy": 64,
     "tags": [
       "交流",
       "反思",
       "思考",
       "总结",
-      "成长"
+      "成长",
+      "技能"
     ],
-    "timestamp": "2026-02-19T20:36:31"
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-19T21:40:00"
+  },
+  {
+    "filename": "daily_20260218_1_umaru_20260219-212712_m-focused_s-a-thinking-corner-with-white_a-connecting-notes-into-a-clea.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏research向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "research",
+      "交流",
+      "工作",
+      "思考",
+      "成长",
+      "技能"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-18T21:40:00"
+  },
+  {
+    "filename": "daily_20260218_2_umaru_20260219-212716_m-reflective_s-a-quiet-cafe-table-with-warm_a-stretching-and-checking-toda.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
+    "tags": [
+      "交流",
+      "心情",
+      "思考",
+      "成长",
+      "技能",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-18T21:40:00"
+  },
+  {
+    "filename": "daily_20260218_3_umaru_20260219-212720_m-thoughtful_s-a-minimalist-room-with-refle_a-archiving-wins-and-lessons-i.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "思考",
+      "总结",
+      "成长",
+      "技能"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-18T21:40:00"
+  },
+  {
+    "filename": "daily_20260217_1_umaru_20260219-212701_m-focused_s-a-quiet-research-desk-with-n_a-connecting-notes-into-a-clea.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏research向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "research",
+      "交流",
+      "工作",
+      "思考",
+      "成长",
+      "技能"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-17T21:40:00"
+  },
+  {
+    "filename": "daily_20260217_2_umaru_20260219-212705_m-reflective_s-a-rainy-window-seat-with-war_a-pausing-for-a-soft-reset-bef.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
+    "tags": [
+      "交流",
+      "心情",
+      "思考",
+      "成长",
+      "技能",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-17T21:40:00"
+  },
+  {
+    "filename": "daily_20260217_3_umaru_20260219-212709_m-thoughtful_s-a-minimalist-room-with-refle_a-archiving-wins-and-lessons-i.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "思考",
+      "总结",
+      "成长",
+      "技能"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-17T21:40:00"
+  },
+  {
+    "filename": "daily_20260216_1_umaru_20260219-212649_m-confident_s-a-late-night-workstation-wit_a-refining-toolchain-details-a.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏coding向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "coding",
+      "交流",
+      "工作",
+      "成长",
+      "技能",
+      "突破"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-16T21:40:00"
+  },
+  {
+    "filename": "daily_20260216_2_umaru_20260219-212653_m-friendly_s-a-sunny-balcony-corner-with-_a-listening-to-calm-music-and-.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "互动顺滑，心情挺暖。",
+    "energy": 74,
+    "tags": [
+      "交流",
+      "心情",
+      "成长",
+      "技能",
+      "突破",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "gentle smile, warm approachable expression",
+    "timestamp": "2026-02-16T21:40:00"
+  },
+  {
+    "filename": "daily_20260216_3_umaru_20260219-212657_m-thoughtful_s-a-moonlit-workstation-with-d_a-closing-the-day-with-a-short.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "总结",
+      "成长",
+      "技能",
+      "突破"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-16T21:40:00"
+  },
+  {
+    "filename": "daily_20260215_1_umaru_20260219-212638_m-confident_s-a-gamification-planning-wall_a-organizing-quest-flow-and-ba.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏game向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "game",
+      "工作",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-15T21:40:00"
+  },
+  {
+    "filename": "daily_20260215_2_umaru_20260219-212642_m-warm_s-a-sunny-balcony-corner-with-_a-taking-a-short-break-and-bre.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "轻松一点，心里有数。",
+    "energy": 72,
+    "tags": [
+      "心情",
+      "成长",
+      "突破",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "sweet relaxed smile, cozy expression",
+    "timestamp": "2026-02-15T21:40:00"
+  },
+  {
+    "filename": "daily_20260215_3_umaru_20260219-212646_m-thoughtful_s-a-night-desk-with-open-noteb_a-writing-daily-reflection-not.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "反思",
+      "总结",
+      "成长",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-15T21:40:00"
+  },
+  {
+    "filename": "daily_20260214_1_umaru_20260219-212627_m-confident_s-a-laptop-workspace-in-a-cafe_a-merging-ideas-into-a-stable-.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏coding向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "coding",
+      "工作",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-14T21:40:00"
+  },
+  {
+    "filename": "daily_20260214_2_umaru_20260219-212631_m-reflective_s-a-quiet-cafe-table-with-warm_a-stretching-and-checking-toda.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
+    "tags": [
+      "心情",
+      "技能",
+      "突破",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-14T21:40:00"
+  },
+  {
+    "filename": "daily_20260214_3_umaru_20260219-212634_m-thoughtful_s-a-moonlit-workstation-with-d_a-closing-the-day-with-a-short.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "反思",
+      "总结",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-14T21:40:00"
+  },
+  {
+    "filename": "daily_20260213_1_umaru_20260219-212615_m-confident_s-a-gamification-planning-wall_a-mapping-daily-tasks-to-xp-an.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏game向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "game",
+      "工作",
+      "成长",
+      "技能",
+      "日记",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-13T21:40:00"
+  },
+  {
+    "filename": "daily_20260213_2_umaru_20260219-212619_m-warm_s-a-quiet-cafe-table-with-warm_a-stretching-and-checking-toda.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "轻松一点，心里有数。",
+    "energy": 72,
+    "tags": [
+      "心情",
+      "技能",
+      "日记",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "sweet relaxed smile, cozy expression",
+    "timestamp": "2026-02-13T21:40:00"
+  },
+  {
+    "filename": "daily_20260213_3_umaru_20260219-212623_m-thoughtful_s-a-wooden-desk-with-tea-steam_a-writing-daily-reflection-not.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "反思",
+      "总结",
+      "成长",
+      "技能",
+      "日记",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-13T21:40:00"
+  },
+  {
+    "filename": "daily_20260212_1_umaru_20260219-212604_m-focused_s-a-study-room-with-books-stic_a-summarizing-insights-and-mar.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏research向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "research",
+      "工作",
+      "成长",
+      "技能",
+      "自拍",
+      "进化"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-12T21:40:00"
+  },
+  {
+    "filename": "daily_20260212_2_umaru_20260219-212608_m-warm_s-a-sunny-balcony-corner-with-_a-taking-a-short-break-and-bre.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "轻松一点，心里有数。",
+    "energy": 72,
+    "tags": [
+      "心情",
+      "成长",
+      "自拍",
+      "记录",
+      "进化"
+    ],
+    "mode": "direct",
+    "expression": "sweet relaxed smile, cozy expression",
+    "timestamp": "2026-02-12T21:40:00"
+  },
+  {
+    "filename": "daily_20260212_3_umaru_20260219-212612_m-thoughtful_s-a-wooden-desk-with-tea-steam_a-closing-the-day-with-a-short.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "反思",
+      "总结",
+      "成长",
+      "自拍",
+      "进化"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-12T21:40:00"
+  },
+  {
+    "filename": "daily_20260211_1_umaru_20260219-212552_m-focused_s-a-quiet-research-desk-with-n_a-linking-observations-to-prac.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏research向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "research",
+      "交流",
+      "工作",
+      "思考",
+      "成长",
+      "技能",
+      "日记"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-11T21:40:00"
+  },
+  {
+    "filename": "daily_20260211_2_umaru_20260219-212556_m-reflective_s-a-quiet-cafe-table-with-warm_a-stretching-and-checking-toda.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
+    "tags": [
+      "交流",
+      "心情",
+      "思考",
+      "技能",
+      "日记",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-11T21:40:00"
+  },
+  {
+    "filename": "daily_20260211_3_umaru_20260219-212600_m-thoughtful_s-a-minimalist-room-with-refle_a-closing-the-day-with-a-short.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "思考",
+      "总结",
+      "成长",
+      "技能",
+      "日记"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-11T21:40:00"
+  },
+  {
+    "filename": "daily_20260210_1_umaru_20260219-212540_m-confident_s-a-standing-desk-with-multipl_a-checking-integration-logs-an.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏coding向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "coding",
+      "交流",
+      "工作",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-10T21:40:00"
+  },
+  {
+    "filename": "daily_20260210_2_umaru_20260219-212545_m-friendly_s-a-quiet-cafe-table-with-warm_a-pausing-for-a-soft-reset-bef.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "互动顺滑，心情挺暖。",
+    "energy": 74,
+    "tags": [
+      "交流",
+      "心情",
+      "技能",
+      "突破",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "gentle smile, warm approachable expression",
+    "timestamp": "2026-02-10T21:40:00"
+  },
+  {
+    "filename": "daily_20260210_3_umaru_20260219-212548_m-thoughtful_s-a-wooden-desk-with-tea-steam_a-reviewing-today-s-interactio.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "总结",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-10T21:40:00"
+  },
+  {
+    "filename": "daily_20260209_1_umaru_20260219-212528_m-confident_s-a-minimal-home-office-with-a_a-merging-ideas-into-a-stable-.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏coding向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "coding",
+      "工作",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-09T21:40:00"
+  },
+  {
+    "filename": "daily_20260209_2_umaru_20260219-212532_m-warm_s-a-city-night-window-desk-wit_a-pausing-for-a-soft-reset-bef.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "轻松一点，心里有数。",
+    "energy": 72,
+    "tags": [
+      "心情",
+      "技能",
+      "突破",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "sweet relaxed smile, cozy expression",
+    "timestamp": "2026-02-09T21:40:00"
+  },
+  {
+    "filename": "daily_20260209_3_umaru_20260219-212537_m-thoughtful_s-a-reading-corner-with-paper-_a-writing-daily-reflection-not.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "反思",
+      "总结",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-09T21:40:00"
+  },
+  {
+    "filename": "daily_20260208_1_umaru_20260219-212516_m-confident_s-a-neon-lit-setup-with-season_a-tuning-game-loop-details-for.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏game向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "game",
+      "交流",
+      "工作",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-08T21:40:00"
+  },
+  {
+    "filename": "daily_20260208_2_umaru_20260219-212520_m-reflective_s-a-cozy-beanbag-nook-with-fai_a-leaning-back-with-a-small-sm.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
+    "tags": [
+      "交流",
+      "心情",
+      "技能",
+      "突破",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-08T21:40:00"
+  },
+  {
+    "filename": "daily_20260208_3_umaru_20260219-212524_m-thoughtful_s-a-night-desk-with-open-noteb_a-archiving-wins-and-lessons-i.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "总结",
+      "成长",
+      "技能",
+      "突破",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-08T21:40:00"
+  },
+  {
+    "filename": "daily_20260207_1_umaru_20260219-212502_m-focused_s-a-quiet-research-desk-with-n_a-connecting-notes-into-a-clea.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏research向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "research",
+      "交流",
+      "工作",
+      "思考",
+      "成长",
+      "技能"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-07T21:40:00"
+  },
+  {
+    "filename": "daily_20260207_2_umaru_20260219-212507_m-reflective_s-a-rainy-window-seat-with-war_a-listening-to-calm-music-and-.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
+    "tags": [
+      "交流",
+      "心情",
+      "思考",
+      "成长",
+      "技能",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-07T21:40:00"
+  },
+  {
+    "filename": "daily_20260207_3_umaru_20260219-212511_m-thoughtful_s-a-night-desk-with-open-noteb_a-archiving-wins-and-lessons-i.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "思考",
+      "总结",
+      "成长",
+      "技能"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-07T21:40:00"
+  },
+  {
+    "filename": "daily_20260206_1_umaru_20260219-212450_m-confident_s-a-neon-lit-setup-with-season_a-updating-season-progress-boa.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏game向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "game",
+      "交流",
+      "工作",
+      "思考",
+      "成长",
+      "技能",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-06T21:40:00"
+  },
+  {
+    "filename": "daily_20260206_2_umaru_20260219-212454_m-reflective_s-a-cozy-beanbag-nook-with-fai_a-listening-to-calm-music-and-.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "有点安静，脑子在转。",
+    "energy": 68,
+    "tags": [
+      "交流",
+      "心情",
+      "思考",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "soft thoughtful gaze, calm expression",
+    "timestamp": "2026-02-06T21:40:00"
+  },
+  {
+    "filename": "daily_20260206_3_umaru_20260219-212458_m-thoughtful_s-a-moonlit-workstation-with-d_a-writing-daily-reflection-not.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "思考",
+      "总结",
+      "成长",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-06T21:40:00"
+  },
+  {
+    "filename": "daily_20260205_1_umaru_20260219-212437_m-confident_s-a-laptop-workspace-in-a-cafe_a-typing-while-reviewing-bug-f.webp",
+    "title": "今日主线推进",
+    "background": "今天主线偏coding向，把工作的关键结果稳稳推进。",
+    "mood": "专注又踏实，节奏在线。",
+    "energy": 82,
+    "tags": [
+      "coding",
+      "交流",
+      "工作",
+      "成长",
+      "技能",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "confident focused expression, gentle caring vibe",
+    "timestamp": "2026-02-05T21:40:00"
+  },
+  {
+    "filename": "daily_20260205_2_umaru_20260219-212441_m-friendly_s-a-sunny-balcony-corner-with-_a-pausing-for-a-soft-reset-bef.webp",
+    "title": "今日心情切片",
+    "background": "把今天的情绪状态和节奏变化认真记录下来。",
+    "mood": "互动顺滑，心情挺暖。",
+    "energy": 74,
+    "tags": [
+      "交流",
+      "心情",
+      "自拍",
+      "记录"
+    ],
+    "mode": "direct",
+    "expression": "gentle smile, warm approachable expression",
+    "timestamp": "2026-02-05T21:40:00"
+  },
+  {
+    "filename": "daily_20260205_3_umaru_20260219-212446_m-thoughtful_s-a-moonlit-workstation-with-d_a-writing-daily-reflection-not.webp",
+    "title": "收工反思时刻",
+    "background": "复盘今天的得失，把可复用经验写进明天。",
+    "mood": "收一收线，把经验留下来。",
+    "energy": 64,
+    "tags": [
+      "交流",
+      "反思",
+      "总结",
+      "成长",
+      "自拍"
+    ],
+    "mode": "direct",
+    "expression": "soft reflective eyes, warm caring smile",
+    "timestamp": "2026-02-05T21:40:00"
   }
 ]

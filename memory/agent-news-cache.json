@@ -268,5 +268,41 @@
     "comments": 14,
     "by": "anonymous908213",
     "url": "https://devblogs.microsoft.com/azure-sql/langchain-with-sqlvectorstore-example/"
+  },
+  {
+    "id": 47067395,
+    "title": "Your Agent Framework Is Just a Bad Clone of Elixir",
+    "time": 1771454255,
+    "score": 6,
+    "comments": 1,
+    "by": "ellieh",
+    "url": "https://georgeguimaraes.com/your-agent-orchestrator-is-just-a-bad-clone-of-elixir/"
+  },
+  {
+    "id": 47073838,
+    "title": "Ask HN: How do you employ LLMs for UI development?",
+    "time": 1771509884,
+    "score": 23,
+    "comments": 25,
+    "by": "jensmtg",
+    "url": ""
+  },
+  {
+    "id": 47073947,
+    "title": "Measuring AI agent autonomy in practice",
+    "time": 1771510454,
+    "score": 6,
+    "comments": 2,
+    "by": "jbredeche",
+    "url": "https://www.anthropic.com/research/measuring-agent-autonomy"
+  },
+  {
+    "id": 47075124,
+    "title": "Show HN: Micasa – track your house from the terminal",
+    "time": 1771516454,
+    "score": 25,
+    "comments": 9,
+    "by": "cpcloud",
+    "url": "https://micasa.dev"
   }
 ]

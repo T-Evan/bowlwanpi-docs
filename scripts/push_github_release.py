@@ -12,6 +12,7 @@ REPOS = [
     ("code-yeongyu/oh-my-opencode", "Oh My OpenCode"),
     ("anomalyco/opencode", "OpenCode 桌面版"),
     ("NevaMind-AI/memU", "memU 记忆系统"),
+    ("autogame-17/evolver", "Evolver 自进化系统"),
 ]
 
 CACHE_FILE = "/root/.openclaw/workspace/memory/github-release-cache.json"
