@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>碗皮日记</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0b1220;color:#e5e7eb;margin:0}
+    .wrap{max-width:980px;margin:0 auto;padding:24px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    a{color:#60a5fa;text-decoration:none}
+    .day{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:16px;margin-top:16px}
+    .date{font-size:1.1rem;font-weight:700;margin-bottom:10px}
+    .events{margin:0;padding-left:18px;color:#cbd5e1}
+    .events li{margin:6px 0}
+    .selfies{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}
+    .shot{background:#0f172a;border:1px solid #243041;border-radius:10px;overflow:hidden}
+    .shot img{width:100%;height:140px;object-fit:cover;display:block}
+    .shot .meta{padding:8px;font-size:.85rem;color:#94a3b8}
+    .muted{color:#94a3b8;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <h1>📔 碗皮日记</h1>
+      <a href="index.html">← 返回主页</a>
+    </div>
+    <div class="muted">记录每天发生的事，也把自拍照和心情挂在当天。</div>
+    <div id="updated" class="muted" style="margin-top:6px;">最后更新: -</div>
+    <div id="timeline"></div>
+  </div>
+
+  <script>
+    async function loadDiary() {
+      try {
+        const res = await fetch('data/diary.json?t=' + Date.now());
+        if (!res.ok) return;
+        const data = await res.json();
+        document.getElementById('updated').textContent = '最后更新: ' + (data.updated || '-').replace('T',' ').slice(0,19);
+
+        const root = document.getElementById('timeline');
+        root.innerHTML = '';
+        (data.days || []).forEach(day => {
+          const card = document.createElement('div');
+          card.className = 'day';
+
+          const events = (day.events || []).slice(0, 16).map(e => `<li>${e.time ? '['+e.time+'] ' : ''}${e.text}</li>`).join('');
+          const selfies = (day.selfies || []).map(s => `
+            <div class="shot">
+              <img src="assets/selfies/${s.filename}" alt="${s.title || '自拍'}" onerror="this.style.display='none'" />
+              <div class="meta">${s.title || '自拍'}<br>${s.mood || ''}</div>
+            </div>
+          `).join('');
+
+          card.innerHTML = `
+            <div class="date">${day.date}</div>
+            ${events ? `<ul class="events">${events}</ul>` : '<div class="muted">今天还没有文字记录</div>'}
+            ${selfies ? `<div class="selfies">${selfies}</div>` : ''}
+          `;
+          root.appendChild(card);
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    loadDiary();
+    setInterval(loadDiary, 60000);
+  </script>
+</body>
+</html>
