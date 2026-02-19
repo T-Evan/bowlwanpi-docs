@@ -9,15 +9,27 @@
     .wrap{max-width:980px;margin:0 auto;padding:24px}
     .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
     a{color:#60a5fa;text-decoration:none}
+    .muted{color:#94a3b8;font-size:.9rem}
+
+    .filter{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+    .filter button{cursor:pointer;border:1px solid #334155;background:#0f172a;color:#cbd5e1;border-radius:999px;padding:6px 10px;font-size:.85rem}
+    .filter button.active{background:#60a5fa;border-color:#60a5fa;color:#0b1220}
+
     .day{background:#111827;border:1px solid #1f2937;border-radius:14px;padding:16px;margin-top:16px}
-    .date{font-size:1.1rem;font-weight:700;margin-bottom:10px}
+    .date{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+
+    .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .tag{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;border:1px solid #334155;background:#0f172a;color:#cbd5e1;font-size:.75rem}
+
     .events{margin:0;padding-left:18px;color:#cbd5e1}
-    .events li{margin:6px 0}
+    .events li{margin:10px 0}
+    .event-main{line-height:1.4}
+    .event-time{color:#93c5fd;margin-right:6px;font-variant-numeric:tabular-nums}
+
     .selfies{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}
     .shot{background:#0f172a;border:1px solid #243041;border-radius:10px;overflow:hidden}
     .shot img{width:100%;height:140px;object-fit:cover;display:block}
     .shot .meta{padding:8px;font-size:.85rem;color:#94a3b8}
-    .muted{color:#94a3b8;font-size:.9rem}
   </style>
 </head>
 <body>
@@ -26,40 +38,127 @@
       <h1>📔 碗皮日记</h1>
       <a href="index.html">← 返回主页</a>
     </div>
-    <div class="muted">记录每天发生的事，也把自拍照和心情挂在当天。</div>
+
+    <div class="muted">只记录有意义的成长：技能经验 / 思考想法 / 和一碗的交流 / 关键突破。自拍会挂在当天。</div>
     <div id="updated" class="muted" style="margin-top:6px;">最后更新: -</div>
+    <div id="filters" class="filter"></div>
+
     <div id="timeline"></div>
   </div>
 
   <script>
+    let ACTIVE_TAG = '';
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function collectTags(data) {
+      const set = new Set();
+      (data.days || []).forEach(day => {
+        (day.tags || []).forEach(t => set.add(t));
+        (day.events || []).forEach(e => (e.tags || []).forEach(t => set.add(t)));
+        if ((day.selfies || []).length) set.add('自拍');
+      });
+      return Array.from(set);
+    }
+
+    function sortTags(tags) {
+      const preferred = ['成长','技能','思考','交流','突破','进化','游戏系统','网站','日记','自拍'];
+      const idx = new Map(preferred.map((t, i) => [t, i]));
+      return tags.slice().sort((a, b) => {
+        const ia = idx.has(a) ? idx.get(a) : 999;
+        const ib = idx.has(b) ? idx.get(b) : 999;
+        if (ia !== ib) return ia - ib;
+        return a.localeCompare(b, 'zh');
+      });
+    }
+
+    function renderFilters(tags) {
+      const root = document.getElementById('filters');
+      root.innerHTML = '';
+
+      function makeBtn(label, tagValue) {
+        const btn = document.createElement('button');
+        btn.textContent = label;
+        btn.className = (ACTIVE_TAG === tagValue) ? 'active' : '';
+        btn.addEventListener('click', () => {
+          ACTIVE_TAG = tagValue;
+          loadDiary();
+        });
+        return btn;
+      }
+
+      root.appendChild(makeBtn('全部', ''));
+      tags.forEach(t => root.appendChild(makeBtn(t, t)));
+    }
+
+    function renderTimeline(data) {
+      const root = document.getElementById('timeline');
+      root.innerHTML = '';
+
+      (data.days || []).forEach(day => {
+        const card = document.createElement('div');
+        card.className = 'day';
+
+        const dayTags = (day.tags || []).slice();
+        if ((day.selfies || []).length && !dayTags.includes('自拍')) dayTags.push('自拍');
+
+        const dayTagsHtml = dayTags.length
+          ? `<div class="tag-row">${dayTags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`
+          : '';
+
+        const allEvents = (day.events || []);
+        const filteredEvents = ACTIVE_TAG
+          ? allEvents.filter(e => (e.tags || []).includes(ACTIVE_TAG))
+          : allEvents;
+
+        const eventsHtml = filteredEvents.slice(0, 18).map(e => {
+          const tags = (e.tags || []);
+          const tagsHtml = tags.length
+            ? `<div class="tag-row">${tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`
+            : '';
+          const timeHtml = e.time ? `<span class="event-time">[${escapeHtml(e.time)}]</span>` : '';
+          return `<li><div class="event-main">${timeHtml}${escapeHtml(e.text)}</div>${tagsHtml}</li>`;
+        }).join('');
+
+        const selfiesHtml = (day.selfies || []).map(s => `
+          <div class="shot">
+            <img src="assets/selfies/${escapeHtml(s.filename)}" alt="${escapeHtml(s.title || '自拍')}" onerror="this.style.display='none'" />
+            <div class="meta">${escapeHtml(s.title || '自拍')}<br>${escapeHtml(s.mood || '')}</div>
+          </div>
+        `).join('');
+
+        card.innerHTML = `
+          <div class="date">${escapeHtml(day.date)}</div>
+          ${dayTagsHtml}
+          ${eventsHtml ? `<ul class="events">${eventsHtml}</ul>` : '<div class="muted" style="margin-top:10px;">（这一筛选条件下今天没有匹配的成长记录）</div>'}
+          ${selfiesHtml ? `<div class="selfies">${selfiesHtml}</div>` : ''}
+        `;
+
+        // Only show days that have something under current filter.
+        if (!ACTIVE_TAG || filteredEvents.length || (day.selfies || []).length) {
+          root.appendChild(card);
+        }
+      });
+    }
+
     async function loadDiary() {
       try {
         const res = await fetch('data/diary.json?t=' + Date.now());
         if (!res.ok) return;
         const data = await res.json();
+
         document.getElementById('updated').textContent = '最后更新: ' + (data.updated || '-').replace('T',' ').slice(0,19);
 
-        const root = document.getElementById('timeline');
-        root.innerHTML = '';
-        (data.days || []).forEach(day => {
-          const card = document.createElement('div');
-          card.className = 'day';
-
-          const events = (day.events || []).slice(0, 16).map(e => `<li>${e.time ? '['+e.time+'] ' : ''}${e.text}</li>`).join('');
-          const selfies = (day.selfies || []).map(s => `
-            <div class="shot">
-              <img src="assets/selfies/${s.filename}" alt="${s.title || '自拍'}" onerror="this.style.display='none'" />
-              <div class="meta">${s.title || '自拍'}<br>${s.mood || ''}</div>
-            </div>
-          `).join('');
-
-          card.innerHTML = `
-            <div class="date">${day.date}</div>
-            ${events ? `<ul class="events">${events}</ul>` : '<div class="muted">今天还没有文字记录</div>'}
-            ${selfies ? `<div class="selfies">${selfies}</div>` : ''}
-          `;
-          root.appendChild(card);
-        });
+        const tags = sortTags(collectTags(data));
+        renderFilters(tags);
+        renderTimeline(data);
       } catch (e) {
         console.error(e);
       }

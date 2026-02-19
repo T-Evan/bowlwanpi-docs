@@ -14,17 +14,38 @@ OUT_FILE = WORKSPACE / "docs/data/diary.json"
 
 DATE_RE = re.compile(r"^#\s*(\d{4}-\d{2}-\d{2})")
 TIME_LINE_RE = re.compile(r"\*\*(\d{1,2}:\d{2})")
+SIMPLE_TIME_RE = re.compile(r"^(\d{1,2}:\d{2})\s+")
+SIGNIFICANT_VERBS = [
+    "完成",
+    "修复",
+    "新增",
+    "整合",
+    "上线",
+    "发布",
+    "通过",
+    "解锁",
+    "升级",
+    "进化",
+    "安装",
+    "部署",
+    "测试",
+]
 
 NOISE_PATTERNS = [
     "优先事项",
     "定时任务",
     "微博热搜",
     "知乎热榜",
-    "B站热门",
-    "github",
-    "cron",
-    "heartbeat",
-    "提醒",
+    "b站热门",
+    "热榜速览",
+    "中文平台热榜",
+    "版本快照",
+    "爆发项目精选",
+    "heartbeat_ok",
+    "heartbeat 简报",
+    "监控频率",
+    "更新时间",
+    "system:",
     "咨询",
 ]
 
@@ -39,9 +60,69 @@ MEANINGFUL_HINTS = [
     "成长",
     "交流",
     "一碗",
+    "偏好",
     "技能",
     "经验",
     "突破",
+    "整合",
+    "部署",
+    "测试",
+    "发布",
+    "上线",
+    "升级",
+    "解锁",
+    "赛季",
+    "天赋",
+    "商店",
+    "羁绊",
+    "进化",
+    "evolver",
+]
+
+TAG_RULES = [
+    ("进化", ["进化", "evolver", "gep", "gene", "capsule"]),
+    (
+        "游戏系统",
+        [
+            "等级",
+            "成就",
+            "赛季",
+            "天赋",
+            "商店",
+            "羁绊",
+            "xp",
+            "quest",
+            "tier",
+            "代币",
+        ],
+    ),
+    (
+        "技能",
+        [
+            "实现",
+            "新增",
+            "重构",
+            "修复",
+            "集成",
+            "脚本",
+            "部署",
+            "测试",
+            "编译",
+            "安装",
+            "配置",
+            "发布",
+            "提交",
+            "commit",
+            "feat:",
+            "fix:",
+            "refactor:",
+        ],
+    ),
+    ("思考", ["思考", "反思", "感受", "想法", "洞察", "收获", "学到", "理解"]),
+    ("交流", ["一碗", "沟通", "交流", "对话", "反馈", "偏好", "约定", "讨论"]),
+    ("突破", ["搞定", "完成", "通过", "上线", "发布", "整合", "落地", "解决", "pass"]),
+    ("网站", ["github pages", "gh-pages", "网站", "页面", "diary.html", "index.html", "docs/"]),
+    ("日记", ["日记", "diary", "记录"]),
 ]
 
 
@@ -72,6 +153,10 @@ def is_noise(line: str) -> bool:
     low = line.lower()
     if line.startswith("- ["):
         return True
+    if "http://" in low or "https://" in low or "🔗" in line:
+        return True
+    if SIMPLE_TIME_RE.match(line) and not any(v in low for v in SIGNIFICANT_VERBS):
+        return True
     if any(p in low for p in NOISE_PATTERNS):
         return True
     return False
@@ -80,6 +165,17 @@ def is_noise(line: str) -> bool:
 def is_meaningful(line: str) -> bool:
     low = line.lower()
     return any(k in low for k in MEANINGFUL_HINTS)
+
+
+def compute_tags(text: str) -> list:
+    low = text.lower()
+    tags = []
+    for tag, keywords in TAG_RULES:
+        for kw in keywords:
+            if kw.lower() in low:
+                tags.append(tag)
+                break
+    return tags
 
 
 def extract_events(text: str, max_events: int = 20) -> list:
@@ -97,21 +193,28 @@ def extract_events(text: str, max_events: int = 20) -> list:
 
         t = TIME_LINE_RE.search(line)
         if t:
-            cleaned = re.sub(r"\*\*", "", line)
+            cleaned = re.sub(r"\*\*", "", line).strip()
+            tags = compute_tags(cleaned)
+            if not tags and is_meaningful(cleaned):
+                tags = ["成长"]
+            if not tags:
+                continue
             if cleaned not in seen:
-                events.append({"time": t.group(1), "text": cleaned})
+                events.append({"time": t.group(1), "text": cleaned, "tags": tags})
                 seen.add(cleaned)
             continue
 
         if line.startswith("- ") or line.startswith("### "):
-            cleaned = re.sub(r"^[-#\s]+", "", line)
-            if cleaned and is_meaningful(cleaned) and cleaned not in seen:
-                events.append({"time": "", "text": cleaned})
-                seen.add(cleaned)
+            cleaned = re.sub(r"^[-#\s]+", "", line).strip()
+            if cleaned and is_meaningful(cleaned):
+                tags = compute_tags(cleaned)
+                if not tags:
+                    tags = ["成长"]
+                if cleaned not in seen:
+                    events.append({"time": "", "text": cleaned, "tags": tags})
+                    seen.add(cleaned)
 
-        if len(events) >= max_events:
-            break
-    return events
+    return events[-max_events:]
 
 
 def main() -> int:
@@ -127,11 +230,17 @@ def main() -> int:
         if not events and not selfies_by_date.get(date_key):
             continue
 
+        selfies = selfies_by_date.get(date_key, [])
+        day_tags = sorted({t for e in events for t in e.get("tags", [])})
+        if selfies:
+            day_tags = sorted(set(day_tags + ["自拍"]))
+
         days.append(
             {
                 "date": date_key,
+                "tags": day_tags,
                 "events": events,
-                "selfies": selfies_by_date.get(date_key, []),
+                "selfies": selfies,
             }
         )
 
