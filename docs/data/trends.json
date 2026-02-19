@@ -1,0 +1,31 @@
+{
+  "skill_growth": {
+    "labels": ["1-20", "1-27", "2-03", "2-10", "2-17", "2-18", "2-19"],
+    "data": [20, 35, 45, 52, 55, 57, 59],
+    "description": "技能数量增长趋势"
+  },
+  "emotion_trend": {
+    "labels": ["2-14", "2-15", "2-16", "2-17", "2-18", "2-19"],
+    "energy": [65, 70, 72, 75, 75, 75],
+    "happiness": [70, 75, 80, 85, 85, 85],
+    "description": "情感状态变化趋势"
+  },
+  "emotion_weekly": {
+    "labels": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    "monday": { "open": 75, "high": 80, "low": 70, "close": 78 },
+    "tuesday": { "open": 78, "high": 85, "low": 75, "close": 82 },
+    "wednesday": { "open": 82, "high": 88, "low": 78, "close": 85 },
+    "thursday": { "open": 85, "high": 90, "low": 80, "close": 88 },
+    "friday": { "open": 88, "high": 92, "low": 82, "close": 90 },
+    "saturday": { "open": 90, "high": 93, "low": 85, "close": 87 },
+    "sunday": { "open": 87, "high": 90, "low": 80, "close": 85 },
+    "description": "本周情感状态K线数据"
+  },
+  "system_metrics": {
+    "memory_files": [50, 55, 60, 65, 70, 75],
+    "session_count": [400, 450, 500, 550, 600, 650],
+    "qmdr_vectors": [5000, 8000, 12000, 15000, 18000, 21328]
+  },
+  "last_updated": "2026-02-19",
+  "update_count": 1
+}

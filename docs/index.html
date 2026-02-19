@@ -1465,98 +1465,204 @@ img {
     </footer>
 
     <script>
-        // 技能增长趋势图
-        const skillCtx = document.getElementById('skillChart').getContext('2d');
-        new Chart(skillCtx, {
-            type: 'line',
-            data: {
-                labels: ['1-20', '1-27', '2-03', '2-10', '2-17', '2-18'],
-                datasets: [{
-                    label: '技能数量',
-                    data: [20, 35, 45, 52, 55, 57],
-                    borderColor: '#6366f1',
-                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    fill: true,
-                    pointBackgroundColor: '#6366f1',
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2,
-                    pointRadius: 6
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
+        // 从JSON文件加载图表数据
+        async function loadTrendData() {
+            try {
+                const response = await fetch('data/trends.json');
+                const data = await response.json();
+                return data;
+            } catch (e) {
+                console.error('加载趋势数据失败:', e);
+                return null;
+            }
+        }
+
+        // 初始化图表
+        async function initCharts() {
+            const trendData = await loadTrendData();
+            
+            // 技能增长趋势图
+            const skillCtx = document.getElementById('skillChart').getContext('2d');
+            const skillLabels = trendData?.skill_growth?.labels || ['1-20', '1-27', '2-03', '2-10', '2-17', '2-18'];
+            const skillData = trendData?.skill_growth?.data || [20, 35, 45, 52, 55, 57];
+            
+            new Chart(skillCtx, {
+                type: 'line',
+                data: {
+                    labels: skillLabels,
+                    datasets: [{
+                        label: '技能数量',
+                        data: skillData,
+                        borderColor: '#6366f1',
+                        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#6366f1',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: 'rgba(255,255,255,0.05)' },
-                        ticks: { color: '#94a3b8' }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
                     },
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: '#94a3b8' }
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8' }
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        // 情感状态变化图
-        const emotionCtx = document.getElementById('emotionChart').getContext('2d');
-        new Chart(emotionCtx, {
-            type: 'line',
-            data: {
-                labels: ['2-14', '2-15', '2-16', '2-17', '2-18'],
-                datasets: [
-                    {
-                        label: '愉悦度',
-                        data: [65, 70, 72, 75, 75],
-                        borderColor: '#10b981',
-                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                        borderWidth: 2,
-                        tension: 0.4,
-                        pointRadius: 4
-                    },
-                    {
-                        label: '精力',
-                        data: [70, 75, 80, 85, 85],
-                        borderColor: '#06b6d4',
-                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
-                        borderWidth: 2,
-                        tension: 0.4,
-                        pointRadius: 4
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: { color: '#94a3b8' }
-                    }
+            // 情感状态变化图
+            const emotionCtx = document.getElementById('emotionChart').getContext('2d');
+            const emotionLabels = trendData?.emotion_trend?.labels || ['2-14', '2-15', '2-16', '2-17', '2-18'];
+            const energyData = trendData?.emotion_trend?.energy || [65, 70, 72, 75, 75];
+            const happyData = trendData?.emotion_trend?.happiness || [70, 75, 80, 85, 85];
+            
+            new Chart(emotionCtx, {
+                type: 'line',
+                data: {
+                    labels: emotionLabels,
+                    datasets: [
+                        {
+                            label: '精力',
+                            data: energyData,
+                            borderColor: '#06b6d4',
+                            backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            pointRadius: 4
+                        },
+                        {
+                            label: '愉悦度',
+                            data: happyData,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            pointRadius: 4
+                        }
+                    ]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        grid: { color: 'rgba(255,255,255,0.05)' },
-                        ticks: {
-                            color: '#94a3b8',
-                            callback: function(value) { return value + '%'; }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#94a3b8' }
                         }
                     },
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: '#94a3b8' }
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(value) { return value + '%'; }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8' }
+                        }
                     }
                 }
-            }
-        });
+            });
+
+            // 情感状态周K线图
+            const weeklyCtx = document.getElementById('emotionWeeklyChart').getContext('2d');
+            const ew = trendData?.emotion_weekly;
+            const weeklyData = ew ? [
+                ew.monday?.open || 75, ew.tuesday?.open || 78, ew.wednesday?.open || 82, 
+                ew.thursday?.open || 85, ew.friday?.open || 88, ew.saturday?.open || 90, ew.sunday?.open || 87
+            ] : [75, 78, 82, 85, 88, 90, 87];
+            const weeklyHigh = ew ? [
+                ew.monday?.high || 80, ew.tuesday?.high || 85, ew.wednesday?.high || 88,
+                ew.thursday?.high || 90, ew.friday?.high || 92, ew.saturday?.high || 93, ew.sunday?.high || 90
+            ] : [80, 85, 88, 90, 92, 93, 90];
+            const weeklyLow = ew ? [
+                ew.monday?.low || 70, ew.tuesday?.low || 75, ew.wednesday?.low || 78,
+                ew.thursday?.low || 80, ew.friday?.low || 82, ew.saturday?.low || 85, ew.sunday?.low || 80
+            ] : [70, 75, 78, 80, 82, 85, 80];
+            
+            new Chart(weeklyCtx, {
+                type: 'line',
+                data: {
+                    labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                    datasets: [
+                        {
+                            label: '开盘',
+                            data: weeklyData,
+                            borderColor: '#6366f1',
+                            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#6366f1'
+                        },
+                        {
+                            label: '最高',
+                            data: weeklyHigh,
+                            borderColor: '#10b981',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointRadius: 3,
+                            pointBackgroundColor: '#10b981'
+                        },
+                        {
+                            label: '最低',
+                            data: weeklyLow,
+                            borderColor: '#ef4444',
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            tension: 0.3,
+                            pointRadius: 3,
+                            pointBackgroundColor: '#ef4444'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#94a3b8' }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 50,
+                            max: 100,
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: {
+                                color: '#94a3b8',
+                                callback: function(value) { return value + '%'; }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#94a3b8' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 初始化所有图表
+        initCharts();
 
         // Log functions
         function refreshLogs() {
@@ -1714,81 +1820,6 @@ img {
             });
         }
         generateSkillRanking();
-
-        // 情感状态周趋势对比（K线图风格）
-        const emotionWeeklyCtx = document.getElementById('emotionWeeklyChart').getContext('2d');
-        new Chart(emotionWeeklyCtx, {
-            type: 'bar',
-            data: {
-                labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                datasets: [
-                    {
-                        label: '愉悦度 (高)',
-                        data: [75, 80, 78, 82, 85, 83, 75],
-                        backgroundColor: 'rgba(16, 185, 129, 0.8)',
-                        borderColor: '#10b981',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '愉悦度 (低)',
-                        data: [65, 70, 68, 72, 75, 73, 65],
-                        backgroundColor: 'rgba(16, 185, 129, 0.3)',
-                        borderColor: '#10b981',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '精力 (高)',
-                        data: [80, 85, 83, 88, 90, 87, 85],
-                        backgroundColor: 'rgba(6, 182, 212, 0.8)',
-                        borderColor: '#06b6d4',
-                        borderWidth: 1
-                    },
-                    {
-                        label: '精力 (低)',
-                        data: [70, 75, 73, 78, 80, 77, 75],
-                        backgroundColor: 'rgba(6, 182, 212, 0.3)',
-                        borderColor: '#06b6d4',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: { 
-                            color: '#94a3b8',
-                            filter: function(item) {
-                                return !item.text.includes('(低)');
-                            }
-                        }
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return context.dataset.label + ': ' + context.raw + '%';
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        grid: { color: 'rgba(255,255,255,0.05)' },
-                        ticks: { 
-                            color: '#94a3b8',
-                            callback: function(value) { return value + '%'; }
-                        }
-                    },
-                    x: {
-                        grid: { display: false },
-                        ticks: { color: '#94a3b8' }
-                    }
-                }
-            }
-        });
     </script>
 </body>
 </html>
