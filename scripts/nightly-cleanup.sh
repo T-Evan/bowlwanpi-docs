@@ -103,11 +103,14 @@ collect_system_data() {
     # QMDR 向量数量
     QMDR_COUNT=$(qmd status 2>/dev/null | grep "Vectors:" | awk '{print $2}' || echo "0")
     
-    # 读取状态文件
+    # 读取状态文件（能量值）
+    ENERGY="75"
     if [ -f "$WORKSPACE/VTA_STATE.md" ]; then
-        ENERGY=$(grep "energy:" "$WORKSPACE/VTA_STATE.md" | head -1 | sed 's/.*energy: *//' | tr -d '%' || echo "50")
-    else
-        ENERGY="50"
+        ENERGY_LINE=$(grep -i "energy" "$WORKSPACE/VTA_STATE.md" | head -1 || echo "")
+        if [ -n "$ENERGY_LINE" ]; then
+            ENERGY_VAL=$(echo "$ENERGY_LINE" | grep -oE '[0-9]+' | head -1)
+            [ -n "$ENERGY_VAL" ] && ENERGY="$ENERGY_VAL"
+        fi
     fi
     
     info "技能数量: $SKILL_COUNT"
@@ -164,29 +167,31 @@ generate_data_files() {
     
     # 生成定时任务列表 JSON
     CRON_JSON="$DOCS_DIR/data/cron.json"
-    echo "$CRON_LIST" | awk '
-    BEGIN {
-        print "{\"tasks\": ["
-        first = 1
-    }
-    /enabled.*true/ {
-        # 解析 cron 列表输出
-        # 格式: id 名称 schedule enabled ...
-        if (NF >= 4) {
-            id = $1
-            name = $2
-            schedule = $3
-            if (first) {
-                first = 0
-            } else {
-                print ","
-            }
-            printf "{\"id\": \"%s\", \"name\": \"%s\", \"schedule\": \"%s\"}", id, name, schedule
-        }
-    }
-    END {
-        print "], \"count\": " (first ? 0 : NR) ", \"updated\": \"'$TODAY'\"}"
-    }' > "$CRON_JSON" 2>/dev/null || echo "{\"tasks\": [], \"count\": 0, \"updated\": \"$TODAY\"}" > "$CRON_JSON"
+    echo "{\"tasks\": [" > "$CRON_JSON"
+    FIRST_CRON=true
+    echo "$CRON_LIST" | while read -r line; do
+        # 匹配任务行 (以 UUID 或空格开头，包含 schedule 信息)
+        if echo "$line" | grep -qE "^([0-9a-f]{8}-| {2,})"; then
+            # 提取字段
+            CRON_ID=$(echo "$line" | awk '{print $1}')
+            CRON_NAME=$(echo "$line" | awk '{print $2}')
+            CRON_SCHEDULE=$(echo "$line" | awk '{print $3}')
+            CRON_STATUS=$(echo "$line" | awk '{print $(NF-2)}')
+            
+            # 跳过表头或空行
+            [ -z "$CRON_ID" ] && continue
+            [ "$CRON_ID" = "ID" ] && continue
+            
+            if [ "$FIRST_CRON" = true ]; then
+                FIRST_CRON=false
+            else
+                echo "," >> "$CRON_JSON"
+            fi
+            
+            echo -n "{\"id\": \"$CRON_ID\", \"name\": \"$CRON_NAME\", \"schedule\": \"$CRON_SCHEDULE\", \"status\": \"$CRON_STATUS\"}" >> "$CRON_JSON"
+        fi
+    done
+    echo "], \"count\": $CRON_COUNT, \"updated\": \"$TODAY\"}" >> "$CRON_JSON"
     
     log "✅ 定时任务列表已生成: $CRON_JSON"
     
