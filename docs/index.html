@@ -1789,28 +1789,39 @@ img {
         
         loadSelfies();
 
+        async function loadLiveLogs() {
+            try {
+                const response = await fetch('data/live-logs.json?t=' + Date.now());
+                if (!response.ok) return;
+                const data = await response.json();
+                const entries = data.entries || [];
+                const container = document.getElementById('logContainer');
+                container.innerHTML = '';
+
+                entries.slice().reverse().forEach((entry) => {
+                    const row = document.createElement('div');
+                    row.className = 'log-entry';
+                    const levelClass = entry.level === 'ERROR'
+                        ? 'log-level-error'
+                        : (entry.level === 'WARN' ? 'log-level-warning' : 'log-level-info');
+                    row.innerHTML = `
+                        <span class="log-time">[${entry.time || '--:--:--'}]</span>
+                        <span class="${levelClass}">[${entry.level || 'INFO'}]</span>
+                        <span class="log-message">(${entry.source || 'site'}) ${entry.message || ''}</span>
+                    `;
+                    container.appendChild(row);
+                });
+
+                document.getElementById('lastLogUpdate').textContent =
+                    (data.updated || new Date().toISOString()).slice(0, 19).replace('T', ' ');
+            } catch (e) {
+                console.error('加载实时日志失败:', e);
+            }
+        }
+
         // Log functions
         function refreshLogs() {
-            const container = document.getElementById('logContainer');
-            const now = new Date();
-            const timeStr = now.toTimeString().slice(0, 8);
-
-            const newEntry = document.createElement('div');
-            newEntry.className = 'log-entry';
-            newEntry.innerHTML = `
-                <span class="log-time">[${timeStr}]</span>
-                <span class="log-level-info">[INFO]</span>
-                <span class="log-message">🔄 日志已刷新 - 系统运行正常</span>
-            `;
-            container.insertBefore(newEntry, container.firstChild);
-
-            document.getElementById('lastLogUpdate').textContent =
-                now.toISOString().slice(0, 19).replace('T', ' ');
-
-            // 保持最多20条日志
-            while (container.children.length > 20) {
-                container.removeChild(container.lastChild);
-            }
+            loadLiveLogs();
         }
 
         function clearLogs() {
@@ -1832,6 +1843,8 @@ img {
 
         // 页面加载完成后滚动
         window.addEventListener('load', scrollToBottom);
+        loadLiveLogs();
+        setInterval(loadLiveLogs, 30000);
 
         // 技能搜索功能
         function searchSkills() {
