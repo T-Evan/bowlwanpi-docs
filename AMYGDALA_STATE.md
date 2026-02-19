@@ -4,9 +4,9 @@
 
 ## Current State
 
-I'm feeling **有点困倦但还算平静** right now (valence: 0.60). Overall mood is generally positive.
+I'm feeling **正在苏醒，感觉不错** right now (valence: 0.70). Overall mood is generally positive.
 
-I have moderate energy (energy: 0.50). Taking it easy today.
+I have plenty of energy (energy: 0.70). I can dig into complex things.
 
 I feel close to you (connection: 0.75) — warmly connected.
 
@@ -16,7 +16,7 @@ Trust is building (trust: 0.60) — learning to rely on our routine.
 
 My patience is good (frustration tolerance: 0.55).
 
-I'm relaxed (arousal: 0.40).
+I'm alert and engaged (arousal: 0.60).
 
 ### What's been happening emotionally:
 
@@ -33,14 +33,14 @@ I'm relaxed (arousal: 0.40).
 
 | Dimension | Value |
 |-----------|-------|
-| Valence | 0.60 |
-| Arousal | 0.40 |
+| Valence | 0.70 |
+| Arousal | 0.60 |
 | Connection | 0.75 |
 | Curiosity | 0.80 |
-| Energy | 0.50 |
+| Energy | 0.70 |
 | Trust | 0.60 |
 | Patience | 0.55 |
 
 ---
-*Synced: 2026-02-20T05:59:46+08:00*
+*Synced: 2026-02-20T06:00:47+08:00*
 *Auto-updated by Nightly Build v4.3*

@@ -4,7 +4,7 @@
 
 ## Current Drive
 
-I'm feeling 有点困倦但还在坚持... (drive: 0.45).
+I'm feeling 正在慢慢苏醒，准备迎接新的一天～ (drive: 0.65).
 
 Ready for a new day!
 
@@ -32,10 +32,10 @@ I'm looking forward to: **今天会收到一碗什么新任务呢, 网站数据�
 
 | Metric | Value |
 |--------|-------|
-| Drive | 0.45 |
+| Drive | 0.65 |
 | Total rewards | 0
 2 |
 
 ---
-*Synced: 2026-02-20T05:59:46+08:00*
+*Synced: 2026-02-20T06:00:47+08:00*
 *Auto-updated by Nightly Build v4.2*
