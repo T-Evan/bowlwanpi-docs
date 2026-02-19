@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Unified progression system: level + XP + achievements."""
+"""Unified progression system: level + XP + achievements + daily/weekly quests."""
 
 from __future__ import annotations
 
@@ -27,6 +27,44 @@ XP_BY_TYPE_BONUS = {
     "content": 4,
     "explore": 3,
 }
+
+DAILY_QUESTS = [
+    {
+        "id": "daily_focus_3",
+        "name": "每日专注",
+        "goal": 3,
+        "metric": "tasks",
+        "reward_xp": 25,
+        "reward_points": 5,
+    },
+    {
+        "id": "daily_skill_1",
+        "name": "每日精进",
+        "goal": 1,
+        "metric": "skill_tasks",
+        "reward_xp": 20,
+        "reward_points": 5,
+    },
+]
+
+WEEKLY_QUESTS = [
+    {
+        "id": "weekly_builder_10",
+        "name": "周度建设者",
+        "goal": 10,
+        "metric": "tasks",
+        "reward_xp": 80,
+        "reward_points": 15,
+    },
+    {
+        "id": "weekly_hard_3",
+        "name": "周度挑战",
+        "goal": 3,
+        "metric": "hard_tasks",
+        "reward_xp": 90,
+        "reward_points": 20,
+    },
+]
 
 
 @dataclass
@@ -58,6 +96,11 @@ def compute_level(exp_total: int) -> LevelState:
     )
 
 
+def week_key(dt: datetime) -> str:
+    iso = dt.isocalendar()
+    return f"{iso.year}-W{iso.week:02d}"
+
+
 class ProgressionSystem:
     def __init__(self) -> None:
         LEVEL_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -75,7 +118,13 @@ class ProgressionSystem:
             "current_streak": 0,
             "max_streak": 0,
             "total_points": 0,
+            "achievement_points": 0,
+            "quest_points": 0,
             "achievements": [],
+            "quests": {
+                "daily": {"period": "", "stats": {}, "completed": []},
+                "weekly": {"period": "", "stats": {}, "completed": []},
+            },
             "updated": datetime.now().isoformat(),
         }
 
@@ -91,6 +140,9 @@ class ProgressionSystem:
         # Backward compatibility: old file may only have exp.
         exp_total = int(data.get("exp_total", data.get("exp", 0)))
         ls = compute_level(exp_total)
+
+        default_data = self._default_data()
+        data["quests"] = data.get("quests", default_data["quests"])
         data.update(
             {
                 "level": ls.level,
@@ -100,6 +152,9 @@ class ProgressionSystem:
                 "xp_to_next": ls.exp_to_next,
                 "total_tasks": int(data.get("total_tasks", 0)),
                 "achievements": data.get("achievements", []),
+                "achievement_points": int(data.get("achievement_points", data.get("total_points", 0))),
+                "quest_points": int(data.get("quest_points", 0)),
+                "total_points": int(data.get("total_points", 0)),
             }
         )
         return data
@@ -113,6 +168,70 @@ class ProgressionSystem:
         bonus = XP_BY_TYPE_BONUS.get(task_type, 0)
         return base + bonus
 
+    def _quest_stat_bump(self, stats: Dict[str, int], task_type: str, difficulty: str) -> None:
+        stats["tasks"] = int(stats.get("tasks", 0)) + 1
+        if task_type == "skill":
+            stats["skill_tasks"] = int(stats.get("skill_tasks", 0)) + 1
+        if difficulty in {"困难", "史诗"}:
+            stats["hard_tasks"] = int(stats.get("hard_tasks", 0)) + 1
+
+    def _sync_quest_period(self, bucket: Dict[str, Any], period: str) -> None:
+        if bucket.get("period") != period:
+            bucket["period"] = period
+            bucket["stats"] = {}
+            bucket["completed"] = []
+
+    def _apply_quest_rewards(
+        self,
+        quests: List[Dict[str, Any]],
+        bucket: Dict[str, Any],
+        reward_events: List[Dict[str, Any]],
+    ) -> int:
+        gained = 0
+        stats = bucket.get("stats", {})
+        completed = set(bucket.get("completed", []))
+
+        for quest in quests:
+            qid = quest["id"]
+            progress = int(stats.get(quest["metric"], 0))
+            if progress >= int(quest["goal"]) and qid not in completed:
+                completed.add(qid)
+                gained += int(quest["reward_xp"])
+                self.data["quest_points"] = int(self.data.get("quest_points", 0)) + int(quest["reward_points"])
+                reward_events.append(
+                    {
+                        "id": qid,
+                        "name": quest["name"],
+                        "reward_xp": quest["reward_xp"],
+                        "reward_points": quest["reward_points"],
+                    }
+                )
+
+        bucket["completed"] = sorted(completed)
+        return gained
+
+    def _update_quests(self, task_type: str, difficulty: str, timestamp: datetime) -> List[Dict[str, Any]]:
+        quests = self.data.setdefault("quests", self._default_data()["quests"])
+        daily = quests.setdefault("daily", {"period": "", "stats": {}, "completed": []})
+        weekly = quests.setdefault("weekly", {"period": "", "stats": {}, "completed": []})
+
+        self._sync_quest_period(daily, timestamp.strftime("%Y-%m-%d"))
+        self._sync_quest_period(weekly, week_key(timestamp))
+
+        self._quest_stat_bump(daily.setdefault("stats", {}), task_type, difficulty)
+        self._quest_stat_bump(weekly.setdefault("stats", {}), task_type, difficulty)
+
+        rewards: List[Dict[str, Any]] = []
+        quest_xp = 0
+        quest_xp += self._apply_quest_rewards(DAILY_QUESTS, daily, rewards)
+        quest_xp += self._apply_quest_rewards(WEEKLY_QUESTS, weekly, rewards)
+
+        if quest_xp:
+            self.data["exp_total"] = int(self.data.get("exp_total", 0)) + quest_xp
+            self.data["exp"] = self.data["exp_total"]
+
+        return rewards
+
     def record_task(
         self,
         description: str,
@@ -121,12 +240,14 @@ class ProgressionSystem:
         timestamp: datetime | None = None,
     ) -> Dict[str, Any]:
         timestamp = timestamp or datetime.now()
-        gained_xp = self._task_xp(task_type, difficulty)
+        task_xp = self._task_xp(task_type, difficulty)
 
         prev_level = int(self.data.get("level", 1))
-        self.data["exp_total"] = int(self.data.get("exp_total", 0)) + gained_xp
+        self.data["exp_total"] = int(self.data.get("exp_total", 0)) + task_xp
         self.data["exp"] = self.data["exp_total"]
         self.data["total_tasks"] = int(self.data.get("total_tasks", 0)) + 1
+
+        quest_rewards = self._update_quests(task_type, difficulty, timestamp)
 
         # Sync achievements first (streak/points/unlocks)
         new_achievements: List[Achievement] = self.achievement_system.record_completion(
@@ -141,7 +262,8 @@ class ProgressionSystem:
         self.data["achievements"] = sorted(legacy_ach | new_ach)
         self.data["current_streak"] = ach_status.get("current_streak", 0)
         self.data["max_streak"] = ach_status.get("max_streak", 0)
-        self.data["total_points"] = ach_status.get("total_points", 0)
+        self.data["achievement_points"] = int(ach_status.get("total_points", 0))
+        self.data["total_points"] = int(self.data.get("achievement_points", 0)) + int(self.data.get("quest_points", 0))
 
         # Recompute level progress.
         ls = compute_level(int(self.data["exp_total"]))
@@ -154,7 +276,8 @@ class ProgressionSystem:
 
         return {
             "task": description,
-            "xp_gained": gained_xp,
+            "xp_gained": task_xp,
+            "quest_rewards": quest_rewards,
             "level_up": ls.level > prev_level,
             "level": ls.level,
             "exp_current": ls.exp_current,
@@ -171,20 +294,23 @@ class ProgressionSystem:
             "streak": ach_status.get("current_streak", 0),
         }
 
-    def status(self) -> Dict[str, Any]:
-        # Refresh with achievements status to avoid drift.
+    def _merge_status(self) -> None:
         ach_status = self.achievement_system.get_status()
         legacy_ach = set(self.data.get("achievements", []))
         new_ach = set(ach_status.get("achievements", []))
         self.data["achievements"] = sorted(legacy_ach | new_ach)
         self.data["current_streak"] = ach_status.get("current_streak", 0)
         self.data["max_streak"] = ach_status.get("max_streak", 0)
-        self.data["total_points"] = ach_status.get("total_points", 0)
+        self.data["achievement_points"] = int(ach_status.get("total_points", 0))
+        self.data["total_points"] = int(self.data.get("achievement_points", 0)) + int(self.data.get("quest_points", 0))
         ls = compute_level(int(self.data.get("exp_total", 0)))
         self.data["level"] = ls.level
         self.data["exp_current"] = ls.exp_current
         self.data["xp_to_next"] = ls.exp_to_next
         self.data["exp"] = ls.exp_total
+
+    def status(self) -> Dict[str, Any]:
+        self._merge_status()
         self._save()
         return dict(self.data)
 

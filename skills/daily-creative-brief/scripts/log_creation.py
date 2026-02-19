@@ -85,6 +85,11 @@ def main() -> None:
         for ach in result["new_achievements"]:
             print(f"  {ach['icon']} {ach['name']} (+{ach['points']}点)")
 
+    if result.get("quest_rewards"):
+        print("🎯 任务完成奖励：")
+        for quest in result["quest_rewards"]:
+            print(f"  ✅ {quest['name']} (+{quest['reward_xp']} XP, +{quest['reward_points']}点)")
+
     print(
         f"🎮 当前状态: Lv.{result['level']} | XP: {result['exp_current']}/{result['xp_to_next']} | 连胜: {result['streak']}天"
     )

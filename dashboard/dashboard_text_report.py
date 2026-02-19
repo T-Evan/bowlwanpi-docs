@@ -25,6 +25,8 @@ def load_progression_fallback():
         "total_quests": 0,
         "streak_days": 0,
         "achievements": [],
+        "daily_completed": 0,
+        "weekly_completed": 0,
     }
     if LEVEL_FILE.exists():
         try:
@@ -36,6 +38,9 @@ def load_progression_fallback():
             bowl["total_quests"] = int(data.get("total_tasks", bowl["total_quests"]))
             bowl["streak_days"] = int(data.get("current_streak", bowl["streak_days"]))
             bowl["achievements"] = data.get("achievements", bowl["achievements"])
+            quests = data.get("quests", {})
+            bowl["daily_completed"] = len(quests.get("daily", {}).get("completed", []))
+            bowl["weekly_completed"] = len(quests.get("weekly", {}).get("completed", []))
         except (OSError, json.JSONDecodeError, ValueError):
             pass
     return bowl
@@ -131,6 +136,7 @@ XP: {bar(xp_percent)} {xp_value}/{xp_to_next}
 ```
 📋 任务: {bowl.get('total_quests', 0)} | 🔥 连胜: {bowl.get('streak_days', 0)} 天
 🏆 成就: {len(bowl.get('achievements', []))} 个
+🎯 日常/周常: {bowl.get('daily_completed', 0)}/{bowl.get('weekly_completed', 0)} 已完成
 
 💡 *每小时自动更新*
 """
