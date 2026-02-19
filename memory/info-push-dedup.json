@@ -1,8 +1,0 @@
-{
-  "version": "1.0",
-  "description": "信息推送去重记录 - 同一个内容最多推送3次",
-  "last_cleanup": "2026-02-17T01:10:00Z",
-  "records": {},
-  "max_push_count": 3,
-  "cleanup_after_days": 7
-}

@@ -1,6 +1,0 @@
-{
-  "timestamp": "2026-02-16T17:54:10Z",
-  "status": "warning",
-  "checks_performed": ["feishu_config", "heartbeat_log", "cron_health", "task_queue"]
-  ,"issues":[{"type":"error","component":"cron","message":"检测到311次cron失败","suggestion":"检查gateway服务状态"}]
-}

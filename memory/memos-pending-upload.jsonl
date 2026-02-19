@@ -1,1 +1,0 @@
-{"timestamp": 171326.016315345, "user": "测试 MemOS 新方案", "assistant": "这条消息应该进入 pending 队列，等待子代理上传到 MemOS", "type": "conversation", "status": "pending_upload", "source": "pending_memos"}
