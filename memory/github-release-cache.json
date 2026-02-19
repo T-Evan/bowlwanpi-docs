@@ -169,16 +169,66 @@
       "Heartbeat/Telegram: strip configured `responsePrefix` before heartbeat ack detection (with boundary-safe matching) so prefixed `HEARTBEAT_OK` replies are correctly suppressed instead of leaking into DMs. (#18602)"
     ],
     "published": "2026-02-18",
-    "fetched_at": "2026-02-18T13:45:13.486362+00:00"
+    "fetched_at": "2026-02-18T22:18:04.955599+00:00"
   },
   "code-yeongyu/oh-my-opencode": {
-    "version": "v3.7.3",
+    "version": "v3.7.4",
     "changes": [
-      "1e05f477 fix(cli-run): retry server start on port binding race condition",
-      "b1c43aeb @codeg-dev has signed the CLA in code-yeongyu/oh-my-opencode#1927"
+      "ebd97c85 @kang-heewon has signed the CLA in code-yeongyu/oh-my-opencode#1936",
+      "b4183339 fix(tests): stabilize auto-update-checker isolation under bun",
+      "8c726f55 Merge pull request #1946 from code-yeongyu/fix/failing-tests-v3.8.0",
+      "6e160877 fix(tests): update atlas hook and auto-update-checker tests",
+      "b0e8f5ec feat(run): print agent/model/duration on assistant completion",
+      "6bf36559 refactor: replace opencode/glm-4.7-free with opencode/big-pickle model",
+      "096db593 fix(run): inherit main-session tool permissions for continuation prompts",
+      "7622eddb refactor(agents): convert all markdown tables to bullet lists across 12 agent files",
+      "0d49c0ce Merge pull request #1535 from acamq/feature/start-work-plan-name-clean",
+      "305d0365 Merge pull request #1549 from MoerAI/fix/windows-path-absolute-check",
+      "a493227f Merge pull request #1822 from Strocs/fix/non-interactive-env-hook-duplication",
+      "94a5a328 Merge pull request #1940 from alaa-alghazouli/fix-readme-installation-commands",
+      "943a4da3 Merge pull request #1938 from POBIM/fix/delegate-task-agent-overrides",
+      "75ff6e1b feat(atlas): enforce 4-phase critical QA with mandatory hands-on verification",
+      "d8374983 feat(agents): boost sisyphus parallel tool call intensity, remove incorrect subagent_type enforcement from hephaestus",
+      "617e5360 feat(cli): use sonnet-4-6 with ultrawork opus-4-6 for non-max20 Claude subscribers",
+      "376bd742 test(hooks): add ultrawork-model-override unit tests",
+      "e863fe20 feat(hooks): add ultrawork-model-override hook for per-agent model swap",
+      "aad938a2 Merge pull request #1941 from code-yeongyu/fix/issue-1939-initial-pane-spawn",
+      "a717a95e fix: clear spy call history in completion-verbose-logging test",
+      "7b3a64b7 test(tmux): add boundary tests for exact split threshold with 0 agent panes",
+      "e2e89b1f fix(tmux): skip agent area width guard when 0 agent panes exist",
+      "5bb0e69d fix(cli-run): silence wait noise and suppress raw arrow escape input",
+      "8f74dbbc @alaa-alghazouli has signed the CLA in code-yeongyu/oh-my-opencode#1940",
+      "5141c42e fix(readme): swap installation instructions for international languages",
+      "28097e94 fix(readme): swap installation instructions for humans and AI",
+      "e20fba3a @POBIM has signed the CLA in code-yeongyu/oh-my-opencode#1938",
+      "eb6f0932 fix(delegate-task): pass agent overrides to subagent resolver",
+      "a60a153d refactor(hooks): rename sisyphus-gpt-hephaestus-reminder to no-sisyphus-gpt",
+      "a49e05fd fix(hooks): fix sisyphus-gpt-hephaestus-reminder never matching agent name",
+      "dacada15 fix(cli-run): attach to default server when auto port range exhausted",
+      "ada8c127 refactor(cli-run): remove redundant opencode bin path shim",
+      "101dadbc fix(agents): block apply_patch tool for all read-only agents",
+      "3f16057a fix(cli-run): skip unresolved opencode bin path injection",
+      "8500abeb docs(non-interactive-env): fix typos in idempotency comment",
+      "e5b7fd40 test(non-interactive-env): add idempotency test for env prefix injection",
+      "ba571c1e fix(non-interactive-env): prevent environment variable duplication on repeated executions",
+      "c298351d fix(hooks): use path.isAbsolute() for cross-platform path detection",
+      "d85c146f feat(prometheus): include plan name in /start-work guidance",
+      "@acamq:",
+      "feat(prometheus): include plan name in /start-work guidance",
+      "@MoerAI:",
+      "fix(hooks): use path.isAbsolute() for cross-platform path detection",
+      "@Strocs:",
+      "fix(non-interactive-env): prevent environment variable duplication on repeated executions",
+      "test(non-interactive-env): add idempotency test for env prefix injection",
+      "docs(non-interactive-env): fix typos in idempotency comment",
+      "@POBIM:",
+      "fix(delegate-task): pass agent overrides to subagent resolver",
+      "@alaa-alghazouli:",
+      "fix(readme): swap installation instructions for humans and AI",
+      "fix(readme): swap installation instructions for international languages"
     ],
     "published": "2026-02-18",
-    "fetched_at": "2026-02-18T13:45:14.112637+00:00"
+    "fetched_at": "2026-02-18T22:18:05.519302+00:00"
   },
   "anomalyco/opencode": {
     "version": "v1.2.6",
@@ -222,7 +272,7 @@
       "feat(opencode): add `dfmt` formatter support for D language files (#13867)"
     ],
     "published": "2026-02-16",
-    "fetched_at": "2026-02-18T13:45:14.818270+00:00"
+    "fetched_at": "2026-02-18T22:18:06.253278+00:00"
   },
   "NevaMind-AI/memU": {
     "version": "v1.4.0",
@@ -244,7 +294,7 @@
       "Update README.md ([#300](https://github.com/NevaMind-AI/memU/issues/300)) ([1075d7c](https://github.com/NevaMind-AI/memU/commit/1075d7c9ec3a272846c9fdb8c22ec58ff73cf6e7))"
     ],
     "published": "2026-02-06",
-    "fetched_at": "2026-02-18T13:45:15.455564+00:00"
+    "fetched_at": "2026-02-18T22:18:06.898566+00:00"
   },
   "lastCheck": "2026-02-11T02:58:00Z",
   "checkHistory": [
@@ -283,5 +333,6 @@
       "result": "update_found",
       "details": "code-yeongyu/oh-my-opencode: v3.5.0 → v3.5.1; anomalyco/opencode: v1.1.55 → v1.1.56"
     }
-  ]
+  ],
+  "last_push_signature": "{\"projects\": [{\"name\": \"affaan-m/everything-claude-code\", \"stars\": 47886}, {\"name\": \"nextlevelbuilder/ui-ux-pro-max-skill\", \"stars\": 32507}, {\"name\": \"code-yeongyu/oh-my-opencode\", \"stars\": 32163}, {\"name\": \"zai-org/Open-AutoGLM\", \"stars\": 23504}, {\"name\": \"toon-format/toon\", \"stars\": 22687}], \"snapshot\": [{\"name\": \"OpenClaw\", \"published\": \"2026-02-18\", \"version\": \"v2026.2.17\"}, {\"name\": \"Oh My OpenCode\", \"published\": \"2026-02-18\", \"version\": \"v3.7.4\"}, {\"name\": \"OpenCode 桌面版\", \"published\": \"2026-02-16\", \"version\": \"v1.2.6\"}, {\"name\": \"memU 记忆系统\", \"published\": \"2026-02-06\", \"version\": \"v1.4.0\"}]}"
 }
