@@ -5,5 +5,11 @@
   "achievements": [
     "skill_creator"
   ],
-  "updated": "2026-02-14T12:01:57.000000"
+  "updated": "2026-02-14T12:01:57.000000",
+  "exp_total": 85,
+  "exp_current": 85,
+  "xp_to_next": 100,
+  "current_streak": 1,
+  "max_streak": 1,
+  "total_points": 0
 }
