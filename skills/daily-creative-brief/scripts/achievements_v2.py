@@ -204,6 +204,11 @@ class AchievementSystem:
                 for key in default_progress:
                     if key not in data:
                         data[key] = default_progress[key]
+                # 将普通 dict 转换回 defaultdict
+                if isinstance(data["stats"]["by_type"], dict):
+                    data["stats"]["by_type"] = defaultdict(int, data["stats"]["by_type"])
+                if isinstance(data["stats"]["by_difficulty"], dict):
+                    data["stats"]["by_difficulty"] = defaultdict(int, data["stats"]["by_difficulty"])
                 return data
         except (json.JSONDecodeError, IOError) as e:
             logger.error(f"加载进度文件失败: {e}")
