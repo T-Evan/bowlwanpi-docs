@@ -31,6 +31,10 @@ def load_progression_fallback():
         "bond": 0,
         "daily_total": 3,
         "weekly_total": 3,
+        "season_total": 3,
+        "season_completed": 0,
+        "season_tier": 1,
+        "season_period": "",
     }
     if LEVEL_FILE.exists():
         try:
@@ -47,6 +51,9 @@ def load_progression_fallback():
             quests = data.get("quests", {})
             bowl["daily_completed"] = len(quests.get("daily", {}).get("completed", []))
             bowl["weekly_completed"] = len(quests.get("weekly", {}).get("completed", []))
+            bowl["season_completed"] = len(quests.get("season", {}).get("completed", []))
+            bowl["season_period"] = quests.get("season", {}).get("period", "")
+            bowl["season_tier"] = int(data.get("season_tier", bowl["season_tier"]))
         except (OSError, json.JSONDecodeError, ValueError):
             pass
     return bowl
@@ -143,6 +150,7 @@ XP: {bar(xp_percent)} {xp_value}/{xp_to_next}
 📋 任务: {bowl.get('total_quests', 0)} | 🔥 连胜: {bowl.get('streak_days', 0)} 天 | 🤝 羁绊: {bowl.get('bond', 0)}
 🏆 成就: {len(bowl.get('achievements', []))} 个
 🎯 日常: {bowl.get('daily_completed', 0)}/{bowl.get('daily_total', 3)} | 周常: {bowl.get('weekly_completed', 0)}/{bowl.get('weekly_total', 3)}
+🛡️ 赛季: {bowl.get('season_completed', 0)}/{bowl.get('season_total', 3)} | 阶位 T{bowl.get('season_tier', 1)} {f"({bowl.get('season_period')})" if bowl.get('season_period') else ''}
 
 💡 *每小时自动更新*
 """

@@ -82,6 +82,33 @@ WEEKLY_QUESTS = [
     },
 ]
 
+SEASON_QUESTS = [
+    {
+        "id": "season_tasks_60",
+        "name": "赛季耐力赛",
+        "goal": 60,
+        "metric": "tasks",
+        "reward_xp": 320,
+        "reward_points": 80,
+    },
+    {
+        "id": "season_skill_24",
+        "name": "赛季技能大师",
+        "goal": 24,
+        "metric": "skill_tasks",
+        "reward_xp": 280,
+        "reward_points": 70,
+    },
+    {
+        "id": "season_hard_12",
+        "name": "赛季高难挑战",
+        "goal": 12,
+        "metric": "hard_tasks",
+        "reward_xp": 300,
+        "reward_points": 75,
+    },
+]
+
 TITLE_RULES = [
     {"level": 1, "title": "见习小埋"},
     {"level": 3, "title": "沟通学徒"},
@@ -124,6 +151,10 @@ def week_key(dt: datetime) -> str:
     return f"{iso.year}-W{iso.week:02d}"
 
 
+def season_key(dt: datetime) -> str:
+    return f"{dt.year}-{dt.month:02d}"
+
+
 def get_title(level: int) -> str:
     current = TITLE_RULES[0]["title"]
     for rule in TITLE_RULES:
@@ -153,10 +184,12 @@ class ProgressionSystem:
             "achievement_points": 0,
             "quest_points": 0,
             "bond": 0,
+            "season_tier": 1,
             "achievements": [],
             "quests": {
                 "daily": {"period": "", "stats": {}, "completed": []},
                 "weekly": {"period": "", "stats": {}, "completed": []},
+                "season": {"period": "", "stats": {}, "completed": []},
             },
             "updated": datetime.now().isoformat(),
         }
@@ -189,6 +222,7 @@ class ProgressionSystem:
                 "quest_points": int(data.get("quest_points", 0)),
                 "total_points": int(data.get("total_points", 0)),
                 "bond": int(data.get("bond", 0)),
+                "season_tier": int(data.get("season_tier", 1)),
             }
         )
         return data
@@ -241,7 +275,11 @@ class ProgressionSystem:
                         "name": quest["name"],
                         "reward_xp": quest["reward_xp"],
                         "reward_points": quest["reward_points"],
-                        "kind": "daily" if quest in DAILY_QUESTS else "weekly",
+                        "kind": (
+                            "daily"
+                            if quest in DAILY_QUESTS
+                            else ("weekly" if quest in WEEKLY_QUESTS else "season")
+                        ),
                     }
                 )
 
@@ -252,17 +290,21 @@ class ProgressionSystem:
         quests = self.data.setdefault("quests", self._default_data()["quests"])
         daily = quests.setdefault("daily", {"period": "", "stats": {}, "completed": []})
         weekly = quests.setdefault("weekly", {"period": "", "stats": {}, "completed": []})
+        season = quests.setdefault("season", {"period": "", "stats": {}, "completed": []})
 
         self._sync_quest_period(daily, timestamp.strftime("%Y-%m-%d"))
         self._sync_quest_period(weekly, week_key(timestamp))
+        self._sync_quest_period(season, season_key(timestamp))
 
         self._quest_stat_bump(daily.setdefault("stats", {}), task_type, difficulty)
         self._quest_stat_bump(weekly.setdefault("stats", {}), task_type, difficulty)
+        self._quest_stat_bump(season.setdefault("stats", {}), task_type, difficulty)
 
         rewards: List[Dict[str, Any]] = []
         quest_xp = 0
         quest_xp += self._apply_quest_rewards(DAILY_QUESTS, daily, rewards)
         quest_xp += self._apply_quest_rewards(WEEKLY_QUESTS, weekly, rewards)
+        quest_xp += self._apply_quest_rewards(SEASON_QUESTS, season, rewards)
 
         if quest_xp:
             self.data["exp_total"] = int(self.data.get("exp_total", 0)) + quest_xp
@@ -295,15 +337,19 @@ class ProgressionSystem:
         quests = self.data.setdefault("quests", self._default_data()["quests"])
         daily = quests.setdefault("daily", {"period": "", "stats": {}, "completed": []})
         weekly = quests.setdefault("weekly", {"period": "", "stats": {}, "completed": []})
+        season = quests.setdefault("season", {"period": "", "stats": {}, "completed": []})
 
         self._sync_quest_period(daily, now.strftime("%Y-%m-%d"))
         self._sync_quest_period(weekly, week_key(now))
+        self._sync_quest_period(season, season_key(now))
 
         return {
             "daily_period": daily.get("period"),
             "weekly_period": weekly.get("period"),
+            "season_period": season.get("period"),
             "daily": self._quest_board(daily, DAILY_QUESTS),
             "weekly": self._quest_board(weekly, WEEKLY_QUESTS),
+            "season": self._quest_board(season, SEASON_QUESTS),
         }
 
     def record_task(
@@ -344,6 +390,7 @@ class ProgressionSystem:
         self.data["max_streak"] = ach_status.get("max_streak", 0)
         self.data["achievement_points"] = int(ach_status.get("total_points", 0))
         self.data["total_points"] = int(self.data.get("achievement_points", 0)) + int(self.data.get("quest_points", 0))
+        self.data["season_tier"] = 1 + int(self.data.get("quest_points", 0)) // 100
 
         ls = compute_level(int(self.data["exp_total"]))
         self.data["level"] = ls.level
@@ -376,6 +423,7 @@ class ProgressionSystem:
                 for a in new_achievements
             ],
             "streak": ach_status.get("current_streak", 0),
+            "season_tier": self.data.get("season_tier", 1),
         }
 
     def _merge_status(self) -> None:
@@ -393,6 +441,7 @@ class ProgressionSystem:
         self.data["exp_current"] = ls.exp_current
         self.data["xp_to_next"] = ls.exp_to_next
         self.data["exp"] = ls.exp_total
+        self.data["season_tier"] = 1 + int(self.data.get("quest_points", 0)) // 100
 
     def status(self) -> Dict[str, Any]:
         self._merge_status()

@@ -119,11 +119,13 @@ def main() -> None:
     if result.get("quest_rewards"):
         print("🎯 任务完成奖励：")
         for quest in result["quest_rewards"]:
-            print(f"  ✅ {quest['name']} (+{quest['reward_xp']} XP, +{quest['reward_points']}点)")
+            scope = {"daily": "日常", "weekly": "周常", "season": "赛季"}.get(quest.get("kind"), "任务")
+            print(f"  ✅ [{scope}] {quest['name']} (+{quest['reward_xp']} XP, +{quest['reward_points']}点)")
 
     print(
         f"🎮 当前状态: Lv.{result['level']} {result['title']} | XP: {result['exp_current']}/{result['xp_to_next']} | 连胜: {result['streak']}天"
     )
+    print(f"🛡️ 赛季阶位: T{result.get('season_tier', 1)}")
     print(f"🤝 羁绊值: {result['bond']} (+{result['bond_gained']})")
     print(f"🔥 动力值: {drive:.1%}")
 
@@ -139,7 +141,7 @@ def main() -> None:
 
     if notify_lines:
         notify_lines.append(
-            f"\n当前进度：Lv.{result['level']} {result['title']} | XP {result['exp_current']}/{result['xp_to_next']} | 连胜 {result['streak']} 天 | 羁绊 {result['bond']}"
+            f"\n当前进度：Lv.{result['level']} {result['title']} | XP {result['exp_current']}/{result['xp_to_next']} | 连胜 {result['streak']} 天 | 赛季T{result.get('season_tier', 1)} | 羁绊 {result['bond']}"
         )
         send_progression_notification("\n".join(notify_lines))
 

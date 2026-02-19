@@ -4,7 +4,7 @@
 
 - 自动等级成长（XP -> 升级）
 - 自动成就解锁
-- 自动每日任务 / 每周任务奖励
+- 自动每日任务 / 每周任务 / 赛季任务奖励
 
 - `scripts/progression_system.py`：统一管理 XP、等级、称号、成就、连胜、羁绊、任务面板
 - `scripts/log_creation.py`：记录任务完成并自动奖励
@@ -24,7 +24,7 @@ python3 skills/daily-creative-brief/scripts/log_creation.py "完成中文热榜�
 python3 skills/daily-creative-brief/scripts/progression_system.py status
 ```
 
-查看任务面板（每日/每周进度）：
+查看任务面板（每日/每周/赛季进度）：
 
 ```bash
 python3 skills/daily-creative-brief/scripts/progression_system.py quests
@@ -62,6 +62,15 @@ python3 skills/daily-creative-brief/scripts/progression_system.py quests
 - 周度建设者：当周完成 10 个任务（+80 XP, +15点）
 - 周度挑战：当周完成 3 个困难/史诗任务（+90 XP, +20点）
 - 能力进化：当周完成 4 个 skill 任务（+70 XP, +12点）
+
+## 赛季系统（按月）
+
+- 赛季周期：每自然月（例如 `2026-02`）
+- 赛季任务：
+  - 赛季耐力赛：60 个任务（+320 XP, +80点）
+  - 赛季技能大师：24 个 skill 任务（+280 XP, +70点）
+  - 赛季高难挑战：12 个困难/史诗任务（+300 XP, +75点）
+- 赛季阶位：根据任务积分自动提升（每 100 任务积分 +1 阶）
 
 ## 数据文件
 
