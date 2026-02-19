@@ -20,3 +20,52 @@
 [0;32m[INFO][0m 🧹 清理 health-checks 目录...
 [0;32m[INFO][0m ✅ 清理完成，剩余 0 个文件
 [0;32m[INFO][0m 📦 检查 Git 状态...
+[0;32m[INFO][0m ✅ Git 提交完成
+[0;32m[INFO][0m 🧬 运行 Evolver 自进化...
+[1;33m[WARN][0m ⚠️  evolver 技能不存在，跳过自进化
+[0;32m[INFO][0m 🔄 更新每日系统状态...
+[1;33m[WARN][0m ⚠️  游戏系统数据不存在
+[0;32m[INFO][0m ✅ 情感状态已更新 (Drive: 0.45)
+[0;32m[INFO][0m ✅ 日记系统已创建
+[0;32m[INFO][0m ✅ 杏仁核情感状态已更新
+[0;32m[INFO][0m ✅ 简化情感状态已更新
+[0;32m[INFO][0m ✅ 海马体核心记忆已更新
+[0;32m[INFO][0m ✅ 系统仪表盘已更新
+[0;32m[INFO][0m 🗄️ 检查记忆文件归档...
+[0;32m[INFO][0m ⏭️  无需归档的记忆文件
+[0;32m[INFO][0m 💾 创建Git备份快照...
+[0;32m[INFO][0m ✅ Git快照已创建: /root/.openclaw/workspace/.rollbacks/20260220
+[0;32m[INFO][0m 📝 检查日志轮转...
+[0;32m[INFO][0m ✅ 每日格言已生成: 进化不是选择，而是必然。适应或消亡。
+[0;32m[INFO][0m ✅ 技能使用统计已更新
+[0;32m[INFO][0m ✅ 错误率统计已更新 (今日错误: 0
+0)
+[0;32m[INFO][0m ✅ 学习进度已更新
+[0;32m[INFO][0m ✅ 每日系统状态更新完成
+[0;32m[INFO][0m 📊 收集系统数据...
+[0;34m[DATA][0m 技能数量: 1
+[0;34m[DATA][0m 定时任务: 0
+[0;34m[DATA][0m 记忆文件: 2
+[0;34m[DATA][0m 会话记录: 576
+[0;34m[DATA][0m QMDR向量: 51367
+[0;34m[DATA][0m 当前能量: 75%
+[0;32m[INFO][0m 📝 生成动态数据文件...
+[0;32m[INFO][0m ✅ 技能列表已生成: /root/.openclaw/workspace/docs/data/skills.json
+[0;32m[INFO][0m ✅ 定时任务列表已生成: /root/.openclaw/workspace/docs/data/cron.json
+[0;32m[INFO][0m ✅ 统计数据已生成: /root/.openclaw/workspace/docs/data/stats.json
+[0;32m[INFO][0m 📈 更新趋势图表数据...
+[0;32m[INFO][0m ✅ 趋势数据已更新: /root/.openclaw/workspace/docs/data/trends.json
+[0;34m[DATA][0m 技能趋势: 20,20,20,20,20,20,20
+[0;34m[DATA][0m 能量趋势: 63,71,70,69,77,76,75
+[0;32m[INFO][0m ⚠️  自拍照数据不存在，创建空文件
+[0;32m[INFO][0m 🌐 更新网站 HTML 内容...
+[1;33m[WARN][0m ⚠️  index.html 不存在，跳过更新
+╔══════════════════════════════════════════╗
+║      🌙 BowlWanpi 夜间构建 v4.3          ║
+║      全系统每日更新版                    ║
+║      2026-02-20 06:00                ║
+╚══════════════════════════════════════════╝
+
+[0;32m[INFO][0m 🧹 清理 health-checks 目录...
+[0;32m[INFO][0m ✅ 清理完成，剩余 0 个文件
+[0;32m[INFO][0m 📦 检查 Git 状态...
