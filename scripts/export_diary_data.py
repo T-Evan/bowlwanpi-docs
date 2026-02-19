@@ -3,8 +3,11 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
+import urllib.error
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 
@@ -12,6 +15,9 @@ WORKSPACE = Path("/root/.openclaw/workspace")
 MEMORY_DIR = WORKSPACE / "memory"
 SELFIES_FILE = WORKSPACE / "docs/data/selfies.json"
 OUT_FILE = WORKSPACE / "docs/data/diary.json"
+OPENCLAW_CONFIG = Path("/root/.openclaw/openclaw.json")
+AI_SUMMARY_CACHE_FILE = MEMORY_DIR / "diary-ai-summary-cache.json"
+MAX_AI_CALLS_PER_RUN = 2
 
 DATE_RE = re.compile(r"^#\s*(\d{4}-\d{2}-\d{2})")
 TIME_LINE_RE = re.compile(r"\*\*(\d{1,2}:\d{2})")
@@ -146,6 +152,91 @@ def group_selfies_by_date(selfies: list[dict]) -> dict:
     return by_date
 
 
+def load_ai_cache() -> dict:
+    if not AI_SUMMARY_CACHE_FILE.exists():
+        return {}
+    try:
+        data = json.loads(AI_SUMMARY_CACHE_FILE.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except Exception:
+        return {}
+
+
+def save_ai_cache(cache: dict) -> None:
+    AI_SUMMARY_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    AI_SUMMARY_CACHE_FILE.write_text(
+        json.dumps(cache, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def extract_json_object(raw: str) -> dict | None:
+    text = (raw or "").strip()
+    if not text:
+        return None
+    if text.startswith("```"):
+        lines = text.splitlines()
+        if lines and lines[0].startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+        text = "\n".join(lines).strip()
+
+    candidates = [text]
+    start = text.find("{")
+    end = text.rfind("}")
+    if start >= 0 and end > start:
+        candidates.append(text[start:end + 1])
+
+    for candidate in candidates:
+        try:
+            obj = json.loads(candidate)
+            if isinstance(obj, dict):
+                return obj
+        except Exception:
+            continue
+    return None
+
+
+def day_fingerprint(day_tags: list[str], events: list[dict], selfies: list[dict]) -> str:
+    payload = {
+        "tags": day_tags,
+        "events": [normalize_text(e.get("text", ""), limit=160) for e in events],
+        "selfies": [
+            {
+                "title": s.get("title", ""),
+                "mood": s.get("mood", ""),
+                "match": s.get("match", ""),
+            }
+            for s in selfies
+        ],
+    }
+    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()[:20]
+
+
+def load_right_provider() -> dict | None:
+    try:
+        cfg = json.loads(OPENCLAW_CONFIG.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+    provider = cfg.get("models", {}).get("providers", {}).get("right")
+    if not isinstance(provider, dict):
+        return None
+
+    base_url = str(provider.get("baseUrl", "")).rstrip("/")
+    api_key = str(provider.get("apiKey", ""))
+    if not base_url or not api_key:
+        return None
+
+    return {
+        "url": base_url + "/chat/completions",
+        "api_key": api_key,
+        "model": "gpt-5.3-codex-medium",
+    }
+
+
 def is_noise(line: str) -> bool:
     low = line.lower()
     if line.startswith("- ["):
@@ -202,7 +293,7 @@ def style_pick(options: list[str], date_key: str, salt: str) -> str:
     return options[idx]
 
 
-def build_day_summary(date_key: str, day_tags: list[str], events: list[dict], selfies: list[dict]) -> dict:
+def build_fallback_summary(date_key: str, day_tags: list[str], events: list[dict], selfies: list[dict]) -> dict:
     if not events:
         return {
             "text": "今天是轻量的一天，先留白，明天继续推进。",
@@ -287,6 +378,161 @@ def build_day_summary(date_key: str, day_tags: list[str], events: list[dict], se
         "communication": communication,
         "highlights": highlights,
     }
+
+
+def ai_summarize_day(
+    date_key: str,
+    day_tags: list[str],
+    events: list[dict],
+    selfies: list[dict],
+    provider: dict | None,
+) -> dict | None:
+    if not provider:
+        return None
+
+    event_lines = [
+        f"- [{e.get('time', '')}] {normalize_text(e.get('text', ''), limit=140)}"
+        for e in events[-12:]
+    ]
+    selfie_lines = [
+        f"- {s.get('title', '自拍')} | mood={s.get('mood', '')} | reason={s.get('match', '')}"
+        for s in selfies
+    ]
+
+    prompt = (
+        "你在写一篇 AI 助手的当日日记总结。要求：\n"
+        "1) 用第一人称中文、口语化、自然、有情绪，不要固定模板句。\n"
+        "2) 必须引用至少一个具体事件，不要空话。\n"
+        "3) 语气像真实复盘，长度 100-220 字。\n"
+        "4) 如果今天有和一碗的互动，可自然带一句。\n"
+        "5) 返回严格 JSON，不要 markdown。\n\n"
+        f"日期: {date_key}\n"
+        f"标签: {', '.join(day_tags) if day_tags else '无'}\n"
+        "事件:\n"
+        f"{chr(10).join(event_lines) if event_lines else '- 今天事件较少'}\n"
+        "照片:\n"
+        f"{chr(10).join(selfie_lines) if selfie_lines else '- 无照片'}\n\n"
+        "返回格式:\n"
+        "{\n"
+        '  "text": "...",\n'
+        '  "skills": ["..."],\n'
+        '  "thoughts": ["..."],\n'
+        '  "communication": ["..."],\n'
+        '  "highlights": ["..."]\n'
+        "}\n"
+    )
+
+    body = {
+        "model": provider["model"],
+        "messages": [
+            {"role": "system", "content": "你是一个会写真实日记的中文助手。"},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 1.05,
+        "max_tokens": 380,
+    }
+
+    req = urllib.request.Request(
+        provider["url"],
+        data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {provider['api_key']}",
+        },
+        method="POST",
+    )
+
+    try:
+        with urllib.request.urlopen(req, timeout=45) as resp:
+            payload = json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError):
+        return None
+
+    choices = payload.get("choices", []) if isinstance(payload, dict) else []
+    if not choices:
+        return None
+
+    content = choices[0].get("message", {}).get("content", "")
+    parsed = extract_json_object(content)
+    if not parsed:
+        return None
+
+    text = re.sub(r"\s+", " ", str(parsed.get("text", "")).strip())
+    if len(text) < 20:
+        return None
+
+    def _clean_list(key: str, max_items: int = 4) -> list[str]:
+        raw = parsed.get(key, [])
+        if not isinstance(raw, list):
+            return []
+        out = []
+        for item in raw:
+            s = re.sub(r"\s+", " ", str(item).strip())
+            if not s or s in out:
+                continue
+            out.append(s)
+            if len(out) >= max_items:
+                break
+        return out
+
+    return {
+        "text": text,
+        "skills": _clean_list("skills"),
+        "thoughts": _clean_list("thoughts"),
+        "communication": _clean_list("communication"),
+        "highlights": _clean_list("highlights", max_items=3),
+        "source": "ai",
+    }
+
+
+def build_day_summary(
+    date_key: str,
+    day_tags: list[str],
+    events: list[dict],
+    selfies: list[dict],
+    cache: dict,
+    ai_state: dict,
+) -> dict:
+    fallback = build_fallback_summary(date_key, day_tags, events, selfies)
+    fp = day_fingerprint(day_tags, events, selfies)
+
+    cached_summary = None
+    cached = cache.get(date_key)
+    if isinstance(cached, dict) and cached.get("fingerprint") == fp:
+        candidate = cached.get("summary")
+        if isinstance(candidate, dict) and candidate.get("text"):
+            cached_summary = candidate
+            # Keep AI summary as-is; fallback summaries can be upgraded later.
+            if candidate.get("source") == "ai" or ai_state.get("remaining", 0) <= 0:
+                return candidate
+
+    summary = cached_summary or fallback
+    if ai_state.get("remaining", 0) > 0 and ai_state.get("provider"):
+        ai_summary = ai_summarize_day(
+            date_key=date_key,
+            day_tags=day_tags,
+            events=events,
+            selfies=selfies,
+            provider=ai_state.get("provider"),
+        )
+        ai_state["remaining"] = max(0, ai_state.get("remaining", 0) - 1)
+        if ai_summary:
+            # Preserve structure even when model omits some lists.
+            summary = {
+                "text": ai_summary.get("text") or fallback["text"],
+                "skills": ai_summary.get("skills") or fallback["skills"],
+                "thoughts": ai_summary.get("thoughts") or fallback["thoughts"],
+                "communication": ai_summary.get("communication") or fallback["communication"],
+                "highlights": ai_summary.get("highlights") or fallback["highlights"],
+                "source": "ai",
+            }
+
+    cache[date_key] = {
+        "fingerprint": fp,
+        "updated": datetime.now().isoformat(),
+        "summary": summary,
+    }
+    return summary
 
 
 def build_day_context(day_tags: list[str], summary: dict, events: list[dict]) -> str:
@@ -453,6 +699,11 @@ def extract_events(text: str, max_events: int = 20) -> list:
 def main() -> int:
     all_selfies = load_selfies()
     selfies_by_date = group_selfies_by_date(all_selfies)
+    cache = load_ai_cache()
+    ai_state = {
+        "provider": load_right_provider(),
+        "remaining": MAX_AI_CALLS_PER_RUN,
+    }
     days = []
 
     files = sorted(MEMORY_DIR.glob("20*.md"), reverse=True)[:20]
@@ -468,7 +719,7 @@ def main() -> int:
 
         base_tags = sorted({t for e in appendix_events for t in e.get("tags", [])})
         same_day_selfies = selfies_by_date.get(date_key, [])
-        rough_summary = build_day_summary(date_key, base_tags, events, same_day_selfies)
+        rough_summary = build_fallback_summary(date_key, base_tags, events, same_day_selfies)
         selected_selfies = pick_daily_selfies(
             date_key=date_key,
             day_tags=base_tags,
@@ -479,7 +730,14 @@ def main() -> int:
         )
 
         day_tags = sorted(set(base_tags + (["自拍"] if selected_selfies else [])))
-        summary = build_day_summary(date_key, day_tags, events, selected_selfies)
+        summary = build_day_summary(
+            date_key=date_key,
+            day_tags=day_tags,
+            events=events,
+            selfies=selected_selfies,
+            cache=cache,
+            ai_state=ai_state,
+        )
 
         days.append(
             {
@@ -497,6 +755,7 @@ def main() -> int:
         "days": days,
     }
 
+    save_ai_cache(cache)
     OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUT_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Exported: {OUT_FILE}")
