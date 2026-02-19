@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -205,6 +205,15 @@ def get_title(level: int) -> str:
     return current
 
 
+def season_theme(dt: datetime) -> Dict[str, str]:
+    themes = [
+        {"name": "协作回响", "featured": "bond_charm"},
+        {"name": "极速升级", "featured": "xp_booster"},
+        {"name": "连胜燃烧", "featured": "streak_shield"},
+    ]
+    return themes[(dt.month - 1) % len(themes)]
+
+
 class ProgressionSystem:
     def __init__(self) -> None:
         LEVEL_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -231,6 +240,7 @@ class ProgressionSystem:
             "spent_talent_points": 0,
             "talents": {k: 0 for k in TALENT_TREE},
             "shop_inventory": {k: 0 for k in SEASON_SHOP},
+            "shop_theme": season_theme(datetime.now())["name"],
             "achievements": [],
             "quests": {
                 "daily": {"period": "", "stats": {}, "completed": []},
@@ -273,6 +283,7 @@ class ProgressionSystem:
                 "spent_talent_points": int(data.get("spent_talent_points", 0)),
                 "talents": {**defaults["talents"], **data.get("talents", {})},
                 "shop_inventory": {**defaults["shop_inventory"], **data.get("shop_inventory", {})},
+                "shop_theme": str(data.get("shop_theme", defaults["shop_theme"])),
             }
         )
         return data
@@ -427,10 +438,26 @@ class ProgressionSystem:
             "season": self._quest_board(season, SEASON_QUESTS),
         }
 
-    def shop_status(self) -> Dict[str, Any]:
-        inventory = self.data.get("shop_inventory", {})
-        items = []
+    def _shop_catalog(self, timestamp: datetime | None = None) -> Dict[str, Dict[str, Any]]:
+        now = timestamp or datetime.now()
+        theme = season_theme(now)
+        catalog: Dict[str, Dict[str, Any]] = {}
         for item_id, cfg in SEASON_SHOP.items():
+            entry = dict(cfg)
+            entry["id"] = item_id
+            entry["featured"] = item_id == theme["featured"]
+            if entry["featured"]:
+                entry["cost"] = max(1, int(entry["cost"]) - 2)
+            catalog[item_id] = entry
+        return catalog
+
+    def shop_status(self) -> Dict[str, Any]:
+        now = datetime.now()
+        inventory = self.data.get("shop_inventory", {})
+        catalog = self._shop_catalog(now)
+        theme = season_theme(now)
+        items = []
+        for item_id, cfg in catalog.items():
             items.append(
                 {
                     "id": item_id,
@@ -439,18 +466,21 @@ class ProgressionSystem:
                     "owned": int(inventory.get(item_id, 0)),
                     "max_count": cfg["max_count"],
                     "effect": cfg["effect"],
+                    "featured": bool(cfg.get("featured", False)),
                 }
             )
         return {
             "season_tokens": int(self.data.get("season_tokens", 0)),
+            "theme": theme["name"],
             "items": items,
         }
 
     def buy_item(self, item_id: str) -> Dict[str, Any]:
-        if item_id not in SEASON_SHOP:
+        catalog = self._shop_catalog()
+        if item_id not in catalog:
             return {"ok": False, "error": f"未知商品: {item_id}"}
 
-        cfg = SEASON_SHOP[item_id]
+        cfg = catalog[item_id]
         inventory = self.data.setdefault("shop_inventory", {k: 0 for k in SEASON_SHOP})
         owned = int(inventory.get(item_id, 0))
         tokens = int(self.data.get("season_tokens", 0))
@@ -469,6 +499,7 @@ class ProgressionSystem:
             "item": cfg["name"],
             "owned": inventory[item_id],
             "season_tokens": self.data["season_tokens"],
+            "featured": bool(cfg.get("featured", False)),
         }
 
     def talents_status(self) -> Dict[str, Any]:
@@ -520,6 +551,35 @@ class ProgressionSystem:
             "available_points": self._available_talent_points(),
         }
 
+    def _protect_streak_with_shield(self, timestamp: datetime) -> bool:
+        """Consume one shield to prevent streak reset when gap > 1 day."""
+        progress = getattr(self.achievement_system, "progress", {})
+        stats = progress.get("stats", {}) if isinstance(progress, dict) else {}
+        last_completion = stats.get("last_completion")
+        if not last_completion:
+            return False
+
+        try:
+            last = datetime.strptime(last_completion, "%Y-%m-%d")
+        except ValueError:
+            return False
+
+        today = timestamp.replace(hour=0, minute=0, second=0, microsecond=0)
+        diff_days = (today - last).days
+        if diff_days <= 1:
+            return False
+
+        inventory = self.data.setdefault("shop_inventory", {k: 0 for k in SEASON_SHOP})
+        shields = int(inventory.get("streak_shield", 0))
+        if shields <= 0:
+            return False
+
+        inventory["streak_shield"] = shields - 1
+        stats["last_completion"] = (today - timedelta(days=1)).strftime("%Y-%m-%d")
+        self.achievement_system.progress = progress
+        self.achievement_system._save_progress()
+        return True
+
     def record_task(
         self,
         description: str,
@@ -547,6 +607,7 @@ class ProgressionSystem:
 
         quest_rewards = self._update_quests(task_type, difficulty, timestamp)
 
+        shield_used = self._protect_streak_with_shield(timestamp)
         new_achievements: List[Achievement] = self.achievement_system.record_completion(
             task_type=task_type,
             difficulty=difficulty,
@@ -569,6 +630,7 @@ class ProgressionSystem:
         self.data["exp_current"] = ls.exp_current
         self.data["xp_to_next"] = ls.exp_to_next
         self.data["updated"] = timestamp.isoformat()
+        self.data["shop_theme"] = season_theme(timestamp)["name"]
 
         self._save()
 
@@ -595,6 +657,8 @@ class ProgressionSystem:
             ],
             "streak": ach_status.get("current_streak", 0),
             "season_tier": self.data.get("season_tier", 1),
+            "streak_shield_used": shield_used,
+            "season_tokens": self.data.get("season_tokens", 0),
         }
 
     def _merge_status(self) -> None:
@@ -613,6 +677,7 @@ class ProgressionSystem:
         self.data["xp_to_next"] = ls.exp_to_next
         self.data["exp"] = ls.exp_total
         self.data["season_tier"] = 1 + int(self.data.get("quest_points", 0)) // 100
+        self.data["shop_theme"] = season_theme(datetime.now())["name"]
 
     def status(self) -> Dict[str, Any]:
         self._merge_status()

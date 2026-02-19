@@ -123,10 +123,13 @@ def main() -> None:
             token_text = f", +{quest.get('reward_tokens', 0)}代币" if quest.get('reward_tokens', 0) else ""
             print(f"  ✅ [{scope}] {quest['name']} (+{quest['reward_xp']} XP, +{quest['reward_points']}点{token_text})")
 
+    if result.get("streak_shield_used"):
+        print("🛡️ 连胜护盾生效：本次已自动保住连胜")
+
     print(
         f"🎮 当前状态: Lv.{result['level']} {result['title']} | XP: {result['exp_current']}/{result['xp_to_next']} | 连胜: {result['streak']}天"
     )
-    print(f"🛡️ 赛季阶位: T{result.get('season_tier', 1)}")
+    print(f"🛡️ 赛季阶位: T{result.get('season_tier', 1)} | 代币: {result.get('season_tokens', 0)}")
     print(f"🤝 羁绊值: {result['bond']} (+{result['bond_gained']})")
     print(f"🔥 动力值: {drive:.1%}")
 
@@ -139,6 +142,8 @@ def main() -> None:
         notify_lines.append(f"🏆 解锁成就：{ach['icon']} {ach['name']} (+{ach['points']}点)")
     for quest in result.get("quest_rewards", []):
         notify_lines.append(f"🎯 完成任务：{quest['name']} (+{quest['reward_xp']} XP)")
+    if result.get("streak_shield_used"):
+        notify_lines.append("🛡️ 连胜护盾生效：已自动保住连胜")
 
     if notify_lines:
         notify_lines.append(

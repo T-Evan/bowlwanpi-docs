@@ -17,6 +17,11 @@ LEVEL_FILE = WORKSPACE / "memory/bowlwanpi-level.json"
 DAILY_MEMORY_DIR = WORKSPACE / "memory"
 
 
+def current_shop_theme() -> str:
+    themes = ["协作回响", "极速升级", "连胜燃烧"]
+    return themes[(datetime.now().month - 1) % len(themes)]
+
+
 def load_progression_fallback():
     bowl = {
         "level": 1,
@@ -37,6 +42,7 @@ def load_progression_fallback():
         "season_period": "",
         "season_tokens": 0,
         "talent_points": 0,
+        "shop_theme": current_shop_theme(),
     }
     if LEVEL_FILE.exists():
         try:
@@ -58,6 +64,7 @@ def load_progression_fallback():
             bowl["season_tier"] = int(data.get("season_tier", bowl["season_tier"]))
             bowl["season_tokens"] = int(data.get("season_tokens", bowl["season_tokens"]))
             bowl["talent_points"] = max(0, bowl["season_tier"] - 1 - int(data.get("spent_talent_points", 0)))
+            bowl["shop_theme"] = data.get("shop_theme", bowl["shop_theme"]) or bowl["shop_theme"]
         except (OSError, json.JSONDecodeError, ValueError):
             pass
     return bowl
@@ -155,7 +162,7 @@ XP: {bar(xp_percent)} {xp_value}/{xp_to_next}
 🏆 成就: {len(bowl.get('achievements', []))} 个
 🎯 日常: {bowl.get('daily_completed', 0)}/{bowl.get('daily_total', 3)} | 周常: {bowl.get('weekly_completed', 0)}/{bowl.get('weekly_total', 3)}
 🛡️ 赛季: {bowl.get('season_completed', 0)}/{bowl.get('season_total', 3)} | 阶位 T{bowl.get('season_tier', 1)} {f"({bowl.get('season_period')})" if bowl.get('season_period') else ''}
-🪙 赛季代币: {bowl.get('season_tokens', 0)} | 🌳 可用天赋点: {bowl.get('talent_points', 0)}
+🪙 赛季代币: {bowl.get('season_tokens', 0)} | 🌳 可用天赋点: {bowl.get('talent_points', 0)} | 🛒 商店主题: {bowl.get('shop_theme', '-') or '-'}
 
 💡 *每小时自动更新*
 """
