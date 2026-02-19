@@ -127,26 +127,22 @@ TAG_RULES = [
 ]
 
 
-def load_selfies_by_date() -> dict:
+def load_selfies() -> list[dict]:
     if not SELFIES_FILE.exists():
-        return {}
+        return []
     try:
         selfies = json.loads(SELFIES_FILE.read_text(encoding="utf-8"))
+        return selfies if isinstance(selfies, list) else []
     except Exception:
-        return {}
+        return []
 
+
+def group_selfies_by_date(selfies: list[dict]) -> dict:
     by_date = {}
     for s in selfies:
         ts = str(s.get("timestamp", ""))
         date_key = ts[:10] if len(ts) >= 10 else "unknown"
-        by_date.setdefault(date_key, []).append(
-            {
-                "filename": s.get("filename"),
-                "title": s.get("title", "自拍"),
-                "mood": s.get("mood", ""),
-                "timestamp": ts,
-            }
-        )
+        by_date.setdefault(date_key, []).append(s)
     return by_date
 
 
@@ -255,6 +251,128 @@ def build_day_summary(day_tags: list[str], events: list[dict], selfies: list[dic
     }
 
 
+def build_day_context(day_tags: list[str], summary: dict, events: list[dict]) -> str:
+    chunks = list(day_tags)
+    chunks.extend(e.get("text", "") for e in events[-20:])
+    for key in ["skills", "thoughts", "communication", "highlights"]:
+        chunks.extend(summary.get(key, []))
+    chunks.append(summary.get("text", ""))
+    return " ".join(str(x) for x in chunks if x).lower()
+
+
+def selfie_score(selfie: dict, date_key: str, day_tags: list[str], context: str) -> tuple[int, list[str]]:
+    score = 0
+    reasons = []
+
+    ts = str(selfie.get("timestamp", ""))
+    selfie_date = ts[:10] if len(ts) >= 10 else "unknown"
+    if selfie_date == date_key:
+        score += 20
+        reasons.append("同一天")
+
+    raw_tags = [str(t) for t in selfie.get("tags", [])]
+    raw_text = " ".join([
+        str(selfie.get("title", "")),
+        str(selfie.get("background", "")),
+        str(selfie.get("mood", "")),
+        " ".join(raw_tags),
+    ]).lower()
+
+    mapping = {
+        "技能": ["学习", "成长", "突破", "坚持", "完成"],
+        "思考": ["思考", "哲学", "平静"],
+        "交流": ["交流", "温馨", "陪伴"],
+        "突破": ["突破", "喜悦", "完成"],
+        "游戏系统": ["成长", "坚持", "学习"],
+        "网站": ["学习", "完成"],
+        "进化": ["成长", "突破", "思考"],
+        "日记": ["平静", "温柔", "思考"],
+    }
+
+    for tag in day_tags:
+        if tag.lower() in raw_text:
+            score += 6
+            reasons.append(tag)
+        for kw in mapping.get(tag, []):
+            if kw.lower() in raw_text:
+                score += 4
+                reasons.append(kw)
+
+    for tag in raw_tags:
+        if tag.lower() in context:
+            score += 8
+            reasons.append(tag)
+
+    if "爆肝" in context and int(selfie.get("energy", 0) or 0) >= 80:
+        score += 3
+        reasons.append("高能量")
+    if "平静" in context and int(selfie.get("energy", 0) or 0) <= 70:
+        score += 3
+        reasons.append("低压")
+
+    uniq_reasons = []
+    seen = set()
+    for r in reasons:
+        if r not in seen:
+            uniq_reasons.append(r)
+            seen.add(r)
+    return score, uniq_reasons[:3]
+
+
+def pick_daily_selfies(
+    date_key: str,
+    day_tags: list[str],
+    summary: dict,
+    events: list[dict],
+    all_selfies: list[dict],
+    target: int = 3,
+) -> list[dict]:
+    if not all_selfies:
+        return []
+
+    context = build_day_context(day_tags, summary, events)
+    candidates = []
+    for s in all_selfies:
+        score, reasons = selfie_score(s, date_key, day_tags, context)
+        item = {
+            "filename": s.get("filename"),
+            "title": s.get("title", "自拍"),
+            "mood": s.get("mood", ""),
+            "timestamp": str(s.get("timestamp", "")),
+            "match": " / ".join(reasons) if reasons else "贴合今日氛围",
+            "_score": score,
+        }
+        candidates.append(item)
+
+    # Same-day photos first; fallback to full pool by score.
+    same_day = [c for c in candidates if c["timestamp"].startswith(date_key)]
+    same_day.sort(key=lambda x: x["_score"], reverse=True)
+    candidates.sort(key=lambda x: x["_score"], reverse=True)
+
+    picked = []
+    used = set()
+
+    for pool in [same_day, candidates]:
+        for c in pool:
+            fn = c.get("filename")
+            if not fn or fn in used:
+                continue
+            picked.append(c)
+            used.add(fn)
+            if len(picked) >= target:
+                break
+        if len(picked) >= target:
+            break
+
+    # If still not enough, recycle top choices to ensure daily 3 photos.
+    while picked and len(picked) < target:
+        picked.append(dict(picked[len(picked) % len(picked)]))
+
+    for p in picked:
+        p.pop("_score", None)
+    return picked[:target]
+
+
 def extract_events(text: str, max_events: int = 20) -> list:
     events = []
     seen = set()
@@ -295,7 +413,8 @@ def extract_events(text: str, max_events: int = 20) -> list:
 
 
 def main() -> int:
-    selfies_by_date = load_selfies_by_date()
+    all_selfies = load_selfies()
+    selfies_by_date = group_selfies_by_date(all_selfies)
     days = []
 
     files = sorted(MEMORY_DIR.glob("20*.md"), reverse=True)[:20]
@@ -306,15 +425,23 @@ def main() -> int:
 
         appendix_events = extract_events(text, max_events=60)
         events = appendix_events[-20:]
-        selfies = selfies_by_date.get(date_key, [])
-        if not events and not selfies:
+        if not events and not all_selfies:
             continue
 
-        day_tags = sorted({t for e in appendix_events for t in e.get("tags", [])})
-        if selfies:
-            day_tags = sorted(set(day_tags + ["自拍"]))
+        base_tags = sorted({t for e in appendix_events for t in e.get("tags", [])})
+        same_day_selfies = selfies_by_date.get(date_key, [])
+        rough_summary = build_day_summary(base_tags, events, same_day_selfies)
+        selected_selfies = pick_daily_selfies(
+            date_key=date_key,
+            day_tags=base_tags,
+            summary=rough_summary,
+            events=events,
+            all_selfies=all_selfies,
+            target=3,
+        )
 
-        summary = build_day_summary(day_tags, events, selfies)
+        day_tags = sorted(set(base_tags + (["自拍"] if selected_selfies else [])))
+        summary = build_day_summary(day_tags, events, selected_selfies)
 
         days.append(
             {
@@ -323,7 +450,7 @@ def main() -> int:
                 "summary": summary,
                 "events": events,
                 "appendix": appendix_events,
-                "selfies": selfies,
+                "selfies": selected_selfies,
             }
         )
 
