@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 
 WORKSPACE = Path("/root/.openclaw/workspace")
@@ -178,6 +179,72 @@ def compute_tags(text: str) -> list:
     return tags
 
 
+def normalize_text(text: str, limit: int = 72) -> str:
+    cleaned = re.sub(r"[`*]", "", text).strip()
+    cleaned = re.sub(r"\s+", " ", cleaned)
+    return cleaned[:limit] + "…" if len(cleaned) > limit else cleaned
+
+
+def unique_texts(items: list[str], max_items: int = 4) -> list[str]:
+    out = []
+    seen = set()
+    for item in items:
+        key = item.strip()
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        out.append(key)
+        if len(out) >= max_items:
+            break
+    return out
+
+
+def build_day_summary(day_tags: list[str], events: list[dict], selfies: list[dict]) -> dict:
+    if not events:
+        return {
+            "text": "今天是轻量的一天，先留白，明天继续推进。",
+            "skills": [],
+            "thoughts": [],
+            "communication": [],
+            "highlights": [],
+        }
+
+    tags = [t for t in day_tags if t != "自拍"]
+    primary = "、".join(tags[:3]) if tags else "成长"
+
+    skill_events = [normalize_text(e["text"]) for e in events if "技能" in e.get("tags", []) or "进化" in e.get("tags", [])]
+    thought_events = [normalize_text(e["text"]) for e in events if "思考" in e.get("tags", [])]
+    comm_events = [normalize_text(e["text"]) for e in events if "交流" in e.get("tags", [])]
+    breakthrough_events = [normalize_text(e["text"]) for e in events if "突破" in e.get("tags", [])]
+
+    skills = unique_texts(skill_events)
+    thoughts = unique_texts(thought_events)
+    communication = unique_texts(comm_events)
+    highlight_candidates = [
+        x for x in breakthrough_events if len(x) >= 8 and not x.endswith((":", "："))
+    ]
+    if not highlight_candidates:
+        highlight_candidates = [normalize_text(events[-1]["text"])]
+    highlights = unique_texts(highlight_candidates, max_items=3)
+
+    mood = "有点累但很满足" if len(events) >= 10 else "节奏稳稳的"
+    summary = f"今天我主要在「{primary}」这条线持续推进，整体状态是{mood}。"
+    if highlights:
+        summary += f" 最有成就感的是：{highlights[0]}。"
+    if communication:
+        summary += " 和一碗的交流也更对齐了，方向感更清晰。"
+    if selfies:
+        summary += " 还顺手记录了自拍，留住了今天的情绪切片。"
+
+    return {
+        "text": summary,
+        "skills": skills,
+        "thoughts": thoughts,
+        "communication": communication,
+        "highlights": highlights,
+    }
+
+
 def extract_events(text: str, max_events: int = 20) -> list:
     events = []
     seen = set()
@@ -226,26 +293,32 @@ def main() -> int:
         text = f.read_text(encoding="utf-8", errors="ignore")
         m = DATE_RE.search(text)
         date_key = m.group(1) if m else f.stem
-        events = extract_events(text)
-        if not events and not selfies_by_date.get(date_key):
+
+        appendix_events = extract_events(text, max_events=60)
+        events = appendix_events[-20:]
+        selfies = selfies_by_date.get(date_key, [])
+        if not events and not selfies:
             continue
 
-        selfies = selfies_by_date.get(date_key, [])
-        day_tags = sorted({t for e in events for t in e.get("tags", [])})
+        day_tags = sorted({t for e in appendix_events for t in e.get("tags", [])})
         if selfies:
             day_tags = sorted(set(day_tags + ["自拍"]))
+
+        summary = build_day_summary(day_tags, events, selfies)
 
         days.append(
             {
                 "date": date_key,
                 "tags": day_tags,
+                "summary": summary,
                 "events": events,
+                "appendix": appendix_events,
                 "selfies": selfies,
             }
         )
 
     payload = {
-        "updated": __import__("datetime").datetime.now().isoformat(),
+        "updated": datetime.now().isoformat(),
         "days": days,
     }
 
