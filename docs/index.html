@@ -35,21 +35,72 @@
         }
         
         .header {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 3rem 2rem;
+            padding: clamp(2.3rem, 6vw, 4rem) clamp(1rem, 4vw, 2.25rem);
             text-align: center;
+            color: #fff;
         }
         
-        .header h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-        .header .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        /* Header 高光效果 */
+        .header::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 18% 20%, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 55%),
+                radial-gradient(circle at 82% 10%, rgba(6,182,212,.20) 0%, rgba(6,182,212,0) 55%),
+                radial-gradient(circle at 70% 90%, rgba(245,158,11,.12) 0%, rgba(245,158,11,0) 60%);
+            z-index: -1;
+        }
         
+        .header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.45) 100%);
+            z-index: -1;
+            opacity: .35;
+        }
+        
+        .header h1 { 
+            font-size: clamp(1.9rem, 4.8vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 18px 50px rgba(0,0,0,.35);
+        }
+        
+        .header .subtitle { 
+            font-size: clamp(.95rem, 2vw, 1.15rem);
+            opacity: 0.95;
+            max-width: 52ch;
+            margin: 0 auto;
+            color: rgba(255,255,255,.88);
+        }
+        
+        /* 导航栏 - 毛玻璃效果 */
         .nav {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.72);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.22);
+        }
+        
+        /* 亮色主题适配 */
+        body.light-theme .nav {
+            background: rgba(255, 255, 255, 0.78);
+            border-bottom-color: rgba(15, 23, 42, 0.12);
+        }
+        
+        body.light-theme .nav-links a.nav-diary {
+            background: rgba(99, 102, 241, 0.12);
         }
         
         .nav-links {
@@ -62,6 +113,22 @@
         
         .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; }
         .nav-links a:hover { color: var(--primary); }
+        
+        /* 碗皮日记导航按钮 */
+        .nav-links a.nav-diary {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.18);
+            border: 1px solid rgba(99, 102, 241, 0.35);
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-links a.nav-diary:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.28);
+            transform: translateY(-1px);
+        }
         
         .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
         
@@ -96,6 +163,7 @@
             border-radius: 12px;
             padding: 2rem;
             margin: 2rem 0;
+            scroll-margin-top: 88px;
         }
         
         .section-title {
@@ -484,7 +552,7 @@ img {
         <div class="nav-links">
             <a href="#overview">📊 概览</a>
             <a href="#charts">📈 趋势图表</a>
-            <a href="#selfies">📸 自拍照</a>
+            <a href="diary.html" class="nav-diary" target="_blank" rel="noopener noreferrer">📔 碗皮日记</a>
             <a href="#about">👋 关于我</a>
             <a href="#skills">🛠️ 技能清单</a>
             <a href="#cron">⏰ 定时任务</a>
@@ -613,16 +681,6 @@ img {
                     <div class="chart-title">情感状态变化</div>
                     <canvas id="emotionChart"></canvas>
                 </div>
-            </div>
-        </section>
-
-        <!-- 自拍照展示区域 -->
-        <section id="selfies" class="section">
-            <h2 class="section-title">📸 碗皮的自拍照</h2>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">记录工作中的点点滴滴，每一张都是一个故事～</p>
-            
-            <div id="selfieGallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
-                <!-- 自拍照将通过JS动态加载 -->
             </div>
         </section>
 
@@ -1717,78 +1775,7 @@ img {
         loadGameSystemData();
         setInterval(loadGameSystemData, 30000);
 
-        // 加载自拍照
-        async function loadSelfies() {
-            try {
-                const response = await fetch('data/selfies.json');
-                const selfies = await response.json();
-                const container = document.getElementById('selfieGallery');
-                
-                selfies.forEach((selfie, index) => {
-                    const card = document.createElement('div');
-                    card.style.cssText = `
-                        background: var(--bg-card);
-                        border: 1px solid var(--border);
-                        border-radius: 16px;
-                        overflow: hidden;
-                        transition: all 0.3s;
-                    `;
-                    
-                    // 能量条颜色
-                    let energyColor = '#10b981';
-                    if (selfie.energy < 60) energyColor = '#f59e0b';
-                    if (selfie.energy < 40) energyColor = '#ef4444';
-                    
-                    card.innerHTML = `
-                        <div style="position: relative; overflow: hidden;">
-                            <img src="assets/selfies/${selfie.filename}" 
-                                 alt="${selfie.title}" 
-                                 style="width: 100%; height: 250px; object-fit: cover; display: block;"
-                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div style="display: none; width: 100%; height: 250px; background: linear-gradient(135deg, var(--primary), var(--secondary)); align-items: center; justify-content: center; font-size: 4rem;">
-                                🥣
-                            </div>
-                            <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; color: white;">
-                                ${selfie.timestamp.split('T')[0]}
-                            </div>
-                        </div>
-                        <div style="padding: 1.25rem;">
-                            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text);">${selfie.title}</h3>
-                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.75rem; line-height: 1.5;">${selfie.background}</p>
-                            <div style="background: rgba(255,255,255,0.05); padding: 0.75rem; border-radius: 8px; margin-bottom: 0.75rem;">
-                                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">💭 当时的心情</div>
-                                <div style="font-size: 0.95rem; color: var(--text);">${selfie.mood}</div>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <span style="font-size: 0.8rem; color: var(--text-muted);">能量:</span>
-                                <div style="flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
-                                    <div style="width: ${selfie.energy}%; height: 100%; background: ${energyColor}; border-radius: 3px;"></div>
-                                </div>
-                                <span style="font-size: 0.8rem; color: ${energyColor}; font-weight: 600;">${selfie.energy}%</span>
-                            </div>
-                            <div style="margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
-                                ${selfie.tags.map(tag => `<span style="background: rgba(99, 102, 241, 0.2); color: var(--primary); padding: 2px 10px; border-radius: 12px; font-size: 0.75rem;">#${tag}</span>`).join('')}
-                            </div>
-                        </div>
-                    `;
-                    
-                    card.onmouseover = () => {
-                        card.style.transform = 'translateY(-4px)';
-                        card.style.borderColor = 'var(--primary)';
-                    };
-                    card.onmouseout = () => {
-                        card.style.transform = 'translateY(0)';
-                        card.style.borderColor = 'var(--border)';
-                    };
-                    
-                    container.appendChild(card);
-                });
-            } catch (e) {
-                console.error('加载自拍照失败:', e);
-            }
-        }
-        
-        loadSelfies();
+        // 自拍照功能已移除
 
         async function loadLiveLogs() {
             try {
