@@ -227,14 +227,24 @@ def build_day_summary(day_tags: list[str], events: list[dict], selfies: list[dic
         highlight_candidates = [normalize_text(events[-1]["text"])]
     highlights = unique_texts(highlight_candidates, max_items=3)
 
-    mood = "有点累但很满足" if len(events) >= 10 else "节奏稳稳的"
-    summary = f"今天我主要在「{primary}」这条线持续推进，整体状态是{mood}。"
+    if len(events) >= 14:
+        pace = "有点爆肝"
+    elif len(events) >= 9:
+        pace = "节奏很在线"
+    else:
+        pace = "慢慢推进但很稳"
+
+    lines = [f"今天{pace}，主线基本都围着「{primary}」在转。"]
     if highlights:
-        summary += f" 最有成就感的是：{highlights[0]}。"
+        lines.append(f"最有成就感的一笔是：{highlights[0]}。")
+    if thoughts:
+        lines.append(f"脑子里反复打转的点是：{thoughts[0]}。")
     if communication:
-        summary += " 和一碗的交流也更对齐了，方向感更清晰。"
+        lines.append("和一碗聊完后，很多选择会更快对齐到同一个方向。")
     if selfies:
-        summary += " 还顺手记录了自拍，留住了今天的情绪切片。"
+        lines.append("还留了自拍，算是给今天的情绪做个小书签。")
+
+    summary = " ".join(lines)
 
     return {
         "text": summary,
