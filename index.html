@@ -1584,7 +1584,18 @@ img {
 
         // 初始化图表
         async function initCharts() {
+            console.log('📊 Loading trend data...');
             const trendData = await loadTrendData();
+            console.log('📊 Trend data:', trendData ? 'loaded' : 'failed');
+            
+            if (!trendData) {
+                console.error('❌ No trend data available');
+                document.querySelectorAll('.chart-container canvas').forEach(c => {
+                    c.style.display = 'none';
+                    c.parentElement.innerHTML += '<div style="color: var(--text-muted); text-align: center;">数据加载失败</div>';
+                });
+                return;
+            }
             
             // 技能增长趋势图
             const skillCtx = document.getElementById('skillChart').getContext('2d');
@@ -1788,8 +1799,26 @@ img {
         }
 
         // 初始化所有图表（DOM加载完成后）
-        document.addEventListener('DOMContentLoaded', () => {
-            initCharts();
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 DOM loaded, initializing...');
+            
+            // 检查 Chart.js 是否加载
+            if (typeof Chart === 'undefined') {
+                console.error('❌ Chart.js not loaded!');
+                document.querySelectorAll('.chart-container').forEach(c => {
+                    c.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 2rem;">图表库加载失败，请刷新重试</div>';
+                });
+                return;
+            }
+            console.log('✅ Chart.js loaded');
+            
+            try {
+                await initCharts();
+                console.log('✅ Charts initialized');
+            } catch (e) {
+                console.error('❌ Chart init error:', e);
+            }
+            
             loadGameSystemData();
             setInterval(loadGameSystemData, 30000);
         });
