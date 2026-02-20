@@ -11,6 +11,11 @@
       "updated": "2026-02-20"
     },
     {
+      "name": "intelligent-search",
+      "description": "🔍 智能搜索 (Intelligent Search)",
+      "updated": "2026-02-20"
+    },
+    {
       "name": "rebuild-generator",
       "description": "rebuild-generator",
       "updated": "2026-02-20"
@@ -119,11 +124,6 @@
       "name": "indirect-prompt-injection",
       "description": "Indirect Prompt Injection Defense",
       "updated": "2026-02-17"
-    },
-    {
-      "name": "intelligent-search",
-      "description": "🔍 智能搜索 (Intelligent Search)",
-      "updated": "2026-02-18"
     },
     {
       "name": "macro-monitor",
@@ -307,5 +307,5 @@
     }
   ],
   "count": 61,
-  "updated": "2026-02-20"
+  "updated": "2026-02-21"
 }
