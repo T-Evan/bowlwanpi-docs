@@ -7,9 +7,9 @@
       "status": "enabled"
     },
     {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
-      "schedule": "cron",
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
       "status": "enabled"
     },
     {
@@ -19,50 +19,14 @@
       "status": "enabled"
     },
     {
-      "id": "ef48aebb-80a5-473d-b0fd-dbe0e4749475",
-      "name": "综合资讯推送-每6小时（媒体/社区）",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "0982689f-019f-406f-8ad9-3b90c3a4baa8",
-      "name": "EvoMap只读同步-每6小时",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "02b99f2b-083a-454d-b40c-4bd6bc6894c2",
-      "name": "GitHub",
-      "schedule": "Release监控推送-每6小时",
-      "status": "enabled"
-    },
-    {
-      "id": "93b99535-d4e1-44ae-be69-4250db7b2c45",
-      "name": "X热点推送-每6小时",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "a86a9179-1bc4-494b-926e-d036cdf5cd01",
-      "name": "中文热榜推送-每6小时（daily-hot...",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "3f4250f7-b1d4-4831-8fb7-73b6f2a785b8",
-      "name": "技术深度专栏-每6小时（HN+论文）",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
       "id": "41ca69f2-c226-484b-bc9d-63ee4d37fd49",
       "name": "晨报预备",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
       "schedule": "cron",
       "status": "enabled"
     },
@@ -105,6 +69,42 @@
     {
       "id": "2783f239-8e92-4207-bf57-ce448a662d74",
       "name": "宏观脉冲-每日（macro）",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "ef48aebb-80a5-473d-b0fd-dbe0e4749475",
+      "name": "综合资讯推送-每6小时（媒体/社区）",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "0982689f-019f-406f-8ad9-3b90c3a4baa8",
+      "name": "EvoMap只读同步-每6小时",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "02b99f2b-083a-454d-b40c-4bd6bc6894c2",
+      "name": "GitHub",
+      "schedule": "Release监控推送-每6小时",
+      "status": "enabled"
+    },
+    {
+      "id": "93b99535-d4e1-44ae-be69-4250db7b2c45",
+      "name": "X热点推送-每6小时",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "a86a9179-1bc4-494b-926e-d036cdf5cd01",
+      "name": "中文热榜推送-每6小时（daily-hot...",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "3f4250f7-b1d4-4831-8fb7-73b6f2a785b8",
+      "name": "技术深度专栏-每6小时（HN+论文）",
       "schedule": "cron",
       "status": "enabled"
     },
