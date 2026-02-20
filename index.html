@@ -409,53 +409,6 @@
             text-align: center;
         }
 
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.8rem;
-        }
-
-        .badge-card {
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 0.8rem;
-            background: rgba(255,255,255,0.02);
-        }
-
-        .badge-title {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 0.25rem;
-        }
-
-        .badge-value {
-            font-size: 1.05rem;
-            font-weight: 700;
-        }
-
-        .explorer-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .explorer-select {
-            width: 100%;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-radius: 10px;
-            padding: 0.65rem 0.75rem;
-            font-size: 0.92rem;
-        }
-
-        .explorer-result {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 0.8rem;
-        }
-
         .skill-pill {
             border: 1px solid var(--border);
             border-radius: 10px;
@@ -1948,58 +1901,6 @@ img {
             document.body.classList.toggle('light-theme');
             const btn = document.querySelector('.theme-toggle');
             btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
-        }
-
-        % ${energyBar(energy)}`;
-                document.getElementById("badge-streak").textContent = `${game.streak || 0} 天`;
-                document.getElementById("badge-vectors").textContent = `${stats.qmdr_vectors || 0}`;
-                document.getElementById("badge-sessions").textContent = `${stats.session_count || 0}`;
-                document.getElementById("badge-updated").textContent = `数据更新：${stats.last_updated || "--"} ${stats.last_build_time || ""}`;
-            } catch (err) {
-                const el = document.getElementById("badge-updated");
-                if (el) el.textContent = "实时数据读取失败，稍后会自动重试。";
-            }
-        }
-
-        」任务里担当先锋，重点负责「${needText}」这一环。`,
-                `适合放在「${sceneText}」剧本中段，能把「${needText}」从想法变成落地动作。`,
-                `像个稳扎稳打的执行特工：场景是「${sceneText}」，拿手招式是「${needText}」。`,
-            ];
-            return lines[rank % lines.length];
-        }
-
-        （${skillName}）`;
-        }
-
-        `;
-                    const sceneScore = scene === "all" ? 1 : scoreByKeywords(text, sceneKeywords[scene] || []);
-                    const needScore = need === "all" ? 1 : scoreByKeywords(text, needKeywords[need] || []);
-                    return { ...s, idx, rank: sceneScore + needScore };
-                })
-                .filter((s) => s.rank > 0)
-                .sort((a, b) => b.rank - a.rank)
-                .slice(0, 8);
-
-            if (!rows.length) {
-                result.innerHTML = '<div class="skill-pill">当前筛选没命中，我可以再补一套更细的场景标签。<small>先试试切换“我在做”或“我需要”。</small></div>';
-                return;
-            }
-
-            result.innerHTML = rows
-                .map((s) => {
-                    const story = pickStoryLine(scene, need, s.idx + s.rank);
-                    const record = pickBattleRecord(s.name || "未知技能", s.idx + s.rank);
-                    return `<div class="skill-pill"><strong>🕵️ ${s.name}</strong><small>${s.description || "这个技能在当前场景可用"}</small><small>剧情定位：${story}</small><small>${record}</small></div>`;
-                })
-                .join("");
-        }
-
-        const sceneSelect = document.getElementById("scene-select");
-            const needSelect = document.getElementById("need-select");
-            if (!sceneSelect || !needSelect) return;
-            sceneSelect.addEventListener("change", () => renderExplorer(skills));
-            needSelect.addEventListener("change", () => renderExplorer(skills));
-            renderExplorer(skills);
         }
 
         // 技能使用频率排行（带具体技能名称和进度条）
