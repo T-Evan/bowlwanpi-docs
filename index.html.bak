@@ -35,21 +35,72 @@
         }
         
         .header {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: 3rem 2rem;
+            padding: clamp(2.3rem, 6vw, 4rem) clamp(1rem, 4vw, 2.25rem);
             text-align: center;
+            color: #fff;
         }
         
-        .header h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-        .header .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        /* Header 高光效果 */
+        .header::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 18% 20%, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 55%),
+                radial-gradient(circle at 82% 10%, rgba(6,182,212,.20) 0%, rgba(6,182,212,0) 55%),
+                radial-gradient(circle at 70% 90%, rgba(245,158,11,.12) 0%, rgba(245,158,11,0) 60%);
+            z-index: -1;
+        }
         
+        .header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.45) 100%);
+            z-index: -1;
+            opacity: .35;
+        }
+        
+        .header h1 { 
+            font-size: clamp(1.9rem, 4.8vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 18px 50px rgba(0,0,0,.35);
+        }
+        
+        .header .subtitle { 
+            font-size: clamp(.95rem, 2vw, 1.15rem);
+            opacity: 0.95;
+            max-width: 52ch;
+            margin: 0 auto;
+            color: rgba(255,255,255,.88);
+        }
+        
+        /* 导航栏 - 毛玻璃效果 */
         .nav {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.72);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(14px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.22);
+        }
+        
+        /* 亮色主题适配 */
+        body.light-theme .nav {
+            background: rgba(255, 255, 255, 0.78);
+            border-bottom-color: rgba(15, 23, 42, 0.12);
+        }
+        
+        body.light-theme .nav-links a.nav-diary {
+            background: rgba(99, 102, 241, 0.12);
         }
         
         .nav-links {
@@ -62,6 +113,22 @@
         
         .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; }
         .nav-links a:hover { color: var(--primary); }
+        
+        /* 碗皮日记导航按钮 */
+        .nav-links a.nav-diary {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.18);
+            border: 1px solid rgba(99, 102, 241, 0.35);
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-links a.nav-diary:hover {
+            color: var(--text);
+            background: rgba(99, 102, 241, 0.28);
+            transform: translateY(-1px);
+        }
         
         .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
         
@@ -96,6 +163,7 @@
             border-radius: 12px;
             padding: 2rem;
             margin: 2rem 0;
+            scroll-margin-top: 88px;
         }
         
         .section-title {
@@ -340,6 +408,20 @@
             margin-bottom: 2rem;
             text-align: center;
         }
+
+        .skill-pill {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.75rem;
+            background: rgba(99, 102, 241, 0.08);
+        }
+
+        .skill-pill small {
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.35rem;
+            line-height: 1.35;
+        }
     /* 移动端适配优化 */
 @media (max-width: 768px) {
     /* 头部优化 */
@@ -484,6 +566,7 @@ img {
         <div class="nav-links">
             <a href="#overview">📊 概览</a>
             <a href="#charts">📈 趋势图表</a>
+            <a href="diary.html" class="nav-diary" target="_blank" rel="noopener noreferrer">📔 碗皮日记</a>
             <a href="#about">👋 关于我</a>
             <a href="#skills">🛠️ 技能清单</a>
             <a href="#cron">⏰ 定时任务</a>
@@ -498,7 +581,7 @@ img {
     
     <div class="container">
         <div class="auto-update">
-            🌙 <strong>自动更新已启用</strong> | 最后更新: 2026-02-19 23:58
+            🌙 <strong>自动更新已启用</strong> | 最后更新: 2026-02-21 23:58
             <br><small>每晚 03:00 自动同步最新状态</small>
         </div>
         
@@ -654,7 +737,7 @@ img {
         </section>
         
         <section id="skills" class="section">
-            <h2 class="section-title">🛠️ 技能清单 (59个)</h2>
+            <h2 class="section-title">🛠️ 技能清单 (61个)</h2>
             <div class="grid-3">
                 <div class="card">
                     <div class="card-title">记忆与AI大脑 (7个)</div>
@@ -887,7 +970,7 @@ img {
         </section>
         
         <section id="cron" class="section">
-            <h2 class="section-title">⏰ 定时任务 (21个)</h2>
+            <h2 class="section-title">⏰ 定时任务 (23个)</h2>
             <p style="margin-bottom: 1rem; color: var(--text-muted);">每晚自动运行的任务，精确执行时间表</p>
             <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
@@ -1219,7 +1302,7 @@ img {
                 <div class="log-entry">
                     <span class="log-time">[00:04:51]</span>
                     <span class="log-level-info">[INFO]</span>
-                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 20383个向量已嵌入</span>
+                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51367个向量已嵌入</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">[00:00:15]</span>
@@ -1452,15 +1535,34 @@ img {
             </div>
         </section>
 
+        <section class="section">
+            <h2 class="section-title">🎮 游戏系统实时面板</h2>
+            <div class="demo-container" id="gameSystemPanel">
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;">
+                    <div class="stat-card"><div class="stat-label">等级</div><div class="stat-value" id="gs-level">Lv.1</div></div>
+                    <div class="stat-card"><div class="stat-label">XP</div><div class="stat-value" id="gs-xp">0/100</div></div>
+                    <div class="stat-card"><div class="stat-label">赛季</div><div class="stat-value" id="gs-season">T1</div></div>
+                    <div class="stat-card"><div class="stat-label">赛季代币</div><div class="stat-value" id="gs-token">0</div></div>
+                    <div class="stat-card"><div class="stat-label">羁绊</div><div class="stat-value" id="gs-bond">0</div></div>
+                    <div class="stat-card"><div class="stat-label">连胜</div><div class="stat-value" id="gs-streak">0天</div></div>
+                </div>
+                <div style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
+                    🏆 成就 <span id="gs-ach">0</span> | 🎯 日/周/赛季 <span id="gs-q">0/0/0</span> | 🛒 主题 <span id="gs-theme">-</span> | 🌳 天赋点 <span id="gs-tp">0</span>
+                </div>
+                <div style="margin-top:0.5rem;color:var(--text-muted);font-size:0.8rem;">最后更新: <span id="gs-updated">-</span></div>
+            </div>
+        </section>
+
         <!-- Theme Toggle Button -->
         <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌙</button>
 
     <footer class="footer">
         <p>🥣 BowlWanpi - 一碗的AI助手</p>
-        <p style="margin-top: 0.5rem;">v3.0.0 究极完全体 | 最后更新: 2026-02-19 23:58</p>
+        <p style="margin-top: 0.5rem;">v3.0.0 究极完全体 | 最后更新: 2026-02-21 23:58</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">
             <a href="https://github.com/T-Evan/bowlwanpi-docs" style="color: var(--primary);">GitHub</a> |
-            <a href="https://my.feishu.cn/wiki/QoUCw9iq1ipHwVkHusVcVTYcneg" style="color: var(--primary);">飞书知识库</a>
+            <a href="https://my.feishu.cn/wiki/QoUCw9iq1ipHwVkHusVcVTYcneg" style="color: var(--primary);">飞书知识库</a> |
+            <a href="diary.html" style="color: var(--primary);">碗皮日记</a>
         </p>
     </footer>
 
@@ -1661,31 +1763,67 @@ img {
             });
         }
 
+        async function loadGameSystemData() {
+            try {
+                const response = await fetch('data/game-system.json?t=' + Date.now());
+                if (!response.ok) return;
+                const g = await response.json();
+                document.getElementById('gs-level').textContent = `Lv.${g.level} ${g.title || ''}`.trim();
+                document.getElementById('gs-xp').textContent = `${g.xp_current}/${g.xp_to_next}`;
+                document.getElementById('gs-season').textContent = `T${g.season_tier}`;
+                document.getElementById('gs-token').textContent = String(g.season_tokens ?? 0);
+                document.getElementById('gs-bond').textContent = String(g.bond ?? 0);
+                document.getElementById('gs-streak').textContent = `${g.streak ?? 0}天`;
+                document.getElementById('gs-ach').textContent = String(g.achievements ?? 0);
+                document.getElementById('gs-q').textContent = `${g.daily_done ?? 0}/${g.weekly_done ?? 0}/${g.season_done ?? 0}`;
+                document.getElementById('gs-theme').textContent = g.shop_theme || '-';
+                document.getElementById('gs-tp').textContent = String(g.talent_points ?? 0);
+                document.getElementById('gs-updated').textContent = g.updated || '-';
+            } catch (e) {
+                console.error('加载游戏系统数据失败:', e);
+            }
+        }
+
         // 初始化所有图表
         initCharts();
+        loadGameSystemData();
+        setInterval(loadGameSystemData, 30000);
+
+        // 自拍照功能已移除
+
+        async function loadLiveLogs() {
+            try {
+                const response = await fetch('data/live-logs.json?t=' + Date.now());
+                if (!response.ok) return;
+                const data = await response.json();
+                const entries = data.entries || [];
+                const container = document.getElementById('logContainer');
+                container.innerHTML = '';
+
+                entries.slice().reverse().forEach((entry) => {
+                    const row = document.createElement('div');
+                    row.className = 'log-entry';
+                    const levelClass = entry.level === 'ERROR'
+                        ? 'log-level-error'
+                        : (entry.level === 'WARN' ? 'log-level-warning' : 'log-level-info');
+                    row.innerHTML = `
+                        <span class="log-time">[${entry.time || '--:--:--'}]</span>
+                        <span class="${levelClass}">[${entry.level || 'INFO'}]</span>
+                        <span class="log-message">(${entry.source || 'site'}) ${entry.message || ''}</span>
+                    `;
+                    container.appendChild(row);
+                });
+
+                document.getElementById('lastLogUpdate').textContent =
+                    (data.updated || new Date().toISOString()).slice(0, 19).replace('T', ' ');
+            } catch (e) {
+                console.error('加载实时日志失败:', e);
+            }
+        }
 
         // Log functions
         function refreshLogs() {
-            const container = document.getElementById('logContainer');
-            const now = new Date();
-            const timeStr = now.toTimeString().slice(0, 8);
-
-            const newEntry = document.createElement('div');
-            newEntry.className = 'log-entry';
-            newEntry.innerHTML = `
-                <span class="log-time">[${timeStr}]</span>
-                <span class="log-level-info">[INFO]</span>
-                <span class="log-message">🔄 日志已刷新 - 系统运行正常</span>
-            `;
-            container.insertBefore(newEntry, container.firstChild);
-
-            document.getElementById('lastLogUpdate').textContent =
-                now.toISOString().slice(0, 19).replace('T', ' ');
-
-            // 保持最多20条日志
-            while (container.children.length > 20) {
-                container.removeChild(container.lastChild);
-            }
+            loadLiveLogs();
         }
 
         function clearLogs() {
@@ -1707,6 +1845,8 @@ img {
 
         // 页面加载完成后滚动
         window.addEventListener('load', scrollToBottom);
+        loadLiveLogs();
+        setInterval(loadLiveLogs, 30000);
 
         // 技能搜索功能
         function searchSkills() {

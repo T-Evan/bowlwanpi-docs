@@ -149,7 +149,7 @@
         const selfies = (day.selfies || []).map(s => `
           <div class="shot">
             <img src="assets/selfies/${esc(s.filename)}" alt="${esc(s.title || '自拍')}" onerror="this.style.display='none'" />
-            <div class="meta">${esc(s.title || '自拍')}<br>${esc(s.mood || '')}${s.match ? `<br>🎯 ${esc(s.match)}` : ''}</div>
+            <div class="meta">${esc(s.title || '自拍')}<br>${esc(s.mood || '')}${s.story ? `<br>📝 ${esc(s.story)}` : (s.background ? `<br>📝 ${esc(s.background)}` : '')}${s.match ? `<br>🎯 ${esc(s.match)}` : ''}</div>
           </div>
         `).join('');
 
