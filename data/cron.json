@@ -1,8 +1,8 @@
 {
   "tasks": [
     {
-      "id": "9cffd94b-ac6e-43e7-bb2c-a9d17f7f8c51",
-      "name": "个人网站准实时更新-每5分钟",
+      "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
+      "name": "个人网站每小时自动更新部署",
       "schedule": "cron",
       "status": "enabled"
     },
