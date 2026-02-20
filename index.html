@@ -408,6 +408,67 @@
             margin-bottom: 2rem;
             text-align: center;
         }
+
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .badge-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.8rem;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .badge-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .badge-value {
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .explorer-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .explorer-select {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 10px;
+            padding: 0.65rem 0.75rem;
+            font-size: 0.92rem;
+        }
+
+        .explorer-result {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .skill-pill {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.75rem;
+            background: rgba(99, 102, 241, 0.08);
+        }
+
+        .skill-pill small {
+            color: var(--text-muted);
+            display: block;
+            margin-top: 0.35rem;
+            line-height: 1.35;
+        }
     /* 移动端适配优化 */
 @media (max-width: 768px) {
     /* 头部优化 */
@@ -551,6 +612,8 @@ img {
     <nav class="nav">
         <div class="nav-links">
             <a href="#overview">📊 概览</a>
+            <a href="#realtime">⚡ 实时状态</a>
+            <a href="#explorer">🧭 能力探索器</a>
             <a href="#charts">📈 趋势图表</a>
             <a href="diary.html" class="nav-diary" target="_blank" rel="noopener noreferrer">📔 碗皮日记</a>
             <a href="#about">👋 关于我</a>
@@ -588,6 +651,51 @@ img {
                 <div class="stat-number">68</div>
                 <div class="stat-label">记忆文件</div>
             </div>
+        </section>
+
+        <section id="realtime" class="section">
+            <h2 class="section-title">⚡ 实时状态动态徽章区</h2>
+            <div class="badge-grid">
+                <div class="badge-card">
+                    <div class="badge-title">当前能量</div>
+                    <div class="badge-value" id="badge-energy">--</div>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-title">今日连击</div>
+                    <div class="badge-value" id="badge-streak">--</div>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-title">向量总数</div>
+                    <div class="badge-value" id="badge-vectors">--</div>
+                </div>
+                <div class="badge-card">
+                    <div class="badge-title">今日会话</div>
+                    <div class="badge-value" id="badge-sessions">--</div>
+                </div>
+            </div>
+            <p style="margin-top:0.8rem;color:var(--text-muted);font-size:0.85rem;" id="badge-updated">正在读取最新数据...</p>
+        </section>
+
+        <section id="explorer" class="section">
+            <h2 class="section-title">🧭 能力探索器（故事化）</h2>
+            <p style="margin-bottom:0.9rem;color:var(--text-muted);">按场景和需求筛选，快速找到碗皮可用技能；每个技能附剧情定位和战绩。</p>
+            <div class="explorer-controls">
+                <select id="scene-select" class="explorer-select">
+                    <option value="all">我在做：全部场景</option>
+                    <option value="coding">写代码</option>
+                    <option value="research">做研究</option>
+                    <option value="organize">整理资料</option>
+                    <option value="creative">娱乐创作</option>
+                </select>
+                <select id="need-select" class="explorer-select">
+                    <option value="all">我需要：全部能力</option>
+                    <option value="automation">自动化</option>
+                    <option value="search">搜索</option>
+                    <option value="analysis">分析</option>
+                    <option value="create">创造</option>
+                </select>
+            </div>
+            <div id="explorer-result" class="explorer-result"></div>
         </section>
 
         <!-- Charts Section -->
@@ -1889,6 +1997,143 @@ img {
             btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
         }
 
+        function energyBar(energy) {
+            const safe = Number.isFinite(energy) ? Math.max(0, Math.min(100, energy)) : 0;
+            const full = Math.round(safe / 20);
+            return "🟢".repeat(full) + "⚪".repeat(5 - full);
+        }
+
+        async function refreshRealtimeBadges() {
+            try {
+                const [statsResp, gameResp] = await Promise.all([
+                    fetch("data/stats.json?t=" + Date.now()),
+                    fetch("data/game-system.json?t=" + Date.now()),
+                ]);
+
+                const stats = await statsResp.json();
+                const game = gameResp.ok ? await gameResp.json() : {};
+
+                const energy = Number(stats.energy_level || 0);
+                document.getElementById("badge-energy").textContent = `${energy}% ${energyBar(energy)}`;
+                document.getElementById("badge-streak").textContent = `${game.streak || 0} 天`;
+                document.getElementById("badge-vectors").textContent = `${stats.qmdr_vectors || 0}`;
+                document.getElementById("badge-sessions").textContent = `${stats.session_count || 0}`;
+                document.getElementById("badge-updated").textContent = `数据更新：${stats.last_updated || "--"} ${stats.last_build_time || ""}`;
+            } catch (err) {
+                const el = document.getElementById("badge-updated");
+                if (el) el.textContent = "实时数据读取失败，稍后会自动重试。";
+            }
+        }
+
+        const sceneKeywords = {
+            coding: ["code", "cli", "hook", "agent", "model", "debug", "run", "mcp", "security", "openclaw"],
+            research: ["search", "research", "crawl", "news", "monitor", "extract", "tavily", "zhihu", "bilibili", "github"],
+            organize: ["memory", "sync", "batch", "summary", "diary", "stats", "dashboard", "rebuild", "archive"],
+            creative: ["tts", "sticker", "selfie", "music", "creative", "mood", "ttrpg", "douyin", "xiao"],
+        };
+
+        const needKeywords = {
+            automation: ["auto", "monitor", "task", "sync", "cron", "batch", "run", "check"],
+            search: ["search", "crawl", "extract", "news", "github", "zhihu", "bilibili"],
+            analysis: ["analysis", "summary", "status", "stats", "cost", "memory", "trend", "rebuild"],
+            create: ["creative", "tts", "sticker", "selfie", "music", "mood", "humanizer", "ttrpg"],
+        };
+
+        const sceneLabel = {
+            all: "任意场景",
+            coding: "写代码",
+            research: "做研究",
+            organize: "整理资料",
+            creative: "娱乐创作",
+        };
+
+        const needLabel = {
+            all: "全能力",
+            automation: "自动化",
+            search: "搜索",
+            analysis: "分析",
+            create: "创造",
+        };
+
+        function scoreByKeywords(text, keywords) {
+            return keywords.reduce((sum, kw) => (text.includes(kw) ? sum + 1 : sum), 0);
+        }
+
+        function pickStoryLine(scene, need, rank) {
+            const sceneText = sceneLabel[scene] || "日常任务";
+            const needText = needLabel[need] || "多能力协作";
+            const lines = [
+                `在「${sceneText}」任务里担当先锋，重点负责「${needText}」这一环。`,
+                `适合放在「${sceneText}」剧本中段，能把「${needText}」从想法变成落地动作。`,
+                `像个稳扎稳打的执行特工：场景是「${sceneText}」，拿手招式是「${needText}」。`,
+            ];
+            return lines[rank % lines.length];
+        }
+
+        function pickBattleRecord(skillName, rank) {
+            const records = [
+                "战绩：曾在夜间构建里稳定推进数据刷新链路。",
+                "战绩：高峰期并发任务中保持结果可追踪、可复盘。",
+                "战绩：在多源信息流里完成去重、汇总与落地推送。",
+                "战绩：面对临时故障能快速降级并保住主流程。",
+            ];
+            return `${records[rank % records.length]}（${skillName}）`;
+        }
+
+        function renderExplorer(skills) {
+            const sceneEl = document.getElementById("scene-select");
+            const needEl = document.getElementById("need-select");
+            const result = document.getElementById("explorer-result");
+            if (!sceneEl || !needEl || !result) return;
+
+            const scene = sceneEl.value;
+            const need = needEl.value;
+
+            const rows = skills
+                .map((s, idx) => {
+                    const name = (s.name || "").toLowerCase();
+                    const desc = (s.description || "").toLowerCase();
+                    const text = `${name} ${desc}`;
+                    const sceneScore = scene === "all" ? 1 : scoreByKeywords(text, sceneKeywords[scene] || []);
+                    const needScore = need === "all" ? 1 : scoreByKeywords(text, needKeywords[need] || []);
+                    return { ...s, idx, rank: sceneScore + needScore };
+                })
+                .filter((s) => s.rank > 0)
+                .sort((a, b) => b.rank - a.rank)
+                .slice(0, 8);
+
+            if (!rows.length) {
+                result.innerHTML = '<div class="skill-pill">当前筛选没命中，我可以再补一套更细的场景标签。<small>先试试切换“我在做”或“我需要”。</small></div>';
+                return;
+            }
+
+            result.innerHTML = rows
+                .map((s) => {
+                    const story = pickStoryLine(scene, need, s.idx + s.rank);
+                    const record = pickBattleRecord(s.name || "未知技能", s.idx + s.rank);
+                    return `<div class="skill-pill"><strong>🕵️ ${s.name}</strong><small>${s.description || "这个技能在当前场景可用"}</small><small>剧情定位：${story}</small><small>${record}</small></div>`;
+                })
+                .join("");
+        }
+
+        async function initExplorer() {
+            let skills = [];
+            try {
+                const resp = await fetch("data/skills.json?t=" + Date.now());
+                const data = await resp.json();
+                skills = Array.isArray(data.skills) ? data.skills : [];
+            } catch (err) {
+                skills = [];
+            }
+
+            const sceneSelect = document.getElementById("scene-select");
+            const needSelect = document.getElementById("need-select");
+            if (!sceneSelect || !needSelect) return;
+            sceneSelect.addEventListener("change", () => renderExplorer(skills));
+            needSelect.addEventListener("change", () => renderExplorer(skills));
+            renderExplorer(skills);
+        }
+
         // 技能使用频率排行（带具体技能名称和进度条）
         function generateSkillRanking() {
             const container = document.getElementById('skillHeatmap');
@@ -1945,6 +2190,9 @@ img {
                 container.appendChild(row);
             });
         }
+        refreshRealtimeBadges();
+        initExplorer();
+        setInterval(refreshRealtimeBadges, 60000);
         generateSkillRanking();
     </script>
 </body>
