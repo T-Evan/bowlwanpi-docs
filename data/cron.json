@@ -7,6 +7,18 @@
       "status": "enabled"
     },
     {
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "7f2d3117-9217-4bd8-95f9-b8b62eb9620e",
+      "name": "QMDR索引更新-每小时",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
       "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
       "name": "仪表盘状态推送",
       "schedule": "cron",
@@ -19,14 +31,14 @@
       "status": "enabled"
     },
     {
-      "id": "7f2d3117-9217-4bd8-95f9-b8b62eb9620e",
-      "name": "QMDR索引更新-每小时",
+      "id": "98b32834-4ba3-4d28-8052-d18ef8644048",
+      "name": "主题监控摘要-每日（topic-monitor）",
       "schedule": "cron",
       "status": "enabled"
     },
     {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
+      "id": "2783f239-8e92-4207-bf57-ce448a662d74",
+      "name": "宏观脉冲-每日（macro）",
       "schedule": "cron",
       "status": "enabled"
     },
@@ -57,18 +69,6 @@
     {
       "id": "3f4250f7-b1d4-4831-8fb7-73b6f2a785b8",
       "name": "技术深度专栏-每6小时（HN+论文）",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "98b32834-4ba3-4d28-8052-d18ef8644048",
-      "name": "主题监控摘要-每日（topic-monitor）",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "2783f239-8e92-4207-bf57-ce448a662d74",
-      "name": "宏观脉冲-每日（macro）",
       "schedule": "cron",
       "status": "enabled"
     },

@@ -1,6 +1,11 @@
 {
   "skills": [
     {
+      "name": "clawra-anime",
+      "description": "Clawra Anime Selfie",
+      "updated": "2026-02-20"
+    },
+    {
       "name": "rebuild-generator",
       "description": "rebuild-generator",
       "updated": "2026-02-20"
@@ -11,6 +16,6 @@
       "updated": "2026-02-20"
     }
   ],
-  "count": 2,
+  "count": 3,
   "updated": "2026-02-20"
 }
