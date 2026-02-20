@@ -7,9 +7,9 @@
       "status": "enabled"
     },
     {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
-      "schedule": "cron",
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
       "status": "enabled"
     },
     {
@@ -19,20 +19,14 @@
       "status": "enabled"
     },
     {
-      "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
-      "name": "仪表盘状态推送",
+      "id": "98b32834-4ba3-4d28-8052-d18ef8644048",
+      "name": "主题监控摘要-每日（topic-monitor）",
       "schedule": "cron",
       "status": "enabled"
     },
     {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
-      "id": "98b32834-4ba3-4d28-8052-d18ef8644048",
-      "name": "主题监控摘要-每日（topic-monitor）",
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
       "schedule": "cron",
       "status": "enabled"
     },
@@ -111,6 +105,12 @@
     {
       "id": "7427f1a6-94f5-4627-b907-ff87f9967450",
       "name": "每日创意简报",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
+      "name": "仪表盘状态推送",
       "schedule": "cron",
       "status": "enabled"
     },
