@@ -1787,10 +1787,12 @@ img {
             }
         }
 
-        // 初始化所有图表
-        initCharts();
-        loadGameSystemData();
-        setInterval(loadGameSystemData, 30000);
+        // 初始化所有图表（DOM加载完成后）
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            loadGameSystemData();
+            setInterval(loadGameSystemData, 30000);
+        });
 
         // 自拍照功能已移除
 
@@ -1848,8 +1850,10 @@ img {
 
         // 页面加载完成后滚动
         window.addEventListener('load', scrollToBottom);
-        loadLiveLogs();
-        setInterval(loadLiveLogs, 30000);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadLiveLogs();
+            setInterval(loadLiveLogs, 30000);
+        });
 
         // 技能搜索功能
         function searchSkills() {
