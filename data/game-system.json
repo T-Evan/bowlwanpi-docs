@@ -1,14 +1,14 @@
 {
-  "updated": "2026-02-20T06:01:21+08:00",
-  "level": 6,
-  "title": "",
-  "xp_current": 142,
-  "xp_to_next": 600,
+  "updated": "2026-02-20T11:05:45.885578",
+  "level": 2,
+  "title": "见习小埋",
+  "xp_current": 49,
+  "xp_to_next": 150,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 27,
-  "streak": 3,
-  "achievements": ,
+  "bond": 1,
+  "streak": 1,
+  "achievements": 3,
   "daily_done": 0,
   "weekly_done": 0,
   "season_done": 0,
@@ -16,7 +16,5 @@
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "极速升级",
-  "talent_points": 0,
-  "daily_reset": true,
-  "last_active": "2026-02-20"
+  "talent_points": 0
 }
