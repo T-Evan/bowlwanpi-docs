@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试 - BowlWanpi 数据图表</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1e293b; color: white; }
+        .chart-container { background: #334155; padding: 20px; border-radius: 8px; margin: 20px 0; height: 300px; }
+        .status { padding: 10px; background: #10b981; border-radius: 4px; margin: 10px 0; }
+        .error { background: #ef4444; }
+    </style>
+</head>
+<body>
+    <h1>🥣 BowlWanpi 数据测试</h1>
+    <div id="status" class="status">加载中...</div>
+    
+    <div class="chart-container">
+        <h3>技能增长趋势</h3>
+        <canvas id="skillChart"></canvas>
+    </div>
+    
+    <div class="chart-container">
+        <h3>情感状态变化</h3>
+        <canvas id="emotionChart"></canvas>
+    </div>
+
+    <script>
+        async function loadData() {
+            const statusDiv = document.getElementById('status');
+            
+            try {
+                // 检查 Chart.js
+                if (typeof Chart === 'undefined') {
+                    throw new Error('Chart.js 未加载');
+                }
+                
+                // 加载数据
+                const response = await fetch('data/trends.json?t=' + Date.now());
+                const data = await response.json();
+                
+                statusDiv.textContent = '✅ 数据加载成功：技能 ' + data.skill_growth.data.join(', ');
+                
+                // 技能增长图
+                new Chart(document.getElementById('skillChart'), {
+                    type: 'line',
+                    data: {
+                        labels: data.skill_growth.labels,
+                        datasets: [{
+                            label: '技能数量',
+                            data: data.skill_growth.data,
+                            borderColor: '#6366f1',
+                            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                            fill: true
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+                
+                // 情感变化图
+                new Chart(document.getElementById('emotionChart'), {
+                    type: 'line',
+                    data: {
+                        labels: data.emotion_trend.labels,
+                        datasets: [
+                            {
+                                label: '精力',
+                                data: data.emotion_trend.energy,
+                                borderColor: '#06b6d4',
+                                fill: false
+                            },
+                            {
+                                label: '愉悦度',
+                                data: data.emotion_trend.happiness,
+                                borderColor: '#10b981',
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+                
+            } catch (e) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '❌ 错误: ' + e.message;
+                console.error(e);
+            }
+        }
+        
+        loadData();
+    </script>
+</body>
+</html>
