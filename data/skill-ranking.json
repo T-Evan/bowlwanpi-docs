@@ -1,0 +1,30 @@
+{
+  "skills": [
+    {
+      "name": "website-publisher",
+      "count": 8,
+      "percent": 30
+    },
+    {
+      "name": "qmdr-game",
+      "count": 8,
+      "percent": 30
+    },
+    {
+      "name": "feishu-doc",
+      "count": 5,
+      "percent": 19
+    },
+    {
+      "name": "cron",
+      "count": 3,
+      "percent": 11
+    },
+    {
+      "name": "netease-music-pusher",
+      "count": 2,
+      "percent": 7
+    }
+  ],
+  "updated": "2026-02-20T23:01:49.824219"
+}

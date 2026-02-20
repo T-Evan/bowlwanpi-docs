@@ -1910,63 +1910,63 @@ img {
             btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
         }
 
-        // 技能使用频率排行（带具体技能名称和进度条）
-        function generateSkillRanking() {
-            const container = document.getElementById('skillHeatmap');
-            const skills = [
-                {name: 'tavily', count: 89},
-                {name: 'crawl-for-ai', count: 76},
-                {name: 'doubao-tts', count: 68},
-                {name: 'amygdala-memory', count: 54},
-                {name: 'vta-memory', count: 52},
-                {name: 'netease-music-pusher', count: 48},
-                {name: 'bilibili-hot-monitor', count: 45},
-                {name: 'hippocampus-memory', count: 42},
-                {name: 'openclaw-assistant-guide', count: 38},
-                {name: 'model-router', count: 35},
-                {name: 'intelligent-search', count: 32},
-                {name: 'task-decomposer', count: 28},
-                {name: 'daily-creative-brief', count: 25},
-                {name: 'rebuild-generator', count: 22},
-                {name: 'personal-analytics', count: 18}
-            ];
-            
-            skills.forEach(skill => {
-                const row = document.createElement('div');
-                row.style.cssText = `
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                    padding: 0.5rem 0.75rem;
-                    background: rgba(255,255,255,0.03);
-                    border-radius: 8px;
-                    transition: all 0.3s;
-                `;
-                row.onmouseover = () => {
-                    row.style.background = 'rgba(255,255,255,0.06)';
-                    row.style.transform = 'translateX(5px)';
-                };
-                row.onmouseout = () => {
-                    row.style.background = 'rgba(255,255,255,0.03)';
-                    row.style.transform = 'translateX(0)';
-                };
+        // 技能使用频率排行（从JSON加载实时数据）
+        async function loadSkillRanking() {
+            try {
+                const response = await fetch('data/skill-ranking.json?t=' + Date.now());
+                const data = await response.json();
+                const skills = data.skills || [];
+                const container = document.getElementById('skillHeatmap');
+                container.innerHTML = '';
                 
-                const percentage = Math.min(100, (skill.count / 100) * 100);
-                const color = percentage > 70 ? 'rgba(16, 185, 129, 0.8)' : 
-                             percentage > 40 ? 'rgba(99, 102, 241, 0.8)' : 
-                             'rgba(245, 158, 11, 0.8)';
+                if (skills.length === 0) {
+                    container.innerHTML = '<div style="color: var(--text-muted); text-align: center;">暂无技能使用数据</div>';
+                    return;
+                }
                 
-                row.innerHTML = `
-                    <div style="width: 180px; font-weight: 500; font-size: 0.9rem;">${skill.name}</div>
-                    <div style="flex: 1; height: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden;">
-                        <div style="width: ${percentage}%; height: 100%; background: ${color}; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem; font-size: 0.75rem; font-weight: 600; color: white;">${skill.count}</div>
-                    </div>
-                    <div style="width: 60px; text-align: right; font-size: 0.85rem; color: var(--text-muted);">${skill.count}次</div>
-                `;
-                container.appendChild(row);
-            });
+                const maxCount = Math.max(...skills.map(s => s.count), 1);
+                
+                skills.forEach(skill => {
+                    const row = document.createElement('div');
+                    row.style.cssText = `
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        padding: 0.5rem 0.75rem;
+                        background: rgba(255,255,255,0.03);
+                        border-radius: 8px;
+                        transition: all 0.3s;
+                    `;
+                    row.onmouseover = () => {
+                        row.style.background = 'rgba(255,255,255,0.06)';
+                        row.style.transform = 'translateX(5px)';
+                    };
+                    row.onmouseout = () => {
+                        row.style.background = 'rgba(255,255,255,0.03)';
+                        row.style.transform = 'translateX(0)';
+                    };
+                    
+                    const percentage = Math.min(100, (skill.count / maxCount) * 100);
+                    const color = percentage > 70 ? 'rgba(16, 185, 129, 0.8)' : 
+                                 percentage > 40 ? 'rgba(99, 102, 241, 0.8)' : 
+                                 'rgba(245, 158, 11, 0.8)';
+                    
+                    row.innerHTML = `
+                        <div style="width: 180px; font-weight: 500; font-size: 0.9rem;">${skill.name}</div>
+                        <div style="flex: 1; height: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden;">
+                            <div style="width: ${percentage}%; height: 100%; background: ${color}; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem; font-size: 0.75rem; font-weight: 600; color: white;">${skill.count}</div>
+                        </div>
+                        <div style="width: 60px; text-align: right; font-size: 0.85rem; color: var(--text-muted);">${skill.count}次</div>
+                    `;
+                    container.appendChild(row);
+                });
+            } catch (e) {
+                console.error('加载技能排行失败:', e);
+                document.getElementById('skillHeatmap').innerHTML = '<div style="color: var(--text-muted); text-align: center;">加载失败，请刷新重试</div>';
+            }
         }
-        generateSkillRanking();
+        
+        document.addEventListener('DOMContentLoaded', loadSkillRanking);
     </script>
 </body>
 </html>
