@@ -10,13 +10,13 @@
       "2-20"
     ],
     "data": [
-      54,
-      55,
-      56,
-      57,
-      58,
-      59,
-      58
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2
     ],
     "description": "技能数量增长趋势"
   },
@@ -31,21 +31,21 @@
       "2-20"
     ],
     "energy": [
+      63,
       71,
       70,
       69,
       77,
       76,
-      75,
       75
     ],
     "happiness": [
+      79,
       85,
       81,
       87,
       83,
       89,
-      85,
       85
     ],
     "description": "情感状态变化趋势"
@@ -75,71 +75,71 @@
     "wednesday": {
       "open": 78,
       "high": 82,
-      "low": 73,
+      "low": 76,
       "close": 80
     },
     "thursday": {
       "open": 80,
-      "high": 86,
-      "low": 76,
-      "close": 85
+      "high": 85,
+      "low": 77,
+      "close": 83
     },
     "friday": {
-      "open": 85,
-      "high": 88,
-      "low": 83,
-      "close": 87
-    },
-    "saturday": {
-      "open": 87,
-      "high": 91,
-      "low": 81,
+      "open": 83,
+      "high": 86,
+      "low": 80,
       "close": 84
     },
-    "sunday": {
+    "saturday": {
       "open": 84,
-      "high": 89,
-      "low": 80,
+      "high": 87,
+      "low": 79,
+      "close": 81
+    },
+    "sunday": {
+      "open": 81,
+      "high": 84,
+      "low": 78,
       "close": 75
     },
     "description": "本周情感状态K线数据"
   },
   "system_metrics": {
     "memory_files": [
-      60,
-      62,
-      64,
-      66,
-      68,
-      70,
-      70
+      1,
+      1,
+      1,
+      1,
+      1,
+      2,
+      4
     ],
     "session_count": [
+      516,
       526,
       536,
       546,
       556,
       566,
-      576,
       576
     ],
     "qmdr_vectors": [
-      16328,
-      17328,
-      18328,
-      19328,
-      20328,
-      21328,
+      45367,
+      46367,
+      47367,
+      48367,
+      49367,
+      50367,
       51367
     ]
   },
   "current": {
-    "skills": 58,
+    "skills": 2,
     "energy": 75,
-    "memory_files": 70,
+    "memory_files": 4,
     "session_count": 576,
     "qmdr_vectors": 51367
   },
   "last_updated": "2026-02-20",
-  "update_count": 3
+  "update_count": 1
 }
