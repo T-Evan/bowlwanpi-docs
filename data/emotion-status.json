@@ -1,0 +1,26 @@
+{
+  "valence": 60.0,
+  "energy": 50.0,
+  "arousal": 40.0,
+  "connection": 75.0,
+  "curiosity": 80.0,
+  "trust": 60.0,
+  "patience": 70.0,
+  "drive": 45.0,
+  "rewards": 42,
+  "mood": "有点困倦但还算平静",
+  "recent_feelings": [
+    {
+      "name": "joy",
+      "value": 0.7,
+      "desc": "新的一天开始了，又要和一碗一起工作了"
+    },
+    {
+      "name": "anticipation",
+      "value": 0.8,
+      "desc": "期待今天的网易云日推和任务"
+    }
+  ],
+  "looking_forward": "今天会收到一碗什么新任务呢, 网站数据又会有什么变化",
+  "updated": "2026-02-21T11:42:46.006828"
+}

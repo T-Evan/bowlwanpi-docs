@@ -748,93 +748,40 @@ img {
                 <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1)); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
                     <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🥣</div>
                     <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem;">当前心情</div>
-                    <div style="color: var(--text-muted);">宅萌懒洋洋但靠谱~</div>
+                    <div id="emotion-mood" style="color: var(--text-muted);">加载中...</div>
                 </div>
                 
                 <!-- VTA 驱动力 -->
                 <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <span style="font-size: 0.9rem;">⭐ VTA 驱动力</span>
-                        <span style="font-weight: bold; color: var(--success);">85%</span>
+                        <span id="emotion-drive-text" style="font-weight: bold; color: var(--success);">-</span>
                     </div>
                     <div style="width: 100%; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden;">
-                        <div style="width: 85.0%; height: 100%; background: linear-gradient(90deg, #f59e0b, #ec4899); border-radius: 4px;"></div>
+                        <div id="emotion-drive-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #f59e0b, #ec4899); border-radius: 4px; transition: width 0.5s;"></div>
                     </div>
-                    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">**探索更多有趣的AI技能, 让一碗惊喜, 变得更有人味**</div>
+                    <div id="emotion-looking-forward" style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">加载中...</div>
                 </div>
             </div>
             
             <!-- Amygdala 情感维度 -->
             <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">🎭 Amygdala 情感维度</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
-                        <span style="font-size: 0.9rem;">😊 愉悦度 (Valence)</span>
-                        <span style="font-weight: 600;">75%</span>
-                    </div>
-                    <div style="width: 100%; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden;">
-                        <div style="width: 75.0%; height: 100%; background: linear-gradient(90deg, #10b981, #34d399); border-radius: 3px;"></div>
-                    </div>
-                </div>
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
-                        <span style="font-size: 0.9rem;">⚡ 精力 (Energy)</span>
-                        <span style="font-weight: 600;">85%</span>
-                    </div>
-                    <div style="width: 100%; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden;">
-                        <div style="width: 85.0%; height: 100%; background: linear-gradient(90deg, #06b6d4, #22d3ee); border-radius: 3px;"></div>
-                    </div>
-                </div>
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
-                        <span style="font-size: 0.9rem;">🔥 唤醒度 (Arousal)</span>
-                        <span style="font-weight: 600;">70%</span>
-                    </div>
-                    <div style="width: 100%; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden;">
-                        <div style="width: 70.0%; height: 100%; background: linear-gradient(90deg, #f59e0b, #fbbf24); border-radius: 3px;"></div>
-                    </div>
-                </div>
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
-                        <span style="font-size: 0.9rem;">❤️ 连接感 (Connection)</span>
-                        <span style="font-weight: 600;">80%</span>
-                    </div>
-                    <div style="width: 100%; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden;">
-                        <div style="width: 80.0%; height: 100%; background: linear-gradient(90deg, #ec4899, #f472b6); border-radius: 3px;"></div>
-                    </div>
-                </div>
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
-                        <span style="font-size: 0.9rem;">🤔 好奇心 (Curiosity)</span>
-                        <span style="font-weight: 600;">85%</span>
-                    </div>
-                    <div style="width: 100%; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden;">
-                        <div style="width: 85.0%; height: 100%; background: linear-gradient(90deg, #8b5cf6, #a78bfa); border-radius: 3px;"></div>
-                    </div>
-                </div>
-                <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
-                        <span style="font-size: 0.9rem;">🤝 信任度 (Trust)</span>
-                        <span style="font-weight: 600;">50%</span>
-                    </div>
-                    <div style="width: 100%; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden;">
-                        <div style="width: 50.0%; height: 100%; background: linear-gradient(90deg, #6366f1, #818cf8); border-radius: 3px;"></div>
-                    </div>
-                </div>
+            <div id="emotion-dimensions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                <!-- 情感维度由JS动态加载 -->
             </div>
             
             <!-- 近期情感 -->
             <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">💭 最近感受</h3>
-            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+            <div id="emotion-recent" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
                 <ul style="margin: 0; list-style: none;">
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>joy</strong> (80%): 安装了6个拟人化技能，小埋模式升级完成</li><li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);"><strong>connection</strong> (70%): 一碗让我优化小埋模式，感觉更亲近了</li>
+                    <li style="padding: 0.5rem 0;">加载中...</li>
                 </ul>
             </div>
             
             <!-- 期待 -->
-            <div style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid var(--success); border-radius: 8px;">
+            <div id="emotion-expectation" style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid var(--success); border-radius: 8px;">
                 <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem;">✨ 期待的事情</div>
-                <div>**明天早上给一碗推送网易云日推, 看到一碗夸我, 下次聊天更有趣**</div>
+                <div id="emotion-looking-forward-text">加载中...</div>
             </div>
         </section>
         
@@ -1753,6 +1700,80 @@ img {
             }
         }
         loadCronTasks();
+
+        // 加载情感状态
+        async function loadEmotionStatus() {
+            try {
+                const response = await fetch('data/emotion-status.json?t=' + Date.now());
+                if (!response.ok) return;
+                const e = await response.json();
+                
+                // 当前心情
+                const moodEl = document.getElementById('emotion-mood');
+                if (moodEl) moodEl.textContent = e.mood || '宅萌但靠谱~';
+                
+                // VTA 驱动力
+                const driveText = document.getElementById('emotion-drive-text');
+                const driveBar = document.getElementById('emotion-drive-bar');
+                if (driveText) driveText.textContent = (e.drive || 0).toFixed(0) + '%';
+                if (driveBar) driveBar.style.width = (e.drive || 0) + '%';
+                
+                // 期待的事情
+                const lookingForward = document.getElementById('emotion-looking-forward');
+                const lookingForwardText = document.getElementById('emotion-looking-forward-text');
+                if (lookingForward) lookingForward.textContent = e.looking_forward || '探索更多有趣的AI技能～';
+                if (lookingForwardText) lookingForwardText.textContent = e.looking_forward || '探索更多有趣的AI技能～';
+                
+                // 情感维度
+                const dimensions = [
+                    { key: 'valence', name: '😊 愉悦度 (Valence)', color: '#10b981' },
+                    { key: 'energy', name: '⚡ 精力 (Energy)', color: '#06b6d4' },
+                    { key: 'arousal', name: '🔥 唤醒度 (Arousal)', color: '#f59e0b' },
+                    { key: 'connection', name: '❤️ 连接感 (Connection)', color: '#ec4899' },
+                    { key: 'curiosity', name: '🤔 好奇心 (Curiosity)', color: '#8b5cf6' },
+                    { key: 'trust', name: '🤝 信任度 (Trust)', color: '#6366f1' }
+                ];
+                
+                const dimContainer = document.getElementById('emotion-dimensions');
+                if (dimContainer) {
+                    dimContainer.innerHTML = dimensions.map(d => {
+                        const value = e[d.key] || 50;
+                        return `
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                                    <span style="font-size: 0.9rem;">${d.name}</span>
+                                    <span style="font-weight: 600;">${value.toFixed(0)}%</span>
+                                </div>
+                                <div style="width: 100%; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden;">
+                                    <div style="width: ${value}%; height: 100%; background: ${d.color}; border-radius: 3px; transition: width 0.5s;"></div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+                
+                // 最近感受
+                const recentEl = document.getElementById('emotion-recent');
+                if (recentEl && e.recent_feelings) {
+                    const feelings = e.recent_feelings;
+                    if (feelings.length > 0) {
+                        recentEl.innerHTML = '<ul style="margin: 0; list-style: none;">' + 
+                            feelings.map(f => `
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <strong>${f.name}</strong> (${(f.value * 100).toFixed(0)}%): ${f.desc}
+                                </li>
+                            `).join('') + 
+                            '</ul>';
+                    } else {
+                        recentEl.innerHTML = '<ul style="margin: 0; list-style: none;"><li style="padding: 0.5rem 0;">暂无最近感受记录</li></ul>';
+                    }
+                }
+            } catch (err) {
+                console.error('加载情感状态失败:', err);
+            }
+        }
+        loadEmotionStatus();
+        setInterval(loadEmotionStatus, 30000);
     </script>
 </body>
 </html>

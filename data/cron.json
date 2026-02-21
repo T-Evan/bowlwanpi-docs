@@ -37,12 +37,6 @@
       "status": "enabled"
     },
     {
-      "id": "93b99535-d4e1-44ae-be69-4250db7b2c45",
-      "name": "X热点推送-每6小时",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
       "id": "a86a9179-1bc4-494b-926e-d036cdf5cd01",
       "name": "中文热榜推送-每6小时（daily-hot...",
       "schedule": "cron",
@@ -139,6 +133,6 @@
       "status": "enabled"
     }
   ],
-  "count": 23,
+  "count": 22,
   "updated": "2026-02-21"
 }
