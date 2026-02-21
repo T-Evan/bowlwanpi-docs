@@ -1,6 +1,18 @@
 {
-  "updated": "2026-02-20T03:00:01.265671",
+  "updated": "2026-02-21T14:26:44.295560",
   "entries": [
+    {
+      "time": "14:26:44",
+      "level": "INFO",
+      "source": "news",
+      "message": "📰 新闻监控: 共发现 37 条新新闻 (来自 15 次扫描)"
+    },
+    {
+      "time": "14:26:44",
+      "level": "INFO",
+      "source": "news",
+      "message": "📊 详情: 单次最多发现 13 条"
+    },
     {
       "time": "02:55:01",
       "level": "INFO",
@@ -150,96 +162,6 @@
       "level": "INFO",
       "source": "nightly",
       "message": "══════════════════════════════════════════"
-    },
-    {
-      "time": "7.720880",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "2.955898",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "5.067503",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "1.442481",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "1.758948",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 2 条新新闻"
-    },
-    {
-      "time": "6.986263",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "4.188278",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "5.483258",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "0.145361",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "3.046717",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "7.650020",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻"
-    },
-    {
-      "time": "2.660051",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 13 条新新闻（并行版）"
-    },
-    {
-      "time": "2.236461",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 3 条新新闻（并行版）"
-    },
-    {
-      "time": "3.294193",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 4 条新新闻（并行版）"
-    },
-    {
-      "time": "3.537868",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 5 条新新闻（并行版）"
     }
   ]
 }
