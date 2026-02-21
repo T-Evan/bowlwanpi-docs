@@ -970,7 +970,7 @@ img {
         </section>
         
         <section id="cron" class="section">
-            <h2 class="section-title">⏰ 定时任务 (23个)</h2>
+            <h2 class="section-title">⏰ 定时任务 (0个)</h2>
             <p style="margin-bottom: 1rem; color: var(--text-muted);">每晚自动运行的任务，精确执行时间表</p>
             <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
@@ -1549,6 +1549,7 @@ img {
                 <div style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
                     🏆 成就 <span id="gs-ach">0</span> | 🎯 日/周/赛季 <span id="gs-q">0/0/0</span> | 🛒 主题 <span id="gs-theme">-</span> | 🌳 天赋点 <span id="gs-tp">0</span>
                 </div>
+                <div id="gs-achievements-list" style="margin-top:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.75rem;"></div>
                 <div style="margin-top:0.5rem;color:var(--text-muted);font-size:0.8rem;">最后更新: <span id="gs-updated">-</span></div>
             </div>
         </section>
@@ -1775,6 +1776,26 @@ img {
                 document.getElementById('gs-bond').textContent = String(g.bond ?? 0);
                 document.getElementById('gs-streak').textContent = `${g.streak ?? 0}天`;
                 document.getElementById('gs-ach').textContent = String(g.achievements ?? 0);
+                
+                // 渲染成就列表
+                const achContainer = document.getElementById('gs-achievements-list');
+                if (achContainer && g.achievements_list && g.achievements_list.length > 0) {
+                    achContainer.innerHTML = g.achievements_list.map(ach => `
+                        <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:0.75rem;display:flex;align-items:center;gap:0.75rem;transition:all 0.2s;" 
+                             onmouseover="this.style.background='rgba(99,102,241,0.18)';this.style.transform='translateY(-2px)'" 
+                             onmouseout="this.style.background='rgba(99,102,241,0.1)';this.style.transform='translateY(0)'">
+                            <div style="font-size:1.5rem;">${ach.icon || '🏆'}</div>
+                            <div style="flex:1;min-width:0;">
+                                <div style="font-weight:600;font-size:0.95rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ach.name}</div>
+                                <div style="font-size:0.8rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ach.desc}</div>
+                            </div>
+                            <div style="font-size:0.75rem;color:var(--primary);font-weight:600;white-space:nowrap;">+${ach.points}分</div>
+                        </div>
+                    `).join('');
+                } else if (achContainer) {
+                    achContainer.innerHTML = '<div style="color:var(--text-muted);font-size:0.85rem;text-align:center;padding:1rem;">暂无已解锁成就</div>';
+                }
+                
                 document.getElementById('gs-q').textContent = `${g.daily_done ?? 0}/${g.weekly_done ?? 0}/${g.season_done ?? 0}`;
                 document.getElementById('gs-theme').textContent = g.shop_theme || '-';
                 document.getElementById('gs-tp').textContent = String(g.talent_points ?? 0);
