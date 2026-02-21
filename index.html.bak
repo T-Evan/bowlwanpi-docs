@@ -587,7 +587,7 @@ img {
         
         <section id="overview" class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">21</div>
+                <div class="stat-number">23</div>
                 <div class="stat-label">总技能数</div>
             </div>
             <div class="stat-card">
@@ -1302,7 +1302,7 @@ img {
                 <div class="log-entry">
                     <span class="log-time">[00:04:51]</span>
                     <span class="log-level-info">[INFO]</span>
-                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51367个向量已嵌入</span>
+                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51450个向量已嵌入</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">[00:00:15]</span>
