@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-21T23:53:38.315753",
+  "updated": "2026-02-22T00:00:48.324856",
   "level": 5,
   "title": "任务指挥官",
   "xp_current": 60,
@@ -75,7 +75,7 @@
       "category": "time"
     }
   ],
-  "daily_done": 1,
+  "daily_done": 0,
   "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,

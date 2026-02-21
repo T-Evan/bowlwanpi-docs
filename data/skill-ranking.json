@@ -1,5 +1,5 @@
 {
-  "date": "2026-02-21",
+  "date": "2026-02-22",
   "total_skills": 61,
   "active_skills": 12,
   "ranking": [
@@ -28,11 +28,7 @@
       "count": 1
     },
     {
-      "name": "intelligent-search",
-      "count": 1
-    },
-    {
-      "name": "openclaw-assistant-guide",
+      "name": "feishu-doc",
       "count": 1
     },
     {
@@ -40,7 +36,7 @@
       "count": 1
     },
     {
-      "name": "video-frames",
+      "name": "openclaw-assistant-guide",
       "count": 1
     },
     {
@@ -48,9 +44,13 @@
       "count": 1
     },
     {
-      "name": "feishu-doc",
+      "name": "intelligent-search",
+      "count": 1
+    },
+    {
+      "name": "video-frames",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-21T23:53:38.396471"
+  "last_updated": "2026-02-22T00:00:48.406150"
 }
