@@ -587,19 +587,19 @@ img {
         
         <section id="overview" class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">23</div>
+                <div class="stat-number" id="ov-skills">-</div>
                 <div class="stat-label">总技能数</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">16</div>
+                <div class="stat-number" id="ov-cron">-</div>
                 <div class="stat-label">定时任务</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">12153</div>
+                <div class="stat-number" id="ov-qmdr">-</div>
                 <div class="stat-label">向量嵌入</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">68</div>
+                <div class="stat-number" id="ov-memory">-</div>
                 <div class="stat-label">记忆文件</div>
             </div>
         </section>
@@ -970,7 +970,7 @@ img {
         </section>
         
         <section id="cron" class="section">
-            <h2 class="section-title">⏰ 定时任务 (0个)</h2>
+            <h2 class="section-title">⏰ 定时任务 (23个)</h2>
             <p style="margin-bottom: 1rem; color: var(--text-muted);">每晚自动运行的任务，精确执行时间表</p>
             <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
@@ -1138,8 +1138,8 @@ img {
                 <div class="card">
                     <div class="card-title">QMDR 向量搜索</div>
                     <ul>
-                        <li>向量嵌入: 12153</li>
-                        <li>待处理: 76</li>
+                        <li id="mem-qmdr-vectors">向量嵌入: -</li>
+                        <li>待处理: 0</li>
                         <li>更新频率: 每小时</li>
                     </ul>
                 </div>
@@ -1154,7 +1154,7 @@ img {
                 <div class="card">
                     <div class="card-title">记忆文件</div>
                     <ul>
-                        <li>总文件数: 68</li>
+                        <li id="mem-files-count">总文件数: -</li>
                         <li>云端同步: 每2小时</li>
                         <li>QMDR更新: 每小时</li>
                     </ul>
@@ -1764,6 +1764,26 @@ img {
             });
         }
 
+        async function loadOverviewData() {
+            try {
+                const response = await fetch('data/stats.json?t=' + Date.now());
+                if (!response.ok) return;
+                const s = await response.json();
+                document.getElementById('ov-skills').textContent = String(s.skills ?? '-');
+                document.getElementById('ov-cron').textContent = String(s.cron_tasks ?? '-');
+                document.getElementById('ov-qmdr').textContent = String(s.qmdr_vectors ?? '-');
+                document.getElementById('ov-memory').textContent = String(s.memory_files ?? '-');
+                
+                // 更新记忆系统状态卡片
+                const memQmdr = document.getElementById('mem-qmdr-vectors');
+                if (memQmdr) memQmdr.textContent = `向量嵌入: ${s.qmdr_vectors ?? '-'}`;
+                const memFiles = document.getElementById('mem-files-count');
+                if (memFiles) memFiles.textContent = `总文件数: ${s.memory_files ?? '-'}`;
+            } catch (e) {
+                console.error('加载概览数据失败:', e);
+            }
+        }
+
         async function loadGameSystemData() {
             try {
                 const response = await fetch('data/game-system.json?t=' + Date.now());
@@ -1807,7 +1827,9 @@ img {
 
         // 初始化所有图表
         initCharts();
+        loadOverviewData();
         loadGameSystemData();
+        setInterval(loadOverviewData, 30000);
         setInterval(loadGameSystemData, 30000);
 
         // 自拍照功能已移除
