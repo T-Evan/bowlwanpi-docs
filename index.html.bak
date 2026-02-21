@@ -587,19 +587,19 @@ img {
         
         <section id="overview" class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">23</div>
+                <div class="stat-number" id="ov-skills">-</div>
                 <div class="stat-label">总技能数</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">16</div>
+                <div class="stat-number" id="ov-cron">-</div>
                 <div class="stat-label">定时任务</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">12153</div>
+                <div class="stat-number" id="ov-qmdr">-</div>
                 <div class="stat-label">向量嵌入</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">68</div>
+                <div class="stat-number" id="ov-memory">-</div>
                 <div class="stat-label">记忆文件</div>
             </div>
         </section>
@@ -970,7 +970,7 @@ img {
         </section>
         
         <section id="cron" class="section">
-            <h2 class="section-title">⏰ 定时任务 (0个)</h2>
+            <h2 class="section-title">⏰ 定时任务 (23个)</h2>
             <p style="margin-bottom: 1rem; color: var(--text-muted);">每晚自动运行的任务，精确执行时间表</p>
             <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
@@ -1138,8 +1138,8 @@ img {
                 <div class="card">
                     <div class="card-title">QMDR 向量搜索</div>
                     <ul>
-                        <li>向量嵌入: 12153</li>
-                        <li>待处理: 76</li>
+                        <li id="mem-qmdr-vectors">向量嵌入: -</li>
+                        <li>待处理: 0</li>
                         <li>更新频率: 每小时</li>
                     </ul>
                 </div>
@@ -1154,7 +1154,7 @@ img {
                 <div class="card">
                     <div class="card-title">记忆文件</div>
                     <ul>
-                        <li>总文件数: 68</li>
+                        <li id="mem-files-count">总文件数: -</li>
                         <li>云端同步: 每2小时</li>
                         <li>QMDR更新: 每小时</li>
                     </ul>
@@ -1764,6 +1764,26 @@ img {
             });
         }
 
+        async function loadOverviewData() {
+            try {
+                const response = await fetch('data/stats.json?t=' + Date.now());
+                if (!response.ok) return;
+                const s = await response.json();
+                document.getElementById('ov-skills').textContent = String(s.skills ?? '-');
+                document.getElementById('ov-cron').textContent = String(s.cron_tasks ?? '-');
+                document.getElementById('ov-qmdr').textContent = String(s.qmdr_vectors ?? '-');
+                document.getElementById('ov-memory').textContent = String(s.memory_files ?? '-');
+                
+                // 更新记忆系统状态卡片
+                const memQmdr = document.getElementById('mem-qmdr-vectors');
+                if (memQmdr) memQmdr.textContent = `向量嵌入: ${s.qmdr_vectors ?? '-'}`;
+                const memFiles = document.getElementById('mem-files-count');
+                if (memFiles) memFiles.textContent = `总文件数: ${s.memory_files ?? '-'}`;
+            } catch (e) {
+                console.error('加载概览数据失败:', e);
+            }
+        }
+
         async function loadGameSystemData() {
             try {
                 const response = await fetch('data/game-system.json?t=' + Date.now());
@@ -1807,7 +1827,9 @@ img {
 
         // 初始化所有图表
         initCharts();
+        loadOverviewData();
         loadGameSystemData();
+        setInterval(loadOverviewData, 30000);
         setInterval(loadGameSystemData, 30000);
 
         // 自拍照功能已移除
@@ -1924,63 +1946,64 @@ img {
             btn.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
         }
 
-        // 技能使用频率排行（带具体技能名称和进度条）
-        function generateSkillRanking() {
-            const container = document.getElementById('skillHeatmap');
-            const skills = [
-                {name: 'tavily', count: 89},
-                {name: 'crawl-for-ai', count: 76},
-                {name: 'doubao-tts', count: 68},
-                {name: 'amygdala-memory', count: 54},
-                {name: 'vta-memory', count: 52},
-                {name: 'netease-music-pusher', count: 48},
-                {name: 'bilibili-hot-monitor', count: 45},
-                {name: 'hippocampus-memory', count: 42},
-                {name: 'openclaw-assistant-guide', count: 38},
-                {name: 'model-router', count: 35},
-                {name: 'intelligent-search', count: 32},
-                {name: 'task-decomposer', count: 28},
-                {name: 'daily-creative-brief', count: 25},
-                {name: 'rebuild-generator', count: 22},
-                {name: 'personal-analytics', count: 18}
-            ];
-            
-            skills.forEach(skill => {
-                const row = document.createElement('div');
-                row.style.cssText = `
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                    padding: 0.5rem 0.75rem;
-                    background: rgba(255,255,255,0.03);
-                    border-radius: 8px;
-                    transition: all 0.3s;
-                `;
-                row.onmouseover = () => {
-                    row.style.background = 'rgba(255,255,255,0.06)';
-                    row.style.transform = 'translateX(5px)';
-                };
-                row.onmouseout = () => {
-                    row.style.background = 'rgba(255,255,255,0.03)';
-                    row.style.transform = 'translateX(0)';
-                };
+        // 技能使用频率排行（从JSON动态加载）
+        async function loadSkillRanking() {
+            try {
+                const response = await fetch('data/skill-ranking.json?t=' + Date.now());
+                if (!response.ok) return;
+                const data = await response.json();
+                const skills = data.ranking || [];
                 
-                const percentage = Math.min(100, (skill.count / 100) * 100);
-                const color = percentage > 70 ? 'rgba(16, 185, 129, 0.8)' : 
-                             percentage > 40 ? 'rgba(99, 102, 241, 0.8)' : 
-                             'rgba(245, 158, 11, 0.8)';
+                const container = document.getElementById('skillHeatmap');
+                container.innerHTML = '';
                 
-                row.innerHTML = `
-                    <div style="width: 180px; font-weight: 500; font-size: 0.9rem;">${skill.name}</div>
-                    <div style="flex: 1; height: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden;">
-                        <div style="width: ${percentage}%; height: 100%; background: ${color}; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem; font-size: 0.75rem; font-weight: 600; color: white;">${skill.count}</div>
-                    </div>
-                    <div style="width: 60px; text-align: right; font-size: 0.85rem; color: var(--text-muted);">${skill.count}次</div>
-                `;
-                container.appendChild(row);
-            });
+                if (skills.length === 0) {
+                    container.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:2rem;">暂无技能使用数据</div>';
+                    return;
+                }
+                
+                // 找出最大值用于计算百分比
+                const maxCount = Math.max(...skills.map(s => s.count), 1);
+                
+                skills.forEach(skill => {
+                    const row = document.createElement('div');
+                    row.style.cssText = `
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        padding: 0.5rem 0.75rem;
+                        background: rgba(255,255,255,0.03);
+                        border-radius: 8px;
+                        transition: all 0.3s;
+                    `;
+                    row.onmouseover = () => {
+                        row.style.background = 'rgba(255,255,255,0.06)';
+                        row.style.transform = 'translateX(5px)';
+                    };
+                    row.onmouseout = () => {
+                        row.style.background = 'rgba(255,255,255,0.03)';
+                        row.style.transform = 'translateX(0)';
+                    };
+                    
+                    const percentage = Math.min(100, (skill.count / maxCount) * 100);
+                    const color = percentage > 70 ? 'rgba(16, 185, 129, 0.8)' : 
+                                 percentage > 40 ? 'rgba(99, 102, 241, 0.8)' : 
+                                 'rgba(245, 158, 11, 0.8)';
+                    
+                    row.innerHTML = `
+                        <div style="width: 180px; font-weight: 500; font-size: 0.9rem;">${skill.name}</div>
+                        <div style="flex: 1; height: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden;">
+                            <div style="width: ${percentage}%; height: 100%; background: ${color}; border-radius: 12px; display: flex; align-items: center; justify-content: flex-end; padding-right: 0.5rem; font-size: 0.75rem; font-weight: 600; color: white;">${skill.count}</div>
+                        </div>
+                        <div style="width: 60px; text-align: right; font-size: 0.85rem; color: var(--text-muted);">${skill.count}次</div>
+                    `;
+                    container.appendChild(row);
+                });
+            } catch (e) {
+                console.error('加载技能排行失败:', e);
+            }
         }
-        generateSkillRanking();
+        loadSkillRanking();
     </script>
 </body>
 </html>
