@@ -617,65 +617,11 @@ img {
                 </div>
             </div>
             
-            <!-- 改进：今日与碗皮对话（更丰富内容） -->
+            <!-- 今日与碗皮对话（动态加载） -->
             <div class="demo-container" style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));">
                 <div class="demo-title">💬 今日与碗皮对话</div>
-                <div style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; max-height: 400px; overflow-y: auto;">
-                    
-                    <!-- 对话1 -->
-                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">🥣</div>
-                        <div style="flex: 1; background: rgba(99, 102, 241, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 12px 4px;">
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">碗皮 09:00</div>
-                            <div>早呀一碗！☀️ 今天的<strong>创意简报</strong>生成啦～要不要看看今天有什么好玩的建议？</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 对话2 -->
-                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-direction: row-reverse;">
-                        <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👤</div>
-                        <div style="flex: 1; background: rgba(59, 130, 246, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 4px 12px; text-align: right;">
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">一碗 09:05</div>
-                            <div>好啊，看看今天有什么网站优化建议</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 对话3 -->
-                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">🥣</div>
-                        <div style="flex: 1; background: rgba(99, 102, 241, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 12px 4px;">
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">碗皮 09:06</div>
-                            <div>今天的建议超棒的！🎯<br><br>1️⃣ <strong>技能使用频率热力图</strong> - 显示具体技能名称和次数<br>2️⃣ <strong>对话展示窗口</strong> - 像你要求的，内容更丰富！<br><br>要我马上加上吗？</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 对话4 -->
-                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-direction: row-reverse;">
-                        <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👤</div>
-                        <div style="flex: 1; background: rgba(59, 130, 246, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 4px 12px; text-align: right;">
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">一碗 09:08</div>
-                            <div>加吧，但是别再把原有内容弄丢了！</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 对话5 -->
-                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">🥣</div>
-                        <div style="flex: 1; background: rgba(99, 102, 241, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 12px 4px;">
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">碗皮 09:09</div>
-                            <div>放心！这次我在 <strong>原有内容不变</strong> 的基础上添加，所有功能都保留：✅ 技能清单 {stats['skills_count']}个、✅ 定时任务、✅ 记忆系统、✅ 情感状态、✅ 实时日志、✅ 交互演示、✅ 文档中心～<br><br>绝对不会弄丢！💪</div>
-                        </div>
-                    </div>
-                    
-                    <!-- 对话6 -->
-                    <div style="display: flex; gap: 1rem; flex-direction: row-reverse;">
-                        <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👤</div>
-                        <div style="flex: 1; background: rgba(59, 130, 246, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 4px 12px; text-align: right;">
-                            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">一碗 09:10</div>
-                            <div>那就好，开始吧</div>
-                        </div>
-                    </div>
-                    
+                <div id="todayConversations" style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; max-height: 400px; overflow-y: auto;">
+                    <!-- 对话内容由JS动态加载 -->
                 </div>
                 <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">💡 真实对话记录，展示碗皮的工作状态和性格特点</p>
             </div>
@@ -2004,6 +1950,68 @@ img {
             }
         }
         loadSkillRanking();
+
+        // 加载今日对话
+        async function loadTodayConversations() {
+            try {
+                const response = await fetch('data/today-conversations.json?t=' + Date.now());
+                if (!response.ok) return;
+                const data = await response.json();
+                const conversations = data.conversations || [];
+                
+                const container = document.getElementById('todayConversations');
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                if (conversations.length === 0) {
+                    container.innerHTML = '<div style="color:var(--text-muted);text-align:center;padding:2rem;">今日暂无对话记录</div>';
+                    return;
+                }
+                
+                // 交替显示碗皮和用户的对话
+                let isBowlwanpi = true;
+                conversations.slice(0, 6).forEach((conv, index) => {
+                    const isUser = conv.type === 'user' || (!isBowlwanpi && conv.user);
+                    const content = conv.assistant || conv.content || '';
+                    const userContent = conv.user || '';
+                    const time = conv.time || '';
+                    
+                    // 显示碗皮的回复
+                    if (content) {
+                        const row = document.createElement('div');
+                        row.style.cssText = 'display: flex; gap: 1rem; margin-bottom: 1rem;';
+                        row.innerHTML = `
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">🥣</div>
+                            <div style="flex: 1; background: rgba(99, 102, 241, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 12px 4px;">
+                                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">碗皮 ${time}</div>
+                                <div>${content}</div>
+                            </div>
+                        `;
+                        container.appendChild(row);
+                    }
+                    
+                    // 显示用户的消息
+                    if (userContent) {
+                        const row = document.createElement('div');
+                        row.style.cssText = 'display: flex; gap: 1rem; margin-bottom: 1rem; flex-direction: row-reverse;';
+                        row.innerHTML = `
+                            <div style="width: 40px; height: 40px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">👤</div>
+                            <div style="flex: 1; background: rgba(59, 130, 246, 0.2); padding: 0.75rem 1rem; border-radius: 12px 12px 4px 12px; text-align: right;">
+                                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem;">一碗 ${time}</div>
+                                <div>${userContent}</div>
+                            </div>
+                        `;
+                        container.appendChild(row);
+                    }
+                    
+                    isBowlwanpi = !isBowlwanpi;
+                });
+            } catch (e) {
+                console.error('加载今日对话失败:', e);
+            }
+        }
+        loadTodayConversations();
     </script>
 </body>
 </html>
