@@ -24,23 +24,11 @@
       "count": 2
     },
     {
-      "name": "intelligent-search",
-      "count": 1
-    },
-    {
-      "name": "video-frames",
-      "count": 1
-    },
-    {
       "name": "feishu-wiki",
       "count": 1
     },
     {
-      "name": "feishu-doc",
-      "count": 1
-    },
-    {
-      "name": "doubao-tts",
+      "name": "openclaw-assistant-guide",
       "count": 1
     },
     {
@@ -48,9 +36,21 @@
       "count": 1
     },
     {
-      "name": "openclaw-assistant-guide",
+      "name": "intelligent-search",
+      "count": 1
+    },
+    {
+      "name": "feishu-doc",
+      "count": 1
+    },
+    {
+      "name": "video-frames",
+      "count": 1
+    },
+    {
+      "name": "doubao-tts",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-21T19:57:59.396605"
+  "last_updated": "2026-02-21T20:00:50.559700"
 }
