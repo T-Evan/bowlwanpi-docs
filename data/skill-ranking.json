@@ -28,11 +28,15 @@
       "count": 1
     },
     {
+      "name": "feishu-doc",
+      "count": 1
+    },
+    {
       "name": "feishu-wiki",
       "count": 1
     },
     {
-      "name": "feishu-doc",
+      "name": "doubao-tts",
       "count": 1
     },
     {
@@ -46,11 +50,7 @@
     {
       "name": "amygdala-memory",
       "count": 1
-    },
-    {
-      "name": "doubao-tts",
-      "count": 1
     }
   ],
-  "last_updated": "2026-02-21T13:00:47.739355"
+  "last_updated": "2026-02-21T14:00:51.328223"
 }
