@@ -675,6 +675,41 @@ img {
             </div>
         </section>
         
+        <section id="multi-agent" class="section">
+            <h2 class="section-title">🤝 多代理协作系统</h2>
+            <div style="margin: 0.8rem 0 1.2rem; padding: 1rem; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 10px;">
+                <div style="font-weight: 600; margin-bottom: 0.4rem;">主代理：小碗皮（main）</div>
+                <div style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">负责用户沟通、任务拆解、路由子代理、汇总回执与最终回复。</div>
+            </div>
+
+            <div class="grid-3" style="margin-bottom: 1.2rem;">
+                <div class="card"><div class="card-title">🎨 画灵（img_worker）</div><div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7;">图片生成、风格一致性、视觉素材处理。</div></div>
+                <div class="card"><div class="card-title">💻 阿码（code_worker）</div><div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7;">代码开发、调试修复、脚本与发布执行。</div></div>
+                <div class="card"><div class="card-title">📝 笔笔（doc_worker）</div><div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7;">文档撰写、结构整理、报告输出。</div></div>
+                <div class="card"><div class="card-title">📰 风闻（news_worker）</div><div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7;">资讯抓取、去重筛选、定时资讯链路。</div></div>
+                <div class="card"><div class="card-title">🩺 白大褂（doctor_worker）</div><div style="font-size:0.9rem;color:var(--text-muted);line-height:1.7;">健康巡检、故障诊断、修复与审计。</div></div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-title">⚙️ 调度规则</div>
+                    <ul>
+                        <li>执行类任务优先使用 <code>sessions_spawn</code> 路由到对应子代理</li>
+                        <li>主代理统一汇总子代理输出后回传用户</li>
+                        <li>启用回执机制：任务需记录 <code>task_id</code>，并以结构化字段回执</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-title">🧠 模型策略（当前）</div>
+                    <ul>
+                        <li><strong>cron</strong>：<code>news_worker</code> / <code>doctor_worker</code> 使用 <code>xhigh</code></li>
+                        <li><strong>其余子代理</strong>：默认使用 <code>low</code></li>
+                        <li>按任务复杂度动态切换，优先稳定与成本平衡</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="skills" class="section">
             <h2 class="section-title">🛠️ 技能清单 (<span id="skills-count">-</span>个)</h2>
             <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
