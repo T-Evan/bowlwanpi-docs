@@ -24,15 +24,7 @@
       "count": 2
     },
     {
-      "name": "feishu-doc",
-      "count": 1
-    },
-    {
-      "name": "amygdala-memory",
-      "count": 1
-    },
-    {
-      "name": "video-frames",
+      "name": "feishu-wiki",
       "count": 1
     },
     {
@@ -40,7 +32,11 @@
       "count": 1
     },
     {
-      "name": "feishu-wiki",
+      "name": "amygdala-memory",
+      "count": 1
+    },
+    {
+      "name": "feishu-doc",
       "count": 1
     },
     {
@@ -48,9 +44,13 @@
       "count": 1
     },
     {
+      "name": "video-frames",
+      "count": 1
+    },
+    {
       "name": "openclaw-assistant-guide",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-21T20:25:08.805073"
+  "last_updated": "2026-02-21T20:32:36.948976"
 }

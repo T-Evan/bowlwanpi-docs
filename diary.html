@@ -33,18 +33,14 @@
     .event-time{color:#93c5fd;margin-right:6px;font-variant-numeric:tabular-nums}
 
     .selfies{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:12px}
-    .shot{background:#0f172a;border:1px solid #243041;border-radius:10px;overflow:hidden}
-    .shot img{width:100%;height:auto;max-height:360px;object-fit:contain;display:block;background:#020617;cursor:zoom-in}
+    .shot{background:transparent;border:1px solid #243041;border-radius:10px;overflow:hidden}
+    .shot img{width:100%;height:auto;display:block;cursor:zoom-in}
     .shot .meta{padding:8px;font-size:.85rem;color:#94a3b8}
 
     .lightbox{position:fixed;inset:0;background:rgba(2,6,23,.88);display:none;align-items:center;justify-content:center;padding:16px;z-index:9999}
     .lightbox.open{display:flex}
     .lightbox img{max-width:min(96vw,1200px);max-height:92vh;width:auto;height:auto;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
     .lightbox-close{position:absolute;top:12px;right:14px;background:rgba(15,23,42,.8);color:#e5e7eb;border:1px solid #334155;border-radius:999px;padding:6px 10px;cursor:pointer}
-
-    @media (max-width: 640px){
-      .shot img{max-height:260px}
-    }
   </style>
 </head>
 <body>
