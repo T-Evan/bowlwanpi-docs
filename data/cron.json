@@ -1,18 +1,6 @@
 {
   "tasks": [
     {
-      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
-      "name": "Doctor巡检-每30分钟",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
-      "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
-      "name": "仪表盘状态推送",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
       "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
       "name": "个人网站每小时自动更新部署",
       "schedule": "cron",
@@ -34,6 +22,12 @@
       "id": "98b32834-4ba3-4d28-8052-d18ef8644048",
       "name": "主题监控摘要-每日（topic-monitor）",
       "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
+      "name": "Doctor巡检-每30分钟",
+      "schedule": "every",
       "status": "enabled"
     },
     {
@@ -117,6 +111,12 @@
     {
       "id": "7427f1a6-94f5-4627-b907-ff87f9967450",
       "name": "每日创意简报",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
+      "name": "仪表盘状态推送",
       "schedule": "cron",
       "status": "enabled"
     },
