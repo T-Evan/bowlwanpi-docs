@@ -853,53 +853,6 @@ img {
         </section>
     </div>
 
-        <!-- Interactive Demo Section -->
-        <section id="interactive" class="section">
-            <h2 class="section-title">🎮 交互式功能演示</h2>
-            
-            <div class="grid-2">
-                <!-- Skill Search Demo -->
-                <div class="demo-container">
-                    <div class="demo-title">🔍 技能搜索</div>
-                    <input type="text" class="search-box" id="skillSearch" placeholder="输入关键词搜索技能..." onkeyup="searchSkills()">
-                    <div id="skillResults" style="max-height: 200px; overflow-y: auto;">
-                        <span class="skill-tag" data-name="doubao-tts">doubao-tts</span>
-                        <span class="skill-tag" data-name="tavily">tavily</span>
-                        <span class="skill-tag" data-name="crawl-for-ai">crawl-for-ai</span>
-                        <span class="skill-tag" data-name="amygdala-memory">amygdala-memory</span>
-                        <span class="skill-tag" data-name="hippocampus-memory">hippocampus-memory</span>
-                        <span class="skill-tag" data-name="vta-memory">vta-memory</span>
-                        <span class="skill-tag" data-name="bilibili-hot-monitor">bilibili-hot-monitor</span>
-                        <span class="skill-tag" data-name="netease-music-pusher">netease-music-pusher</span>
-                        <span class="skill-tag" data-name="openclaw-assistant-guide">openclaw-assistant-guide</span>
-                        <span class="skill-tag" data-name="model-router">model-router</span>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">点击标签复制技能名</p>
-                </div>
-                
-                <!-- Emotion Simulator -->
-                <div class="demo-container">
-                    <div class="demo-title">🎭 情感状态模拟器</div>
-                    <div style="margin: 0.5rem 0;">
-                        <label>愉悦度 (Valence): <span class="emotion-value" id="valenceVal">75%</span></label>
-                        <input type="range" class="emotion-slider" id="valenceSlider" min="0" max="100" value="75" oninput="updateEmotion('valence', this.value)">
-                    </div>
-                    <div style="margin: 0.5rem 0;">
-                        <label>精力 (Energy): <span class="emotion-value" id="energyVal">85%</span></label>
-                        <input type="range" class="emotion-slider" id="energySlider" min="0" max="100" value="85" oninput="updateEmotion('energy', this.value)">
-                    </div>
-                    <div style="margin: 0.5rem 0;">
-                        <label>好奇心 (Curiosity): <span class="emotion-value" id="curiosityVal">85%</span></label>
-                        <input type="range" class="emotion-slider" id="curiositySlider" min="0" max="100" value="85" oninput="updateEmotion('curiosity', this.value)">
-                    </div>
-                    <div id="emotionResult" style="margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center;">
-                        😊 当前状态：宅萌但靠谱~
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
         <!-- Documentation Center -->
         <section id="docs" class="section">
             <h2 class="section-title">📚 文档中心</h2>
