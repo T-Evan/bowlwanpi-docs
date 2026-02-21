@@ -1,0 +1,34 @@
+{
+  "dagId": "news-push-v0.1",
+  "runId": "run-news-push-sample",
+  "nodes": [
+    {
+      "id": "collect",
+      "kind": "shell",
+      "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+      "deps": [],
+      "maxRetries": 2
+    },
+    {
+      "id": "dedup",
+      "kind": "shell",
+      "command": "python3 scripts/push_cn_hot_topics.py --dedup",
+      "deps": ["collect"],
+      "maxRetries": 1
+    },
+    {
+      "id": "summarize",
+      "kind": "shell",
+      "command": "python3 -c \"import os; print('summary from deps=', os.environ.get('DEP_OUTPUTS_JSON', '{}')[:120])\"",
+      "deps": ["dedup"],
+      "maxRetries": 1
+    },
+    {
+      "id": "push",
+      "kind": "shell",
+      "command": "python3 -c \"print('news push done')\"",
+      "deps": ["summarize"],
+      "maxRetries": 0
+    }
+  ]
+}

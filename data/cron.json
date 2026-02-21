@@ -1,20 +1,8 @@
 {
   "tasks": [
     {
-      "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
-      "name": "个人网站每小时自动更新部署",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "7f2d3117-9217-4bd8-95f9-b8b62eb9620e",
-      "name": "QMDR索引更新-每小时",
+      "id": "2783f239-8e92-4207-bf57-ce448a662d74",
+      "name": "宏观脉冲-每日（macro）",
       "schedule": "cron",
       "status": "enabled"
     },
@@ -25,8 +13,14 @@
       "status": "enabled"
     },
     {
-      "id": "2783f239-8e92-4207-bf57-ce448a662d74",
-      "name": "宏观脉冲-每日（macro）",
+      "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
+      "name": "个人网站每小时自动更新部署",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "76738eb7-2f82-4872-85ac-288718e13598",
+      "name": "QMDR索引更新-每小时",
       "schedule": "cron",
       "status": "enabled"
     },
@@ -34,6 +28,12 @@
       "id": "795b6762-b272-47f2-8051-57b49606e14e",
       "name": "Moltbook多帖子回复检查",
       "schedule": "every",
+      "status": "enabled"
+    },
+    {
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
+      "schedule": "cron",
       "status": "enabled"
     },
     {

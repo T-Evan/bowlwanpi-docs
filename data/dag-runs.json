@@ -1,0 +1,442 @@
+{
+  "runs": [
+    {
+      "dagId": "site-publish-v0.1",
+      "runId": "run-site-publish-sample",
+      "dryRun": true,
+      "state": "done",
+      "startedAt": "2026-02-21T14:04:59.930922+00:00",
+      "endedAt": "2026-02-21T14:04:59.930981+00:00",
+      "summary": {
+        "total": 4,
+        "done": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "nodes": [
+        {
+          "id": "generate",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 1,
+          "startedAt": "2026-02-21T14:04:59.930939+00:00",
+          "endedAt": "2026-02-21T14:04:59.930944+00:00",
+          "depOutputs": {},
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 skills/website-publisher/scripts/update.py",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {}
+          },
+          "error": null
+        },
+        {
+          "id": "validate",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 1,
+          "startedAt": "2026-02-21T14:04:59.930950+00:00",
+          "endedAt": "2026-02-21T14:04:59.930953+00:00",
+          "depOutputs": {
+            "generate": {
+              "kind": "dry-run",
+              "command": "python3 skills/website-publisher/scripts/update.py",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {}
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 skills/website-publisher/scripts/update.py --dry-run",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "generate": {
+                "kind": "dry-run",
+                "command": "python3 skills/website-publisher/scripts/update.py",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {}
+              }
+            }
+          },
+          "error": null
+        },
+        {
+          "id": "publish",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 2,
+          "startedAt": "2026-02-21T14:04:59.930958+00:00",
+          "endedAt": "2026-02-21T14:04:59.930961+00:00",
+          "depOutputs": {
+            "validate": {
+              "kind": "dry-run",
+              "command": "python3 skills/website-publisher/scripts/update.py --dry-run",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {
+                "generate": {
+                  "kind": "dry-run",
+                  "command": "python3 skills/website-publisher/scripts/update.py",
+                  "cwd": "/root/.openclaw/workspace",
+                  "depOutputs": {}
+                }
+              }
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 skills/website-publisher/scripts/publish.py",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "validate": {
+                "kind": "dry-run",
+                "command": "python3 skills/website-publisher/scripts/update.py --dry-run",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {
+                  "generate": {
+                    "kind": "dry-run",
+                    "command": "python3 skills/website-publisher/scripts/update.py",
+                    "cwd": "/root/.openclaw/workspace",
+                    "depOutputs": {}
+                  }
+                }
+              }
+            }
+          },
+          "error": null
+        },
+        {
+          "id": "notify",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 0,
+          "startedAt": "2026-02-21T14:04:59.930972+00:00",
+          "endedAt": "2026-02-21T14:04:59.930976+00:00",
+          "depOutputs": {
+            "publish": {
+              "kind": "dry-run",
+              "command": "python3 skills/website-publisher/scripts/publish.py",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {
+                "validate": {
+                  "kind": "dry-run",
+                  "command": "python3 skills/website-publisher/scripts/update.py --dry-run",
+                  "cwd": "/root/.openclaw/workspace",
+                  "depOutputs": {
+                    "generate": {
+                      "kind": "dry-run",
+                      "command": "python3 skills/website-publisher/scripts/update.py",
+                      "cwd": "/root/.openclaw/workspace",
+                      "depOutputs": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 -c \"print('site publish done')\"",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "publish": {
+                "kind": "dry-run",
+                "command": "python3 skills/website-publisher/scripts/publish.py",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {
+                  "validate": {
+                    "kind": "dry-run",
+                    "command": "python3 skills/website-publisher/scripts/update.py --dry-run",
+                    "cwd": "/root/.openclaw/workspace",
+                    "depOutputs": {
+                      "generate": {
+                        "kind": "dry-run",
+                        "command": "python3 skills/website-publisher/scripts/update.py",
+                        "cwd": "/root/.openclaw/workspace",
+                        "depOutputs": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error": null
+        }
+      ],
+      "source": "/root/.openclaw/workspace/docs/dag-examples/site-publish.v0.1.json"
+    },
+    {
+      "dagId": "news-push-v0.1",
+      "runId": "run-news-push-sample",
+      "dryRun": true,
+      "state": "done",
+      "startedAt": "2026-02-21T14:09:42.076588+00:00",
+      "endedAt": "2026-02-21T14:09:42.076647+00:00",
+      "summary": {
+        "total": 4,
+        "done": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "nodes": [
+        {
+          "id": "collect",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 2,
+          "startedAt": "2026-02-21T14:09:42.076604+00:00",
+          "endedAt": "2026-02-21T14:09:42.076610+00:00",
+          "depOutputs": {},
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {}
+          },
+          "error": null
+        },
+        {
+          "id": "dedup",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 1,
+          "startedAt": "2026-02-21T14:09:42.076615+00:00",
+          "endedAt": "2026-02-21T14:09:42.076619+00:00",
+          "depOutputs": {
+            "collect": {
+              "kind": "dry-run",
+              "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {}
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 scripts/push_cn_hot_topics.py --dedup",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "collect": {
+                "kind": "dry-run",
+                "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {}
+              }
+            }
+          },
+          "error": null
+        },
+        {
+          "id": "summarize",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 1,
+          "startedAt": "2026-02-21T14:09:42.076623+00:00",
+          "endedAt": "2026-02-21T14:09:42.076626+00:00",
+          "depOutputs": {
+            "dedup": {
+              "kind": "dry-run",
+              "command": "python3 scripts/push_cn_hot_topics.py --dedup",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {
+                "collect": {
+                  "kind": "dry-run",
+                  "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+                  "cwd": "/root/.openclaw/workspace",
+                  "depOutputs": {}
+                }
+              }
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 -c \"import os; print('summary from deps=', os.environ.get('DEP_OUTPUTS_JSON', '{}')[:120])\"",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "dedup": {
+                "kind": "dry-run",
+                "command": "python3 scripts/push_cn_hot_topics.py --dedup",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {
+                  "collect": {
+                    "kind": "dry-run",
+                    "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+                    "cwd": "/root/.openclaw/workspace",
+                    "depOutputs": {}
+                  }
+                }
+              }
+            }
+          },
+          "error": null
+        },
+        {
+          "id": "push",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 0,
+          "startedAt": "2026-02-21T14:09:42.076637+00:00",
+          "endedAt": "2026-02-21T14:09:42.076641+00:00",
+          "depOutputs": {
+            "summarize": {
+              "kind": "dry-run",
+              "command": "python3 -c \"import os; print('summary from deps=', os.environ.get('DEP_OUTPUTS_JSON', '{}')[:120])\"",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {
+                "dedup": {
+                  "kind": "dry-run",
+                  "command": "python3 scripts/push_cn_hot_topics.py --dedup",
+                  "cwd": "/root/.openclaw/workspace",
+                  "depOutputs": {
+                    "collect": {
+                      "kind": "dry-run",
+                      "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+                      "cwd": "/root/.openclaw/workspace",
+                      "depOutputs": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 -c \"print('news push done')\"",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "summarize": {
+                "kind": "dry-run",
+                "command": "python3 -c \"import os; print('summary from deps=', os.environ.get('DEP_OUTPUTS_JSON', '{}')[:120])\"",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {
+                  "dedup": {
+                    "kind": "dry-run",
+                    "command": "python3 scripts/push_cn_hot_topics.py --dedup",
+                    "cwd": "/root/.openclaw/workspace",
+                    "depOutputs": {
+                      "collect": {
+                        "kind": "dry-run",
+                        "command": "python3 scripts/push_cn_hot_topics.py --collect-only",
+                        "cwd": "/root/.openclaw/workspace",
+                        "depOutputs": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "error": null
+        }
+      ],
+      "source": "/root/.openclaw/workspace/docs/dag-examples/news-push.v0.1.json"
+    },
+    {
+      "dagId": "retry-demo-v0.1",
+      "runId": "run-retry-demo-sample",
+      "dryRun": true,
+      "state": "done",
+      "startedAt": "2026-02-21T14:09:42.382481+00:00",
+      "endedAt": "2026-02-21T14:09:42.382548+00:00",
+      "summary": {
+        "total": 3,
+        "done": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "nodes": [
+        {
+          "id": "prepare",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 0,
+          "startedAt": "2026-02-21T14:09:42.382498+00:00",
+          "endedAt": "2026-02-21T14:09:42.382505+00:00",
+          "depOutputs": {},
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 -c \"print('prepare ok')\"",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {}
+          },
+          "error": null
+        },
+        {
+          "id": "flaky",
+          "state": "done",
+          "attempts": 2,
+          "maxRetries": 2,
+          "startedAt": "2026-02-21T14:09:42.382511+00:00",
+          "endedAt": "2026-02-21T14:09:42.382534+00:00",
+          "depOutputs": {
+            "prepare": {
+              "kind": "dry-run",
+              "command": "python3 -c \"print('prepare ok')\"",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {}
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 -c \"print('flaky node finally passed')\"",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "prepare": {
+                "kind": "dry-run",
+                "command": "python3 -c \"print('prepare ok')\"",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {}
+              }
+            }
+          },
+          "error": null
+        },
+        {
+          "id": "after_retry",
+          "state": "done",
+          "attempts": 1,
+          "maxRetries": 0,
+          "startedAt": "2026-02-21T14:09:42.382540+00:00",
+          "endedAt": "2026-02-21T14:09:42.382543+00:00",
+          "depOutputs": {
+            "flaky": {
+              "kind": "dry-run",
+              "command": "python3 -c \"print('flaky node finally passed')\"",
+              "cwd": "/root/.openclaw/workspace",
+              "depOutputs": {
+                "prepare": {
+                  "kind": "dry-run",
+                  "command": "python3 -c \"print('prepare ok')\"",
+                  "cwd": "/root/.openclaw/workspace",
+                  "depOutputs": {}
+                }
+              }
+            }
+          },
+          "output": {
+            "kind": "dry-run",
+            "command": "python3 -c \"print('downstream executed')\"",
+            "cwd": "/root/.openclaw/workspace",
+            "depOutputs": {
+              "flaky": {
+                "kind": "dry-run",
+                "command": "python3 -c \"print('flaky node finally passed')\"",
+                "cwd": "/root/.openclaw/workspace",
+                "depOutputs": {
+                  "prepare": {
+                    "kind": "dry-run",
+                    "command": "python3 -c \"print('prepare ok')\"",
+                    "cwd": "/root/.openclaw/workspace",
+                    "depOutputs": {}
+                  }
+                }
+              }
+            }
+          },
+          "error": null
+        }
+      ],
+      "source": "/root/.openclaw/workspace/docs/dag-examples/retry-demo.v0.1.json"
+    }
+  ],
+  "updated": "2026-02-21T14:09:42.382707+00:00"
+}

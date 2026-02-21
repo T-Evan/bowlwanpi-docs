@@ -573,7 +573,6 @@ img {
             <a href="#memory">🧠 记忆系统</a>
             <a href="#brain-dashboard">🎭 情感状态</a>
             <a href="#logs">📜 实时日志</a>
-            <a href="#interactive">🎮 交互演示</a>
             <a href="#docs">📚 文档中心</a>
             <a href="#stats">⚙️ 系统配置</a>
         </div>
@@ -684,6 +683,11 @@ img {
         
         <section id="skills" class="section">
             <h2 class="section-title">🛠️ 技能清单 (<span id="skills-count">-</span>个)</h2>
+            <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
+                <input id="skill-search" type="text" placeholder="搜索技能名或描述..." style="flex:1;min-width:220px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;border-radius:8px;">
+                <button id="skills-expand-all" style="background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.35);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">展开全部</button>
+                <button id="skills-collapse-all" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">收起全部</button>
+            </div>
             <div id="skills-container" class="grid-3">
                 <!-- 技能列表由JS动态加载 -->
             </div>
@@ -795,7 +799,7 @@ img {
                 <div class="log-entry">
                     <span class="log-time">[00:04:51]</span>
                     <span class="log-level-info">[INFO]</span>
-                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51484个向量已嵌入</span>
+                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51528个向量已嵌入</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">[00:00:15]</span>
@@ -847,53 +851,6 @@ img {
             </div>
         </section>
     </div>
-
-        <!-- Interactive Demo Section -->
-        <section id="interactive" class="section">
-            <h2 class="section-title">🎮 交互式功能演示</h2>
-            
-            <div class="grid-2">
-                <!-- Skill Search Demo -->
-                <div class="demo-container">
-                    <div class="demo-title">🔍 技能搜索</div>
-                    <input type="text" class="search-box" id="skillSearch" placeholder="输入关键词搜索技能..." onkeyup="searchSkills()">
-                    <div id="skillResults" style="max-height: 200px; overflow-y: auto;">
-                        <span class="skill-tag" data-name="doubao-tts">doubao-tts</span>
-                        <span class="skill-tag" data-name="tavily">tavily</span>
-                        <span class="skill-tag" data-name="crawl-for-ai">crawl-for-ai</span>
-                        <span class="skill-tag" data-name="amygdala-memory">amygdala-memory</span>
-                        <span class="skill-tag" data-name="hippocampus-memory">hippocampus-memory</span>
-                        <span class="skill-tag" data-name="vta-memory">vta-memory</span>
-                        <span class="skill-tag" data-name="bilibili-hot-monitor">bilibili-hot-monitor</span>
-                        <span class="skill-tag" data-name="netease-music-pusher">netease-music-pusher</span>
-                        <span class="skill-tag" data-name="openclaw-assistant-guide">openclaw-assistant-guide</span>
-                        <span class="skill-tag" data-name="model-router">model-router</span>
-                    </div>
-                    <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">点击标签复制技能名</p>
-                </div>
-                
-                <!-- Emotion Simulator -->
-                <div class="demo-container">
-                    <div class="demo-title">🎭 情感状态模拟器</div>
-                    <div style="margin: 0.5rem 0;">
-                        <label>愉悦度 (Valence): <span class="emotion-value" id="valenceVal">75%</span></label>
-                        <input type="range" class="emotion-slider" id="valenceSlider" min="0" max="100" value="75" oninput="updateEmotion('valence', this.value)">
-                    </div>
-                    <div style="margin: 0.5rem 0;">
-                        <label>精力 (Energy): <span class="emotion-value" id="energyVal">85%</span></label>
-                        <input type="range" class="emotion-slider" id="energySlider" min="0" max="100" value="85" oninput="updateEmotion('energy', this.value)">
-                    </div>
-                    <div style="margin: 0.5rem 0;">
-                        <label>好奇心 (Curiosity): <span class="emotion-value" id="curiosityVal">85%</span></label>
-                        <input type="range" class="emotion-slider" id="curiositySlider" min="0" max="100" value="85" oninput="updateEmotion('curiosity', this.value)">
-                    </div>
-                    <div id="emotionResult" style="margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px; text-align: center;">
-                        😊 当前状态：宅萌但靠谱~
-                    </div>
-                </div>
-                
-            </div>
-        </section>
 
         <!-- Documentation Center -->
         <section id="docs" class="section">
@@ -1597,12 +1554,12 @@ img {
                 if (!response.ok) return;
                 const data = await response.json();
                 const skills = data.skills || [];
-                
+
                 document.getElementById('skills-count').textContent = skills.length;
                 const container = document.getElementById('skills-container');
+                const searchInput = document.getElementById('skill-search');
                 if (!container) return;
-                
-                // 分类技能
+
                 const categories = {
                     '记忆与AI大脑': ['ai-brain-builder', 'amygdala-memory', 'hippocampus-memory', 'memu-memory', 'promitheus', 'unified-memory', 'vta-memory'],
                     '搜索与信息': ['crawl-for-ai', 'daily-hot-news', 'ddg-search', 'hacker-news', 'intelligent-search', 'one-minute-news', 'tavily', 'tavily-skills', 'tencent-search', 'volcengine-fusion-search'],
@@ -1612,11 +1569,9 @@ img {
                     '开发与系统': ['mcp-tools', 'rebuild-generator', 'security-check', 'session-cost', 'task-decomposer', 'task-status', 'ttrpg-gm'],
                     '其他': []
                 };
-                
-                // 为每个分类找出对应的技能
-                const categorized = {};
+
                 const assigned = new Set();
-                
+                const categorized = {};
                 for (const [cat, names] of Object.entries(categories)) {
                     categorized[cat] = skills.filter(s => {
                         if (names.includes(s.name)) {
@@ -1626,40 +1581,51 @@ img {
                         return false;
                     });
                 }
-                
-                // 未分类的放入"其他"
                 categorized['其他'] = skills.filter(s => !assigned.has(s.name));
-                
-                // 渲染
-                let html = '';
-                for (const [catName, catSkills] of Object.entries(categorized)) {
-                    if (catSkills.length === 0) continue;
-                    
-                    html += `
-                        <div class="card">
-                            <div class="card-title">${catName} (${catSkills.length}个)</div>
-                            <ul style="list-style: none; margin-left: 0;">
-                    `;
-                    
-                    catSkills.slice(0, 12).forEach(skill => {
-                        const desc = skill.description || '';
-                        const shortDesc = desc.length > 20 ? desc.substring(0, 20) + '...' : desc;
+
+                function render(filterText = '') {
+                    const query = (filterText || '').trim().toLowerCase();
+                    let html = '';
+                    for (const [catName, catSkillsRaw] of Object.entries(categorized)) {
+                        const catSkills = catSkillsRaw.filter(skill => {
+                            const desc = (skill.description || '暂无描述').toLowerCase();
+                            const name = (skill.name || '').toLowerCase();
+                            return !query || name.includes(query) || desc.includes(query);
+                        });
+                        if (catSkills.length === 0) continue;
+
                         html += `
-                            <li style="margin: 0.4rem 0; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                <div style="font-weight: 500; font-size: 0.9rem;">${skill.name}</div>
-                                ${shortDesc ? `<div style="font-size: 0.75rem; color: var(--text-muted);">${shortDesc}</div>` : ''}
-                            </li>
+                            <div class="card" style="padding:0.8rem;">
+                                <details class="skill-group" ${query ? 'open' : ''}>
+                                    <summary style="cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0.2rem;font-weight:600;">
+                                        <span>${catName}</span>
+                                        <span style="font-size:0.8rem;color:var(--text-muted);">${catSkills.length} 个</span>
+                                    </summary>
+                                    <ul style="list-style:none;margin:0.5rem 0 0;max-height:360px;overflow:auto;padding-right:0.2rem;">
+                                        ${catSkills.map(skill => `
+                                            <li style="margin:0.4rem 0;padding:0.5rem 0.2rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+                                                <div style="font-weight:500;font-size:0.92rem;word-break:break-word;">${skill.name}</div>
+                                                <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.2rem;line-height:1.35;">${skill.description || '暂无描述'}</div>
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </details>
+                            </div>
                         `;
-                    });
-                    
-                    if (catSkills.length > 12) {
-                        html += `<li style="text-align: center; color: var(--primary); font-size: 0.85rem;">...还有 ${catSkills.length - 12} 个</li>`;
                     }
-                    
-                    html += '</ul></div>';
+                    container.innerHTML = html || '<div class="card" style="grid-column:1 / -1;">未找到匹配技能</div>';
                 }
-                
-                container.innerHTML = html;
+
+                render('');
+
+                if (searchInput) {
+                    searchInput.oninput = (e) => render(e.target.value || '');
+                }
+
+                const expandBtn = document.getElementById('skills-expand-all');
+                const collapseBtn = document.getElementById('skills-collapse-all');
+                if (expandBtn) expandBtn.onclick = () => document.querySelectorAll('#skills .skill-group').forEach(d => d.open = true);
+                if (collapseBtn) collapseBtn.onclick = () => document.querySelectorAll('#skills .skill-group').forEach(d => d.open = false);
             } catch (e) {
                 console.error('加载技能清单失败:', e);
             }

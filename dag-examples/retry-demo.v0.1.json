@@ -1,0 +1,28 @@
+{
+  "dagId": "retry-demo-v0.1",
+  "runId": "run-retry-demo-sample",
+  "nodes": [
+    {
+      "id": "prepare",
+      "kind": "shell",
+      "command": "python3 -c \"print('prepare ok')\"",
+      "deps": [],
+      "maxRetries": 0
+    },
+    {
+      "id": "flaky",
+      "kind": "shell",
+      "command": "python3 -c \"print('flaky node finally passed')\"",
+      "deps": ["prepare"],
+      "maxRetries": 2,
+      "mockFailures": 1
+    },
+    {
+      "id": "after_retry",
+      "kind": "shell",
+      "command": "python3 -c \"print('downstream executed')\"",
+      "deps": ["flaky"],
+      "maxRetries": 0
+    }
+  ]
+}
