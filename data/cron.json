@@ -1,15 +1,21 @@
 {
   "tasks": [
     {
+      "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
+      "name": "仪表盘状态推送",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
       "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
       "name": "个人网站每小时自动更新部署",
       "schedule": "cron",
       "status": "enabled"
     },
     {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
-      "schedule": "cron",
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
       "status": "enabled"
     },
     {
@@ -19,15 +25,9 @@
       "status": "enabled"
     },
     {
-      "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
-      "name": "仪表盘状态推送",
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
       "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
       "status": "enabled"
     },
     {
