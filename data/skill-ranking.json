@@ -24,15 +24,11 @@
       "count": 2
     },
     {
-      "name": "amygdala-memory",
+      "name": "video-frames",
       "count": 1
     },
     {
-      "name": "intelligent-search",
-      "count": 1
-    },
-    {
-      "name": "doubao-tts",
+      "name": "feishu-wiki",
       "count": 1
     },
     {
@@ -44,13 +40,17 @@
       "count": 1
     },
     {
-      "name": "feishu-wiki",
+      "name": "doubao-tts",
       "count": 1
     },
     {
-      "name": "video-frames",
+      "name": "intelligent-search",
+      "count": 1
+    },
+    {
+      "name": "amygdala-memory",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-21T15:00:49.954045"
+  "last_updated": "2026-02-21T17:58:49.729111"
 }
