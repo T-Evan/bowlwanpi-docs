@@ -24,7 +24,7 @@
       "count": 2
     },
     {
-      "name": "amygdala-memory",
+      "name": "intelligent-search",
       "count": 1
     },
     {
@@ -32,15 +32,11 @@
       "count": 1
     },
     {
-      "name": "intelligent-search",
-      "count": 1
-    },
-    {
-      "name": "openclaw-assistant-guide",
-      "count": 1
-    },
-    {
       "name": "feishu-wiki",
+      "count": 1
+    },
+    {
+      "name": "feishu-doc",
       "count": 1
     },
     {
@@ -48,9 +44,13 @@
       "count": 1
     },
     {
-      "name": "feishu-doc",
+      "name": "amygdala-memory",
+      "count": 1
+    },
+    {
+      "name": "openclaw-assistant-guide",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-21T19:49:39.077402"
+  "last_updated": "2026-02-21T19:57:59.396605"
 }
