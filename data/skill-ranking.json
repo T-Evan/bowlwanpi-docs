@@ -24,23 +24,7 @@
       "count": 2
     },
     {
-      "name": "video-frames",
-      "count": 1
-    },
-    {
-      "name": "doubao-tts",
-      "count": 1
-    },
-    {
-      "name": "openclaw-assistant-guide",
-      "count": 1
-    },
-    {
-      "name": "feishu-doc",
-      "count": 1
-    },
-    {
-      "name": "feishu-wiki",
+      "name": "amygdala-memory",
       "count": 1
     },
     {
@@ -48,9 +32,25 @@
       "count": 1
     },
     {
-      "name": "amygdala-memory",
+      "name": "openclaw-assistant-guide",
+      "count": 1
+    },
+    {
+      "name": "doubao-tts",
+      "count": 1
+    },
+    {
+      "name": "video-frames",
+      "count": 1
+    },
+    {
+      "name": "feishu-wiki",
+      "count": 1
+    },
+    {
+      "name": "feishu-doc",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-21T23:33:54.370752"
+  "last_updated": "2026-02-21T23:53:38.396471"
 }

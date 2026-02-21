@@ -1499,7 +1499,7 @@ img {
                     let html = '';
                     for (const [catName, catSkillsRaw] of Object.entries(categorized)) {
                         const catSkills = catSkillsRaw.filter(skill => {
-                            const desc = (skill.description || '暂无描述').toLowerCase();
+                            const desc = (skill.description || '该技能说明正在整理中，稍后会补充完整。').toLowerCase();
                             const name = (skill.name || '').toLowerCase();
                             return !query || name.includes(query) || desc.includes(query);
                         });
@@ -1516,7 +1516,7 @@ img {
                                         ${catSkills.map(skill => `
                                             <li style="margin:0.4rem 0;padding:0.5rem 0.2rem;border-bottom:1px solid rgba(255,255,255,0.06);">
                                                 <div style="font-weight:500;font-size:0.92rem;word-break:break-word;">${skill.name}</div>
-                                                <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.2rem;line-height:1.35;">${skill.description || '暂无描述'}</div>
+                                                <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.2rem;line-height:1.35;">${skill.description || '该技能说明正在整理中，稍后会补充完整。'}</div>
                                             </li>
                                         `).join('')}
                                     </ul>
