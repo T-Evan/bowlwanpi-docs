@@ -1,27 +1,15 @@
 {
   "tasks": [
     {
-      "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
-      "name": "个人网站每小时自动更新部署",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
-      "id": "7f2d3117-9217-4bd8-95f9-b8b62eb9620e",
-      "name": "QMDR索引更新-每小时",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
       "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
       "name": "Doctor巡检-每30分钟",
       "schedule": "every",
+      "status": "enabled"
+    },
+    {
+      "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
+      "name": "个人网站每小时自动更新部署",
+      "schedule": "cron",
       "status": "enabled"
     },
     {
@@ -31,9 +19,21 @@
       "status": "enabled"
     },
     {
+      "id": "7f2d3117-9217-4bd8-95f9-b8b62eb9620e",
+      "name": "QMDR索引更新-每小时",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
       "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
       "name": "仪表盘状态推送",
       "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
       "status": "enabled"
     },
     {

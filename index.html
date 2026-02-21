@@ -581,7 +581,7 @@ img {
     
     <div class="container">
         <div class="auto-update">
-            🌙 <strong>自动更新已启用</strong> | 最后更新: 2026-02-21 23:58
+            🌙 <strong>自动更新已启用</strong> | 最后更新(北京时间): <span id="auto-update-time">-</span>
             <br><small>每晚 03:00 自动同步最新状态</small>
         </div>
         
@@ -795,7 +795,7 @@ img {
                 <div class="log-entry">
                     <span class="log-time">[00:04:51]</span>
                     <span class="log-level-info">[INFO]</span>
-                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51450个向量已嵌入</span>
+                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51465个向量已嵌入</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">[00:00:15]</span>
@@ -1216,11 +1216,57 @@ img {
             });
         }
 
+        let autoUpdateLatestMs = 0;
+
+        function parseTimestamp(value) {
+            if (!value) return null;
+            if (typeof value === 'number') return new Date(value);
+
+            let s = String(value).trim();
+            if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+                s += 'T00:00:00Z';
+            } else if (/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}(:\d{2})?$/.test(s)) {
+                s = s.replace(' ', 'T') + 'Z';
+            } else if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?(\.\d+)?$/.test(s)) {
+                s += 'Z';
+            }
+
+            const d = new Date(s);
+            return Number.isNaN(d.getTime()) ? null : d;
+        }
+
+        function formatBeijingTime(value) {
+            const d = value instanceof Date ? value : parseTimestamp(value);
+            if (!d) return '-';
+            const fmt = new Intl.DateTimeFormat('zh-CN', {
+                timeZone: 'Asia/Shanghai',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            return fmt.format(d).replace(/\//g, '-');
+        }
+
+        function bumpAutoUpdateTime(candidate) {
+            const d = parseTimestamp(candidate) || new Date();
+            const ms = d.getTime();
+            if (ms >= autoUpdateLatestMs) {
+                autoUpdateLatestMs = ms;
+                const el = document.getElementById('auto-update-time');
+                if (el) el.textContent = formatBeijingTime(d);
+            }
+        }
+
         async function loadOverviewData() {
             try {
                 const response = await fetch('data/stats.json?t=' + Date.now());
                 if (!response.ok) return;
                 const s = await response.json();
+                bumpAutoUpdateTime(s.last_updated || s.updated);
                 document.getElementById('ov-skills').textContent = String(s.skills ?? '-');
                 document.getElementById('ov-cron').textContent = String(s.cron_tasks ?? '-');
                 document.getElementById('ov-qmdr').textContent = String(s.qmdr_vectors ?? '-');
@@ -1271,13 +1317,15 @@ img {
                 document.getElementById('gs-q').textContent = `${g.daily_done ?? 0}/${g.weekly_done ?? 0}/${g.season_done ?? 0}`;
                 document.getElementById('gs-theme').textContent = g.shop_theme || '-';
                 document.getElementById('gs-tp').textContent = String(g.talent_points ?? 0);
-                document.getElementById('gs-updated').textContent = g.updated || '-';
+                bumpAutoUpdateTime(g.updated);
+                document.getElementById('gs-updated').textContent = formatBeijingTime(g.updated);
             } catch (e) {
                 console.error('加载游戏系统数据失败:', e);
             }
         }
 
         // 初始化所有图表
+        bumpAutoUpdateTime(new Date());
         initCharts();
         loadOverviewData();
         loadGameSystemData();
@@ -1309,8 +1357,9 @@ img {
                     container.appendChild(row);
                 });
 
+                bumpAutoUpdateTime(data.updated);
                 document.getElementById('lastLogUpdate').textContent =
-                    (data.updated || new Date().toISOString()).slice(0, 19).replace('T', ' ');
+                    formatBeijingTime(data.updated || new Date().toISOString());
             } catch (e) {
                 console.error('加载实时日志失败:', e);
             }
