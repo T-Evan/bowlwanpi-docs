@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-21T16:00:48.417929+00:00",
+  "updated": "2026-02-21T16:05:50.803685+00:00",
   "policy": {
     "verifiable_only": true,
     "note": "不展示内部思维，仅展示可验证执行摘要。",
@@ -77,7 +77,7 @@
       "message": "DAG retry-demo-v0.1 done (runId=run-retry-demo-sample)"
     },
     {
-      "timestamp": "2026-02-21T16:00:48.417917+00:00",
+      "timestamp": "2026-02-21T16:05:50.803674+00:00",
       "source": "website-publisher",
       "status": "ok",
       "message": "update.py completed"
