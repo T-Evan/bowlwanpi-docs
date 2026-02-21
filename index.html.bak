@@ -786,34 +786,192 @@ img {
         </section>
         
         <section id="stats" class="section">
-            <h2 class="section-title">📈 系统配置</h2>
-            <div class="grid-3">
-                <div class="card">
-                    <div class="card-title">🚀 并发配置</div>
-                    <ul>
-                        <li>主会话并发: 30</li>
-                        <li>子代理并发: 30</li>
-                        <li>API 并发: 20</li>
-                        <li>模式: 蜂群并行</li>
-                    </ul>
+            <h2 class="section-title">⚙️ 系统状态</h2>
+            
+            <!-- 核心指标卡片 -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.1)); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 16px; padding: 1.5rem; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.1;">🧠</div>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary);" id="sys-memory">--</div>
+                    <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">记忆文件</div>
+                    <div style="margin-top: 0.75rem;">
+                        <span style="background: rgba(16, 185, 129, 0.2); color: var(--success); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem;">实时同步</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-title">🔍 搜索引擎</div>
-                    <ul>
-                        <li>Tavily AI Search</li>
-                        <li>腾讯云 WSA</li>
-                        <li>DuckDuckGo</li>
-                        <li>Crawl4AI</li>
-                    </ul>
+                
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 1.5rem; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.1;">⚡</div>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--success);" id="sys-sessions">--</div>
+                    <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">会话记录</div>
+                    <div style="margin-top: 0.75rem;">
+                        <span style="background: rgba(99, 102, 241, 0.2); color: var(--primary); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem;">持续增长</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <div class="card-title">📱 接入平台</div>
-                    <ul>
-                        <li>飞书 (主要)</li>
-                        <li>Telegram</li>
-                        <li>QQ / 钉钉 / 企微</li>
-                    </ul>
+                
+                <div style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(245, 158, 11, 0.1)); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 16px; padding: 1.5rem; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.1;">🔋</div>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--secondary);" id="sys-energy">--%</div>
+                    <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">系统能量</div>
+                    <div style="margin-top: 0.75rem;">
+                        <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
+                            <div id="sys-energy-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, var(--secondary), var(--warning)); border-radius: 2px; transition: width 0.5s;"></div>
+                        </div>
+                    </div>
                 </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(99, 102, 241, 0.1)); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 16px; padding: 1.5rem; text-align: center; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -20px; right: -20px; font-size: 5rem; opacity: 0.1;">📊</div>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--cyan);" id="sys-vectors">--</div>
+                    <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">向量嵌入</div>
+                    <div style="margin-top: 0.75rem;">
+                        <span style="background: rgba(6, 182, 212, 0.2); color: var(--cyan); padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem;">QMDR</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 系统架构可视化 -->
+            <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9)); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <div style="font-size: 1.2rem; font-weight: 600;">🏗️ 系统架构</div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted);">v4.0 完全体</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <!-- 核心引擎 -->
+                    <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 1.25rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🧠</div>
+                            <div>
+                                <div style="font-weight: 600;">核心引擎</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">OpenClaw AI Agent</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span style="background: rgba(99, 102, 241, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">蜂群模式</span>
+                            <span style="background: rgba(99, 102, 241, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">并发 30</span>
+                            <span style="background: rgba(99, 102, 241, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">多模型路由</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 记忆系统 -->
+                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 12px; padding: 1.25rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #10b981, #34d399); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🧬</div>
+                            <div>
+                                <div style="font-weight: 600;">三记忆系统</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Hippocampus + memU + MemOS</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span style="background: rgba(16, 185, 129, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">本地向量</span>
+                            <span style="background: rgba(16, 185, 129, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">云端同步</span>
+                            <span style="background: rgba(16, 185, 129, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">QMDR</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 情感系统 -->
+                    <div style="background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 12px; padding: 1.25rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #ec4899, #f472b6); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🎭</div>
+                            <div>
+                                <div style="font-weight: 600;">情感大脑</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Amygdala + VTA + Promitheus</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span style="background: rgba(236, 72, 153, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">情感维度</span>
+                            <span style="background: rgba(236, 72, 153, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">驱动力</span>
+                            <span style="background: rgba(236, 72, 153, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">人格</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 技能生态 -->
+                    <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 1.25rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #f59e0b, #fbbf24); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🛠️</div>
+                            <div>
+                                <div style="font-weight: 600;">技能生态</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">ClawHub + 61+ Skills</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span style="background: rgba(245, 158, 11, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">搜索</span>
+                            <span style="background: rgba(245, 158, 11, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">自动化</span>
+                            <span style="background: rgba(245, 158, 11, 0.2); padding: 0.25rem 0.5rem; border-radius: 6px; font-size: 0.75rem;">AI生成</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 系统能力矩阵 -->
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;">
+                <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;">💪 能力矩阵</div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.9rem;">🔍 信息获取</span>
+                            <span style="font-weight: 600; color: var(--success);">95%</span>
+                        </div>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 95%; height: 100%; background: linear-gradient(90deg, #10b981, #34d399); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.9rem;">🤖 AI 助手</span>
+                            <span style="font-weight: 600; color: var(--primary);">90%</span>
+                        </div>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 90%; height: 100%; background: linear-gradient(90deg, #6366f1, #818cf8); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.9rem;">🎨 内容创造</span>
+                            <span style="font-weight: 600; color: var(--secondary);">85%</span>
+                        </div>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 85%; height: 100%; background: linear-gradient(90deg, #ec4899, #f472b6); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.9rem;">⚙️ 系统运维</span>
+                            <span style="font-weight: 600; color: var(--cyan);">88%</span>
+                        </div>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 88%; height: 100%; background: linear-gradient(90deg, #06b6d4, #22d3ee); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.9rem;">🧠 记忆学习</span>
+                            <span style="font-weight: 600; color: var(--warning);">82%</span>
+                        </div>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 82%; height: 100%; background: linear-gradient(90deg, #f59e0b, #fbbf24); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.9rem;">🎭 情感交互</span>
+                            <span style="font-weight: 600; color: var(--secondary);">87%</span>
+                        </div>
+                        <div style="width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden;">
+                            <div style="width: 87%; height: 100%; background: linear-gradient(90deg, #a855f7, #c084fc); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+                最后更新: <span id="sys-updated">--</span> | 构建版本: v4.0 究极完全体
             </div>
         </section>
 
@@ -923,47 +1081,6 @@ img {
                     </div>
                 </div>
                 
-                <!-- Quick Copy Config -->
-                <div class="demo-container">
-                    <div class="demo-title">📋 快速复制配置</div>
-                    <div style="margin: 0.5rem 0;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
-                            <code style="font-size: 0.85rem;">openclaw cron list</code>
-                            <button class="copy-btn" onclick="copyText('openclaw cron list', this)">复制</button>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
-                            <code style="font-size: 0.85rem;">qmd status</code>
-                            <button class="copy-btn" onclick="copyText('qmd status', this)">复制</button>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 6px;">
-                            <code style="font-size: 0.85rem;">cd ~/.openclaw/workspace</code>
-                            <button class="copy-btn" onclick="copyText('cd ~/.openclaw/workspace', this)">复制</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Quick Stats -->
-                <div class="demo-container">
-                    <div class="demo-title">📊 快速统计</div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-                        <div style="text-align: center; padding: 0.75rem; background: rgba(99, 102, 241, 0.1); border-radius: 8px;">
-                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">57</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">总技能</div>
-                        </div>
-                        <div style="text-align: center; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
-                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--success);">16</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">定时任务</div>
-                        </div>
-                        <div style="text-align: center; padding: 0.75rem; background: rgba(6, 182, 212, 0.1); border-radius: 8px;">
-                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--cyan);">12K+</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">向量嵌入</div>
-                        </div>
-                        <div style="text-align: center; padding: 0.75rem; background: rgba(236, 72, 153, 0.1); border-radius: 8px;">
-                            <div style="font-size: 1.5rem; font-weight: bold; color: var(--secondary);">85%</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">健康度</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -1774,6 +1891,41 @@ img {
         }
         loadEmotionStatus();
         setInterval(loadEmotionStatus, 30000);
+
+        // 加载系统状态
+        async function loadSystemStatus() {
+            try {
+                const response = await fetch('data/stats.json?t=' + Date.now());
+                if (!response.ok) return;
+                const s = await response.json();
+                
+                // 核心指标
+                const memEl = document.getElementById('sys-memory');
+                const sessEl = document.getElementById('sys-sessions');
+                const energyEl = document.getElementById('sys-energy');
+                const energyBar = document.getElementById('sys-energy-bar');
+                const vectorsEl = document.getElementById('sys-vectors');
+                
+                if (memEl) memEl.textContent = s.memory_files ?? '--';
+                if (sessEl) sessEl.textContent = s.session_count ?? '--';
+                if (energyEl) energyEl.textContent = (s.energy_level ?? '--') + '%';
+                if (energyBar) energyBar.style.width = (s.energy_level ?? 0) + '%';
+                if (vectorsEl) {
+                    const vectors = s.qmdr_vectors ?? 0;
+                    vectorsEl.textContent = vectors >= 1000 ? (vectors / 1000).toFixed(1) + 'K' : vectors;
+                }
+                
+                // 更新时间
+                const updatedEl = document.getElementById('sys-updated');
+                if (updatedEl) {
+                    updatedEl.textContent = s.last_updated + ' ' + (s.last_build_time ?? '');
+                }
+            } catch (e) {
+                console.error('加载系统状态失败:', e);
+            }
+        }
+        loadSystemStatus();
+        setInterval(loadSystemStatus, 30000);
     </script>
 </body>
 </html>
