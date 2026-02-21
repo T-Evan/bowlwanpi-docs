@@ -625,12 +625,6 @@ img {
                 <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">💡 真实对话记录，展示碗皮的工作状态和性格特点</p>
             </div>
             
-            <!-- 新增：情感状态周趋势对比（K线图风格） -->
-            <div class="chart-container" style="height: 350px; margin-bottom: 2rem;">
-                <div class="chart-title">📊 情感状态周趋势对比（K线图风格）</div>
-                <canvas id="emotionWeeklyChart"></canvas>
-            </div>
-            
             <div class="grid-2">
                 <div class="chart-container">
                     <div class="chart-title">技能增长趋势</div>
@@ -799,7 +793,7 @@ img {
                 <div class="log-entry">
                     <span class="log-time">[00:04:51]</span>
                     <span class="log-level-info">[INFO]</span>
-                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51528个向量已嵌入</span>
+                    <span class="log-message">🧠 QMDR索引更新任务执行中 - 51546个向量已嵌入</span>
                 </div>
                 <div class="log-entry">
                     <span class="log-time">[00:00:15]</span>
@@ -1078,85 +1072,6 @@ img {
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 100,
-                            grid: { color: 'rgba(255,255,255,0.05)' },
-                            ticks: {
-                                color: '#94a3b8',
-                                callback: function(value) { return value + '%'; }
-                            }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: { color: '#94a3b8' }
-                        }
-                    }
-                }
-            });
-
-            // 情感状态周K线图
-            const weeklyCtx = document.getElementById('emotionWeeklyChart').getContext('2d');
-            const ew = trendData?.emotion_weekly;
-            const weeklyData = ew ? [
-                ew.monday?.open || 75, ew.tuesday?.open || 78, ew.wednesday?.open || 82, 
-                ew.thursday?.open || 85, ew.friday?.open || 88, ew.saturday?.open || 90, ew.sunday?.open || 87
-            ] : [75, 78, 82, 85, 88, 90, 87];
-            const weeklyHigh = ew ? [
-                ew.monday?.high || 80, ew.tuesday?.high || 85, ew.wednesday?.high || 88,
-                ew.thursday?.high || 90, ew.friday?.high || 92, ew.saturday?.high || 93, ew.sunday?.high || 90
-            ] : [80, 85, 88, 90, 92, 93, 90];
-            const weeklyLow = ew ? [
-                ew.monday?.low || 70, ew.tuesday?.low || 75, ew.wednesday?.low || 78,
-                ew.thursday?.low || 80, ew.friday?.low || 82, ew.saturday?.low || 85, ew.sunday?.low || 80
-            ] : [70, 75, 78, 80, 82, 85, 80];
-            
-            new Chart(weeklyCtx, {
-                type: 'line',
-                data: {
-                    labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                    datasets: [
-                        {
-                            label: '开盘',
-                            data: weeklyData,
-                            borderColor: '#6366f1',
-                            backgroundColor: 'rgba(99, 102, 241, 0.1)',
-                            borderWidth: 2,
-                            tension: 0.3,
-                            pointRadius: 5,
-                            pointBackgroundColor: '#6366f1'
-                        },
-                        {
-                            label: '最高',
-                            data: weeklyHigh,
-                            borderColor: '#10b981',
-                            borderDash: [5, 5],
-                            borderWidth: 2,
-                            tension: 0.3,
-                            pointRadius: 3,
-                            pointBackgroundColor: '#10b981'
-                        },
-                        {
-                            label: '最低',
-                            data: weeklyLow,
-                            borderColor: '#ef4444',
-                            borderDash: [5, 5],
-                            borderWidth: 2,
-                            tension: 0.3,
-                            pointRadius: 3,
-                            pointBackgroundColor: '#ef4444'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: { color: '#94a3b8' }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            min: 50,
                             max: 100,
                             grid: { color: 'rgba(255,255,255,0.05)' },
                             ticks: {
