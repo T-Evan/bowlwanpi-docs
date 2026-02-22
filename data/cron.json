@@ -13,9 +13,9 @@
       "status": "enabled"
     },
     {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
+      "schedule": "cron",
       "status": "enabled"
     },
     {
@@ -25,21 +25,15 @@
       "status": "enabled"
     },
     {
-      "id": "14a965ff-8488-4201-8286-08afccaa255e",
-      "name": "周回顾",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
       "id": "7b7f38f5-4a3f-4704-a993-363693a661f3",
       "name": "仪表盘状态推送",
       "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
       "status": "enabled"
     },
     {
@@ -135,6 +129,12 @@
     {
       "id": "d772eab7-c90a-4a98-9bf0-7a014fd66205",
       "name": "一分钟资讯推送-每日（one-minute...",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "14a965ff-8488-4201-8286-08afccaa255e",
+      "name": "周回顾",
       "schedule": "cron",
       "status": "enabled"
     }

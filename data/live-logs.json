@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-22T11:00:48.940894+00:00",
+  "updated": "2026-02-22T12:00:48.882195+00:00",
   "policy": {
     "verifiable_only": true,
     "note": "不展示内部思维，仅展示可验证执行摘要。",
@@ -107,7 +107,7 @@
       "message": "- 状态: ✅ 成功"
     },
     {
-      "timestamp": "2026-02-22T11:00:48.940881+00:00",
+      "timestamp": "2026-02-22T12:00:48.882181+00:00",
       "source": "website-publisher",
       "status": "ok",
       "message": "update.py completed"
