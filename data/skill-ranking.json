@@ -24,15 +24,15 @@
       "count": 2
     },
     {
-      "name": "doubao-tts",
-      "count": 1
-    },
-    {
       "name": "openclaw-assistant-guide",
       "count": 1
     },
     {
-      "name": "video-frames",
+      "name": "doubao-tts",
+      "count": 1
+    },
+    {
+      "name": "amygdala-memory",
       "count": 1
     },
     {
@@ -40,7 +40,7 @@
       "count": 1
     },
     {
-      "name": "amygdala-memory",
+      "name": "video-frames",
       "count": 1
     },
     {
@@ -52,5 +52,5 @@
       "count": 1
     }
   ],
-  "last_updated": "2026-02-22T20:00:48.866460"
+  "last_updated": "2026-02-22T21:00:48.714687"
 }
