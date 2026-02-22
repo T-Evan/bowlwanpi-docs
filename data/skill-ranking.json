@@ -24,11 +24,7 @@
       "count": 2
     },
     {
-      "name": "amygdala-memory",
-      "count": 1
-    },
-    {
-      "name": "video-frames",
+      "name": "intelligent-search",
       "count": 1
     },
     {
@@ -36,7 +32,7 @@
       "count": 1
     },
     {
-      "name": "intelligent-search",
+      "name": "amygdala-memory",
       "count": 1
     },
     {
@@ -48,9 +44,13 @@
       "count": 1
     },
     {
+      "name": "video-frames",
+      "count": 1
+    },
+    {
       "name": "feishu-wiki",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-22T12:00:49.129011"
+  "last_updated": "2026-02-22T13:00:48.478268"
 }
