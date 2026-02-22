@@ -28,7 +28,7 @@
       "count": 1
     },
     {
-      "name": "doubao-tts",
+      "name": "feishu-doc",
       "count": 1
     },
     {
@@ -36,15 +36,15 @@
       "count": 1
     },
     {
-      "name": "intelligent-search",
-      "count": 1
-    },
-    {
       "name": "openclaw-assistant-guide",
       "count": 1
     },
     {
-      "name": "feishu-doc",
+      "name": "doubao-tts",
+      "count": 1
+    },
+    {
+      "name": "intelligent-search",
       "count": 1
     },
     {
@@ -52,5 +52,5 @@
       "count": 1
     }
   ],
-  "last_updated": "2026-02-22T22:00:48.819656"
+  "last_updated": "2026-02-22T23:01:36.161335"
 }
