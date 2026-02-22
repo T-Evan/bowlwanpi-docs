@@ -19,18 +19,6 @@
       "status": "enabled"
     },
     {
-      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
-      "name": "Doctor巡检-每30分钟",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
       "id": "ef48aebb-80a5-473d-b0fd-dbe0e4749475",
       "name": "综合资讯推送-每6小时（媒体/社区）",
       "schedule": "cron",
@@ -49,6 +37,12 @@
       "status": "enabled"
     },
     {
+      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
+      "name": "Doctor巡检-每30分钟",
+      "schedule": "every",
+      "status": "enabled"
+    },
+    {
       "id": "a86a9179-1bc4-494b-926e-d036cdf5cd01",
       "name": "中文热榜推送-每6小时（daily-hot...",
       "schedule": "cron",
@@ -58,6 +52,12 @@
       "id": "3f4250f7-b1d4-4831-8fb7-73b6f2a785b8",
       "name": "技术深度专栏-每6小时（HN+论文）",
       "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
       "status": "enabled"
     },
     {
