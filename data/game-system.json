@@ -1,12 +1,12 @@
 {
-  "updated": "2026-02-22T10:00:48.799797",
+  "updated": "2026-02-22T11:00:48.170355",
   "level": 4,
   "title": "沟通学徒",
-  "xp_current": 42,
+  "xp_current": 154,
   "xp_to_next": 250,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 9,
+  "bond": 10,
   "streak": 3,
   "achievements": 9,
   "achievements_list": [
@@ -84,7 +84,7 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 0,
+  "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
