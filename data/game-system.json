@@ -1,12 +1,12 @@
 {
-  "updated": "2026-02-23T06:00:49.842871",
-  "level": 2,
-  "title": "见习小埋",
-  "xp_current": 113,
-  "xp_to_next": 150,
+  "updated": "2026-02-23T07:00:50.301445",
+  "level": 3,
+  "title": "沟通学徒",
+  "xp_current": 22,
+  "xp_to_next": 200,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 2,
+  "bond": 3,
   "streak": 4,
   "achievements": 10,
   "achievements_list": [
@@ -91,7 +91,7 @@
       "category": "time"
     }
   ],
-  "daily_done": 0,
+  "daily_done": 1,
   "weekly_done": 0,
   "season_done": 0,
   "daily_total": 3,
