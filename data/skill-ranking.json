@@ -1,5 +1,5 @@
 {
-  "date": "2026-02-22",
+  "date": "2026-02-23",
   "total_skills": 61,
   "active_skills": 12,
   "ranking": [
@@ -24,23 +24,11 @@
       "count": 2
     },
     {
-      "name": "amygdala-memory",
-      "count": 1
-    },
-    {
-      "name": "feishu-doc",
-      "count": 1
-    },
-    {
-      "name": "video-frames",
+      "name": "doubao-tts",
       "count": 1
     },
     {
       "name": "openclaw-assistant-guide",
-      "count": 1
-    },
-    {
-      "name": "doubao-tts",
       "count": 1
     },
     {
@@ -50,7 +38,19 @@
     {
       "name": "feishu-wiki",
       "count": 1
+    },
+    {
+      "name": "amygdala-memory",
+      "count": 1
+    },
+    {
+      "name": "video-frames",
+      "count": 1
+    },
+    {
+      "name": "feishu-doc",
+      "count": 1
     }
   ],
-  "last_updated": "2026-02-22T23:01:36.161335"
+  "last_updated": "2026-02-23T00:00:49.172031"
 }
