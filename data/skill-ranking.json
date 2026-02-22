@@ -28,15 +28,15 @@
       "count": 1
     },
     {
-      "name": "doubao-tts",
-      "count": 1
-    },
-    {
       "name": "amygdala-memory",
       "count": 1
     },
     {
-      "name": "openclaw-assistant-guide",
+      "name": "doubao-tts",
+      "count": 1
+    },
+    {
+      "name": "feishu-wiki",
       "count": 1
     },
     {
@@ -48,9 +48,9 @@
       "count": 1
     },
     {
-      "name": "feishu-wiki",
+      "name": "openclaw-assistant-guide",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-22T13:00:48.478268"
+  "last_updated": "2026-02-22T14:00:48.456971"
 }
