@@ -11,6 +11,16 @@
       "updated": "2026-02-20"
     },
     {
+      "name": "daily-creative-brief",
+      "description": "Daily creative inspiration generator for AI agents. Combi...",
+      "updated": "2026-02-23"
+    },
+    {
+      "name": "evolver",
+      "description": "提供evolver相关自动化能力，支持日常任务执行与结果回传。",
+      "updated": "2026-02-23"
+    },
+    {
       "name": "gemini-image-gen",
       "description": "Generate and edit images via Google Gemini API. Supports...",
       "updated": "2026-02-21"
@@ -74,11 +84,6 @@
       "name": "crawl-for-ai",
       "description": "Web scraping using local Crawl4AI instance. Use for fetch...",
       "updated": "2026-02-17"
-    },
-    {
-      "name": "daily-creative-brief",
-      "description": "Daily creative inspiration generator for AI agents. Combi...",
-      "updated": "2026-02-19"
     },
     {
       "name": "daily-hot-news",
@@ -311,6 +316,6 @@
       "updated": "2026-02-17"
     }
   ],
-  "count": 62,
+  "count": 63,
   "updated": "2026-02-23"
 }

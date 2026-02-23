@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-23T01:04:30.174353+00:00",
+  "updated": "2026-02-23T02:00:49.202926+00:00",
   "policy": {
     "verifiable_only": true,
     "note": "不展示内部思维，仅展示可验证执行摘要。",
@@ -125,7 +125,13 @@
       "message": "- 状态: ✅ 成功完成"
     },
     {
-      "timestamp": "2026-02-23T01:04:30.174340+00:00",
+      "timestamp": "2026-02-23T01:32:46+00:00",
+      "source": "subagent-receipt",
+      "status": "ok",
+      "message": "task morning-cron-setup-001 closed: "
+    },
+    {
+      "timestamp": "2026-02-23T02:00:49.202911+00:00",
       "source": "website-publisher",
       "status": "ok",
       "message": "update.py completed"
