@@ -1,14 +1,14 @@
 {
-  "updated": "2026-02-23T22:00:49.229782",
-  "level": 6,
+  "updated": "2026-02-23T23:07:41.773366",
+  "level": 7,
   "title": "任务指挥官",
-  "xp_current": 343,
-  "xp_to_next": 350,
+  "xp_current": 89,
+  "xp_to_next": 400,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 34,
+  "bond": 37,
   "streak": 4,
-  "achievements": 11,
+  "achievements": 12,
   "achievements_list": [
     {
       "id": "code_master",
@@ -24,6 +24,14 @@
       "desc": "完成10个创造任务",
       "icon": "📝",
       "points": 15,
+      "category": "count"
+    },
+    {
+      "id": "count_100",
+      "name": "🎯 创造大师",
+      "desc": "完成100个创造任务",
+      "icon": "🎯",
+      "points": 150,
       "category": "count"
     },
     {

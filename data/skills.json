@@ -36,6 +36,11 @@
       "updated": "2026-02-23"
     },
     {
+      "name": "novelai-umaru",
+      "description": "智能小埋角色生图系统，支持自然语言场景动作分析、自动组合提示词、NovelAI 生成与飞书推送。",
+      "updated": "2026-02-23"
+    },
+    {
       "name": "rebuild-generator",
       "description": "提供rebuild-generator相关自动化能力，支持日常任务执行与结果回传。",
       "updated": "2026-02-20"
@@ -321,6 +326,6 @@
       "updated": "2026-02-17"
     }
   ],
-  "count": 64,
+  "count": 65,
   "updated": "2026-02-23"
 }

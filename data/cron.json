@@ -1,6 +1,12 @@
 {
   "tasks": [
     {
+      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
+      "name": "Doctor巡检-每30分钟",
+      "schedule": "every",
+      "status": "enabled"
+    },
+    {
       "id": "3ec473d4-40c0-46d5-b814-14e67b1896a6",
       "name": "个人网站每小时自动更新部署",
       "schedule": "cron",
@@ -13,27 +19,15 @@
       "status": "enabled"
     },
     {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
-      "name": "Doctor巡检-每30分钟",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
-      "id": "2783f239-8e92-4207-bf57-ce448a662d74",
-      "name": "宏观脉冲-每日（macro）",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
       "id": "795b6762-b272-47f2-8051-57b49606e14e",
       "name": "Moltbook多帖子回复检查",
       "schedule": "every",
+      "status": "enabled"
+    },
+    {
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
+      "schedule": "cron",
       "status": "enabled"
     },
     {
@@ -123,6 +117,12 @@
     {
       "id": "d772eab7-c90a-4a98-9bf0-7a014fd66205",
       "name": "一分钟资讯推送-每日（one-minute...",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "2783f239-8e92-4207-bf57-ce448a662d74",
+      "name": "宏观脉冲-每日（macro）",
       "schedule": "cron",
       "status": "enabled"
     },
