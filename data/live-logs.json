@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-23T19:00:50.167076+00:00",
+  "updated": "2026-02-23T20:00:52.050256+00:00",
   "policy": {
     "verifiable_only": true,
     "note": "不展示内部思维，仅展示可验证执行摘要。",
@@ -10,24 +10,6 @@
     ]
   },
   "entries": [
-    {
-      "timestamp": "2026-02-20T03:30:31+00:00",
-      "source": "cron-runs",
-      "status": "ok",
-      "message": "重建手册生成任务"
-    },
-    {
-      "timestamp": "2026-02-20T03:30:31+00:00",
-      "source": "cron-runs",
-      "status": "ok",
-      "message": "- 状态: ✅ 成功"
-    },
-    {
-      "timestamp": "2026-02-20T03:30:31+00:00",
-      "source": "website-publisher",
-      "status": "ok",
-      "message": "✅ 夜间构建完成!"
-    },
     {
       "timestamp": "2026-02-20T03:30:31+00:00",
       "source": "website-publisher",
@@ -149,10 +131,40 @@
       "message": "- 状态: ✅ 成功"
     },
     {
-      "timestamp": "2026-02-23T19:00:50.167062+00:00",
+      "timestamp": "2026-02-23T19:30:00+00:00",
+      "source": "subagent-receipt",
+      "status": "ok",
+      "message": "task cron:63fbb8ef-726f-4918-9fd8-f4ee796e1a93 closed: "
+    },
+    {
+      "timestamp": "2026-02-23T19:31:09+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "【CRON重建手册生成任务】自主维护"
+    },
+    {
+      "timestamp": "2026-02-23T19:31:09+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功完成"
+    },
+    {
+      "timestamp": "2026-02-23T20:00:52.050242+00:00",
       "source": "website-publisher",
       "status": "ok",
       "message": "update.py completed"
+    },
+    {
+      "timestamp": "2026-02-24T03:30:21+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "重建手册生成任务"
+    },
+    {
+      "timestamp": "2026-02-24T03:30:21+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功"
     }
   ]
 }
