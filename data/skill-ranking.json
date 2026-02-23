@@ -24,14 +24,6 @@
       "count": 2
     },
     {
-      "name": "intelligent-search",
-      "count": 1
-    },
-    {
-      "name": "video-frames",
-      "count": 1
-    },
-    {
       "name": "feishu-wiki",
       "count": 1
     },
@@ -48,9 +40,17 @@
       "count": 1
     },
     {
+      "name": "video-frames",
+      "count": 1
+    },
+    {
+      "name": "intelligent-search",
+      "count": 1
+    },
+    {
       "name": "doubao-tts",
       "count": 1
     }
   ],
-  "last_updated": "2026-02-23T08:00:48.019529"
+  "last_updated": "2026-02-23T09:04:30.161598"
 }
