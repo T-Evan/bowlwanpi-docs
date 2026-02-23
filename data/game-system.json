@@ -1,14 +1,14 @@
 {
-  "updated": "2026-02-23T12:00:50.544075",
-  "level": 4,
-  "title": "沟通学徒",
-  "xp_current": 196,
-  "xp_to_next": 250,
+  "updated": "2026-02-23T13:00:49.074926",
+  "level": 5,
+  "title": "任务指挥官",
+  "xp_current": 42,
+  "xp_to_next": 300,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 12,
+  "bond": 15,
   "streak": 4,
-  "achievements": 10,
+  "achievements": 11,
   "achievements_list": [
     {
       "id": "code_master",
