@@ -1,239 +1,158 @@
 {
-  "updated": "2026-02-24T03:00:01.630312",
+  "updated": "2026-02-23T19:00:50.167076+00:00",
+  "policy": {
+    "verifiable_only": true,
+    "note": "不展示内部思维，仅展示可验证执行摘要。",
+    "allowed_sources": [
+      "cron-runs",
+      "website-publisher",
+      "subagent-receipt"
+    ]
+  },
   "entries": [
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking cron health..."
+      "timestamp": "2026-02-20T03:30:31+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "重建手册生成任务"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Cron owner guard: OK"
+      "timestamp": "2026-02-20T03:30:31+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Detailed cron check skipped (cooldown active)"
+      "timestamp": "2026-02-20T03:30:31+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "03:00:01",
-      "level": "ERROR",
-      "source": "heartbeat",
-      "message": "Cron recent errors (tail): 6"
+      "timestamp": "2026-02-20T03:30:31+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": ""
+      "timestamp": "2026-02-20T19:30:00+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "【CRON重建手册生成任务】"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking services..."
+      "timestamp": "2026-02-20T19:30:00+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "OpenClaw Gateway: OK"
+      "timestamp": "2026-02-20T19:30:00+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Mihomo Proxy: OK"
+      "timestamp": "2026-02-21T03:30:16+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "重建手册生成任务"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Cron Service: OK"
+      "timestamp": "2026-02-21T03:30:16+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": ""
+      "timestamp": "2026-02-21T14:04:59.930981+00:00",
+      "source": "subagent-receipt",
+      "status": "ok",
+      "message": "DAG site-publish-v0.1 done (runId=run-site-publish-sample)"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Generating health report..."
+      "timestamp": "2026-02-21T14:09:42.076647+00:00",
+      "source": "subagent-receipt",
+      "status": "ok",
+      "message": "DAG news-push-v0.1 done (runId=run-news-push-sample)"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Health report saved: /root/.openclaw/workspace/health-checks/heartbeat_2026-02-20.md"
+      "timestamp": "2026-02-21T14:09:42.382548+00:00",
+      "source": "subagent-receipt",
+      "status": "ok",
+      "message": "DAG retry-demo-v0.1 done (runId=run-retry-demo-sample)"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": ""
+      "timestamp": "2026-02-21T19:31:25+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "重建手册生成任务（补充扫描+三记忆上传）"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "=== Heartbeat check completed ==="
+      "timestamp": "2026-02-21T19:31:25+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": ""
+      "timestamp": "2026-02-21T19:31:25+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "---"
+      "timestamp": "2026-02-22T03:30:24+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "重建手册生成任务"
     },
     {
-      "time": "0:00 UTC",
-      "level": "INFO",
-      "source": "nightly",
+      "timestamp": "2026-02-22T03:30:24+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功"
+    },
+    {
+      "timestamp": "2026-02-22T19:30:00+00:00",
+      "source": "cron-runs",
+      "status": "ok",
       "message": "【CRON重建手册生成任务】自主维护"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 任务ID: 63fbb8ef-726f-4918-9fd8-f4ee796e1a93"
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
+      "timestamp": "2026-02-22T19:30:00+00:00",
+      "source": "cron-runs",
+      "status": "ok",
       "message": "- 状态: ✅ 成功完成"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 执行模式: 安静模式（不打扰一碗）"
+      "timestamp": "2026-02-22T19:30:00+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 扫描结果:"
+      "timestamp": "2026-02-23T01:32:46+00:00",
+      "source": "subagent-receipt",
+      "status": "ok",
+      "message": "task morning-cron-setup-001 closed: "
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 技能模块: 7 个"
+      "timestamp": "2026-02-23T03:30:04+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "重建手册生成任务"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- MCP服务: 0 个（未配置）"
+      "timestamp": "2026-02-23T03:30:04+00:00",
+      "source": "cron-runs",
+      "status": "ok",
+      "message": "- 状态: ✅ 成功"
     },
     {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 记忆系统: 3/3 在线（memU + Hippocampus + MemOS）"
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 记忆文件: 9 个 (31.17 KB)"
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 配置文件: 30 个"
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 核心文档: SOUL.md ✅, USER.md ✅, AGENTS.md ✅, TOOLS.md ✅, MEMORY.md ❌"
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 输出文件: /root/.openclaw/workspace/memory/rebuild-summary-2026-02-23.md"
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "- 备注: 重建信息已最新，服务器迁移时可快速重建"
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "---"
-    },
-    {
-      "time": "2.808084",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 12 条新新闻（并行版）"
-    },
-    {
-      "time": "5.362660",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 7 条新新闻（并行版）"
-    },
-    {
-      "time": "5.096215",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 7 条新新闻（并行版）"
-    },
-    {
-      "time": "3.172351",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 3 条新新闻（并行版）"
-    },
-    {
-      "time": "9.951980",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 6 条新新闻（并行版）"
-    },
-    {
-      "time": "9.860548",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 6 条新新闻（并行版）"
-    },
-    {
-      "time": "6.448317",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 9 条新新闻（并行版）"
-    },
-    {
-      "time": "3.241260",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 6 条新新闻（并行版）"
-    },
-    {
-      "time": "9.697825",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 8 条新新闻（并行版）"
+      "timestamp": "2026-02-23T19:00:50.167062+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "update.py completed"
     }
   ]
 }
