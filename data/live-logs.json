@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-23T03:00:48.997850+00:00",
+  "updated": "2026-02-23T04:00:50.637794+00:00",
   "policy": {
     "verifiable_only": true,
     "note": "不展示内部思维，仅展示可验证执行摘要。",
@@ -131,12 +131,6 @@
       "message": "task morning-cron-setup-001 closed: "
     },
     {
-      "timestamp": "2026-02-23T03:00:48.997837+00:00",
-      "source": "website-publisher",
-      "status": "ok",
-      "message": "update.py completed"
-    },
-    {
       "timestamp": "2026-02-23T03:30:04+00:00",
       "source": "cron-runs",
       "status": "ok",
@@ -147,6 +141,12 @@
       "source": "cron-runs",
       "status": "ok",
       "message": "- 状态: ✅ 成功"
+    },
+    {
+      "timestamp": "2026-02-23T04:00:50.637781+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "update.py completed"
     }
   ]
 }
