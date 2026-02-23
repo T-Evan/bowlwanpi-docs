@@ -13,8 +13,38 @@
       "status": "enabled"
     },
     {
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
+      "status": "enabled"
+    },
+    {
+      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
+      "name": "Doctor巡检-每30分钟",
+      "schedule": "every",
+      "status": "enabled"
+    },
+    {
+      "id": "041cdc3e-852b-4fd0-ba3e-4d91a9edbfcd",
+      "name": "去重记录清理",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
       "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
       "name": "对话历史云端同步-每2小时",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "1d73f91e-bda6-4450-b147-69613a78e361",
+      "name": "夜间构建-v4.3",
+      "schedule": "cron",
+      "status": "enabled"
+    },
+    {
+      "id": "63fbb8ef-726f-4918-9fd8-f4ee796e1a93",
+      "name": "重建手册生成",
       "schedule": "cron",
       "status": "enabled"
     },
@@ -37,12 +67,6 @@
       "status": "enabled"
     },
     {
-      "id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89",
-      "name": "Doctor巡检-每30分钟",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
       "id": "a86a9179-1bc4-494b-926e-d036cdf5cd01",
       "name": "中文热榜推送-每6小时（daily-hot...",
       "schedule": "cron",
@@ -51,30 +75,6 @@
     {
       "id": "3f4250f7-b1d4-4831-8fb7-73b6f2a785b8",
       "name": "技术深度专栏-每6小时（HN+论文）",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
-      "status": "enabled"
-    },
-    {
-      "id": "041cdc3e-852b-4fd0-ba3e-4d91a9edbfcd",
-      "name": "去重记录清理",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "1d73f91e-bda6-4450-b147-69613a78e361",
-      "name": "夜间构建-v4.3",
-      "schedule": "cron",
-      "status": "enabled"
-    },
-    {
-      "id": "63fbb8ef-726f-4918-9fd8-f4ee796e1a93",
-      "name": "重建手册生成",
       "schedule": "cron",
       "status": "enabled"
     },

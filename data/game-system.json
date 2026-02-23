@@ -1,12 +1,12 @@
 {
-  "updated": "2026-02-24T00:00:54.282136",
+  "updated": "2026-02-24T01:00:48.812755",
   "level": 7,
   "title": "任务指挥官",
-  "xp_current": 185,
+  "xp_current": 312,
   "xp_to_next": 400,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 40,
+  "bond": 43,
   "streak": 5,
   "achievements": 12,
   "achievements_list": [
@@ -99,7 +99,7 @@
       "category": "time"
     }
   ],
-  "daily_done": 0,
+  "daily_done": 1,
   "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,
