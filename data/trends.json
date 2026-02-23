@@ -16,7 +16,7 @@
       61,
       62,
       62,
-      63
+      64
     ],
     "description": "技能数量增长趋势"
   },
@@ -134,7 +134,7 @@
     ]
   },
   "current": {
-    "skills": 63,
+    "skills": 64,
     "energy": 75,
     "memory_files": 10,
     "session_count": 576,

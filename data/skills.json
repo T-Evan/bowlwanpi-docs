@@ -31,6 +31,11 @@
       "updated": "2026-02-20"
     },
     {
+      "name": "novelai-image-gen",
+      "description": "NovelAI 图像生成技能，支持自定义 API、角色管理和场景生图。基于 chami_tavern-scene-...",
+      "updated": "2026-02-23"
+    },
+    {
       "name": "rebuild-generator",
       "description": "提供rebuild-generator相关自动化能力，支持日常任务执行与结果回传。",
       "updated": "2026-02-20"
@@ -316,6 +321,6 @@
       "updated": "2026-02-17"
     }
   ],
-  "count": 63,
+  "count": 64,
   "updated": "2026-02-23"
 }
