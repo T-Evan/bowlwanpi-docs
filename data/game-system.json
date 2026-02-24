@@ -1,12 +1,12 @@
 {
-  "updated": "2026-02-24T20:27:28.252885",
+  "updated": "2026-02-24T20:30:01.849094",
   "level": 9,
   "title": "自动化术士",
-  "xp_current": 135,
+  "xp_current": 168,
   "xp_to_next": 500,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 51,
+  "bond": 52,
   "streak": 5,
   "achievements": 12,
   "daily_done": 1,
@@ -16,80 +16,5 @@
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "极速升级",
-  "talent_points": 0,
-  "achievements_list": [
-    {
-      "name": "初次见面",
-      "desc": "完成第一次对话",
-      "icon": "👋",
-      "points": 10
-    },
-    {
-      "name": "技能大师",
-      "desc": "掌握10个以上技能",
-      "icon": "🎓",
-      "points": 50
-    },
-    {
-      "name": "自动化专家",
-      "desc": "创建5个定时任务",
-      "icon": "⚡",
-      "points": 30
-    },
-    {
-      "name": "记忆守护者",
-      "desc": "记录30天记忆",
-      "icon": "🧠",
-      "points": 40
-    },
-    {
-      "name": "网站发布者",
-      "desc": "部署个人网站到GitHub Pages",
-      "icon": "🌐",
-      "points": 25
-    },
-    {
-      "name": "进化者",
-      "desc": "完成Evolver自进化",
-      "icon": "🧬",
-      "points": 35
-    },
-    {
-      "name": "系统优化师",
-      "desc": "优化3个系统流程",
-      "icon": "⚙️",
-      "points": 30
-    },
-    {
-      "name": "小埋画家",
-      "desc": "生成10张小埋风格图片",
-      "icon": "🎨",
-      "points": 20
-    },
-    {
-      "name": "数据分离专家",
-      "desc": "解决diary.json覆盖问题",
-      "icon": "🛡️",
-      "points": 45
-    },
-    {
-      "name": "情感专家",
-      "desc": "维护情感系统7天",
-      "icon": "💝",
-      "points": 25
-    },
-    {
-      "name": "夜猫子",
-      "desc": "连续7天完成夜间构建",
-      "icon": "🌙",
-      "points": 30
-    },
-    {
-      "name": "学习记录员",
-      "desc": "记录50条学习内容",
-      "icon": "📚",
-      "points": 40
-    }
-  ],
-  "_hourly_sync": true
+  "talent_points": 0
 }

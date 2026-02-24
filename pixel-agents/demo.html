@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Agents - 像素AI助手演示</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'VT323', monospace;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .pixel-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 0 #e94560;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .demo-section {
+            background: #16213e;
+            border: 4px solid #0f3460;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-section h2 {
+            color: #e94560;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e94560;
+            padding-bottom: 10px;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .pixel-btn {
+            font-family: 'VT323', monospace;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            background: #0f3460;
+            border: 2px solid #e94560;
+            color: #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        
+        .pixel-btn:hover {
+            background: #e94560;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 0 #533483;
+        }
+        
+        .pixel-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 0 #533483;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: rgba(233, 69, 96, 0.1);
+            border-left: 4px solid #e94560;
+        }
+        
+        .feature-list li::before {
+            content: "▸ ";
+            color: #FFD700;
+        }
+        
+        .code-block {
+            background: #0f0f1e;
+            border: 2px solid #533483;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 15px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .code-block code {
+            color: #4ecca3;
+        }
+        
+        .status-display {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #0f3460;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+        
+        .pixel-canvas {
+            display: block;
+            margin: 20px auto;
+            border: 4px solid #533483;
+            image-rendering: pixelated;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #533483;
+            color: #666;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #e94560;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 1.2rem;
+        }
+        
+        .back-link:hover {
+            background: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="pixel-container">
+        <h1>👾 Pixel Agents</h1>
+        <p class="subtitle">像素风格的 AI 助手，类似 VS Code 的虚拟代码伴侣</p>
+        
+        <div class="demo-section">
+            <h2>🎮 交互演示</h2>
+            <p>点击右下角的小埋像素角色进行互动！</p>
+            
+            <div class="controls">
+                <button class="pixel-btn" onclick="agent.setState('idle')">待机</button>
+                <button class="pixel-btn" onclick="agent.setState('happy')">开心</button>
+                <button class="pixel-btn" onclick="agent.setState('typing')">打字</button>
+                <button class="pixel-btn" onclick="agent.setState('sleep')">睡觉</button>
+                <button class="pixel-btn" onclick="agent.showParticles()">粒子效果</button>
+            </div>
+            
+            <p>当前状态: <span id="current-state" class="status-display">idle</span></p>
+            <p>尝试在页面打字或等待5分钟看看会发生什么 👀</p>
+        </div>
+        
+        <div class="demo-section">
+            <h2>✨ 功能特性</h2>
+            <ul class="feature-list">
+                <li>8-bit 像素风格角色动画（小埋）</li>
+                <li>多状态切换：待机、开心、打字、睡觉</li>
+                <li>智能空闲检测：5分钟无操作进入睡眠模式</li>
+                <li>打字检测：自动切换到专注表情</li>
+                <li>粒子效果：点击时的像素庆祝动画</li>
+                <li>点击菜单：快捷操作面板</li>
+                <li>本地状态持久化</li>
+            </ul>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🔧 使用方法</h2>
+            <p>在你的博客页面添加以下代码：</p>
+            <div class="code-block">
+<code>&lt;!-- 添加 Pixel Agent --&gt;
+&lt;script src="pixel-agents/pixel-agent.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    // 初始化（会自动在右下角显示）
+    const agent = new PixelAgent({
+        character: 'umaru',      // 角色：小埋
+        size: 64,                // 大小：64px
+        position: 'bottom-right', // 位置：右下角
+        autoHide: true           // 自动隐藏
+    });
+&lt;/script&gt;</code>
+            </div>
+            
+            <p style="margin-top: 15px;">或者只需在 body 标签添加 data 属性自动初始化：</p>
+            <div class="code-block">
+<code>&lt;body data-pixel-agent&gt;
+    ...
+    &lt;script src="pixel-agents/pixel-agent.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code>
+            </div>
+        </div>
+        
+        <div class="demo-section">
+            <h2>🎨 未来扩展</h2>
+            <ul class="feature-list">
+                <li>更多像素角色（其他动漫人物）</li>
+                <li>语音交互（类似 VS Code 的语音助手）</li>
+                <li>与游戏系统联动（点击获得经验值）</li>
+                <li>日记互动（根据日记内容改变表情）</li>
+                <li>天气联动（雨天打伞、晴天戴墨镜）</li>
+                <li>代码高亮粒子效果</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Pixel Agents for BowlWanpi Blog</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Made with ❤️ by 小碗皮</p>
+            <a href="index.html" class="back-link">← 返回博客首页</a>
+        </footer>
+    </div>
+    
+    <!-- Pixel Agent -->
+    <script src="pixel-agent.js"></script>
+    <script>
+        // 创建全局 agent 供按钮调用
+        window.agent = new PixelAgent({
+            character: 'umaru',
+            size: 64,
+            position: 'bottom-right',
+            autoHide: false
+        });
+        
+        // 更新状态显示
+        const originalSetState = agent.setState.bind(agent);
+        agent.setState = function(state) {
+            originalSetState(state);
+            document.getElementById('current-state').textContent = state;
+        };
+    </script>
+</body>
+</html>
