@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T20:12:54.817937",
+  "updated": "2026-02-24T20:01:58.778679",
   "level": 9,
   "title": "自动化术士",
   "xp_current": 135,
@@ -9,96 +9,6 @@
   "bond": 51,
   "streak": 5,
   "achievements": 12,
-  "achievements_list": [
-    {
-      "id": "code_master",
-      "name": "💻 代码大师",
-      "desc": "编写超过100行代码",
-      "icon": "💻",
-      "points": 25,
-      "category": "milestone"
-    },
-    {
-      "id": "count_10",
-      "name": "📝 创造者",
-      "desc": "完成10个创造任务",
-      "icon": "📝",
-      "points": 15,
-      "category": "count"
-    },
-    {
-      "id": "count_100",
-      "name": "🎯 创造大师",
-      "desc": "完成100个创造任务",
-      "icon": "🎯",
-      "points": 150,
-      "category": "count"
-    },
-    {
-      "id": "count_50",
-      "name": "🚀 高产出者",
-      "desc": "完成50个创造任务",
-      "icon": "🚀",
-      "points": 50,
-      "category": "count"
-    },
-    {
-      "id": "early_bird",
-      "name": "🐦 早起的鸟",
-      "desc": "在早上8点前完成任务",
-      "icon": "🐦",
-      "points": 10,
-      "category": "time"
-    },
-    {
-      "id": "first_task",
-      "name": "🌱 初次创造",
-      "desc": "完成第一个创造任务",
-      "icon": "🌱",
-      "points": 5,
-      "category": "milestone"
-    },
-    {
-      "id": "night_owl",
-      "name": "🦉 夜猫子",
-      "desc": "在晚上10点后完成任务",
-      "icon": "🦉",
-      "points": 10,
-      "category": "time"
-    },
-    {
-      "id": "skill_creator",
-      "name": "🎨 技能造物主",
-      "desc": "成功创建一个新技能",
-      "icon": "🎨",
-      "points": 30,
-      "category": "milestone"
-    },
-    {
-      "id": "streak_3",
-      "name": "🔥 三连击",
-      "desc": "连续3天完成创造挑战",
-      "icon": "🔥",
-      "points": 10,
-      "category": "streak"
-    },
-    {
-      "id": "type_auto",
-      "name": "⚙️ 自动化专家",
-      "desc": "完成5个自动化任务",
-      "icon": "⚙️",
-      "points": 20,
-      "category": "type"
-    },
-    {
-      "id": "weekend_warrior",
-      "name": "🎮 周末战士",
-      "desc": "在周末完成创造",
-      "icon": "🎮",
-      "points": 15,
-      "category": "time"
-    }
-  ],
   "daily_done": 1,
   "weekly_done": 1,
   "season_done": 0,
