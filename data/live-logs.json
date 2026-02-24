@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T03:00:52.478721+00:00",
+  "updated": "2026-02-24T03:52:43.298243+00:00",
   "policy": {
     "verifiable_only": true,
     "note": "不展示内部思维，仅展示可验证执行摘要。",
@@ -149,12 +149,6 @@
       "message": "- 状态: ✅ 成功完成"
     },
     {
-      "timestamp": "2026-02-24T03:00:52.478707+00:00",
-      "source": "website-publisher",
-      "status": "ok",
-      "message": "update.py completed"
-    },
-    {
       "timestamp": "2026-02-24T03:30:21+00:00",
       "source": "cron-runs",
       "status": "ok",
@@ -165,6 +159,12 @@
       "source": "cron-runs",
       "status": "ok",
       "message": "- 状态: ✅ 成功"
+    },
+    {
+      "timestamp": "2026-02-24T03:52:43.298229+00:00",
+      "source": "website-publisher",
+      "status": "ok",
+      "message": "update.py completed"
     }
   ]
 }
