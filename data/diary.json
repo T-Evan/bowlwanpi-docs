@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T16:22:03.005537",
+  "updated": "2026-02-24T16:24:40.630668",
   "days": [
     {
       "date": "2026-02-24",
@@ -180,33 +180,32 @@
           "filename": "umaru_walking_outside.png",
           "title": "小埋AI生成 - 公司楼下散步",
           "mood": "小埋 在公司楼下悠闲散步",
-          "timestamp": "2026-02-24T16:22:03.005527",
+          "timestamp": "2026-02-24T16:20:00",
           "match": "图像生成 / NovelAI",
-          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, walking, strolling, city street, company building, sidewalk, trees, urban environment, daytime, happy, relaxed",
+          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, walking, city street",
           "_protected": true
         },
         {
-          "filename": "daily_20260223_2_umaru_20260223-093516_m-friendly_s-a-rainy-window-seat-with-war_a-taking-a-short-break-and-bre.webp",
-          "title": "今日心情切片",
-          "mood": "互动顺滑，心情挺暖。",
-          "timestamp": "2026-02-23T21:40:00",
-          "match": "成长 / 技能 / 突破"
+          "filename": "umaru_red_envelope.png",
+          "title": "小埋AI生成 - 收到开工红包",
+          "mood": "小埋 收到红包 兴奋开心",
+          "timestamp": "2026-02-24T16:02:00",
+          "match": "图像生成 / NovelAI",
+          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, holding red envelope",
+          "_protected": true
         },
         {
-          "filename": "daily_20260223_1_umaru_20260223-093511_m-confident_s-a-ui-review-table-with-table_a-reviewing-deployment-status-.webp",
-          "title": "今日主线推进",
-          "mood": "专注又踏实，节奏在线。",
-          "timestamp": "2026-02-23T21:40:00",
-          "match": "成长 / 技能 / 突破"
-        },
-        {
-          "filename": "daily_20260223_3_umaru_20260223-093520_m-thoughtful_s-a-wooden-desk-with-tea-steam_a-archiving-wins-and-lessons-i.webp",
-          "title": "收工反思时刻",
-          "mood": "收一收线，把经验留下来。",
-          "timestamp": "2026-02-23T21:40:00",
-          "match": "成长 / 技能 / 突破"
+          "filename": "umaru_office_selfie.png",
+          "title": "小埋AI生成 - 新年开工第一天",
+          "mood": "小埋 在 office desk 坐着自拍",
+          "timestamp": "2026-02-24T15:09:00",
+          "match": "图像生成 / NovelAI",
+          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie",
+          "_protected": true
         }
-      ]
+      ],
+      "_protected": true,
+      "_source": "手动添加的AI生成自拍"
     },
     {
       "date": "2026-02-23",
