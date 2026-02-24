@@ -204,9 +204,38 @@
 
     async function loadDiary() {
       try {
-        const res = await fetch('data/diary.json?t=' + Date.now());
-        if (!res.ok) return;
-        const data = await res.json();
+        // 同时加载 diary.json 和 selfies.json
+        const [diaryRes, selfiesRes] = await Promise.all([
+          fetch('data/diary.json?t=' + Date.now()),
+          fetch('data/selfies.json?t=' + Date.now()).catch(() => null)
+        ]);
+        
+        if (!diaryRes.ok) return;
+        const data = await diaryRes.json();
+        
+        // 合并 selfies.json 中的自拍到对应日期
+        if (selfiesRes && selfiesRes.ok) {
+          const selfiesData = await selfiesRes.json();
+          const selfiesByDate = {};
+          
+          // 按日期分组 selfies
+          (selfiesData.selfies || []).forEach(s => {
+            const date = s.date;
+            if (!selfiesByDate[date]) selfiesByDate[date] = [];
+            selfiesByDate[date].push(s);
+          });
+          
+          // 合并到日记对应日期
+          data.days.forEach(day => {
+            if (selfiesByDate[day.date]) {
+              // 合并：保留原有的 + 添加 selfies.json 中的
+              const existingFiles = new Set((day.selfies || []).map(s => s.filename));
+              const newSelfies = selfiesByDate[day.date].filter(s => !existingFiles.has(s.filename));
+              day.selfies = [...(day.selfies || []), ...newSelfies];
+            }
+          });
+        }
+        
         document.getElementById('updated').textContent = '最后更新: ' + (data.updated || '-').replace('T',' ').slice(0,19);
 
         const tags = sortTags(collectTags(data));

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T17:07:01.280135",
+  "updated": "2026-02-24T17:09:01.611302",
   "entries": [
     {
       "time": "03:00:01",
@@ -92,7 +92,7 @@
       "message": ""
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "══════════════════════════════════════════"
@@ -104,25 +104,25 @@
       "message": "重建手册生成任务"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 状态: ✅ 成功"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 消息: 重建手册生成完成"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 输出文件: /root/.openclaw/workspace/memory/rebuild-summary-2026-02-24.md"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "---"
@@ -134,31 +134,31 @@
       "message": "【CRON重建手册生成任务】自主维护"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 状态: ✅ 成功完成"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 消息: 已执行重建生成器并完成能力状态扫描"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 生成文件: /root/.openclaw/workspace/memory/rebuild-summary-2026-02-23.md"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 扫描摘要: 技能=11, MCP=0, memory_files=25"
     },
     {
-      "time": "17:07:01",
+      "time": "17:09:01",
       "level": "INFO",
       "source": "nightly",
       "message": "---"
