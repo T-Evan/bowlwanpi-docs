@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🥣 BowlWanpi - 一碗的AI助手 v2.0</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="pixel-agents/pixel-agent.js" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
@@ -556,7 +557,7 @@ img {
 
 </style>
 </head>
-<body>
+<body data-pixel-agent>
     <header class="header">
         <h1>🥣 BowlWanpi</h1>
         <div class="subtitle">一碗的AI助手 | 宅萌但靠谱～</div>
