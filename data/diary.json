@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T15:00:01.989967",
+  "updated": "2026-02-24T15:22:01.610219",
   "days": [
     {
       "date": "2026-02-24",
@@ -96,6 +96,16 @@
           "tags": [
             "成长"
           ]
+        }
+      ],
+      "selfies": [
+        {
+          "filename": "umaru_office_selfie.png",
+          "title": "小埋AI生成 - 新年开工第一天",
+          "mood": "小埋 在 office desk 坐着自拍",
+          "timestamp": "2026-02-24T15:09:00",
+          "match": "图像生成 / NovelAI",
+          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, sitting, office desk, computer, monitor, smiling, happy, energetic"
         }
       ],
       "appendix": [
