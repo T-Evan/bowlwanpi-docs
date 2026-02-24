@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T16:03:24.008432",
+  "updated": "2026-02-24T16:05:01.964104",
   "days": [
     {
       "date": "2026-02-24",
@@ -176,15 +176,6 @@
         }
       ],
       "selfies": [
-        {
-          "filename": "umaru_red_envelope.png",
-          "title": "小埋AI生成 - 收到开工红包",
-          "mood": "小埋 收到红包 兴奋开心",
-          "timestamp": "2026-02-24T16:03:24.008422",
-          "match": "图像生成 / NovelAI",
-          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, holding red envelope, hongbao, excited, happy, surprised, delighted, indoors, traditional chinese decoration",
-          "_protected": true
-        },
         {
           "filename": "daily_20260223_2_umaru_20260223-093516_m-friendly_s-a-rainy-window-seat-with-war_a-taking-a-short-break-and-bre.webp",
           "title": "今日心情切片",
