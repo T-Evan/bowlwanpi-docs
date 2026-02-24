@@ -28,7 +28,7 @@
       "count": 1
     },
     {
-      "name": "feishu-wiki",
+      "name": "intelligent-search",
       "count": 1
     },
     {
@@ -36,21 +36,21 @@
       "count": 1
     },
     {
+      "name": "feishu-wiki",
+      "count": 1
+    },
+    {
       "name": "feishu-doc",
-      "count": 1
-    },
-    {
-      "name": "openclaw-assistant-guide",
-      "count": 1
-    },
-    {
-      "name": "intelligent-search",
       "count": 1
     },
     {
       "name": "video-frames",
       "count": 1
+    },
+    {
+      "name": "openclaw-assistant-guide",
+      "count": 1
     }
   ],
-  "last_updated": "2026-02-24T11:52:43.279651"
+  "last_updated": "2026-02-24T12:00:49.653015"
 }
