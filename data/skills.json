@@ -51,6 +51,11 @@
       "updated": "2026-02-24"
     },
     {
+      "name": "umaru-selfie",
+      "description": "小埋自拍完整工作流 - 一键生成图片、发送飞书、同步博客",
+      "updated": "2026-02-24"
+    },
+    {
       "name": "website-publisher",
       "description": "个人网站更新与发布技能。一键更新网站数据、生成动态内容、部署到 GitHub Pages。支持数据文件生成、HTM...",
       "updated": "2026-02-24"
@@ -326,6 +331,6 @@
       "updated": "2026-02-17"
     }
   ],
-  "count": 65,
+  "count": 66,
   "updated": "2026-02-24"
 }

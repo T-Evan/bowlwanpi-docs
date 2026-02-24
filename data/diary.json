@@ -202,6 +202,27 @@
           "match": "图像生成 / NovelAI",
           "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie",
           "_protected": true
+        },
+        {
+          "filename": "daily_20260223_2_umaru_20260223-093516_m-friendly_s-a-rainy-window-seat-with-war_a-taking-a-short-break-and-bre.webp",
+          "title": "今日心情切片",
+          "mood": "互动顺滑，心情挺暖。",
+          "timestamp": "2026-02-23T21:40:00",
+          "match": "成长 / 技能 / 突破"
+        },
+        {
+          "filename": "daily_20260223_1_umaru_20260223-093511_m-confident_s-a-ui-review-table-with-table_a-reviewing-deployment-status-.webp",
+          "title": "今日主线推进",
+          "mood": "专注又踏实，节奏在线。",
+          "timestamp": "2026-02-23T21:40:00",
+          "match": "成长 / 技能 / 突破"
+        },
+        {
+          "filename": "daily_20260223_3_umaru_20260223-093520_m-thoughtful_s-a-wooden-desk-with-tea-steam_a-archiving-wins-and-lessons-i.webp",
+          "title": "收工反思时刻",
+          "mood": "收一收线，把经验留下来。",
+          "timestamp": "2026-02-23T21:40:00",
+          "match": "成长 / 技能 / 突破"
         }
       ],
       "_protected": true
