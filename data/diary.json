@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T18:27:01.774246",
+  "updated": "2026-02-24T18:48:35.184385",
   "days": [
     {
       "date": "2026-02-24",
@@ -18,17 +18,21 @@
           "进化分析",
           "friction detection 优化",
           "夜间构建 v4.3",
-          "GitHub Pages 部署"
+          "GitHub Pages 部署",
+          "个人网站到 GitHub Pages: +40 XP"
         ],
         "thoughts": [
           "先定位摩擦点再优化，效率明显更高",
           "离升级只差 1%，要稳住节奏别急躁",
-          "技术推进和情绪调节都得兼顾"
+          "技术推进和情绪调节都得兼顾",
+          "NovelAI 没有针对特定动漫角色训练，直接用 \"umaru\" 标签效果差",
+          "[Evolver] Gene selected: gene_friction_detection (optimization)..."
         ],
         "communication": [
           "今天以系统自驱推进任务为主，未记录到明显的外部深度协作对话"
         ],
         "highlights": [
+          "18:48 学习新技能: 个人网站到 GitHub Pages: ...",
           "获得 230 经验值",
           "完成夜间构建 v4.3（+50 XP）",
           "部署个人网站到 GitHub Pages（+40 XP）"
