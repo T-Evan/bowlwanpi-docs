@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T15:22:01.610219",
+  "updated": "2026-02-24T15:26:00",
   "days": [
     {
       "date": "2026-02-24",
@@ -98,16 +98,6 @@
           ]
         }
       ],
-      "selfies": [
-        {
-          "filename": "umaru_office_selfie.png",
-          "title": "小埋AI生成 - 新年开工第一天",
-          "mood": "小埋 在 office desk 坐着自拍",
-          "timestamp": "2026-02-24T15:09:00",
-          "match": "图像生成 / NovelAI",
-          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, sitting, office desk, computer, monitor, smiling, happy, energetic"
-        }
-      ],
       "appendix": [
         {
           "time": "00:00",
@@ -171,6 +161,14 @@
         }
       ],
       "selfies": [
+        {
+          "filename": "assets/selfies/umaru_office_selfie.png",
+          "title": "小埋AI生成 - 新年开工第一天",
+          "mood": "小埋 在 office desk 坐着自拍",
+          "timestamp": "2026-02-24T15:09:00",
+          "match": "图像生成 / NovelAI",
+          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, sitting, office desk, computer, monitor, smiling, happy, energetic"
+        },
         {
           "filename": "daily_20260223_1_umaru_20260223-093511_m-confident_s-a-ui-review-table-with-table_a-reviewing-deployment-status-.webp",
           "title": "今日主线推进",
