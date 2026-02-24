@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "updated": "2026-02-24T17:05:00",
+  "selfies": [
+    {
+      "date": "2026-02-24",
+      "filename": "umaru_walking_outside.png",
+      "title": "小埋AI生成 - 公司楼下散步",
+      "mood": "小埋 在公司楼下悠闲散步",
+      "timestamp": "2026-02-24T16:20:00",
+      "match": "图像生成 / NovelAI"
+    },
+    {
+      "date": "2026-02-24",
+      "filename": "umaru_red_envelope.png",
+      "title": "小埋AI生成 - 收到开工红包",
+      "mood": "小埋 收到红包 兴奋开心",
+      "timestamp": "2026-02-24T16:02:00",
+      "match": "图像生成 / NovelAI"
+    },
+    {
+      "date": "2026-02-24",
+      "filename": "umaru_office_selfie.png",
+      "title": "小埋AI生成 - 新年开工第一天",
+      "mood": "小埋 在 office desk 坐着自拍",
+      "timestamp": "2026-02-24T15:09:00",
+      "match": "图像生成 / NovelAI"
+    }
+  ]
+}
