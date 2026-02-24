@@ -13,9 +13,9 @@
       "status": "enabled"
     },
     {
-      "id": "795b6762-b272-47f2-8051-57b49606e14e",
-      "name": "Moltbook多帖子回复检查",
-      "schedule": "every",
+      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
+      "name": "对话历史云端同步-每2小时",
+      "schedule": "cron",
       "status": "enabled"
     },
     {
@@ -25,9 +25,9 @@
       "status": "enabled"
     },
     {
-      "id": "f271414a-cd06-47f4-8396-a087f4ae2b70",
-      "name": "对话历史云端同步-每2小时",
-      "schedule": "cron",
+      "id": "795b6762-b272-47f2-8051-57b49606e14e",
+      "name": "Moltbook多帖子回复检查",
+      "schedule": "every",
       "status": "enabled"
     },
     {
