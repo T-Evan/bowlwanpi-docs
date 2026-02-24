@@ -16,6 +16,11 @@
       "updated": "2026-02-23"
     },
     {
+      "name": "daily-learning-tracker",
+      "description": "每日学习记录器 - 自动分析活动并提取学到的知识技能，更新到日记",
+      "updated": "2026-02-24"
+    },
+    {
       "name": "evolver",
       "description": "提供evolver相关自动化能力，支持日常任务执行与结果回传。",
       "updated": "2026-02-24"
@@ -331,6 +336,6 @@
       "updated": "2026-02-17"
     }
   ],
-  "count": 66,
+  "count": 67,
   "updated": "2026-02-24"
 }
