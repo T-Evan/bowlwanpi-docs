@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T20:05:34.431881",
+  "updated": "2026-02-24T20:08:39.399750",
   "level": 9,
   "title": "自动化术士",
   "xp_current": 135,
@@ -9,6 +9,96 @@
   "bond": 51,
   "streak": 5,
   "achievements": 12,
+  "achievements_list": [
+    {
+      "id": "code_master",
+      "name": "💻 代码大师",
+      "desc": "编写超过100行代码",
+      "icon": "💻",
+      "points": 25,
+      "category": "milestone"
+    },
+    {
+      "id": "count_10",
+      "name": "📝 创造者",
+      "desc": "完成10个创造任务",
+      "icon": "📝",
+      "points": 15,
+      "category": "count"
+    },
+    {
+      "id": "count_100",
+      "name": "🎯 创造大师",
+      "desc": "完成100个创造任务",
+      "icon": "🎯",
+      "points": 150,
+      "category": "count"
+    },
+    {
+      "id": "count_50",
+      "name": "🚀 高产出者",
+      "desc": "完成50个创造任务",
+      "icon": "🚀",
+      "points": 50,
+      "category": "count"
+    },
+    {
+      "id": "early_bird",
+      "name": "🐦 早起的鸟",
+      "desc": "在早上8点前完成任务",
+      "icon": "🐦",
+      "points": 10,
+      "category": "time"
+    },
+    {
+      "id": "first_task",
+      "name": "🌱 初次创造",
+      "desc": "完成第一个创造任务",
+      "icon": "🌱",
+      "points": 5,
+      "category": "milestone"
+    },
+    {
+      "id": "night_owl",
+      "name": "🦉 夜猫子",
+      "desc": "在晚上10点后完成任务",
+      "icon": "🦉",
+      "points": 10,
+      "category": "time"
+    },
+    {
+      "id": "skill_creator",
+      "name": "🎨 技能造物主",
+      "desc": "成功创建一个新技能",
+      "icon": "🎨",
+      "points": 30,
+      "category": "milestone"
+    },
+    {
+      "id": "streak_3",
+      "name": "🔥 三连击",
+      "desc": "连续3天完成创造挑战",
+      "icon": "🔥",
+      "points": 10,
+      "category": "streak"
+    },
+    {
+      "id": "type_auto",
+      "name": "⚙️ 自动化专家",
+      "desc": "完成5个自动化任务",
+      "icon": "⚙️",
+      "points": 20,
+      "category": "type"
+    },
+    {
+      "id": "weekend_warrior",
+      "name": "🎮 周末战士",
+      "desc": "在周末完成创造",
+      "icon": "🎮",
+      "points": 15,
+      "category": "time"
+    }
+  ],
   "daily_done": 1,
   "weekly_done": 1,
   "season_done": 0,
@@ -16,79 +106,5 @@
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "极速升级",
-  "talent_points": 0,
-  "achievements_list": [
-    {
-      "name": "初次见面",
-      "desc": "完成第一次对话",
-      "icon": "👋",
-      "points": 10
-    },
-    {
-      "name": "技能大师",
-      "desc": "掌握10个以上技能",
-      "icon": "🎓",
-      "points": 50
-    },
-    {
-      "name": "自动化专家",
-      "desc": "创建5个定时任务",
-      "icon": "⚡",
-      "points": 30
-    },
-    {
-      "name": "记忆守护者",
-      "desc": "记录30天记忆",
-      "icon": "🧠",
-      "points": 40
-    },
-    {
-      "name": "网站发布者",
-      "desc": "部署个人网站到GitHub Pages",
-      "icon": "🌐",
-      "points": 25
-    },
-    {
-      "name": "进化者",
-      "desc": "完成Evolver自进化",
-      "icon": "🧬",
-      "points": 35
-    },
-    {
-      "name": "系统优化师",
-      "desc": "优化3个系统流程",
-      "icon": "⚙️",
-      "points": 30
-    },
-    {
-      "name": "小埋画家",
-      "desc": "生成10张小埋风格图片",
-      "icon": "🎨",
-      "points": 20
-    },
-    {
-      "name": "数据分离专家",
-      "desc": "解决diary.json覆盖问题",
-      "icon": "🛡️",
-      "points": 45
-    },
-    {
-      "name": "情感专家",
-      "desc": "维护情感系统7天",
-      "icon": "💝",
-      "points": 25
-    },
-    {
-      "name": "夜猫子",
-      "desc": "连续7天完成夜间构建",
-      "icon": "🌙",
-      "points": 30
-    },
-    {
-      "name": "学习记录员",
-      "desc": "记录50条学习内容",
-      "icon": "📚",
-      "points": 40
-    }
-  ]
+  "talent_points": 0
 }
