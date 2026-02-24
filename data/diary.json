@@ -1,5 +1,5 @@
 {
-  "updated": "2026-02-24T16:27:23.586778",
+  "updated": "2026-02-24T17:04:01.804701",
   "days": [
     {
       "date": "2026-02-24",
@@ -177,33 +177,6 @@
       ],
       "selfies": [
         {
-          "filename": "umaru_walking_outside.png",
-          "title": "小埋AI生成 - 公司楼下散步",
-          "mood": "小埋 在公司楼下悠闲散步",
-          "timestamp": "2026-02-24T16:20:00",
-          "match": "图像生成 / NovelAI",
-          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, walking, city street",
-          "_protected": true
-        },
-        {
-          "filename": "umaru_red_envelope.png",
-          "title": "小埋AI生成 - 收到开工红包",
-          "mood": "小埋 收到红包 兴奋开心",
-          "timestamp": "2026-02-24T16:02:00",
-          "match": "图像生成 / NovelAI",
-          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie, holding red envelope",
-          "_protected": true
-        },
-        {
-          "filename": "umaru_office_selfie.png",
-          "title": "小埋AI生成 - 新年开工第一天",
-          "mood": "小埋 在 office desk 坐着自拍",
-          "timestamp": "2026-02-24T15:09:00",
-          "match": "图像生成 / NovelAI",
-          "prompt": "masterpiece, best quality, 1girl, solo, blonde hair, long hair, twin tails, red hairband, orange hoodie",
-          "_protected": true
-        },
-        {
           "filename": "daily_20260223_2_umaru_20260223-093516_m-friendly_s-a-rainy-window-seat-with-war_a-taking-a-short-break-and-bre.webp",
           "title": "今日心情切片",
           "mood": "互动顺滑，心情挺暖。",
@@ -224,8 +197,7 @@
           "timestamp": "2026-02-23T21:40:00",
           "match": "成长 / 技能 / 突破"
         }
-      ],
-      "_protected": true
+      ]
     },
     {
       "date": "2026-02-23",
