@@ -1,18 +1,6 @@
 {
-  "updated": "2026-02-25T03:00:01.305199",
+  "updated": "2026-02-26T03:16:02.038993",
   "entries": [
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking cron health..."
-    },
-    {
-      "time": "03:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Cron owner guard: OK"
-    },
     {
       "time": "03:00:01",
       "level": "INFO",
@@ -92,82 +80,76 @@
       "message": ""
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "══════════════════════════════════════════"
+      "message": "经验: 133/500"
     },
     {
-      "time": "0:21 UTC",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "重建手册生成任务"
+      "message": "完成任务: 297个"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "- 状态: ✅ 成功"
+      "message": "升级进度: [█████░░░░░░░░░░░░░░░] 27%"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "- 消息: 重建手册生成完成"
+      "message": "已解锁功能 (10个):"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "- 输出文件: /root/.openclaw/workspace/memory/rebuild-summary-2026-02-24.md"
+      "message": "✅ 每日日志"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "---"
+      "message": "✅ AI Brain六部曲"
     },
     {
-      "time": "1:09 UTC",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "【CRON重建手册生成任务】自主维护"
+      "message": "✅ 智能决策"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "- 状态: ✅ 成功完成"
+      "message": "✅ 多系统协调"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "- 消息: 已执行重建生成器并完成能力状态扫描"
+      "message": "✅ 中央控制"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "- 生成文件: /root/.openclaw/workspace/memory/rebuild-summary-2026-02-23.md"
+      "message": "成就 (13/8):"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "- 扫描摘要: 技能=11, MCP=0, memory_files=25"
+      "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 进化系统运行完成"
     },
     {
-      "time": "03:00:01",
+      "time": "03:16:02",
       "level": "INFO",
       "source": "nightly",
-      "message": "---"
-    },
-    {
-      "time": "2.808084",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 12 条新新闻（并行版）"
+      "message": "\u001b[0;32m[INFO]\u001b[0m 📝 进化系统产生了变更，准备提交..."
     },
     {
       "time": "5.362660",
@@ -234,6 +216,30 @@
       "level": "INFO",
       "source": "news",
       "message": "发现 4 条新新闻（并行版）"
+    },
+    {
+      "time": "9.204231",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 8 条新新闻（并行版）"
+    },
+    {
+      "time": "0.854080",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 6 条新新闻（并行版）"
+    },
+    {
+      "time": "0.074793",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 7 条新新闻（并行版）"
+    },
+    {
+      "time": "6.246353",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 7 条新新闻（并行版）"
     }
   ]
 }
