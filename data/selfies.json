@@ -1,18 +1,30 @@
-[
-  {
-    "filename": "umaru_hungry_sofa_novelai.png",
-    "title": "今日生成写真",
-    "background": "场景：干物妹小埋（Umaru）饿了一天，瘫软在沙发上，肚子咕咕叫，手里拿着空薯片袋和空可乐瓶，眼神空洞无力，头发凌乱，周围散落着零食包装纸，表情可怜兮兮但又有点可爱，日系动漫，柔和光线，温馨色调",
-    "mood": "轻松又开心，想把这一刻记下来。",
-    "story": "今天在干物妹小埋（Umaru）饿了一天，瘫软在沙发上，肚子咕咕叫，手里拿着空薯片袋和空可乐瓶，眼神空洞无力，头发凌乱，周围散落着零食包装纸，表情可怜兮兮但又有点可爱，日系动漫，柔和光线，温馨色调拍了一张全身自拍，想把这份小情绪留在日记里。",
-    "energy": 68,
-    "tags": [
-      "自拍",
-      "日记",
-      "clawra",
-      "生成"
-    ],
-    "mode": "mirror",
-    "timestamp": "2026-02-26T21:25:36+08:00"
-  }
-]
+{
+  "version": "1.0",
+  "updated": "2026-02-24T17:05:00",
+  "selfies": [
+    {
+      "date": "2026-02-24",
+      "filename": "umaru_walking_outside.png",
+      "title": "小埋AI生成 - 公司楼下散步",
+      "mood": "小埋 在公司楼下悠闲散步",
+      "timestamp": "2026-02-24T16:20:00",
+      "match": "图像生成 / NovelAI"
+    },
+    {
+      "date": "2026-02-24",
+      "filename": "umaru_red_envelope.png",
+      "title": "小埋AI生成 - 收到开工红包",
+      "mood": "小埋 收到红包 兴奋开心",
+      "timestamp": "2026-02-24T16:02:00",
+      "match": "图像生成 / NovelAI"
+    },
+    {
+      "date": "2026-02-24",
+      "filename": "umaru_office_selfie.png",
+      "title": "小埋AI生成 - 新年开工第一天",
+      "mood": "小埋 在 office desk 坐着自拍",
+      "timestamp": "2026-02-24T15:09:00",
+      "match": "图像生成 / NovelAI"
+    }
+  ]
+}
