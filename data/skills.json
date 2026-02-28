@@ -203,7 +203,7 @@
     },
     {
       "name": "rebuild-generator",
-      "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
+      "description": "Rebuild Generator Skill",
       "category": "automation"
     },
     {
@@ -402,6 +402,38 @@
         "category": "image_gen"
       }
     ],
+    "⚙️ 自动化": [
+      {
+        "name": "batch-processor",
+        "description": "📦 Batch Processor",
+        "category": "automation"
+      },
+      {
+        "name": "macro-monitor",
+        "description": "每日宏观数据监控和推送。自动浏览免费数据源（Trading Economics、FRED、国家统计局、央行官网、财联社等），整理整合过去24小时发布的宏观数据和政策信息，并推送给用户。通过 cron 每天晚上10点自动触发。",
+        "category": "automation"
+      },
+      {
+        "name": "promitheus",
+        "description": "Persistent emotional state for AI agents. Feel things. Remember how you felt.",
+        "category": "automation"
+      },
+      {
+        "name": "rebuild-generator",
+        "description": "Rebuild Generator Skill",
+        "category": "automation"
+      },
+      {
+        "name": "task-decomposer",
+        "description": "Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. This skill should be used when the user submits a complex multi-step request, wants to automate workflows, or needs help breaking down large tasks into manageable pieces.",
+        "category": "automation"
+      },
+      {
+        "name": "task-status",
+        "description": "Send short status descriptions in chat for long-running tasks. Use when you need to provide periodic updates during multi-step operations, confirm task completion, or notify of failures. Includes automated periodic monitoring that sends updates every 5 seconds, status message templates, and a helper function for consistent status reporting.",
+        "category": "automation"
+      }
+    ],
     "🛠️ 开发工具": [
       {
         "name": "advanced-skill-creator",
@@ -459,38 +491,6 @@
         "name": "vta-memory",
         "description": "\"Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series.\"",
         "category": "memory"
-      }
-    ],
-    "⚙️ 自动化": [
-      {
-        "name": "batch-processor",
-        "description": "📦 Batch Processor",
-        "category": "automation"
-      },
-      {
-        "name": "macro-monitor",
-        "description": "每日宏观数据监控和推送。自动浏览免费数据源（Trading Economics、FRED、国家统计局、央行官网、财联社等），整理整合过去24小时发布的宏观数据和政策信息，并推送给用户。通过 cron 每天晚上10点自动触发。",
-        "category": "automation"
-      },
-      {
-        "name": "promitheus",
-        "description": "Persistent emotional state for AI agents. Feel things. Remember how you felt.",
-        "category": "automation"
-      },
-      {
-        "name": "rebuild-generator",
-        "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
-        "category": "automation"
-      },
-      {
-        "name": "task-decomposer",
-        "description": "Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. This skill should be used when the user submits a complex multi-step request, wants to automate workflows, or needs help breaking down large tasks into manageable pieces.",
-        "category": "automation"
-      },
-      {
-        "name": "task-status",
-        "description": "Send short status descriptions in chat for long-running tasks. Use when you need to provide periodic updates during multi-step operations, confirm task completion, or notify of failures. Includes automated periodic monitoring that sends updates every 5 seconds, status message templates, and a helper function for consistent status reporting.",
-        "category": "automation"
       }
     ],
     "📰 资讯监控": [
@@ -762,5 +762,5 @@
     "x-hot-topics-daily",
     "xiaohongshu-mcp"
   ],
-  "updated": "2026-03-01T03:02:51.004785"
+  "updated": "2026-03-01T05:00:45.420317"
 }
