@@ -1,11 +1,11 @@
 {
-  "date": "2026-02-26",
-  "total_skills": 76,
-  "active_skills": 11,
+  "date": "2026-03-01",
+  "total_skills": 40,
+  "active_skills": 7,
   "most_used": [
     "feishu-doc",
     "github-release-monitor",
     "netease-music-pusher"
   ],
-  "last_updated": "2026-02-26T03:16:07+08:00"
+  "last_updated": "2026-03-01T03:00:21+08:00"
 }
