@@ -1,5 +1,5 @@
 {
-  "count": 64,
+  "count": 66,
   "skills": [
     {
       "name": "advanced-skill-creator",
@@ -42,9 +42,19 @@
       "category": "news"
     },
     {
+      "name": "bowlwanpi-knowledge-evolution",
+      "description": "|",
+      "category": "other"
+    },
+    {
       "name": "clawra-anime",
       "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
       "category": "image_gen"
+    },
+    {
+      "name": "collective-brain",
+      "description": "|",
+      "category": "other"
     },
     {
       "name": "crawl-for-ai",
@@ -327,6 +337,16 @@
       {
         "name": "ai-brain-builder",
         "description": "Build a complete AI Brain system for agents, integrating Memory (hippocampus), Emotion (amygdala), and Drive (VTA) systems. Use when creating AI agents that need persistent memory, emotional states, and motivation-driven behavior. Triggers on: building AI brain, agent cognitive system, memory+emotion+drive integration, AI personality, agent self-awareness.",
+        "category": "other"
+      },
+      {
+        "name": "bowlwanpi-knowledge-evolution",
+        "description": "|",
+        "category": "other"
+      },
+      {
+        "name": "collective-brain",
+        "description": "|",
         "category": "other"
       },
       {
@@ -683,7 +703,9 @@
     "batch-processor",
     "beauty-generation-api",
     "bilibili-hot-monitor",
+    "bowlwanpi-knowledge-evolution",
     "clawra-anime",
+    "collective-brain",
     "crawl-for-ai",
     "daily-creative-brief",
     "daily-hot-news",
@@ -740,5 +762,5 @@
     "x-hot-topics-daily",
     "xiaohongshu-mcp"
   ],
-  "updated": "2026-02-28T21:00:49.686800"
+  "updated": "2026-02-28T22:01:05.846921"
 }
