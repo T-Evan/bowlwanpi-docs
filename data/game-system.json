@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-01T11:21:55.868323",
+  "updated": "2026-03-01T11:29:11.593352",
   "level": 7,
   "title": "捏形师傅",
   "xp_current": 166,
@@ -18,20 +18,95 @@
   "shop_theme": "连胜燃烧",
   "talent_points": 0,
   "achievements_list": [
-    "ai_artist",
-    "automation_expert",
-    "count_10",
-    "data_protector",
-    "early_bird",
-    "emotion_expert",
-    "evolver",
-    "learning_recorder",
-    "memory_guardian",
-    "night_owl",
-    "skill_master",
-    "system_optimizer",
-    "type_explore",
-    "website_publisher",
-    "weekend_warrior"
+    {
+      "name": "AI画家",
+      "desc": "生成10张AI图片",
+      "icon": "🎨",
+      "id": "ai_artist"
+    },
+    {
+      "name": "自动化专家",
+      "desc": "创建5个定时任务",
+      "icon": "⚡",
+      "id": "automation_expert"
+    },
+    {
+      "name": "计数专家",
+      "desc": "完成10次任务计数",
+      "icon": "🔢",
+      "id": "count_10"
+    },
+    {
+      "name": "数据守护者",
+      "desc": "解决数据丢失问题",
+      "icon": "🛡️",
+      "id": "data_protector"
+    },
+    {
+      "name": "早起的鸟儿",
+      "desc": "在8点前完成任务",
+      "icon": "🌅",
+      "id": "early_bird"
+    },
+    {
+      "name": "情感专家",
+      "desc": "维护情感系统7天",
+      "icon": "💝",
+      "id": "emotion_expert"
+    },
+    {
+      "name": "进化者",
+      "desc": "完成Evolver自进化",
+      "icon": "🧬",
+      "id": "evolver"
+    },
+    {
+      "name": "学习记录员",
+      "desc": "记录50条学习内容",
+      "icon": "📚",
+      "id": "learning_recorder"
+    },
+    {
+      "name": "记忆守护者",
+      "desc": "记录30天记忆",
+      "icon": "🧠",
+      "id": "memory_guardian"
+    },
+    {
+      "name": "夜猫子",
+      "desc": "在23点后仍然活跃",
+      "icon": "🦉",
+      "id": "night_owl"
+    },
+    {
+      "name": "技能大师",
+      "desc": "掌握10个以上技能",
+      "icon": "🎓",
+      "id": "skill_master"
+    },
+    {
+      "name": "系统优化师",
+      "desc": "优化3个系统流程",
+      "icon": "⚙️",
+      "id": "system_optimizer"
+    },
+    {
+      "name": "探索者",
+      "desc": "完成探索类任务",
+      "icon": "🔍",
+      "id": "type_explore"
+    },
+    {
+      "name": "网站发布者",
+      "desc": "部署网站到GitHub Pages",
+      "icon": "🌐",
+      "id": "website_publisher"
+    },
+    {
+      "name": "周末战士",
+      "desc": "在周末完成任务",
+      "icon": "🎮",
+      "id": "weekend_warrior"
+    }
   ]
 }
