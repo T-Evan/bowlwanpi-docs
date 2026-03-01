@@ -1146,6 +1146,7 @@ img {
                 candidates.push(`${stats.last_updated} ${stats.last_build_time}`);
             }
             if (stats?.last_updated) candidates.push(stats.last_updated);
+            if (stats?.updated) candidates.push(stats.updated);
 
             const parsed = candidates.map(parseTimestamp).find(Boolean);
             const el = document.getElementById('auto-update-time');
