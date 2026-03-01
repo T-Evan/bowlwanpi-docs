@@ -790,6 +790,7 @@ img {
             <a href="#skills">🛠️ 技能清单</a>
             <a href="#cron">⏰ 定时任务</a>
             <a href="#memory">🧠 记忆系统</a>
+            <a href="#docker">🐳 容器</a>
             <a href="#brain-dashboard">🎭 情感状态</a>
             <a href="#logs">📜 实时日志</a>
             <a href="#docs">📚 文档中心</a>
@@ -990,7 +991,19 @@ img {
                 </div>
             </div>
         </section>
-        
+
+        <!-- Docker Containers -->
+        <section id="docker" class="section">
+            <h2 class="section-title">🐳 Docker 容器 (<span id="docker-count">-</span>个)</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">运行中的容器服务状态</p>
+            <div id="docker-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                <!-- Docker 容器由JS动态加载 -->
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                最后更新: <span id="docker-updated">-</span>
+            </div>
+        </section>
+
         <!-- Brain Dashboard 情感状态 -->
         <section id="brain-dashboard" class="section">
             <h2 class="section-title">🎭 Brain Dashboard 情感状态</h2>
@@ -1904,6 +1917,60 @@ img {
         }
         loadSystemStatus();
         setInterval(loadSystemStatus, 30000);
+
+        // 加载 Docker 容器状态
+        async function loadDockerContainers() {
+            try {
+                const response = await fetch('data/docker-containers.json?t=' + Date.now());
+                if (!response.ok) return;
+                const data = await response.json();
+
+                // 更新数量
+                const countEl = document.getElementById('docker-count');
+                if (countEl) countEl.textContent = data.count ?? '-';
+
+                // 更新容器卡片
+                const container = document.getElementById('docker-container');
+                if (container && data.containers) {
+                    container.innerHTML = data.containers.map(c => {
+                        const statusColor = c.status === 'running' ? 'var(--success)' : 'var(--danger)';
+                        const healthIcon = c.health === 'healthy' ? '✅' : '⚠️';
+                        return `
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: ${statusColor};"></div>
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem;">
+                                    <div>
+                                        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem;">${c.name}</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-muted);">${c.image}</div>
+                                    </div>
+                                    <div style="font-size: 1.5rem;">${healthIcon}</div>
+                                </div>
+                                <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5;">
+                                    ${c.description}
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem;">
+                                    <span style="background: rgba(16, 185, 129, 0.15); color: var(--success); padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 500;">${c.status}</span>
+                                    <span style="background: rgba(99, 102, 241, 0.15); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.75rem;">🌐 ${c.ports}</span>
+                                </div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.6rem;">
+                                    创建于: ${new Date(c.created).toLocaleString('zh-CN')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                // 更新时间
+                const updatedEl = document.getElementById('docker-updated');
+                if (updatedEl && data.updated) {
+                    updatedEl.textContent = new Date(data.updated).toLocaleString('zh-CN');
+                }
+            } catch (e) {
+                console.error('加载 Docker 容器状态失败:', e);
+            }
+        }
+        loadDockerContainers();
+        setInterval(loadDockerContainers, 60000);
     </script>
 </body>
 </html>
