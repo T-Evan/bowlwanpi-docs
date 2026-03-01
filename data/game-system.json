@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-01T22:40:01.922969",
+  "updated": "2026-03-01T23:55:01.805266",
   "level": 12,
   "title": "QQ堂传说",
-  "xp_current": 357,
+  "xp_current": 467,
   "xp_to_next": 650,
   "season_tier": 2,
   "season_tokens": 23,
-  "bond": 301,
+  "bond": 311,
   "streak": 2,
   "achievements": 18,
   "achievements_list": [
@@ -137,8 +137,8 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 1,
-  "weekly_done": 1,
+  "daily_done": 0,
+  "weekly_done": 0,
   "season_done": 1,
   "daily_total": 3,
   "weekly_total": 3,
