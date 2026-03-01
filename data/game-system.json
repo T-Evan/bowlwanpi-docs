@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-01T22:00:01.866735",
+  "updated": "2026-03-01T22:55:01.899650",
   "level": 12,
-  "title": "成长引擎",
-  "xp_current": 20,
+  "title": "QQ堂传说",
+  "xp_current": 423,
   "xp_to_next": 650,
   "season_tier": 2,
   "season_tokens": 23,
-  "bond": 271,
+  "bond": 307,
   "streak": 2,
   "achievements": 18,
   "achievements_list": [
@@ -30,6 +30,20 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
+    },
+    {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
     },
     {
       "name": "数据守护者",
@@ -93,6 +107,13 @@
       "icon": "⚙️",
       "points": 25,
       "id": "system_optimizer"
+    },
+    {
+      "name": "自动化玩家",
+      "desc": "完成自动化类型任务",
+      "icon": "🤖",
+      "points": 15,
+      "id": "type_auto"
     },
     {
       "name": "探索者",
