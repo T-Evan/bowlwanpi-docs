@@ -14,7 +14,7 @@
       "name": "sillytavern",
       "image": "ghcr.io/sillytavern/sillytavern:latest",
       "status": "running",
-      "health": "healthy",
+      "health": "unknown",
       "ports": "0.0.0.0:8000->8000/tcp",
       "created": "2026-03-01T23:44:46+08:00",
       "description": "SillyTavern - AI 角色扮演前端",
@@ -22,5 +22,5 @@
     }
   ],
   "count": 2,
-  "updated": "2026-03-02T01:12:00+08:00"
+  "updated": "2026-03-02T01:21:19.341900"
 }
