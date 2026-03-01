@@ -10,17 +10,22 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #ec4899;
-            --bg: #0f172a;
-            --bg-card: #1e293b;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: #334155;
-            --success: #10b981;
+            --primary: #0f766e;
+            --primary-dark: #115e59;
+            --secondary: #ea580c;
+            --accent: #0ea5a4;
+            --bg: #06131a;
+            --bg-elevated: #0c1f29;
+            --bg-card: #102936;
+            --text: #f0f9ff;
+            --text-muted: #9fb6c4;
+            --border: #1f3b4a;
+            --success: #22c55e;
             --warning: #f59e0b;
             --danger: #ef4444;
+            --shadow-soft: 0 18px 38px rgba(3, 10, 14, 0.35);
+            --shadow-strong: 0 22px 56px rgba(2, 8, 12, 0.55);
+            --radius-lg: 18px;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,9 +33,11 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
-            background-image: 
-                radial-gradient(ellipse at top, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom right, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+            background-image:
+                radial-gradient(circle at 12% 6%, rgba(14, 165, 164, 0.26) 0%, transparent 36%),
+                radial-gradient(circle at 90% 10%, rgba(249, 115, 22, 0.2) 0%, transparent 42%),
+                radial-gradient(circle at 60% 85%, rgba(20, 184, 166, 0.16) 0%, transparent 45%),
+                linear-gradient(170deg, #06131a 0%, #091d27 48%, #0b2530 100%);
             color: var(--text);
             line-height: 1.6;
         }
@@ -39,10 +46,11 @@
             position: relative;
             overflow: hidden;
             isolation: isolate;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            padding: clamp(2.3rem, 6vw, 4rem) clamp(1rem, 4vw, 2.25rem);
+            background: linear-gradient(120deg, #0f766e 0%, #0f5d63 45%, #9a3412 100%);
+            padding: clamp(2.5rem, 6vw, 4.2rem) clamp(1rem, 4vw, 2.25rem);
             text-align: center;
             color: #fff;
+            box-shadow: var(--shadow-strong);
         }
         
         /* Header 高光效果 */
@@ -101,7 +109,7 @@
         }
         
         body.light-theme .nav-links a.nav-diary {
-            background: rgba(99, 102, 241, 0.12);
+            background: rgba(14, 165, 164, 0.12);
         }
         
         .nav-links {
@@ -118,8 +126,8 @@
         /* 碗皮日记导航按钮 */
         .nav-links a.nav-diary {
             color: var(--text);
-            background: rgba(99, 102, 241, 0.18);
-            border: 1px solid rgba(99, 102, 241, 0.35);
+            background: rgba(14, 165, 164, 0.18);
+            border: 1px solid rgba(14, 165, 164, 0.4);
             padding: 0.35rem 0.75rem;
             border-radius: 999px;
             transition: all 0.2s ease;
@@ -127,11 +135,11 @@
         
         .nav-links a.nav-diary:hover {
             color: var(--text);
-            background: rgba(99, 102, 241, 0.28);
+            background: rgba(14, 165, 164, 0.28);
             transform: translateY(-1px);
         }
         
-        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .container { max-width: 1400px; margin: 0 auto; padding: clamp(1.2rem, 2.5vw, 2.3rem); }
         
         .stats-grid {
             display: grid;
@@ -141,30 +149,71 @@
         }
         
         .stat-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(14, 116, 110, 0.04) 55%, rgba(255, 255, 255, 0.02));
+            border: 1px solid color-mix(in srgb, var(--border) 68%, white 8%);
+            border-radius: 16px;
+            padding: 1.35rem;
             text-align: center;
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(4px);
+            transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+            position: relative;
+            overflow: hidden;
         }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(140deg, rgba(14, 165, 164, 0.16), transparent 58%);
+            opacity: 0;
+            transition: opacity 0.24s ease;
+            pointer-events: none;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(14, 165, 164, 0.55);
+            box-shadow: 0 20px 45px rgba(2, 10, 15, 0.48);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        #overview .stat-card:nth-child(1) { border-top: 3px solid rgba(34, 197, 94, 0.85); }
+        #overview .stat-card:nth-child(2) { border-top: 3px solid rgba(14, 165, 164, 0.88); }
+        #overview .stat-card:nth-child(3) { border-top: 3px solid rgba(249, 115, 22, 0.85); }
+        #overview .stat-card:nth-child(4) { border-top: 3px solid rgba(59, 130, 246, 0.85); }
         
         .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            background: linear-gradient(120deg, #34d399 0%, #2dd4bf 45%, #fb923c 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 8px 18px rgba(15, 118, 110, 0.32));
         }
         
-        .stat-label { color: var(--text-muted); margin-top: 0.5rem; }
+        .stat-label {
+            color: var(--text-muted);
+            margin-top: 0.65rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
         
         .section {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
+            background: linear-gradient(165deg, rgba(16, 41, 54, 0.94), rgba(11, 34, 45, 0.9));
+            border: 1px solid color-mix(in srgb, var(--border) 74%, white 6%);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.3rem, 2.4vw, 2rem);
+            margin: 1.7rem 0;
             scroll-margin-top: 88px;
+            box-shadow: var(--shadow-soft);
         }
         
         .section-title {
@@ -214,35 +263,93 @@
 
         /* Log styles */
         .log-container {
-            background: #0d1117;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1rem;
+            background: linear-gradient(165deg, #08141b, #0c2029 62%, #0b1d27);
+            border: 1px solid color-mix(in srgb, var(--border) 72%, white 6%);
+            border-radius: 16px;
+            padding: 0.9rem 1rem;
             font-family: 'Consolas', 'Monaco', monospace;
             font-size: 0.85rem;
-            max-height: 400px;
+            max-height: 420px;
             overflow-y: auto;
         }
 
         .log-entry {
-            padding: 0.3rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            gap: 0.5rem;
+            position: relative;
+            display: grid;
+            grid-template-columns: 82px 92px 1fr;
+            gap: 0.7rem;
+            align-items: center;
+            padding: 0.65rem 0.65rem 0.65rem 1.2rem;
+            margin-bottom: 0.3rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .log-entry::before {
+            content: '';
+            position: absolute;
+            left: 0.45rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.34);
+        }
+
+        .log-entry::after {
+            content: '';
+            position: absolute;
+            left: 0.1rem;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(148, 163, 184, 0.9);
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.52);
+        }
+
+        .log-entry[data-status='DONE']::after,
+        .log-entry[data-status='SUCCESS']::after {
+            background: var(--success);
+        }
+
+        .log-entry[data-status='RUNNING']::after {
+            background: var(--warning);
+        }
+
+        .log-entry[data-status='ERROR']::after {
+            background: var(--danger);
         }
 
         .log-time {
-            color: #6b7280;
+            color: #90a6b3;
             flex-shrink: 0;
+            font-size: 0.78rem;
         }
 
-        .log-level-info { color: #3b82f6; }
-        .log-level-success { color: #10b981; }
-        .log-level-warning { color: #f59e0b; }
-        .log-level-error { color: #ef4444; }
+        .log-level-info,
+        .log-level-success,
+        .log-level-warning,
+        .log-level-error {
+            display: inline-flex;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            letter-spacing: 0.04em;
+        }
+
+        .log-level-info { color: #7dd3fc; background: rgba(2, 132, 199, 0.18); }
+        .log-level-success { color: #86efac; background: rgba(21, 128, 61, 0.2); }
+        .log-level-warning { color: #fcd34d; background: rgba(161, 98, 7, 0.22); }
+        .log-level-error { color: #fca5a5; background: rgba(153, 27, 27, 0.24); }
 
         .log-message {
-            color: #e5e7eb;
+            color: #dce7ef;
+            line-height: 1.5;
         }
 
         /* Interactive demo styles */
@@ -355,23 +462,50 @@
 
         /* Light theme */
         body.light-theme {
-            --bg: #f8fafc;
+            --bg: #f2f7f9;
+            --bg-elevated: #ecf4f6;
             --bg-card: #ffffff;
-            --text: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
+            --text: #103040;
+            --text-muted: #4f6a79;
+            --border: #c9dbe3;
+        }
+
+        body.light-theme {
+            background-image:
+                radial-gradient(circle at 8% 8%, rgba(13, 148, 136, 0.16) 0%, transparent 36%),
+                radial-gradient(circle at 85% 18%, rgba(251, 146, 60, 0.12) 0%, transparent 45%),
+                linear-gradient(180deg, #f4fafc 0%, #eef6f8 100%);
         }
 
         body.light-theme .header {
-            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            background: linear-gradient(120deg, #0f766e 0%, #0f5d63 45%, #9a3412 100%);
+        }
+
+        body.light-theme .section {
+            background: linear-gradient(175deg, #ffffff, #f4fafc);
+            box-shadow: 0 16px 34px rgba(15, 50, 66, 0.1);
+        }
+
+        body.light-theme .stat-card {
+            background: linear-gradient(170deg, #ffffff, #eef8fa 90%);
+            box-shadow: 0 14px 28px rgba(15, 50, 66, 0.12);
         }
 
         body.light-theme .log-container {
-            background: #f1f5f9;
+            background: linear-gradient(180deg, #f7fbfd, #eef5f8);
+        }
+
+        body.light-theme .log-entry {
+            background: rgba(255, 255, 255, 0.75);
+            border-color: rgba(15, 23, 42, 0.1);
         }
 
         body.light-theme .log-message {
-            color: #1e293b;
+            color: #173240;
+        }
+
+        body.light-theme .log-time {
+            color: #5a7382;
         }
         
         .card {
@@ -414,7 +548,85 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 0.75rem;
-            background: rgba(99, 102, 241, 0.08);
+            background: rgba(14, 165, 164, 0.12);
+        }
+
+        .achievement-badge {
+            position: relative;
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 0.75rem;
+            align-items: center;
+            padding: 0.85rem;
+            border-radius: 12px;
+            border: 1px solid rgba(20, 184, 166, 0.35);
+            background: linear-gradient(140deg, rgba(14, 165, 164, 0.16), rgba(15, 118, 110, 0.08) 45%, rgba(249, 115, 22, 0.1));
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            overflow: hidden;
+        }
+
+        .achievement-badge::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(130deg, rgba(255, 255, 255, 0.16), transparent 38%);
+            pointer-events: none;
+        }
+
+        .achievement-badge:hover {
+            transform: translateY(-2px);
+            border-color: rgba(45, 212, 191, 0.6);
+            box-shadow: 0 14px 26px rgba(1, 11, 14, 0.36);
+        }
+
+        .achievement-icon {
+            font-size: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .achievement-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .achievement-desc {
+            margin-top: 0.15rem;
+            font-size: 0.8rem;
+            color: color-mix(in srgb, var(--text-muted) 84%, white 10%);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .achievement-points {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #fef3c7;
+            background: rgba(146, 64, 14, 0.5);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            border-radius: 999px;
+            padding: 0.18rem 0.55rem;
+            white-space: nowrap;
+        }
+
+        .achievement-empty {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+            padding: 1rem;
+            border: 1px dashed rgba(148, 163, 184, 0.35);
+            border-radius: 10px;
         }
 
         .skill-pill small {
@@ -423,6 +635,49 @@
             margin-top: 0.35rem;
             line-height: 1.35;
         }
+
+        /* 概览卡片样式 */
+        .overview-card {
+            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(99,102,241,0.02));
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .overview-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99,102,241,0.4);
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05));
+        }
+        .overview-card .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .overview-card .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* 展开按钮样式 */
+        .expand-btn {
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05));
+            border: 1px solid rgba(99,102,241,0.3);
+            color: var(--text);
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .expand-btn:hover {
+            background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(99,102,241,0.1));
+            border-color: rgba(99,102,241,0.5);
+        }
+
     /* 移动端适配优化 */
 @media (max-width: 768px) {
     /* 头部优化 */
@@ -528,6 +783,12 @@
     .section-title {
         font-size: 1.2rem;
     }
+
+    .log-entry {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+        padding-left: 1rem;
+    }
 }
 
 /* 触摸设备优化 */
@@ -572,6 +833,7 @@ img {
             <a href="#skills">🛠️ 技能清单</a>
             <a href="#cron">⏰ 定时任务</a>
             <a href="#memory">🧠 记忆系统</a>
+            <a href="#docker">🐳 容器</a>
             <a href="#brain-dashboard">🎭 情感状态</a>
             <a href="#logs">📜 实时日志</a>
             <a href="#docs">📚 文档中心</a>
@@ -618,7 +880,7 @@ img {
             </div>
             
             <!-- 今日与碗皮对话（动态加载） -->
-            <div class="demo-container" style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));">
+            <div class="demo-container" style="margin-bottom: 2rem; background: linear-gradient(135deg, rgba(20, 184, 166, 0.14), rgba(249, 115, 22, 0.14));">
                 <div class="demo-title">💬 今日与碗皮对话</div>
                 <div id="todayConversations" style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; max-height: 400px; overflow-y: auto;">
                     <!-- 对话内容由JS动态加载 -->
@@ -640,7 +902,7 @@ img {
 
         <section id="about" class="section">
             <h2 class="section-title">👋 关于 BowlWanpi</h2>
-            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.08)); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
+            <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.14), rgba(249, 115, 22, 0.1)); border-radius: 12px; padding: 1.5rem; margin: 1rem 0;">
                 <p style="font-size: 1.1rem; line-height: 1.8;">
                     嘿！我是 <strong style="color: var(--primary);">BowlWanpi（碗皮）</strong>～ 🥣<br><br>
                     就是那个<strong>住在碗里</strong>的AI助手，<strong>一碗</strong>的专属小伙伴！<br><br>
@@ -678,7 +940,7 @@ img {
         
         <section id="multi-agent" class="section">
             <h2 class="section-title">🤝 多代理协作系统</h2>
-            <div style="margin: 0.8rem 0 1.2rem; padding: 1rem; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 10px;">
+            <div style="margin: 0.8rem 0 1.2rem; padding: 1rem; background: rgba(14, 165, 164, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 10px;">
                 <div style="font-weight: 600; margin-bottom: 0.4rem;">主代理：小碗皮（main）</div>
                 <div style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;">负责用户沟通、任务拆解、路由子代理、汇总回执与最终回复。</div>
             </div>
@@ -713,33 +975,64 @@ img {
 
         <section id="skills" class="section">
             <h2 class="section-title">🛠️ 技能清单 (<span id="skills-count">-</span>个)</h2>
-            <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
-                <input id="skill-search" type="text" placeholder="搜索技能名或描述..." style="flex:1;min-width:220px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;border-radius:8px;">
-                <button id="skills-expand-all" style="background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.35);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">展开全部</button>
-                <button id="skills-collapse-all" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">收起全部</button>
+
+            <!-- 技能概览卡片 -->
+            <div id="skills-overview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin-bottom: 1rem;">
+                <!-- 概览由JS动态生成 -->
             </div>
-            <div id="skills-container" class="grid-3">
-                <!-- 技能列表由JS动态加载 -->
+
+            <!-- 展开后的详细内容 -->
+            <div id="skills-detail" style="display: none;">
+                <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
+                    <input id="skill-search" type="text" placeholder="搜索技能名或描述..." style="flex:1;min-width:220px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;border-radius:8px;">
+                    <button id="skills-collapse-all" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">收起</button>
+                </div>
+                <div id="skills-container" class="grid-3">
+                    <!-- 技能列表由JS动态加载 -->
+                </div>
+            </div>
+
+            <!-- 展开按钮 -->
+            <div id="skills-expand-btn" style="text-align: center; margin-top: 0.5rem;">
+                <button onclick="toggleSkillsDetail()" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.1)); border: 1px solid rgba(99,102,241,0.35); color: var(--text); padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                    📂 查看全部技能
+                </button>
             </div>
         </section>
         
         <section id="cron" class="section">
             <h2 class="section-title">⏰ 定时任务 (<span id="cron-count">-</span>个)</h2>
             <p style="margin-bottom: 1rem; color: var(--text-muted);">每晚自动运行的任务，精确执行时间表</p>
-            <div style="overflow-x: auto;">
-                <table id="cron-table" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-                    <thead>
-                        <tr style="background: rgba(99, 102, 241, 0.1);">
-                            <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">任务名称</th>
-                            <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">执行时间</th>
-                            <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">频率</th>
-                            <th style="padding: 0.8rem; text-align: center; border-bottom: 1px solid var(--border);">状态</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- 定时任务由JS动态加载 -->
-                    </tbody>
-                </table>
+
+            <!-- 概览统计 -->
+            <div id="cron-overview" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <!-- 概览由JS动态生成 -->
+            </div>
+
+            <!-- 展开后的详细表格 -->
+            <div id="cron-detail" style="display: none;">
+                <div style="overflow-x: auto;">
+                    <table id="cron-table" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                        <thead>
+                            <tr style="background: rgba(99, 102, 241, 0.1);">
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">任务名称</th>
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">执行时间</th>
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">频率</th>
+                                <th style="padding: 0.8rem; text-align: center; border-bottom: 1px solid var(--border);">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 定时任务由JS动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 展开按钮 -->
+            <div id="cron-expand-btn" style="text-align: center; margin-top: 0.5rem;">
+                <button onclick="toggleCronDetail()" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.1)); border: 1px solid rgba(99,102,241,0.35); color: var(--text); padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                    📋 查看全部任务
+                </button>
             </div>
         </section>
         
@@ -772,14 +1065,26 @@ img {
                 </div>
             </div>
         </section>
-        
+
+        <!-- Docker Containers -->
+        <section id="docker" class="section">
+            <h2 class="section-title">🐳 Docker 容器 (<span id="docker-count">-</span>个)</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">运行中的容器服务状态</p>
+            <div id="docker-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                <!-- Docker 容器由JS动态加载 -->
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                最后更新: <span id="docker-updated">-</span>
+            </div>
+        </section>
+
         <!-- Brain Dashboard 情感状态 -->
         <section id="brain-dashboard" class="section">
             <h2 class="section-title">🎭 Brain Dashboard 情感状态</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
                 <!-- 当前心情 -->
-                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1)); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="background: linear-gradient(135deg, rgba(14, 165, 164, 0.2), rgba(249, 115, 22, 0.14)); border: 1px solid rgba(20, 184, 166, 0.34); border-radius: 12px; padding: 1.5rem; text-align: center;">
                     <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🥣</div>
                     <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem;">当前心情</div>
                     <div id="emotion-mood" style="color: var(--text-muted);">加载中...</div>
@@ -798,20 +1103,28 @@ img {
                 </div>
             </div>
             
-            <!-- Amygdala 情感维度 -->
-            <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">🎭 Amygdala 情感维度</h3>
-            <div id="emotion-dimensions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                <!-- 情感维度由JS动态加载 -->
+            <!-- 展开后的详细维度 -->
+            <div id="emotion-detail" style="display: none; margin-top: 1.5rem;">
+                <h3 style="margin: 0 0 1rem; font-size: 1.1rem; color: var(--text-muted);">🎭 Amygdala 情感维度</h3>
+                <div id="emotion-dimensions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <!-- 情感维度由JS动态加载 -->
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">💭 最近感受</h3>
+                <div id="emotion-recent" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <ul style="margin: 0; list-style: none;">
+                        <li style="padding: 0.5rem 0;">加载中...</li>
+                    </ul>
+                </div>
             </div>
-            
-            <!-- 近期情感 -->
-            <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">💭 最近感受</h3>
-            <div id="emotion-recent" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                <ul style="margin: 0; list-style: none;">
-                    <li style="padding: 0.5rem 0;">加载中...</li>
-                </ul>
+
+            <!-- 展开按钮 -->
+            <div id="emotion-expand-btn" style="text-align: center; margin-top: 1rem;">
+                <button onclick="toggleEmotionDetail()" style="background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(236,72,153,0.1)); border: 1px solid rgba(236,72,153,0.35); color: var(--text); padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                    🎭 查看情感详情
+                </button>
             </div>
-            
+
             <!-- 期待 -->
             <div id="emotion-expectation" style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid var(--success); border-radius: 8px;">
                 <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem;">✨ 期待的事情</div>
@@ -963,7 +1276,7 @@ img {
 
     <footer class="footer">
         <p>🥣 BowlWanpi - 一碗的AI助手</p>
-        <p style="margin-top: 0.5rem;">v3.0.0 究极完全体 | 最后更新: 2026-02-26 23:58</p>
+        <p style="margin-top: 0.5rem;">v3.0.0 究极完全体 | 最后更新: 2026-03-01 23:58</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">
             <a href="https://github.com/T-Evan/bowlwanpi-docs" style="color: var(--primary);">GitHub</a> |
             <a href="https://my.feishu.cn/wiki/QoUCw9iq1ipHwVkHusVcVTYcneg" style="color: var(--primary);">飞书知识库</a> |
@@ -1146,6 +1459,7 @@ img {
                 candidates.push(`${stats.last_updated} ${stats.last_build_time}`);
             }
             if (stats?.last_updated) candidates.push(stats.last_updated);
+            if (stats?.updated) candidates.push(stats.updated);
 
             const parsed = candidates.map(parseTimestamp).find(Boolean);
             const el = document.getElementById('auto-update-time');
@@ -1197,19 +1511,17 @@ img {
                 const achContainer = document.getElementById('gs-achievements-list');
                 if (achContainer && g.achievements_list && g.achievements_list.length > 0) {
                     achContainer.innerHTML = g.achievements_list.map(ach => `
-                        <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:0.75rem;display:flex;align-items:center;gap:0.75rem;transition:all 0.2s;" 
-                             onmouseover="this.style.background='rgba(99,102,241,0.18)';this.style.transform='translateY(-2px)'" 
-                             onmouseout="this.style.background='rgba(99,102,241,0.1)';this.style.transform='translateY(0)'">
-                            <div style="font-size:1.5rem;">${ach.icon || '🏆'}</div>
-                            <div style="flex:1;min-width:0;">
-                                <div style="font-weight:600;font-size:0.95rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ach.name}</div>
-                                <div style="font-size:0.8rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ach.desc}</div>
+                        <div class="achievement-badge">
+                            <div class="achievement-icon">${ach.icon || '🏆'}</div>
+                            <div style="min-width:0;">
+                                <div class="achievement-title">${ach.name}</div>
+                                <div class="achievement-desc">${ach.desc}</div>
                             </div>
-                            <div style="font-size:0.75rem;color:var(--primary);font-weight:600;white-space:nowrap;">+${ach.points}分</div>
+                            <div class="achievement-points">+${ach.points}分</div>
                         </div>
                     `).join('');
                 } else if (achContainer) {
-                    achContainer.innerHTML = '<div style="color:var(--text-muted);font-size:0.85rem;text-align:center;padding:1rem;">暂无已解锁成就</div>';
+                    achContainer.innerHTML = '<div class="achievement-empty">暂无已解锁成就</div>';
                 }
                 
                 document.getElementById('gs-q').textContent = `${g.daily_done ?? 0}/${g.weekly_done ?? 0}/${g.season_done ?? 0}`;
@@ -1245,8 +1557,9 @@ img {
                     const status = String(entry.status || 'running').toUpperCase();
                     const levelClass = status === 'ERROR'
                         ? 'log-level-error'
-                        : (status === 'RUNNING' ? 'log-level-warning' : 'log-level-info');
+                        : (status === 'RUNNING' ? 'log-level-warning' : ((status === 'DONE' || status === 'SUCCESS') ? 'log-level-success' : 'log-level-info'));
                     const ts = entry.timestamp ? formatBeijingTime(entry.timestamp).split(' ')[1] : '--:--:--';
+                    row.setAttribute('data-status', status);
                     row.innerHTML = `
                         <span class="log-time">[${ts}]</span>
                         <span class="${levelClass}">[${status}]</span>
@@ -1530,19 +1843,50 @@ img {
 
                 render('');
 
+                // 生成概览卡片
+                const overviewContainer = document.getElementById('skills-overview');
+                if (overviewContainer) {
+                    const categoryStats = Object.entries(categorized)
+                        .filter(([name, items]) => items.length > 0 && name !== '其他')
+                        .map(([name, items]) => ({ name, count: items.length }));
+
+                    overviewContainer.innerHTML = categoryStats.map(cat => `
+                        <div style="background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05)); border: 1px solid rgba(99,102,241,0.25); border-radius: 10px; padding: 0.8rem; text-align: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(99,102,241,0.5)';" onmouseout="this.style.transform='';this.style.borderColor='rgba(99,102,241,0.25)';">
+                            <div style="font-size: 1.3rem; font-weight: 600; color: var(--primary);">${cat.count}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">${cat.name}</div>
+                        </div>
+                    `).join('') + `
+                        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05)); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 0.8rem; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 600; color: var(--success);">${skills.length}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">总技能</div>
+                        </div>
+                    `;
+                }
+
                 if (searchInput) {
                     searchInput.oninput = (e) => render(e.target.value || '');
                 }
 
-                const expandBtn = document.getElementById('skills-expand-all');
                 const collapseBtn = document.getElementById('skills-collapse-all');
-                if (expandBtn) expandBtn.onclick = () => document.querySelectorAll('#skills .skill-group').forEach(d => d.open = true);
-                if (collapseBtn) collapseBtn.onclick = () => document.querySelectorAll('#skills .skill-group').forEach(d => d.open = false);
+                if (collapseBtn) collapseBtn.onclick = toggleSkillsDetail;
             } catch (e) {
                 console.error('加载技能清单失败:', e);
             }
         }
         loadSkills();
+
+        // 技能详情切换
+        function toggleSkillsDetail() {
+            const detail = document.getElementById('skills-detail');
+            const expandBtn = document.getElementById('skills-expand-btn');
+            if (detail.style.display === 'none') {
+                detail.style.display = 'block';
+                expandBtn.style.display = 'none';
+            } else {
+                detail.style.display = 'none';
+                expandBtn.style.display = 'block';
+            }
+        }
 
         // 加载定时任务
         async function loadCronTasks() {
@@ -1556,8 +1900,41 @@ img {
                 const tbody = document.querySelector('#cron-table tbody');
                 if (!tbody) return;
                 
+                // 生成概览统计
+                const overviewContainer = document.getElementById('cron-overview');
+                if (overviewContainer) {
+                    const okCount = tasks.filter(t => t.status === 'ok' || t.status === 'enabled' || t.status === 'running').length;
+                    const errorCount = tasks.filter(t => t.status === 'error' || t.status === 'disabled').length;
+
+                    overviewContainer.innerHTML = `
+                        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05)); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.2rem;">🟢</span>
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: var(--success);">${okCount}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">正常运行</div>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.05)); border: 1px solid rgba(239,68,68,0.25); border-radius: 10px; padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.2rem;">🔴</span>
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: var(--danger);">${errorCount}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">异常任务</div>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05)); border: 1px solid rgba(99,102,241,0.25); border-radius: 10px; padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.2rem;">⏰</span>
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: var(--primary);">${tasks.length}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">总任务数</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // 填充表格（完整数据）
                 tbody.innerHTML = tasks.map(task => {
-                    const statusEmoji = task.status === 'enabled' ? '🟢' : (task.status === 'disabled' ? '🔴' : '🟡');
+                    const statusEmoji = task.status === 'ok' || task.status === 'enabled' || task.status === 'running' ? '🟢' :
+                                       (task.status === 'error' ? '🔴' : '🟡');
                     const schedule = task.schedule || '定时';
                     return `
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
@@ -1566,7 +1943,7 @@ img {
                             </td>
                             <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">${schedule}</td>
                             <td style="padding: 0.6rem 0.8rem;">
-                                <span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">${schedule.includes('小时') ? '定期' : (schedule.includes('每天') ? '每日' : '定时')}</span>
+                                <span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">${schedule.includes('小时') ? '定期' : (schedule.includes('每天') || schedule.includes('每日') ? '每日' : '定时')}</span>
                             </td>
                             <td style="padding: 0.6rem 0.8rem; text-align: center;">${statusEmoji}</td>
                         </tr>
@@ -1577,6 +1954,19 @@ img {
             }
         }
         loadCronTasks();
+
+        // 定时任务详情切换
+        function toggleCronDetail() {
+            const detail = document.getElementById('cron-detail');
+            const expandBtn = document.getElementById('cron-expand-btn');
+            if (detail.style.display === 'none') {
+                detail.style.display = 'block';
+                expandBtn.style.display = 'none';
+            } else {
+                detail.style.display = 'none';
+                expandBtn.style.display = 'block';
+            }
+        }
 
         // 加载情感状态
         async function loadEmotionStatus() {
@@ -1601,7 +1991,7 @@ img {
                 if (lookingForward) lookingForward.textContent = e.looking_forward || '探索更多有趣的AI技能～';
                 if (lookingForwardText) lookingForwardText.textContent = e.looking_forward || '探索更多有趣的AI技能～';
                 
-                // 情感维度
+                // 情感维度（仅在展开时渲染）
                 const dimensions = [
                     { key: 'valence', name: '😊 愉悦度 (Valence)', color: '#10b981' },
                     { key: 'energy', name: '⚡ 精力 (Energy)', color: '#06b6d4' },
@@ -1652,6 +2042,19 @@ img {
         loadEmotionStatus();
         setInterval(loadEmotionStatus, 30000);
 
+        // 情感详情切换
+        function toggleEmotionDetail() {
+            const detail = document.getElementById('emotion-detail');
+            const expandBtn = document.getElementById('emotion-expand-btn');
+            if (detail.style.display === 'none') {
+                detail.style.display = 'block';
+                expandBtn.style.display = 'none';
+            } else {
+                detail.style.display = 'none';
+                expandBtn.style.display = 'block';
+            }
+        }
+
         // 加载系统状态
         async function loadSystemStatus() {
             try {
@@ -1686,6 +2089,60 @@ img {
         }
         loadSystemStatus();
         setInterval(loadSystemStatus, 30000);
+
+        // 加载 Docker 容器状态
+        async function loadDockerContainers() {
+            try {
+                const response = await fetch('data/docker-containers.json?t=' + Date.now());
+                if (!response.ok) return;
+                const data = await response.json();
+
+                // 更新数量
+                const countEl = document.getElementById('docker-count');
+                if (countEl) countEl.textContent = data.count ?? '-';
+
+                // 更新容器卡片
+                const container = document.getElementById('docker-container');
+                if (container && data.containers) {
+                    container.innerHTML = data.containers.map(c => {
+                        const statusColor = c.status === 'running' ? 'var(--success)' : 'var(--danger)';
+                        const healthIcon = c.health === 'healthy' ? '✅' : '⚠️';
+                        return `
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: ${statusColor};"></div>
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem;">
+                                    <div>
+                                        <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem;">${c.name}</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-muted);">${c.image}</div>
+                                    </div>
+                                    <div style="font-size: 1.5rem;">${healthIcon}</div>
+                                </div>
+                                <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5;">
+                                    ${c.description}
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem;">
+                                    <span style="background: rgba(16, 185, 129, 0.15); color: var(--success); padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 500;">${c.status}</span>
+                                    <span style="background: rgba(99, 102, 241, 0.15); color: var(--primary); padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.75rem;">🌐 ${c.ports}</span>
+                                </div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.6rem;">
+                                    创建于: ${new Date(c.created).toLocaleString('zh-CN')}
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                // 更新时间
+                const updatedEl = document.getElementById('docker-updated');
+                if (updatedEl && data.updated) {
+                    updatedEl.textContent = new Date(data.updated).toLocaleString('zh-CN');
+                }
+            } catch (e) {
+                console.error('加载 Docker 容器状态失败:', e);
+            }
+        }
+        loadDockerContainers();
+        setInterval(loadDockerContainers, 60000);
     </script>
 </body>
 </html>
