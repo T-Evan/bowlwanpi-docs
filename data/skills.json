@@ -1,5 +1,5 @@
 {
-  "count": 75,
+  "count": 79,
   "skills": [
     {
       "name": "advanced-skill-creator",
@@ -102,6 +102,11 @@
       "category": "search"
     },
     {
+      "name": "dist",
+      "description": "dist",
+      "category": "other"
+    },
+    {
       "name": "doubao-tts",
       "description": "Text-to-Speech service using Doubao (Volcano Engine) API with 200+ voices, interactive voice selection, and multilingual support",
       "category": "audio"
@@ -162,6 +167,11 @@
       "category": "dev"
     },
     {
+      "name": "memory-system",
+      "description": "\"整合 Hippocampus + memU + MemOS + QMDR 的四记忆系统，支持 WAL 协议、自动事实提取、智能记忆管理\"",
+      "category": "memory"
+    },
+    {
       "name": "memu-memory",
       "description": "连接 memU 记忆系统，为 BowlWanpi 提供持久记忆能力。自动存储重要对话，检索相关历史，让碗皮更懂一碗。",
       "category": "memory"
@@ -197,6 +207,11 @@
       "category": "news"
     },
     {
+      "name": "ontology",
+      "description": "Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linking related objects, enforcing constraints, planning multi-step actions as graph transformations, or when skills need to share state.",
+      "category": "other"
+    },
+    {
       "name": "openai-whisper",
       "description": "Local speech-to-text with the Whisper CLI (no API key).",
       "category": "video"
@@ -225,6 +240,11 @@
       "name": "personality-switcher",
       "description": "Create and switch between AI assistant personalities. Use /personality to list and activate saved personalities. Use /create-personality to design new personas with auto-filled SOUL and IDENTITY. Personalities persist across session boundaries and conversation compacting with automatic heartbeat restoration. Atomic switching with backup and rollback safeguards. Always backs up current state before switching.",
       "category": "analytics"
+    },
+    {
+      "name": "proactive-agent",
+      "description": "\"借鉴 Proactive Agent 🦞 的主动建造理念，实现智能心跳、CONTINUE/PIVOT/ASK 决策、工作日志系统\"",
+      "category": "other"
     },
     {
       "name": "promitheus",
@@ -410,6 +430,11 @@
         "category": "other"
       },
       {
+        "name": "dist",
+        "description": "dist",
+        "category": "other"
+      },
+      {
         "name": "extract",
         "description": "\"Extract content from specific URLs using Tavily's extraction API. Returns clean markdown/text from web pages. Use when you have specific URLs and need their content without writing code.\"",
         "category": "other"
@@ -422,6 +447,16 @@
       {
         "name": "n8n-manager",
         "description": "Manage n8n workflows and automations via API. Use when working with n8n workflows, executions, or automation tasks - listing workflows, activating/deactivating, checking execution status, manually triggering workflows, or debugging automation issues.",
+        "category": "other"
+      },
+      {
+        "name": "ontology",
+        "description": "Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linking related objects, enforcing constraints, planning multi-step actions as graph transformations, or when skills need to share state.",
+        "category": "other"
+      },
+      {
+        "name": "proactive-agent",
+        "description": "\"借鉴 Proactive Agent 🦞 的主动建造理念，实现智能心跳、CONTINUE/PIVOT/ASK 决策、工作日志系统\"",
         "category": "other"
       },
       {
@@ -594,6 +629,11 @@
       {
         "name": "hippocampus-memory",
         "description": "\"Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement — just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023).\"",
+        "category": "memory"
+      },
+      {
+        "name": "memory-system",
+        "description": "\"整合 Hippocampus + memU + MemOS + QMDR 的四记忆系统，支持 WAL 协议、自动事实提取、智能记忆管理\"",
         "category": "memory"
       },
       {
@@ -805,6 +845,7 @@
     "daily-creative-brief",
     "daily-hot-news",
     "ddg-search",
+    "dist",
     "doubao-tts",
     "douyin-video-fetch",
     "extract",
@@ -817,6 +858,7 @@
     "intelligent-search",
     "macro-monitor",
     "mcp-tools",
+    "memory-system",
     "memu-memory",
     "model-router",
     "n8n-manager",
@@ -824,12 +866,14 @@
     "novelai-image-gen",
     "novelai-umaru",
     "one-minute-news",
+    "ontology",
     "openai-whisper",
     "openclaw-assistant-guide",
     "openclaw-cost-guard",
     "openclaw-github-assistant",
     "personal-analytics",
     "personality-switcher",
+    "proactive-agent",
     "promitheus",
     "rebuild-generator",
     "research",
@@ -861,5 +905,5 @@
     "x-hot-topics-daily",
     "xiaohongshu-mcp"
   ],
-  "updated": "2026-03-02T00:46:20.252189"
+  "updated": "2026-03-02T01:00:48.093853"
 }
