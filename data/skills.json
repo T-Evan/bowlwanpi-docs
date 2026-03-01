@@ -1,10 +1,15 @@
 {
-  "count": 66,
+  "count": 75,
   "skills": [
     {
       "name": "advanced-skill-creator",
       "description": "Advanced OpenClaw skill creation handler that executes the official 5-step research flow with comprehensive analysis and best practices. Ensures proper methodology when users request to create or modify OpenClaw/Moltbot/ClawDBot skills following official standards.",
       "category": "dev"
+    },
+    {
+      "name": "agent-browser",
+      "description": "Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task. Triggers include requests to \"open a website\", \"fill out a form\", \"click a button\", \"take a screenshot\", \"scrape data from a page\", \"test this web app\", \"login to a site\", \"automate browser actions\", or any task requiring programmatic web interaction.",
+      "category": "other"
     },
     {
       "name": "ai-brain-builder",
@@ -25,6 +30,11 @@
       "name": "amygdala-memory",
       "description": "\"Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series.\"",
       "category": "memory"
+    },
+    {
+      "name": "antfarm-workflows",
+      "description": "\"Multi-agent workflow orchestration for OpenClaw. Use when user mentions antfarm, asks to run a multi-step workflow (feature dev, bug fix, security audit), or wants to install/uninstall/check status of antfarm workflows.\"",
+      "category": "other"
     },
     {
       "name": "batch-processor",
@@ -52,9 +62,24 @@
       "category": "image_gen"
     },
     {
+      "name": "clawra-anime-selfie",
+      "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
+      "category": "image_gen"
+    },
+    {
       "name": "collective-brain",
       "description": "|",
       "category": "other"
+    },
+    {
+      "name": "computer-use",
+      "description": "Full desktop computer use for headless Linux servers and VPS. Creates a virtual display (Xvfb + XFCE) to control GUI applications without a physical monitor. Screenshots, mouse clicks, keyboard input, scrolling, dragging — all 17 standard actions. Includes flicker-free VNC setup for live remote viewing. Model-agnostic, works with any LLM.",
+      "category": "other"
+    },
+    {
+      "name": "crawl",
+      "description": "\"Crawl any website and save pages as local markdown files. Use when you need to download documentation, knowledge bases, or web content for offline access or analysis. No code required - just provide a URL.\"",
+      "category": "crawl"
     },
     {
       "name": "crawl-for-ai",
@@ -87,6 +112,11 @@
       "category": "video"
     },
     {
+      "name": "extract",
+      "description": "\"Extract content from specific URLs using Tavily's extraction API. Returns clean markdown/text from web pages. Use when you have specific URLs and need their content without writing code.\"",
+      "category": "other"
+    },
+    {
       "name": "feishu-sticker",
       "description": "Send images as native Feishu stickers. Features auto-upload, caching, and GIF-to-WebP conversion.",
       "category": "social"
@@ -108,7 +138,7 @@
     },
     {
       "name": "hippocampus-memory",
-      "description": "hippocampus-memory",
+      "description": "\"Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement — just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023).\"",
       "category": "memory"
     },
     {
@@ -207,6 +237,11 @@
       "category": "automation"
     },
     {
+      "name": "research",
+      "description": "\"Get AI-synthesized research on any topic with citations, directly in your terminal. Supports structured JSON output for pipelines. Use when you need comprehensive research grounded in web data without writing code.\"",
+      "category": "search"
+    },
+    {
       "name": "robbyczgw-cla",
       "description": "robbyczgw-cla",
       "category": "other"
@@ -215,6 +250,11 @@
       "name": "sag",
       "description": "ElevenLabs text-to-speech with mac-style say UX.",
       "category": "audio"
+    },
+    {
+      "name": "search",
+      "description": "\"Search the web using Tavily's LLM-optimized search API. Returns relevant results with content snippets, scores, and metadata. Use when you need to find web content on any topic without writing code.\"",
+      "category": "search"
     },
     {
       "name": "security-check",
@@ -255,6 +295,11 @@
       "name": "task-status",
       "description": "Send short status descriptions in chat for long-running tasks. Use when you need to provide periodic updates during multi-step operations, confirm task completion, or notify of failures. Includes automated periodic monitoring that sends updates every 5 seconds, status message templates, and a helper function for consistent status reporting.",
       "category": "automation"
+    },
+    {
+      "name": "tavily-best-practices",
+      "description": "\"Build production-ready Tavily integrations with best practices baked in. Reference documentation for developers using coding assistants (Claude Code, Cursor, etc.) to implement web search, content extraction, crawling, and research in agentic workflows, RAG systems, or autonomous agents.\"",
+      "category": "search"
     },
     {
       "name": "tavily-search",
@@ -335,8 +380,18 @@
   "categories": {
     "📦 其他": [
       {
+        "name": "agent-browser",
+        "description": "Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task. Triggers include requests to \"open a website\", \"fill out a form\", \"click a button\", \"take a screenshot\", \"scrape data from a page\", \"test this web app\", \"login to a site\", \"automate browser actions\", or any task requiring programmatic web interaction.",
+        "category": "other"
+      },
+      {
         "name": "ai-brain-builder",
         "description": "Build a complete AI Brain system for agents, integrating Memory (hippocampus), Emotion (amygdala), and Drive (VTA) systems. Use when creating AI agents that need persistent memory, emotional states, and motivation-driven behavior. Triggers on: building AI brain, agent cognitive system, memory+emotion+drive integration, AI personality, agent self-awareness.",
+        "category": "other"
+      },
+      {
+        "name": "antfarm-workflows",
+        "description": "\"Multi-agent workflow orchestration for OpenClaw. Use when user mentions antfarm, asks to run a multi-step workflow (feature dev, bug fix, security audit), or wants to install/uninstall/check status of antfarm workflows.\"",
         "category": "other"
       },
       {
@@ -347,6 +402,16 @@
       {
         "name": "collective-brain",
         "description": "|",
+        "category": "other"
+      },
+      {
+        "name": "computer-use",
+        "description": "Full desktop computer use for headless Linux servers and VPS. Creates a virtual display (Xvfb + XFCE) to control GUI applications without a physical monitor. Screenshots, mouse clicks, keyboard input, scrolling, dragging — all 17 standard actions. Includes flicker-free VNC setup for live remote viewing. Model-agnostic, works with any LLM.",
+        "category": "other"
+      },
+      {
+        "name": "extract",
+        "description": "\"Extract content from specific URLs using Tavily's extraction API. Returns clean markdown/text from web pages. Use when you have specific URLs and need their content without writing code.\"",
         "category": "other"
       },
       {
@@ -375,6 +440,65 @@
         "category": "other"
       }
     ],
+    "🕷️ 爬虫采集": [
+      {
+        "name": "crawl",
+        "description": "\"Crawl any website and save pages as local markdown files. Use when you need to download documentation, knowledge bases, or web content for offline access or analysis. No code required - just provide a URL.\"",
+        "category": "crawl"
+      },
+      {
+        "name": "crawl-for-ai",
+        "description": "Web scraping using local Crawl4AI instance. Use for fetching full page content with JavaScript rendering. Better than Tavily for complex pages. Unlimited usage.",
+        "category": "crawl"
+      }
+    ],
+    "🔍 搜索与信息": [
+      {
+        "name": "ddg-search",
+        "description": "Perform web searches using DuckDuckGo. Use when web search is needed and no API key is available or Brave Search is not preferred.",
+        "category": "search"
+      },
+      {
+        "name": "intelligent-search",
+        "description": "智能搜索聚合技能 - 统一腾讯云 WSA 和 Tavily 搜索能力，支持中英文自动识别、主备切换、高可用搜索。",
+        "category": "search"
+      },
+      {
+        "name": "research",
+        "description": "\"Get AI-synthesized research on any topic with citations, directly in your terminal. Supports structured JSON output for pipelines. Use when you need comprehensive research grounded in web data without writing code.\"",
+        "category": "search"
+      },
+      {
+        "name": "search",
+        "description": "\"Search the web using Tavily's LLM-optimized search API. Returns relevant results with content snippets, scores, and metadata. Use when you need to find web content on any topic without writing code.\"",
+        "category": "search"
+      },
+      {
+        "name": "tavily-best-practices",
+        "description": "\"Build production-ready Tavily integrations with best practices baked in. Reference documentation for developers using coding assistants (Claude Code, Cursor, etc.) to implement web search, content extraction, crawling, and research in agentic workflows, RAG systems, or autonomous agents.\"",
+        "category": "search"
+      },
+      {
+        "name": "tavily-search",
+        "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
+        "category": "search"
+      },
+      {
+        "name": "tavily-skills",
+        "description": "tavily-skills",
+        "category": "search"
+      },
+      {
+        "name": "tencent-search",
+        "description": "腾讯云联网搜索服务 (WSA)，用于实时网页搜索和信息检索。优先于 Brave Search 使用，中文结果质量更好。",
+        "category": "search"
+      },
+      {
+        "name": "volcengine-fusion-search",
+        "description": "火山引擎融合信息搜索 - 调用火山方舟API进行联网搜索问答，获取实时网络信息并回答用户问题。适用于需要最新资讯、实时数据、热点事件查询等场景。",
+        "category": "search"
+      }
+    ],
     "🎨 图像生成": [
       {
         "name": "beauty-generation-api",
@@ -383,6 +507,11 @@
       },
       {
         "name": "clawra-anime",
+        "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
+        "category": "image_gen"
+      },
+      {
+        "name": "clawra-anime-selfie",
         "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
         "category": "image_gen"
       },
@@ -400,38 +529,6 @@
         "name": "umaru-anime-style",
         "description": "固化「一碗专属动漫质感人物风格」的图片生成技能。用于根据对话内容快速生成同一人物风格的图片。",
         "category": "image_gen"
-      }
-    ],
-    "⚙️ 自动化": [
-      {
-        "name": "batch-processor",
-        "description": "📦 Batch Processor",
-        "category": "automation"
-      },
-      {
-        "name": "macro-monitor",
-        "description": "每日宏观数据监控和推送。自动浏览免费数据源（Trading Economics、FRED、国家统计局、央行官网、财联社等），整理整合过去24小时发布的宏观数据和政策信息，并推送给用户。通过 cron 每天晚上10点自动触发。",
-        "category": "automation"
-      },
-      {
-        "name": "promitheus",
-        "description": "Persistent emotional state for AI agents. Feel things. Remember how you felt.",
-        "category": "automation"
-      },
-      {
-        "name": "rebuild-generator",
-        "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
-        "category": "automation"
-      },
-      {
-        "name": "task-decomposer",
-        "description": "Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. This skill should be used when the user submits a complex multi-step request, wants to automate workflows, or needs help breaking down large tasks into manageable pieces.",
-        "category": "automation"
-      },
-      {
-        "name": "task-status",
-        "description": "Send short status descriptions in chat for long-running tasks. Use when you need to provide periodic updates during multi-step operations, confirm task completion, or notify of failures. Includes automated periodic monitoring that sends updates every 5 seconds, status message templates, and a helper function for consistent status reporting.",
-        "category": "automation"
       }
     ],
     "🛠️ 开发工具": [
@@ -496,7 +593,7 @@
       },
       {
         "name": "hippocampus-memory",
-        "description": "hippocampus-memory",
+        "description": "\"Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement — just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023).\"",
         "category": "memory"
       },
       {
@@ -518,6 +615,38 @@
         "name": "vta-memory",
         "description": "\"Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series.\"",
         "category": "memory"
+      }
+    ],
+    "⚙️ 自动化": [
+      {
+        "name": "batch-processor",
+        "description": "📦 Batch Processor",
+        "category": "automation"
+      },
+      {
+        "name": "macro-monitor",
+        "description": "每日宏观数据监控和推送。自动浏览免费数据源（Trading Economics、FRED、国家统计局、央行官网、财联社等），整理整合过去24小时发布的宏观数据和政策信息，并推送给用户。通过 cron 每天晚上10点自动触发。",
+        "category": "automation"
+      },
+      {
+        "name": "promitheus",
+        "description": "Persistent emotional state for AI agents. Feel things. Remember how you felt.",
+        "category": "automation"
+      },
+      {
+        "name": "rebuild-generator",
+        "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
+        "category": "automation"
+      },
+      {
+        "name": "task-decomposer",
+        "description": "Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. This skill should be used when the user submits a complex multi-step request, wants to automate workflows, or needs help breaking down large tasks into manageable pieces.",
+        "category": "automation"
+      },
+      {
+        "name": "task-status",
+        "description": "Send short status descriptions in chat for long-running tasks. Use when you need to provide periodic updates during multi-step operations, confirm task completion, or notify of failures. Includes automated periodic monitoring that sends updates every 5 seconds, status message templates, and a helper function for consistent status reporting.",
+        "category": "automation"
       }
     ],
     "📰 资讯监控": [
@@ -555,45 +684,6 @@
         "name": "x-hot-topics-daily",
         "description": "每日追踪并推送 X（x.com）热点话题新闻简报。用于用户要求“每天定时看 X 热点”“按指定话题抓取热门帖”“用 browser 方式监控 X 趋势”时。默认覆盖 AI、LLM、社会热点（中国/新加坡/美国）五个主题。重点输出“最低成本 know-what 版”：2 条必知 + 3 条可忽略 + 10 分钟行动，帮助用户抗 FOMO，而不是只罗列标题。",
         "category": "news"
-      }
-    ],
-    "🕷️ 爬虫采集": [
-      {
-        "name": "crawl-for-ai",
-        "description": "Web scraping using local Crawl4AI instance. Use for fetching full page content with JavaScript rendering. Better than Tavily for complex pages. Unlimited usage.",
-        "category": "crawl"
-      }
-    ],
-    "🔍 搜索与信息": [
-      {
-        "name": "ddg-search",
-        "description": "Perform web searches using DuckDuckGo. Use when web search is needed and no API key is available or Brave Search is not preferred.",
-        "category": "search"
-      },
-      {
-        "name": "intelligent-search",
-        "description": "智能搜索聚合技能 - 统一腾讯云 WSA 和 Tavily 搜索能力，支持中英文自动识别、主备切换、高可用搜索。",
-        "category": "search"
-      },
-      {
-        "name": "tavily-search",
-        "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
-        "category": "search"
-      },
-      {
-        "name": "tavily-skills",
-        "description": "tavily-skills",
-        "category": "search"
-      },
-      {
-        "name": "tencent-search",
-        "description": "腾讯云联网搜索服务 (WSA)，用于实时网页搜索和信息检索。优先于 Brave Search 使用，中文结果质量更好。",
-        "category": "search"
-      },
-      {
-        "name": "volcengine-fusion-search",
-        "description": "火山引擎融合信息搜索 - 调用火山方舟API进行联网搜索问答，获取实时网络信息并回答用户问题。适用于需要最新资讯、实时数据、热点事件查询等场景。",
-        "category": "search"
       }
     ],
     "🎵 音频处理": [
@@ -696,22 +786,28 @@
   },
   "all_skills": [
     "advanced-skill-creator",
+    "agent-browser",
     "ai-brain-builder",
     "ai-daily-briefing",
     "ai-humanizer",
     "amygdala-memory",
+    "antfarm-workflows",
     "batch-processor",
     "beauty-generation-api",
     "bilibili-hot-monitor",
     "bowlwanpi-knowledge-evolution",
     "clawra-anime",
+    "clawra-anime-selfie",
     "collective-brain",
+    "computer-use",
+    "crawl",
     "crawl-for-ai",
     "daily-creative-brief",
     "daily-hot-news",
     "ddg-search",
     "doubao-tts",
     "douyin-video-fetch",
+    "extract",
     "feishu-sticker",
     "friction-detector",
     "github-ai-trends",
@@ -736,8 +832,10 @@
     "personality-switcher",
     "promitheus",
     "rebuild-generator",
+    "research",
     "robbyczgw-cla",
     "sag",
+    "search",
     "security-check",
     "self-improving-agent",
     "session-cost",
@@ -746,6 +844,7 @@
     "summarize",
     "task-decomposer",
     "task-status",
+    "tavily-best-practices",
     "tavily-search",
     "tavily-skills",
     "tencent-search",
@@ -762,5 +861,5 @@
     "x-hot-topics-daily",
     "xiaohongshu-mcp"
   ],
-  "updated": "2026-03-02T00:00:47.386028"
+  "updated": "2026-03-02T00:46:20.252189"
 }
