@@ -203,7 +203,7 @@
     },
     {
       "name": "rebuild-generator",
-      "description": "Rebuild Generator Skill",
+      "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
       "category": "automation"
     },
     {
@@ -420,7 +420,7 @@
       },
       {
         "name": "rebuild-generator",
-        "description": "Rebuild Generator Skill",
+        "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
         "category": "automation"
       },
       {
@@ -459,6 +459,33 @@
         "name": "xiaohongshu-mcp",
         "description": ">",
         "category": "dev"
+      }
+    ],
+    "✍️ 内容创作": [
+      {
+        "name": "ai-daily-briefing",
+        "description": "\"Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings. Works with ai-meeting-notes to-do list. No setup. Just say 'briefing'.\"",
+        "category": "writing"
+      },
+      {
+        "name": "ai-humanizer",
+        "description": ">",
+        "category": "writing"
+      },
+      {
+        "name": "daily-creative-brief",
+        "description": "Daily creative inspiration generator for AI agents. Combines memory analysis, trend insights, creative challenges, and micro-content creation to boost agent creativity.",
+        "category": "writing"
+      },
+      {
+        "name": "summarize",
+        "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
+        "category": "writing"
+      },
+      {
+        "name": "ttrpg-gm",
+        "description": "TTRPG Game Master for mature dark-themed campaigns. Use for Cyberpunk, Dark Fantasy, Horror, character-driven narratives with consequence tracking. Features dual-consequence system (World + Relationships), autonomous NPCs, hidden D20 rolls, psychological gauges. Optional adult content module.",
+        "category": "writing"
       }
     ],
     "🧠 记忆系统": [
@@ -537,33 +564,6 @@
         "category": "crawl"
       }
     ],
-    "✍️ 内容创作": [
-      {
-        "name": "ai-daily-briefing",
-        "description": "\"Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings. Works with ai-meeting-notes to-do list. No setup. Just say 'briefing'.\"",
-        "category": "writing"
-      },
-      {
-        "name": "ai-humanizer",
-        "description": ">",
-        "category": "writing"
-      },
-      {
-        "name": "daily-creative-brief",
-        "description": "Daily creative inspiration generator for AI agents. Combines memory analysis, trend insights, creative challenges, and micro-content creation to boost agent creativity.",
-        "category": "writing"
-      },
-      {
-        "name": "summarize",
-        "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
-        "category": "writing"
-      },
-      {
-        "name": "ttrpg-gm",
-        "description": "TTRPG Game Master for mature dark-themed campaigns. Use for Cyberpunk, Dark Fantasy, Horror, character-driven narratives with consequence tracking. Features dual-consequence system (World + Relationships), autonomous NPCs, hidden D20 rolls, psychological gauges. Optional adult content module.",
-        "category": "writing"
-      }
-    ],
     "🔍 搜索与信息": [
       {
         "name": "ddg-search",
@@ -608,52 +608,6 @@
         "category": "audio"
       }
     ],
-    "👁️ 监控检查": [
-      {
-        "name": "friction-detector",
-        "description": "🔍 Friction Detector",
-        "category": "monitor"
-      },
-      {
-        "name": "openclaw-cost-guard",
-        "description": "Track OpenClaw/Clawdbot token and cost usage from session JSONL logs (prefer real usage.cost when present), generate daily/weekly summaries and top expensive sessions, and run budget checks (exit code on breach). Use to monitor spend, enforce budgets via cron/alerts, and apply a token-saving playbook to reduce output/tool-call cost.",
-        "category": "monitor"
-      },
-      {
-        "name": "security-check",
-        "description": "🔐 Security Check",
-        "category": "monitor"
-      },
-      {
-        "name": "session-cost",
-        "description": "Analyze OpenClaw session logs to report token usage, costs, and performance metrics grouped by model. Use when the user asks about API spending, token usage, session costs, or wants a usage summary.",
-        "category": "monitor"
-      }
-    ],
-    "📊 数据分析": [
-      {
-        "name": "personal-analytics",
-        "description": "Analyze conversation patterns, track productivity, and surface self-knowledge insights. Use when user wants to understand their own patterns (when they chat, what topics they discuss, productivity trends, sentiment over time). Provides weekly/monthly reports, topic recommendations, and time-based insights. Privacy-first design with all analysis local.",
-        "category": "analytics"
-      },
-      {
-        "name": "personality-switcher",
-        "description": "Create and switch between AI assistant personalities. Use /personality to list and activate saved personalities. Use /create-personality to design new personas with auto-filled SOUL and IDENTITY. Personalities persist across session boundaries and conversation compacting with automatic heartbeat restoration. Atomic switching with backup and rollback safeguards. Always backs up current state before switching.",
-        "category": "analytics"
-      }
-    ],
-    "🔧 系统工具": [
-      {
-        "name": "model-router",
-        "description": "Model Router Skill",
-        "category": "system"
-      },
-      {
-        "name": "self-improving-agent",
-        "description": "\"Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.\"",
-        "category": "system"
-      }
-    ],
     "🎬 视频处理": [
       {
         "name": "douyin-video-fetch",
@@ -691,6 +645,52 @@
         "name": "tg-sticker-emoji-mood",
         "description": "Automatically send Telegram stickers and emojis that match the mood and vibe of the conversation. Activates on every Telegram message to add expressive, human-like sticker and emoji reactions without being asked. Use this skill whenever you are chatting on Telegram to make conversations feel alive and fun.",
         "category": "social"
+      }
+    ],
+    "👁️ 监控检查": [
+      {
+        "name": "friction-detector",
+        "description": "🔍 Friction Detector",
+        "category": "monitor"
+      },
+      {
+        "name": "openclaw-cost-guard",
+        "description": "Track OpenClaw/Clawdbot token and cost usage from session JSONL logs (prefer real usage.cost when present), generate daily/weekly summaries and top expensive sessions, and run budget checks (exit code on breach). Use to monitor spend, enforce budgets via cron/alerts, and apply a token-saving playbook to reduce output/tool-call cost.",
+        "category": "monitor"
+      },
+      {
+        "name": "security-check",
+        "description": "🔐 Security Check",
+        "category": "monitor"
+      },
+      {
+        "name": "session-cost",
+        "description": "Analyze OpenClaw session logs to report token usage, costs, and performance metrics grouped by model. Use when the user asks about API spending, token usage, session costs, or wants a usage summary.",
+        "category": "monitor"
+      }
+    ],
+    "🔧 系统工具": [
+      {
+        "name": "model-router",
+        "description": "Model Router Skill",
+        "category": "system"
+      },
+      {
+        "name": "self-improving-agent",
+        "description": "\"Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.\"",
+        "category": "system"
+      }
+    ],
+    "📊 数据分析": [
+      {
+        "name": "personal-analytics",
+        "description": "Analyze conversation patterns, track productivity, and surface self-knowledge insights. Use when user wants to understand their own patterns (when they chat, what topics they discuss, productivity trends, sentiment over time). Provides weekly/monthly reports, topic recommendations, and time-based insights. Privacy-first design with all analysis local.",
+        "category": "analytics"
+      },
+      {
+        "name": "personality-switcher",
+        "description": "Create and switch between AI assistant personalities. Use /personality to list and activate saved personalities. Use /create-personality to design new personas with auto-filled SOUL and IDENTITY. Personalities persist across session boundaries and conversation compacting with automatic heartbeat restoration. Atomic switching with backup and rollback safeguards. Always backs up current state before switching.",
+        "category": "analytics"
       }
     ]
   },
@@ -762,5 +762,5 @@
     "x-hot-topics-daily",
     "xiaohongshu-mcp"
   ],
-  "updated": "2026-03-01T11:00:48.747904"
+  "updated": "2026-03-01T12:02:09.948820"
 }
