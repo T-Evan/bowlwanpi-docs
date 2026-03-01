@@ -635,6 +635,49 @@
             margin-top: 0.35rem;
             line-height: 1.35;
         }
+
+        /* 概览卡片样式 */
+        .overview-card {
+            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(99,102,241,0.02));
+            border: 1px solid rgba(99,102,241,0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .overview-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99,102,241,0.4);
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05));
+        }
+        .overview-card .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .overview-card .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* 展开按钮样式 */
+        .expand-btn {
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05));
+            border: 1px solid rgba(99,102,241,0.3);
+            color: var(--text);
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .expand-btn:hover {
+            background: linear-gradient(135deg, rgba(99,102,241,0.25), rgba(99,102,241,0.1));
+            border-color: rgba(99,102,241,0.5);
+        }
+
     /* 移动端适配优化 */
 @media (max-width: 768px) {
     /* 头部优化 */
@@ -932,33 +975,64 @@ img {
 
         <section id="skills" class="section">
             <h2 class="section-title">🛠️ 技能清单 (<span id="skills-count">-</span>个)</h2>
-            <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
-                <input id="skill-search" type="text" placeholder="搜索技能名或描述..." style="flex:1;min-width:220px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;border-radius:8px;">
-                <button id="skills-expand-all" style="background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.35);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">展开全部</button>
-                <button id="skills-collapse-all" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">收起全部</button>
+
+            <!-- 技能概览卡片 -->
+            <div id="skills-overview" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.8rem; margin-bottom: 1rem;">
+                <!-- 概览由JS动态生成 -->
             </div>
-            <div id="skills-container" class="grid-3">
-                <!-- 技能列表由JS动态加载 -->
+
+            <!-- 展开后的详细内容 -->
+            <div id="skills-detail" style="display: none;">
+                <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem;">
+                    <input id="skill-search" type="text" placeholder="搜索技能名或描述..." style="flex:1;min-width:220px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);padding:0.6rem 0.8rem;border-radius:8px;">
+                    <button id="skills-collapse-all" style="background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--text);padding:0.55rem 0.8rem;border-radius:8px;cursor:pointer;">收起</button>
+                </div>
+                <div id="skills-container" class="grid-3">
+                    <!-- 技能列表由JS动态加载 -->
+                </div>
+            </div>
+
+            <!-- 展开按钮 -->
+            <div id="skills-expand-btn" style="text-align: center; margin-top: 0.5rem;">
+                <button onclick="toggleSkillsDetail()" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.1)); border: 1px solid rgba(99,102,241,0.35); color: var(--text); padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                    📂 查看全部技能
+                </button>
             </div>
         </section>
         
         <section id="cron" class="section">
             <h2 class="section-title">⏰ 定时任务 (<span id="cron-count">-</span>个)</h2>
             <p style="margin-bottom: 1rem; color: var(--text-muted);">每晚自动运行的任务，精确执行时间表</p>
-            <div style="overflow-x: auto;">
-                <table id="cron-table" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
-                    <thead>
-                        <tr style="background: rgba(99, 102, 241, 0.1);">
-                            <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">任务名称</th>
-                            <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">执行时间</th>
-                            <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">频率</th>
-                            <th style="padding: 0.8rem; text-align: center; border-bottom: 1px solid var(--border);">状态</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- 定时任务由JS动态加载 -->
-                    </tbody>
-                </table>
+
+            <!-- 概览统计 -->
+            <div id="cron-overview" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                <!-- 概览由JS动态生成 -->
+            </div>
+
+            <!-- 展开后的详细表格 -->
+            <div id="cron-detail" style="display: none;">
+                <div style="overflow-x: auto;">
+                    <table id="cron-table" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                        <thead>
+                            <tr style="background: rgba(99, 102, 241, 0.1);">
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">任务名称</th>
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">执行时间</th>
+                                <th style="padding: 0.8rem; text-align: left; border-bottom: 1px solid var(--border);">频率</th>
+                                <th style="padding: 0.8rem; text-align: center; border-bottom: 1px solid var(--border);">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 定时任务由JS动态加载 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 展开按钮 -->
+            <div id="cron-expand-btn" style="text-align: center; margin-top: 0.5rem;">
+                <button onclick="toggleCronDetail()" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(99,102,241,0.1)); border: 1px solid rgba(99,102,241,0.35); color: var(--text); padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                    📋 查看全部任务
+                </button>
             </div>
         </section>
         
@@ -1029,20 +1103,28 @@ img {
                 </div>
             </div>
             
-            <!-- Amygdala 情感维度 -->
-            <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">🎭 Amygdala 情感维度</h3>
-            <div id="emotion-dimensions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                <!-- 情感维度由JS动态加载 -->
+            <!-- 展开后的详细维度 -->
+            <div id="emotion-detail" style="display: none; margin-top: 1.5rem;">
+                <h3 style="margin: 0 0 1rem; font-size: 1.1rem; color: var(--text-muted);">🎭 Amygdala 情感维度</h3>
+                <div id="emotion-dimensions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <!-- 情感维度由JS动态加载 -->
+                </div>
+
+                <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">💭 最近感受</h3>
+                <div id="emotion-recent" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
+                    <ul style="margin: 0; list-style: none;">
+                        <li style="padding: 0.5rem 0;">加载中...</li>
+                    </ul>
+                </div>
             </div>
-            
-            <!-- 近期情感 -->
-            <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--text-muted);">💭 最近感受</h3>
-            <div id="emotion-recent" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 8px; padding: 1rem;">
-                <ul style="margin: 0; list-style: none;">
-                    <li style="padding: 0.5rem 0;">加载中...</li>
-                </ul>
+
+            <!-- 展开按钮 -->
+            <div id="emotion-expand-btn" style="text-align: center; margin-top: 1rem;">
+                <button onclick="toggleEmotionDetail()" style="background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(236,72,153,0.1)); border: 1px solid rgba(236,72,153,0.35); color: var(--text); padding: 0.6rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem;">
+                    🎭 查看情感详情
+                </button>
             </div>
-            
+
             <!-- 期待 -->
             <div id="emotion-expectation" style="margin-top: 1rem; padding: 1rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid var(--success); border-radius: 8px;">
                 <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem;">✨ 期待的事情</div>
@@ -1761,19 +1843,50 @@ img {
 
                 render('');
 
+                // 生成概览卡片
+                const overviewContainer = document.getElementById('skills-overview');
+                if (overviewContainer) {
+                    const categoryStats = Object.entries(categorized)
+                        .filter(([name, items]) => items.length > 0 && name !== '其他')
+                        .map(([name, items]) => ({ name, count: items.length }));
+
+                    overviewContainer.innerHTML = categoryStats.map(cat => `
+                        <div style="background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05)); border: 1px solid rgba(99,102,241,0.25); border-radius: 10px; padding: 0.8rem; text-align: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(99,102,241,0.5)';" onmouseout="this.style.transform='';this.style.borderColor='rgba(99,102,241,0.25)';">
+                            <div style="font-size: 1.3rem; font-weight: 600; color: var(--primary);">${cat.count}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">${cat.name}</div>
+                        </div>
+                    `).join('') + `
+                        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05)); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 0.8rem; text-align: center;">
+                            <div style="font-size: 1.3rem; font-weight: 600; color: var(--success);">${skills.length}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">总技能</div>
+                        </div>
+                    `;
+                }
+
                 if (searchInput) {
                     searchInput.oninput = (e) => render(e.target.value || '');
                 }
 
-                const expandBtn = document.getElementById('skills-expand-all');
                 const collapseBtn = document.getElementById('skills-collapse-all');
-                if (expandBtn) expandBtn.onclick = () => document.querySelectorAll('#skills .skill-group').forEach(d => d.open = true);
-                if (collapseBtn) collapseBtn.onclick = () => document.querySelectorAll('#skills .skill-group').forEach(d => d.open = false);
+                if (collapseBtn) collapseBtn.onclick = toggleSkillsDetail;
             } catch (e) {
                 console.error('加载技能清单失败:', e);
             }
         }
         loadSkills();
+
+        // 技能详情切换
+        function toggleSkillsDetail() {
+            const detail = document.getElementById('skills-detail');
+            const expandBtn = document.getElementById('skills-expand-btn');
+            if (detail.style.display === 'none') {
+                detail.style.display = 'block';
+                expandBtn.style.display = 'none';
+            } else {
+                detail.style.display = 'none';
+                expandBtn.style.display = 'block';
+            }
+        }
 
         // 加载定时任务
         async function loadCronTasks() {
@@ -1787,8 +1900,41 @@ img {
                 const tbody = document.querySelector('#cron-table tbody');
                 if (!tbody) return;
                 
+                // 生成概览统计
+                const overviewContainer = document.getElementById('cron-overview');
+                if (overviewContainer) {
+                    const okCount = tasks.filter(t => t.status === 'ok' || t.status === 'enabled' || t.status === 'running').length;
+                    const errorCount = tasks.filter(t => t.status === 'error' || t.status === 'disabled').length;
+
+                    overviewContainer.innerHTML = `
+                        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05)); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.2rem;">🟢</span>
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: var(--success);">${okCount}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">正常运行</div>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.05)); border: 1px solid rgba(239,68,68,0.25); border-radius: 10px; padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.2rem;">🔴</span>
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: var(--danger);">${errorCount}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">异常任务</div>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(99,102,241,0.05)); border: 1px solid rgba(99,102,241,0.25); border-radius: 10px; padding: 0.8rem 1.2rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="font-size: 1.2rem;">⏰</span>
+                            <div>
+                                <div style="font-size: 1.1rem; font-weight: 600; color: var(--primary);">${tasks.length}</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">总任务数</div>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // 填充表格（完整数据）
                 tbody.innerHTML = tasks.map(task => {
-                    const statusEmoji = task.status === 'enabled' ? '🟢' : (task.status === 'disabled' ? '🔴' : '🟡');
+                    const statusEmoji = task.status === 'ok' || task.status === 'enabled' || task.status === 'running' ? '🟢' :
+                                       (task.status === 'error' ? '🔴' : '🟡');
                     const schedule = task.schedule || '定时';
                     return `
                         <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
@@ -1797,7 +1943,7 @@ img {
                             </td>
                             <td style="padding: 0.6rem 0.8rem; color: var(--text-muted);">${schedule}</td>
                             <td style="padding: 0.6rem 0.8rem;">
-                                <span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">${schedule.includes('小时') ? '定期' : (schedule.includes('每天') ? '每日' : '定时')}</span>
+                                <span style="background: rgba(99,102,241,0.2); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">${schedule.includes('小时') ? '定期' : (schedule.includes('每天') || schedule.includes('每日') ? '每日' : '定时')}</span>
                             </td>
                             <td style="padding: 0.6rem 0.8rem; text-align: center;">${statusEmoji}</td>
                         </tr>
@@ -1808,6 +1954,19 @@ img {
             }
         }
         loadCronTasks();
+
+        // 定时任务详情切换
+        function toggleCronDetail() {
+            const detail = document.getElementById('cron-detail');
+            const expandBtn = document.getElementById('cron-expand-btn');
+            if (detail.style.display === 'none') {
+                detail.style.display = 'block';
+                expandBtn.style.display = 'none';
+            } else {
+                detail.style.display = 'none';
+                expandBtn.style.display = 'block';
+            }
+        }
 
         // 加载情感状态
         async function loadEmotionStatus() {
@@ -1832,7 +1991,7 @@ img {
                 if (lookingForward) lookingForward.textContent = e.looking_forward || '探索更多有趣的AI技能～';
                 if (lookingForwardText) lookingForwardText.textContent = e.looking_forward || '探索更多有趣的AI技能～';
                 
-                // 情感维度
+                // 情感维度（仅在展开时渲染）
                 const dimensions = [
                     { key: 'valence', name: '😊 愉悦度 (Valence)', color: '#10b981' },
                     { key: 'energy', name: '⚡ 精力 (Energy)', color: '#06b6d4' },
@@ -1882,6 +2041,19 @@ img {
         }
         loadEmotionStatus();
         setInterval(loadEmotionStatus, 30000);
+
+        // 情感详情切换
+        function toggleEmotionDetail() {
+            const detail = document.getElementById('emotion-detail');
+            const expandBtn = document.getElementById('emotion-expand-btn');
+            if (detail.style.display === 'none') {
+                detail.style.display = 'block';
+                expandBtn.style.display = 'none';
+            } else {
+                detail.style.display = 'none';
+                expandBtn.style.display = 'block';
+            }
+        }
 
         // 加载系统状态
         async function loadSystemStatus() {
