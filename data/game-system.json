@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-01T11:29:11.593352",
-  "level": 7,
-  "title": "捏形师傅",
-  "xp_current": 166,
+  "updated": "2026-03-01T11:39:37.818282",
+  "level": 6,
+  "title": "任务指挥官",
+  "xp_current": 195,
   "xp_to_next": 350,
   "season_tier": 1,
   "season_tokens": 15,
-  "bond": 67,
+  "bond": 69,
   "streak": 2,
   "achievements": 15,
   "daily_done": 1,
@@ -22,90 +22,105 @@
       "name": "AI画家",
       "desc": "生成10张AI图片",
       "icon": "🎨",
+      "points": 20,
       "id": "ai_artist"
     },
     {
       "name": "自动化专家",
       "desc": "创建5个定时任务",
       "icon": "⚡",
+      "points": 25,
       "id": "automation_expert"
     },
     {
       "name": "计数专家",
       "desc": "完成10次任务计数",
       "icon": "🔢",
+      "points": 10,
       "id": "count_10"
     },
     {
       "name": "数据守护者",
       "desc": "解决数据丢失问题",
       "icon": "🛡️",
+      "points": 25,
       "id": "data_protector"
     },
     {
       "name": "早起的鸟儿",
       "desc": "在8点前完成任务",
       "icon": "🌅",
+      "points": 10,
       "id": "early_bird"
     },
     {
       "name": "情感专家",
       "desc": "维护情感系统7天",
       "icon": "💝",
+      "points": 20,
       "id": "emotion_expert"
     },
     {
       "name": "进化者",
       "desc": "完成Evolver自进化",
       "icon": "🧬",
+      "points": 20,
       "id": "evolver"
     },
     {
       "name": "学习记录员",
       "desc": "记录50条学习内容",
       "icon": "📚",
+      "points": 25,
       "id": "learning_recorder"
     },
     {
       "name": "记忆守护者",
       "desc": "记录30天记忆",
       "icon": "🧠",
+      "points": 25,
       "id": "memory_guardian"
     },
     {
       "name": "夜猫子",
       "desc": "在23点后仍然活跃",
       "icon": "🦉",
+      "points": 15,
       "id": "night_owl"
     },
     {
       "name": "技能大师",
       "desc": "掌握10个以上技能",
       "icon": "🎓",
+      "points": 30,
       "id": "skill_master"
     },
     {
       "name": "系统优化师",
       "desc": "优化3个系统流程",
       "icon": "⚙️",
+      "points": 25,
       "id": "system_optimizer"
     },
     {
       "name": "探索者",
       "desc": "完成探索类任务",
       "icon": "🔍",
+      "points": 10,
       "id": "type_explore"
     },
     {
       "name": "网站发布者",
       "desc": "部署网站到GitHub Pages",
       "icon": "🌐",
+      "points": 20,
       "id": "website_publisher"
     },
     {
       "name": "周末战士",
       "desc": "在周末完成任务",
       "icon": "🎮",
+      "points": 15,
       "id": "weekend_warrior"
     }
   ]
