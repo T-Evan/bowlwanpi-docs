@@ -1,14 +1,22 @@
 {
-  "updated": "2026-03-02T23:00:01.512229",
-  "level": 6,
-  "title": "炉火纯青",
-  "xp_current": 203,
-  "xp_to_next": 350,
-  "season_tier": 1,
-  "season_tokens": 0,
-  "bond": 58,
-  "streak": 1,
-  "achievements": 5,
+  "updated": "2026-03-03T00:00:02.066569",
+  "level": 8,
+  "title": "变化无穷",
+  "xp_current": 131,
+  "xp_to_next": 450,
+  "season_tier": 2,
+  "season_tokens": 8,
+  "bond": 77,
+  "streak": 2,
+  "achievements": 7,
+  "daily_done": 0,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -18,11 +26,25 @@
       "id": "count_10"
     },
     {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
+    },
+    {
       "name": "半百达人",
       "desc": "累计完成50次任务",
       "icon": "🏅",
       "points": 20,
       "id": "count_50"
+    },
+    {
+      "name": "早起的鸟儿",
+      "desc": "在8点前完成任务",
+      "icon": "🌅",
+      "points": 10,
+      "id": "early_bird"
     },
     {
       "name": "夜猫子",
@@ -45,13 +67,5 @@
       "points": 10,
       "id": "type_explore"
     }
-  ],
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 0,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 0
+  ]
 }
