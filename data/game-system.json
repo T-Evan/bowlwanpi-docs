@@ -1,23 +1,22 @@
 {
-  "updated": "2026-03-03T04:00:01.353449",
+  "updated": "2026-03-03T05:00:01.475843",
   "level": 11,
   "title": "糖果志愿者",
-  "xp_current": 195,
-  "xp_to_next": 600,
-  "season_tier": 2,
-  "season_tokens": 8,
-  "bond": 151,
+  "xp_current": 16,
+  "xp_to_next": 100,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "bond": 1,
   "streak": 1,
   "achievements": 18,
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
+    {
+      "name": "早起的鸟儿",
+      "desc": "在8点前完成任务",
+      "icon": "🌅",
+      "points": 10,
+      "id": "early_bird"
+    },
     {
       "name": "AI画家",
       "desc": "生成10张AI图片",
@@ -59,13 +58,6 @@
       "icon": "🛡️",
       "points": 25,
       "id": "data_protector"
-    },
-    {
-      "name": "早起的鸟儿",
-      "desc": "在8点前完成任务",
-      "icon": "🌅",
-      "points": 10,
-      "id": "early_bird"
     },
     {
       "name": "情感专家",
@@ -144,5 +136,13 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ]
+  ],
+  "daily_done": 0,
+  "weekly_done": 0,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 0
 }
