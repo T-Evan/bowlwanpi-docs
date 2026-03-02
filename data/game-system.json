@@ -1,14 +1,22 @@
 {
-  "updated": "2026-03-02T07:00:01.786992",
-  "level": 2,
-  "title": "初学乍练",
-  "xp_current": 74,
-  "xp_to_next": 150,
+  "updated": "2026-03-02T08:00:01.394196",
+  "level": 4,
+  "title": "驾轻就熟",
+  "xp_current": 100,
+  "xp_to_next": 250,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 8,
+  "bond": 25,
   "streak": 1,
-  "achievements": 4,
+  "achievements": 5,
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 0,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -16,6 +24,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
     },
     {
       "name": "早起的鸟儿",
@@ -38,13 +53,5 @@
       "points": 10,
       "id": "type_explore"
     }
-  ],
-  "daily_done": 1,
-  "weekly_done": 0,
-  "season_done": 0,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 0
+  ]
 }
