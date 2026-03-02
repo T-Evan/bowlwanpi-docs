@@ -1,14 +1,14 @@
 {
-  "updated": "2026-03-02T21:55:01.746279",
-  "level": 5,
-  "title": "得心应手",
-  "xp_current": 158,
-  "xp_to_next": 300,
+  "updated": "2026-03-02T23:00:01.512229",
+  "level": 6,
+  "title": "炉火纯青",
+  "xp_current": 203,
+  "xp_to_next": 350,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 40,
+  "bond": 58,
   "streak": 1,
-  "achievements": 4,
+  "achievements": 5,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -23,6 +23,13 @@
       "icon": "🏅",
       "points": 20,
       "id": "count_50"
+    },
+    {
+      "name": "夜猫子",
+      "desc": "在23点后仍然活跃",
+      "icon": "🦉",
+      "points": 15,
+      "id": "night_owl"
     },
     {
       "name": "自动化玩家",
