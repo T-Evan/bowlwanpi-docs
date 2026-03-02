@@ -1,134 +1,134 @@
 {
-  "updated": "2026-03-03T06:00:02.172361",
+  "updated": "2026-03-03T07:00:02.089462",
   "entries": [
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Gateway: OK (process running)"
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "CPU: OK (35.7%)"
+      "message": "CPU: OK (12.5%)"
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Memory: OK (57%)"
+      "message": "Memory: OK (55%)"
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Disk: HIGH (87%)"
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check completed ==="
     },
     {
-      "time": "05:55:01",
+      "time": "06:55:01",
       "level": "WARN",
       "source": "heartbeat",
       "message": "Report suppressed (level: warning, cooldown active)"
     },
     {
-      "time": "06:00:01",
+      "time": "07:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check started ==="
     },
     {
-      "time": "06:00:01",
+      "time": "07:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Gateway..."
     },
     {
-      "time": "06:00:01",
+      "time": "07:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Gateway: OK (process running)"
     },
     {
-      "time": "06:00:01",
+      "time": "07:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "📊 统计: 80 技能 | 22 任务 | 52135 向量"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "🧬 自进化: Evolver 已运行"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "🔄 每日系统: 10+ 个子系统已更新"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "🎮 游戏/💓 情感/📊 仪表盘/🗄️ 归档/💾 快照"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "🔗 网站: https://t-evan.github.io/bowlwanpi-docs/"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "══════════════════════════════════════════"
@@ -140,31 +140,31 @@
       "message": "重建手册生成任务（cron:63fbb8ef-726f-4918-9fd8-f4ee796e1a93）"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "状态: ✅ 成功"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "输出: memory/rebuild-summary-2026-03-03.md"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "技能数: 79"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "MCP服务: 0"
     },
     {
-      "time": "06:00:02",
+      "time": "07:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "云端同步: memU ✅ | Hippocampus ✅ | MemOS ✅"
@@ -228,6 +228,12 @@
       "level": "INFO",
       "source": "news",
       "message": "发现 9 条新新闻（并行版）"
+    },
+    {
+      "time": "7.805344",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 2 条新新闻（并行版）"
     }
   ]
 }
