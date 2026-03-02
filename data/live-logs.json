@@ -1,95 +1,95 @@
 {
-  "updated": "2026-03-03T02:00:01.482435",
+  "updated": "2026-03-03T02:11:34.553683",
   "entries": [
     {
-      "time": "01:55:01",
+      "time": "02:05:02",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Gateway: OK (process running)"
+      "message": "Memory: OK (65%)"
     },
     {
-      "time": "01:55:01",
+      "time": "02:05:02",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Checking Mihomo..."
+      "message": "Disk: OK (85%)"
     },
     {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Mihomo: OK (running)"
-    },
-    {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking system resources..."
-    },
-    {
-      "time": "01:55:02",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "CPU: OK (12.5%)"
-    },
-    {
-      "time": "01:55:02",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Memory: OK (63%)"
-    },
-    {
-      "time": "01:55:02",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Disk: OK (84%)"
-    },
-    {
-      "time": "01:55:02",
+      "time": "02:05:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check completed ==="
     },
     {
-      "time": "01:55:02",
+      "time": "02:05:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Report suppressed (level: normal, cooldown active)"
     },
     {
-      "time": "02:00:01",
+      "time": "02:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check started ==="
     },
     {
-      "time": "02:00:01",
+      "time": "02:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Gateway..."
     },
     {
-      "time": "02:00:01",
+      "time": "02:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Gateway: OK (process running)"
     },
     {
-      "time": "02:00:01",
+      "time": "02:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "02:00:01",
+      "time": "02:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "02:00:01",
+      "time": "02:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
+    },
+    {
+      "time": "02:10:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "CPU: OK (14.3%)"
+    },
+    {
+      "time": "02:10:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Memory: OK (56%)"
+    },
+    {
+      "time": "02:10:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Disk: OK (85%)"
+    },
+    {
+      "time": "02:10:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "=== Heartbeat check completed ==="
+    },
+    {
+      "time": "02:10:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Report suppressed (level: normal, cooldown active)"
     },
     {
       "time": "0:06 UTC",
@@ -98,31 +98,31 @@
       "message": "重建手册生成任务"
     },
     {
-      "time": "02:00:01",
+      "time": "02:11:34",
       "level": "INFO",
       "source": "nightly",
       "message": "状态: ✅ 成功"
     },
     {
-      "time": "02:00:01",
+      "time": "02:11:34",
       "level": "INFO",
       "source": "nightly",
       "message": "输出: memory/rebuild-summary-2026-03-02.md"
     },
     {
-      "time": "02:00:01",
+      "time": "02:11:34",
       "level": "INFO",
       "source": "nightly",
       "message": "技能数: 79"
     },
     {
-      "time": "02:00:01",
+      "time": "02:11:34",
       "level": "INFO",
       "source": "nightly",
       "message": "MCP服务: 0"
     },
     {
-      "time": "02:00:01",
+      "time": "02:11:34",
       "level": "INFO",
       "source": "nightly",
       "message": "云端同步: memU ✅ | Hippocampus ✅ | MemOS ✅"
