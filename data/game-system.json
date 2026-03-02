@@ -1,21 +1,35 @@
 {
-  "updated": "2026-03-03T05:00:01.475843",
+  "updated": "2026-03-03T05:55:01.513883",
   "level": 11,
   "title": "糖果志愿者",
-  "xp_current": 16,
-  "xp_to_next": 100,
+  "xp_current": 166,
+  "xp_to_next": 200,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 1,
+  "bond": 17,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
+    {
+      "name": "计数专家",
+      "desc": "完成10次任务计数",
+      "icon": "🔢",
+      "points": 10,
+      "id": "count_10"
+    },
     {
       "name": "早起的鸟儿",
       "desc": "在8点前完成任务",
       "icon": "🌅",
       "points": 10,
       "id": "early_bird"
+    },
+    {
+      "name": "自动化玩家",
+      "desc": "完成自动化类型任务",
+      "icon": "🤖",
+      "points": 15,
+      "id": "type_auto"
     },
     {
       "name": "AI画家",
@@ -30,13 +44,6 @@
       "icon": "⚡",
       "points": 25,
       "id": "automation_expert"
-    },
-    {
-      "name": "计数专家",
-      "desc": "完成10次任务计数",
-      "icon": "🔢",
-      "points": 10,
-      "id": "count_10"
     },
     {
       "name": "百战成名",
@@ -109,13 +116,6 @@
       "id": "system_optimizer"
     },
     {
-      "name": "自动化玩家",
-      "desc": "完成自动化类型任务",
-      "icon": "🤖",
-      "points": 15,
-      "id": "type_auto"
-    },
-    {
       "name": "探索者",
       "desc": "完成探索类任务",
       "icon": "🔍",
@@ -137,8 +137,8 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 0,
-  "weekly_done": 0,
+  "daily_done": 1,
+  "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
