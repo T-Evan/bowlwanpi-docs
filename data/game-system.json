@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-03T22:10:01.854248",
+  "updated": "2026-03-03T23:00:01.425037",
   "level": 11,
   "title": "糖果志愿者",
-  "xp_current": 417,
-  "xp_to_next": 450,
+  "xp_current": 215,
+  "xp_to_next": 500,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 93,
+  "bond": 106,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
@@ -30,6 +30,13 @@
       "icon": "🏅",
       "points": 20,
       "id": "count_50"
+    },
+    {
+      "name": "夜猫子",
+      "desc": "在23点后仍然活跃",
+      "icon": "🦉",
+      "points": 15,
+      "id": "night_owl"
     },
     {
       "name": "自动化玩家",
@@ -100,13 +107,6 @@
       "icon": "🧠",
       "points": 25,
       "id": "memory_guardian"
-    },
-    {
-      "name": "夜猫子",
-      "desc": "在23点后仍然活跃",
-      "icon": "🦉",
-      "points": 15,
-      "id": "night_owl"
     },
     {
       "name": "技能大师",
