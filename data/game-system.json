@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-04T05:00:01.707882",
-  "level": 12,
-  "title": "奶酪预备兵",
-  "xp_current": 643,
-  "xp_to_next": 650,
-  "season_tier": 2,
-  "season_tokens": 8,
-  "bond": 210,
+  "updated": "2026-03-04T06:00:01.529306",
+  "level": 13,
+  "title": "泡泡糖战士",
+  "xp_current": 74,
+  "xp_to_next": 150,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "bond": 8,
   "streak": 1,
   "achievements": 18,
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -24,13 +16,6 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
-    },
-    {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -47,13 +32,6 @@
       "id": "early_bird"
     },
     {
-      "name": "夜猫子",
-      "desc": "在23点后仍然活跃",
-      "icon": "🦉",
-      "points": 15,
-      "id": "night_owl"
-    },
-    {
       "name": "自动化玩家",
       "desc": "完成自动化类型任务",
       "icon": "🤖",
@@ -66,6 +44,20 @@
       "icon": "🔍",
       "points": 10,
       "id": "type_explore"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
+    },
+    {
+      "name": "夜猫子",
+      "desc": "在23点后仍然活跃",
+      "icon": "🦉",
+      "points": 15,
+      "id": "night_owl"
     },
     {
       "name": "AI画家",
@@ -144,5 +136,13 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ]
+  ],
+  "daily_done": 1,
+  "weekly_done": 0,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 0
 }
