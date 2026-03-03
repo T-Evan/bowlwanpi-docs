@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-03T15:00:01.665941",
+  "updated": "2026-03-03T16:00:01.596377",
   "level": 11,
   "title": "糖果志愿者",
-  "xp_current": 149,
-  "xp_to_next": 250,
+  "xp_current": 237,
+  "xp_to_next": 300,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 26,
+  "bond": 44,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
@@ -32,6 +32,13 @@
       "id": "type_auto"
     },
     {
+      "name": "探索者",
+      "desc": "完成探索类任务",
+      "icon": "🔍",
+      "points": 10,
+      "id": "type_explore"
+    },
+    {
       "name": "百战成名",
       "desc": "累计完成100次任务",
       "icon": "👑",
@@ -44,13 +51,6 @@
       "icon": "🌅",
       "points": 10,
       "id": "early_bird"
-    },
-    {
-      "name": "探索者",
-      "desc": "完成探索类任务",
-      "icon": "🔍",
-      "points": 10,
-      "id": "type_explore"
     },
     {
       "name": "AI画家",
