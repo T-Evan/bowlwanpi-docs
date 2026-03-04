@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-04T08:55:02.112914",
+  "updated": "2026-03-04T09:55:01.474677",
   "level": 13,
   "title": "泡泡糖战士",
-  "xp_current": 188,
-  "xp_to_next": 300,
-  "season_tier": 1,
-  "season_tokens": 0,
-  "bond": 43,
+  "xp_current": 222,
+  "xp_to_next": 400,
+  "season_tier": 2,
+  "season_tokens": 8,
+  "bond": 62,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
@@ -137,12 +137,12 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 1,
+  "daily_done": 2,
   "weekly_done": 1,
-  "season_done": 0,
+  "season_done": 1,
   "daily_total": 3,
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "连胜燃烧",
-  "talent_points": 0
+  "talent_points": 1
 }
