@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-05T06:00:01.820959",
+  "updated": "2026-03-05T07:00:02.028822",
   "level": 15,
   "title": "棒棒糖游侠",
-  "xp_current": 23,
-  "xp_to_next": 100,
+  "xp_current": 198,
+  "xp_to_next": 200,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 1,
+  "bond": 18,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
@@ -137,8 +137,8 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 0,
-  "weekly_done": 0,
+  "daily_done": 1,
+  "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
