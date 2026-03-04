@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-04T17:00:01.609098",
+  "updated": "2026-03-04T18:00:01.601522",
   "level": 13,
   "title": "泡泡糖战士",
-  "xp_current": 503,
-  "xp_to_next": 600,
+  "xp_current": 259,
+  "xp_to_next": 650,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 179,
+  "bond": 198,
   "streak": 1,
   "achievements": 18,
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -144,5 +136,13 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ]
+  ],
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1
 }
