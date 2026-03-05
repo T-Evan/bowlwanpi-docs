@@ -1,146 +1,146 @@
 {
-  "updated": "2026-03-05T12:00:01.795906",
+  "updated": "2026-03-05T13:00:01.540715",
   "entries": [
     {
-      "time": "11:55:01",
+      "time": "12:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "11:55:01",
+      "time": "12:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "11:55:01",
+      "time": "12:55:02",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "CPU: OK (11.6%)"
+      "message": "CPU: OK (9.5%)"
     },
     {
-      "time": "11:55:01",
+      "time": "12:55:02",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Memory: OK (50%)"
+      "message": "Memory: OK (48%)"
     },
     {
-      "time": "11:55:01",
+      "time": "12:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Disk: OK (85%)"
     },
     {
-      "time": "11:55:01",
+      "time": "12:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check completed ==="
     },
     {
-      "time": "11:55:01",
+      "time": "12:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Report suppressed (level: normal, cooldown active)"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check started ==="
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Gateway..."
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Gateway: OK (process running)"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m ✅ HTML 统计数据已更新"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 时间戳更新验证通过"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 🚀 部署网站到 GitHub Pages..."
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "WARN",
       "source": "nightly",
       "message": "\u001b[1;33m[WARN]\u001b[0m 拉取失败，使用本地版本"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 网站部署成功!"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 🔗 https://t-evan.github.io/bowlwanpi-docs/"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 📄 今日记忆文件已存在: 2026-03-05.md"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "✅ 夜间构建完成!"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "📊 统计: 82 技能 | 22 任务 | 52307 向量"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "🔗 网站: https://t-evan.github.io/bowlwanpi-docs/"
     },
     {
-      "time": "12:00:01",
+      "time": "13:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "══════════════════════════════════════════"
@@ -150,12 +150,6 @@
       "level": "INFO",
       "source": "nightly",
       "message": "[cron:63fbb8ef-726f-4918-9fd8-f4ee796e1a93] rebuild-generator executed successfully | skills=81 | mcp=0 | summary=memory/rebuild-summary-2026-03-05.md | sync=memU,Hippocampus,MemOS"
-    },
-    {
-      "time": "5.041877",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 3 条新新闻（并行版）"
     },
     {
       "time": "4.547453",
@@ -237,6 +231,12 @@
     },
     {
       "time": "3.412352",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 4 条新新闻（并行版）"
+    },
+    {
+      "time": "4.263796",
       "level": "INFO",
       "source": "news",
       "message": "发现 4 条新新闻（并行版）"
