@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-05T09:04:13.140610",
+  "updated": "2026-03-05T09:55:01.850375",
   "level": 15,
   "title": "棒棒糖游侠",
-  "xp_current": 48,
-  "xp_to_next": 200,
+  "xp_current": 85,
+  "xp_to_next": 150,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 11,
+  "bond": 9,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
@@ -138,7 +138,7 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 1,
+  "weekly_done": 0,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
