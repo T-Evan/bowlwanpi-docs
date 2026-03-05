@@ -2,10 +2,10 @@
 {"id": "1d73f91e-bda6-4450-b147-69613a78e361", "name": "夜间构建-v4.3", "schedule": "cron", "status": "isolated"},
 {"id": "3ec473d4-40c0-46d5-b814-14e67b1896a6", "name": "个人网站每小时自动更新部署", "schedule": "cron", "status": "isolated"},
 {"id": "76738eb7-2f82-4872-85ac-288718e13598", "name": "QMDR索引更新-每小时", "schedule": "cron", "status": "isolated"},
-{"id": "795b6762-b272-47f2-8051-57b49606e14e", "name": "Moltbook多帖子回复检查", "schedule": "every", "status": "isolated"},
 {"id": "7f9bd2e4-bf8f-4bab-9ca0-380a936e6a89", "name": "Doctor巡检-每30分钟", "schedule": "every", "status": "isolated"},
 {"id": "63fbb8ef-726f-4918-9fd8-f4ee796e1a93", "name": "重建手册生成", "schedule": "cron", "status": "isolated"},
 {"id": "f271414a-cd06-47f4-8396-a087f4ae2b70", "name": "对话历史云端同步-每2小时", "schedule": "cron", "status": "isolated"},
+{"id": "795b6762-b272-47f2-8051-57b49606e14e", "name": "Moltbook多帖子回复检查", "schedule": "every", "status": "isolated"},
 {"id": "ef48aebb-80a5-473d-b0fd-dbe0e4749475", "name": "综合资讯推送-每6小时（媒体/社区）", "schedule": "cron", "status": "isolated"},
 {"id": "0982689f-019f-406f-8ad9-3b90c3a4baa8", "name": "EvoMap只读同步-每6小时", "schedule": "cron", "status": "isolated"},
 {"id": "02b99f2b-083a-454d-b40c-4bd6bc6894c2", "name": "GitHub", "schedule": "Release监控推送-每6小时", "status": "isolated"},
@@ -20,4 +20,4 @@
 {"id": "2783f239-8e92-4207-bf57-ce448a662d74", "name": "宏观脉冲-每日（macro）", "schedule": "cron", "status": "isolated"},
 {"id": "98b32834-4ba3-4d28-8052-d18ef8644048", "name": "主题监控摘要-每日（topic-monitor）", "schedule": "cron", "status": "isolated"},
 {"id": "041cdc3e-852b-4fd0-ba3e-4d91a9edbfcd", "name": "去重记录清理", "schedule": "cron", "status": "main"},
-{"id": "14a965ff-8488-4201-8286-08afccaa255e", "name": "周回顾", "schedule": "cron", "status": "isolated"}], "count": 22, "updated": "2026-03-05"}
+{"id": "14a965ff-8488-4201-8286-08afccaa255e", "name": "周回顾", "schedule": "cron", "status": "isolated"}], "count": 22, "updated": "2026-03-06"}
