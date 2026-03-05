@@ -1,10 +1,10 @@
 {
   "skills": 81,
-  "tasks": 29,
-  "memory_files": 16,
+  "tasks": 46,
+  "memory_files": 17,
   "vector_count": 9902,
   "cron_tasks": 13,
   "qmdr_vectors": 9902,
-  "updated": "2026-03-06T03:01:40.270756",
+  "updated": "2026-03-06T04:00:59.078039",
   "diary_entries": 7
 }
