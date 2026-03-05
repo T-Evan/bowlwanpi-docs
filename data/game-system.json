@@ -1,13 +1,13 @@
 {
-  "updated": "2026-03-06T05:00:01.716212",
+  "updated": "2026-03-06T05:55:01.995532",
   "level": 15,
   "title": "棒棒糖游侠",
-  "xp_current": 22,
+  "xp_current": 290,
   "xp_to_next": 450,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 63,
-  "streak": 2,
+  "bond": 77,
+  "streak": 1,
   "achievements": 18,
   "achievements_list": [
     {
@@ -16,6 +16,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -51,13 +58,6 @@
       "icon": "🔍",
       "points": 10,
       "id": "type_explore"
-    },
-    {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
     },
     {
       "name": "AI画家",
