@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-05T11:00:01.564786",
+  "updated": "2026-03-05T12:00:01.787517",
   "level": 15,
   "title": "棒棒糖游侠",
-  "xp_current": 153,
-  "xp_to_next": 250,
+  "xp_current": 198,
+  "xp_to_next": 300,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 27,
+  "bond": 43,
   "streak": 1,
   "achievements": 18,
   "daily_done": 1,
@@ -26,11 +26,25 @@
       "id": "count_10"
     },
     {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
+    },
+    {
       "name": "自动化玩家",
       "desc": "完成自动化类型任务",
       "icon": "🤖",
       "points": 15,
       "id": "type_auto"
+    },
+    {
+      "name": "探索者",
+      "desc": "完成探索类任务",
+      "icon": "🔍",
+      "points": 10,
+      "id": "type_explore"
     },
     {
       "name": "百战成名",
@@ -40,25 +54,11 @@
       "id": "count_100"
     },
     {
-      "name": "半百达人",
-      "desc": "累计完成50次任务",
-      "icon": "🏅",
-      "points": 20,
-      "id": "count_50"
-    },
-    {
       "name": "早起的鸟儿",
       "desc": "在8点前完成任务",
       "icon": "🌅",
       "points": 10,
       "id": "early_bird"
-    },
-    {
-      "name": "探索者",
-      "desc": "完成探索类任务",
-      "icon": "🔍",
-      "points": 10,
-      "id": "type_explore"
     },
     {
       "name": "夜猫子",
