@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-05T08:25:01.732201",
+  "updated": "2026-03-05T09:04:13.140610",
   "level": 15,
   "title": "棒棒糖游侠",
-  "xp_current": 187,
-  "xp_to_next": 300,
+  "xp_current": 48,
+  "xp_to_next": 200,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 42,
+  "bond": 11,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
@@ -16,6 +16,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "自动化玩家",
+      "desc": "完成自动化类型任务",
+      "icon": "🤖",
+      "points": 15,
+      "id": "type_auto"
     },
     {
       "name": "百战成名",
@@ -37,13 +44,6 @@
       "icon": "🌅",
       "points": 10,
       "id": "early_bird"
-    },
-    {
-      "name": "自动化玩家",
-      "desc": "完成自动化类型任务",
-      "icon": "🤖",
-      "points": 15,
-      "id": "type_auto"
     },
     {
       "name": "探索者",
