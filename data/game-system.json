@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-06T07:00:02.310945",
+  "updated": "2026-03-06T07:55:01.749465",
   "level": 15,
   "title": "棒棒糖游侠",
-  "xp_current": 178,
-  "xp_to_next": 500,
-  "season_tier": 2,
-  "season_tokens": 8,
-  "bond": 95,
+  "xp_current": 31,
+  "xp_to_next": 150,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "bond": 6,
   "streak": 1,
   "achievements": 18,
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -24,6 +16,20 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "早起的鸟儿",
+      "desc": "在8点前完成任务",
+      "icon": "🌅",
+      "points": 10,
+      "id": "early_bird"
+    },
+    {
+      "name": "自动化玩家",
+      "desc": "完成自动化类型任务",
+      "icon": "🤖",
+      "points": 15,
+      "id": "type_auto"
     },
     {
       "name": "百战成名",
@@ -40,25 +46,11 @@
       "id": "count_50"
     },
     {
-      "name": "早起的鸟儿",
-      "desc": "在8点前完成任务",
-      "icon": "🌅",
-      "points": 10,
-      "id": "early_bird"
-    },
-    {
       "name": "夜猫子",
       "desc": "在23点后仍然活跃",
       "icon": "🦉",
       "points": 15,
       "id": "night_owl"
-    },
-    {
-      "name": "自动化玩家",
-      "desc": "完成自动化类型任务",
-      "icon": "🤖",
-      "points": 15,
-      "id": "type_auto"
     },
     {
       "name": "探索者",
@@ -144,5 +136,13 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ]
+  ],
+  "daily_done": 1,
+  "weekly_done": 0,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 0
 }
