@@ -1,15 +1,22 @@
 {
-  "updated": "2026-03-06T17:55:01.716729",
+  "updated": "2026-03-06T19:55:02.055888",
   "level": 15,
   "title": "棒棒糖游侠",
-  "xp_current": 479,
-  "xp_to_next": 600,
-  "season_tier": 2,
-  "season_tokens": 8,
-  "bond": 178,
+  "xp_current": 38,
+  "xp_to_next": 150,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "bond": 6,
   "streak": 1,
   "achievements": 18,
   "achievements_list": [
+    {
+      "name": "自动化玩家",
+      "desc": "完成自动化类型任务",
+      "icon": "🤖",
+      "points": 15,
+      "id": "type_auto"
+    },
     {
       "name": "计数专家",
       "desc": "完成10次任务计数",
@@ -30,13 +37,6 @@
       "icon": "🌅",
       "points": 10,
       "id": "early_bird"
-    },
-    {
-      "name": "自动化玩家",
-      "desc": "完成自动化类型任务",
-      "icon": "🤖",
-      "points": 15,
-      "id": "type_auto"
     },
     {
       "name": "探索者",
@@ -138,11 +138,11 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
+  "weekly_done": 0,
+  "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "连胜燃烧",
-  "talent_points": 1
+  "talent_points": 0
 }
