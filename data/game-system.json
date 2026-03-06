@@ -1,14 +1,14 @@
 {
-  "updated": "2026-03-07T04:00:01.886216",
-  "level": 4,
-  "title": "熬糖工人",
-  "xp_current": 34,
-  "xp_to_next": 250,
+  "updated": "2026-03-07T05:00:01.853918",
+  "level": 5,
+  "title": "拌糖熟练工",
+  "xp_current": 102,
+  "xp_to_next": 300,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 19,
+  "bond": 36,
   "streak": 1,
-  "achievements": 4,
+  "achievements": 5,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -30,6 +30,13 @@
       "icon": "🤖",
       "points": 15,
       "id": "type_auto"
+    },
+    {
+      "name": "探索者",
+      "desc": "完成探索类任务",
+      "icon": "🔍",
+      "points": 10,
+      "id": "type_explore"
     },
     {
       "name": "周末战士",
