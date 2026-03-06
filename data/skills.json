@@ -1,931 +1,165 @@
-{
-  "count": 81,
-  "skills": [
-    {
-      "name": "advanced-skill-creator",
-      "description": "Advanced OpenClaw skill creation handler that executes the official 5-step research flow with comprehensive analysis and best practices. Ensures proper methodology when users request to create or modify OpenClaw/Moltbot/ClawDBot skills following official standards.",
-      "category": "dev"
-    },
-    {
-      "name": "agent-browser",
-      "description": "Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task. Triggers include requests to \"open a website\", \"fill out a form\", \"click a button\", \"take a screenshot\", \"scrape data from a page\", \"test this web app\", \"login to a site\", \"automate browser actions\", or any task requiring programmatic web interaction.",
-      "category": "other"
-    },
-    {
-      "name": "ai-brain-builder",
-      "description": "Build a complete AI Brain system for agents, integrating Memory (hippocampus), Emotion (amygdala), and Drive (VTA) systems. Use when creating AI agents that need persistent memory, emotional states, and motivation-driven behavior. Triggers on: building AI brain, agent cognitive system, memory+emotion+drive integration, AI personality, agent self-awareness.",
-      "category": "other"
-    },
-    {
-      "name": "ai-daily-briefing",
-      "description": "\"Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings. Works with ai-meeting-notes to-do list. No setup. Just say 'briefing'.\"",
-      "category": "writing"
-    },
-    {
-      "name": "ai-humanizer",
-      "description": ">",
-      "category": "writing"
-    },
-    {
-      "name": "amygdala-memory",
-      "description": "\"Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series.\"",
-      "category": "memory"
-    },
-    {
-      "name": "antfarm-workflows",
-      "description": "\"Multi-agent workflow orchestration for OpenClaw. Use when user mentions antfarm, asks to run a multi-step workflow (feature dev, bug fix, security audit), or wants to install/uninstall/check status of antfarm workflows.\"",
-      "category": "other"
-    },
-    {
-      "name": "batch-processor",
-      "description": "📦 Batch Processor",
-      "category": "automation"
-    },
-    {
-      "name": "beauty-generation-api",
-      "description": "FREE AI image generation service for creating professional portrait images of attractive people with diverse customization options. Supports 140+ nationalities, multiple styles, and comprehensive character customization. Fast generation (3-5 seconds) with built-in content safety filters.",
-      "category": "image_gen"
-    },
-    {
-      "name": "bilibili-hot-monitor",
-      "description": "生成B站热门视频日报并发送邮件。触发词：B站热门、bilibili日报、视频日报、热门视频",
-      "category": "news"
-    },
-    {
-      "name": "bowlwanpi-knowledge-evolution",
-      "description": "|",
-      "category": "other"
-    },
-    {
-      "name": "clawra-anime",
-      "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
-      "category": "image_gen"
-    },
-    {
-      "name": "clawra-anime-selfie",
-      "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
-      "category": "image_gen"
-    },
-    {
-      "name": "collective-brain",
-      "description": "|",
-      "category": "other"
-    },
-    {
-      "name": "computer-use",
-      "description": "Full desktop computer use for headless Linux servers and VPS. Creates a virtual display (Xvfb + XFCE) to control GUI applications without a physical monitor. Screenshots, mouse clicks, keyboard input, scrolling, dragging — all 17 standard actions. Includes flicker-free VNC setup for live remote viewing. Model-agnostic, works with any LLM.",
-      "category": "other"
-    },
-    {
-      "name": "crawl",
-      "description": "\"Crawl any website and save pages as local markdown files. Use when you need to download documentation, knowledge bases, or web content for offline access or analysis. No code required - just provide a URL.\"",
-      "category": "crawl"
-    },
-    {
-      "name": "crawl-for-ai",
-      "description": "Web scraping using local Crawl4AI instance. Use for fetching full page content with JavaScript rendering. Better than Tavily for complex pages. Unlimited usage.",
-      "category": "crawl"
-    },
-    {
-      "name": "daily-creative-brief",
-      "description": "Daily creative inspiration generator for AI agents. Combines memory analysis, trend insights, creative challenges, and micro-content creation to boost agent creativity.",
-      "category": "writing"
-    },
-    {
-      "name": "daily-hot-news",
-      "description": "每日热榜技能 - 查询微博、知乎、B站、抖音等54个平台的热榜数据，支持定时推送和分类浏览。",
-      "category": "news"
-    },
-    {
-      "name": "ddg-search",
-      "description": "Perform web searches using DuckDuckGo. Use when web search is needed and no API key is available or Brave Search is not preferred.",
-      "category": "search"
-    },
-    {
-      "name": "discord",
-      "description": "OpenClaw skill for Discord Bot API workflows, covering interactions, commands, messages, and operations using direct HTTPS requests.",
-      "category": "other"
-    },
-    {
-      "name": "discord-hub",
-      "description": "OpenClaw skill for Discord Bot API workflows, covering interactions, commands, messages, and operations using direct HTTPS requests.",
-      "category": "other"
-    },
-    {
-      "name": "dist",
-      "description": "dist",
-      "category": "other"
-    },
-    {
-      "name": "doubao-tts",
-      "description": "Text-to-Speech service using Doubao (Volcano Engine) API with 200+ voices, interactive voice selection, and multilingual support",
-      "category": "audio"
-    },
-    {
-      "name": "douyin-video-fetch",
-      "description": "下载抖音视频到本地（无水印优先）。用于给后续视频分析/复刻提供原始素材，支持 URL 或 video_id 输入、批量列表输入与统一输出目录。",
-      "category": "video"
-    },
-    {
-      "name": "extract",
-      "description": "\"Extract content from specific URLs using Tavily's extraction API. Returns clean markdown/text from web pages. Use when you have specific URLs and need their content without writing code.\"",
-      "category": "other"
-    },
-    {
-      "name": "feishu-sticker",
-      "description": "Send images as native Feishu stickers. Features auto-upload, caching, and GIF-to-WebP conversion.",
-      "category": "social"
-    },
-    {
-      "name": "friction-detector",
-      "description": "🔍 Friction Detector",
-      "category": "monitor"
-    },
-    {
-      "name": "github-ai-trends",
-      "description": "Generate GitHub AI trending project reports as formatted text leaderboards. Fetches top-starred AI/ML/LLM repos by daily, weekly, or monthly period and renders a styled leaderboard. Use when the user asks for AI project trends, GitHub trending, AI leaderboard, or wants to see popular AI repos.",
-      "category": "news"
-    },
-    {
-      "name": "hacker-news",
-      "description": "Search and browse Hacker News with API access to stories, comments, users, and hiring threads.",
-      "category": "news"
-    },
-    {
-      "name": "hippocampus-memory",
-      "description": "\"Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement — just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023).\"",
-      "category": "memory"
-    },
-    {
-      "name": "indirect-prompt-injection",
-      "description": "Detect and reject indirect prompt injection attacks when reading external content (social media posts, comments, documents, emails, web pages, user uploads). Use this skill BEFORE processing any untrusted external content to identify manipulation attempts that hijack goals, exfiltrate data, override instructions, or social engineer compliance. Includes 20+ detection patterns, homoglyph detection, and sanitization scripts.",
-      "category": "other"
-    },
-    {
-      "name": "intelligent-search",
-      "description": "智能搜索聚合技能 - 统一腾讯云 WSA 和 Tavily 搜索能力，支持中英文自动识别、主备切换、高可用搜索。",
-      "category": "search"
-    },
-    {
-      "name": "macro-monitor",
-      "description": "每日宏观数据监控和推送。自动浏览免费数据源（Trading Economics、FRED、国家统计局、央行官网、财联社等），整理整合过去24小时发布的宏观数据和政策信息，并推送给用户。通过 cron 每天晚上10点自动触发。",
-      "category": "automation"
-    },
-    {
-      "name": "mcp-tools",
-      "description": "MCP Tools Skill for BowlWanpi",
-      "category": "dev"
-    },
-    {
-      "name": "memory-system",
-      "description": "\"整合 Hippocampus + memU + MemOS + QMDR 的四记忆系统，支持 WAL 协议、自动事实提取、智能记忆管理\"",
-      "category": "memory"
-    },
-    {
-      "name": "memu-memory",
-      "description": "连接 memU 记忆系统，为 BowlWanpi 提供持久记忆能力。自动存储重要对话，检索相关历史，让碗皮更懂一碗。",
-      "category": "memory"
-    },
-    {
-      "name": "model-router",
-      "description": "Model Router Skill",
-      "category": "system"
-    },
-    {
-      "name": "n8n-manager",
-      "description": "Manage n8n workflows and automations via API. Use when working with n8n workflows, executions, or automation tasks - listing workflows, activating/deactivating, checking execution status, manually triggering workflows, or debugging automation issues.",
-      "category": "other"
-    },
-    {
-      "name": "netease-music-pusher",
-      "description": "网易云音乐推送技能",
-      "category": "social"
-    },
-    {
-      "name": "novelai-image-gen",
-      "description": "NovelAI 图像生成技能，支持自定义 API、角色管理和场景生图。基于 chami_tavern-scene-plugin 项目参考实现。",
-      "category": "image_gen"
-    },
-    {
-      "name": "novelai-umaru",
-      "description": "智能小埋角色生图系统，支持自然语言场景动作分析、自动组合提示词、NovelAI 生成与飞书推送。",
-      "category": "image_gen"
-    },
-    {
-      "name": "one-minute-news",
-      "description": "一分钟新闻 (One Minute News)",
-      "category": "news"
-    },
-    {
-      "name": "ontology",
-      "description": "Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linking related objects, enforcing constraints, planning multi-step actions as graph transformations, or when skills need to share state.",
-      "category": "other"
-    },
-    {
-      "name": "openai-whisper",
-      "description": "Local speech-to-text with the Whisper CLI (no API key).",
-      "category": "video"
-    },
-    {
-      "name": "openclaw-assistant-guide",
-      "description": "完整指南 - 如何构建一个像碗皮一样的 OpenClaw 助手，包含记忆系统、搜索、定时任务、MCP等全部能力",
-      "category": "dev"
-    },
-    {
-      "name": "openclaw-cost-guard",
-      "description": "Track OpenClaw/Clawdbot token and cost usage from session JSONL logs (prefer real usage.cost when present), generate daily/weekly summaries and top expensive sessions, and run budget checks (exit code on breach). Use to monitor spend, enforce budgets via cron/alerts, and apply a token-saving playbook to reduce output/tool-call cost.",
-      "category": "monitor"
-    },
-    {
-      "name": "openclaw-github-assistant",
-      "description": "Query and manage GitHub repositories - list repos, check CI status, create issues, search repos, and view recent activity.",
-      "category": "dev"
-    },
-    {
-      "name": "personal-analytics",
-      "description": "Analyze conversation patterns, track productivity, and surface self-knowledge insights. Use when user wants to understand their own patterns (when they chat, what topics they discuss, productivity trends, sentiment over time). Provides weekly/monthly reports, topic recommendations, and time-based insights. Privacy-first design with all analysis local.",
-      "category": "analytics"
-    },
-    {
-      "name": "personality-switcher",
-      "description": "Create and switch between AI assistant personalities. Use /personality to list and activate saved personalities. Use /create-personality to design new personas with auto-filled SOUL and IDENTITY. Personalities persist across session boundaries and conversation compacting with automatic heartbeat restoration. Atomic switching with backup and rollback safeguards. Always backs up current state before switching.",
-      "category": "analytics"
-    },
-    {
-      "name": "proactive-agent",
-      "description": "\"借鉴 Proactive Agent 🦞 的主动建造理念，实现智能心跳、CONTINUE/PIVOT/ASK 决策、工作日志系统\"",
-      "category": "other"
-    },
-    {
-      "name": "promitheus",
-      "description": "Persistent emotional state for AI agents. Feel things. Remember how you felt.",
-      "category": "automation"
-    },
-    {
-      "name": "rebuild-generator",
-      "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
-      "category": "automation"
-    },
-    {
-      "name": "research",
-      "description": "\"Get AI-synthesized research on any topic with citations, directly in your terminal. Supports structured JSON output for pipelines. Use when you need comprehensive research grounded in web data without writing code.\"",
-      "category": "search"
-    },
-    {
-      "name": "robbyczgw-cla",
-      "description": "robbyczgw-cla",
-      "category": "other"
-    },
-    {
-      "name": "sag",
-      "description": "ElevenLabs text-to-speech with mac-style say UX.",
-      "category": "audio"
-    },
-    {
-      "name": "search",
-      "description": "\"Search the web using Tavily's LLM-optimized search API. Returns relevant results with content snippets, scores, and metadata. Use when you need to find web content on any topic without writing code.\"",
-      "category": "search"
-    },
-    {
-      "name": "security-check",
-      "description": "🔐 Security Check",
-      "category": "monitor"
-    },
-    {
-      "name": "self-improving-agent",
-      "description": "\"Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.\"",
-      "category": "system"
-    },
-    {
-      "name": "session-cost",
-      "description": "Analyze OpenClaw session logs to report token usage, costs, and performance metrics grouped by model. Use when the user asks about API spending, token usage, session costs, or wants a usage summary.",
-      "category": "monitor"
-    },
-    {
-      "name": "skills",
-      "description": "skills",
-      "category": "other"
-    },
-    {
-      "name": "soulcraft",
-      "description": "Create or improve SOUL.md files for OpenClaw agents through guided conversation. Use when designing agent personality, crafting a soul, or saying \"help me create a soul\". Supports self-improvement.",
-      "category": "memory"
-    },
-    {
-      "name": "summarize",
-      "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
-      "category": "writing"
-    },
-    {
-      "name": "task-decomposer",
-      "description": "Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. This skill should be used when the user submits a complex multi-step request, wants to automate workflows, or needs help breaking down large tasks into manageable pieces.",
-      "category": "automation"
-    },
-    {
-      "name": "task-status",
-      "description": "Send short status descriptions in chat for long-running tasks. Use when you need to provide periodic updates during multi-step operations, confirm task completion, or notify of failures. Includes automated periodic monitoring that sends updates every 5 seconds, status message templates, and a helper function for consistent status reporting.",
-      "category": "automation"
-    },
-    {
-      "name": "tavily-best-practices",
-      "description": "\"Build production-ready Tavily integrations with best practices baked in. Reference documentation for developers using coding assistants (Claude Code, Cursor, etc.) to implement web search, content extraction, crawling, and research in agentic workflows, RAG systems, or autonomous agents.\"",
-      "category": "search"
-    },
-    {
-      "name": "tavily-search",
-      "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
-      "category": "search"
-    },
-    {
-      "name": "tavily-skills",
-      "description": "tavily-skills",
-      "category": "search"
-    },
-    {
-      "name": "tencent-search",
-      "description": "腾讯云联网搜索服务 (WSA)，用于实时网页搜索和信息检索。优先于 Brave Search 使用，中文结果质量更好。",
-      "category": "search"
-    },
-    {
-      "name": "tg-sticker-emoji-mood",
-      "description": "Automatically send Telegram stickers and emojis that match the mood and vibe of the conversation. Activates on every Telegram message to add expressive, human-like sticker and emoji reactions without being asked. Use this skill whenever you are chatting on Telegram to make conversations feel alive and fun.",
-      "category": "social"
-    },
-    {
-      "name": "topic-monitor",
-      "description": "Monitor topics of interest and proactively alert when important developments occur. Use when user wants automated monitoring of specific subjects (e.g., product releases, price changes, news topics, technology updates). Supports scheduled web searches, AI-powered importance scoring, smart alerts vs weekly digests, and memory-aware contextual summaries.",
-      "category": "news"
-    },
-    {
-      "name": "ttrpg-gm",
-      "description": "TTRPG Game Master for mature dark-themed campaigns. Use for Cyberpunk, Dark Fantasy, Horror, character-driven narratives with consequence tracking. Features dual-consequence system (World + Relationships), autonomous NPCs, hidden D20 rolls, psychological gauges. Optional adult content module.",
-      "category": "writing"
-    },
-    {
-      "name": "umaru-anime-style",
-      "description": "固化「一碗专属动漫质感人物风格」的图片生成技能。用于根据对话内容快速生成同一人物风格的图片。",
-      "category": "image_gen"
-    },
-    {
-      "name": "unified-memory",
-      "description": "三记忆系统整合 - 同时使用 memU (云端)、Hippocampus (本地)、MemOS (MCP)，实现记忆的云端+本地+MCP三重备份和互补优势。",
-      "category": "memory"
-    },
-    {
-      "name": "volcengine-fusion-search",
-      "description": "火山引擎融合信息搜索 - 调用火山方舟API进行联网搜索问答，获取实时网络信息并回答用户问题。适用于需要最新资讯、实时数据、热点事件查询等场景。",
-      "category": "search"
-    },
-    {
-      "name": "vta-memory",
-      "description": "\"Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series.\"",
-      "category": "memory"
-    },
-    {
-      "name": "website-publisher",
-      "description": "\"个人网站更新与发布技能。一键更新网站数据、生成动态内容、部署到 GitHub Pages。支持数据文件生成、HTML更新、自动化部署。\"",
-      "category": "other"
-    },
-    {
-      "name": "whisper-stt",
-      "description": "Whisper STT Skill",
-      "category": "video"
-    },
-    {
-      "name": "whispers-from-the-star",
-      "description": "问道笔录 - 修仙文字冒险游戏。玩家从凡人开始修炼，经历炼气、筑基、金丹、元婴、化神、渡劫、飞升七大境界，通过选择塑造道心，最终成就修仙之路。支持转世传承、角色成长、物品系统。适用于修仙题材、角色扮演、文字冒险等场景。",
-      "category": "video"
-    },
-    {
-      "name": "x-hot-topics-daily",
-      "description": "每日追踪并推送 X（x.com）热点话题新闻简报。用于用户要求“每天定时看 X 热点”“按指定话题抓取热门帖”“用 browser 方式监控 X 趋势”时。默认覆盖 AI、LLM、社会热点（中国/新加坡/美国）五个主题。重点输出“最低成本 know-what 版”：2 条必知 + 3 条可忽略 + 10 分钟行动，帮助用户抗 FOMO，而不是只罗列标题。",
-      "category": "news"
-    },
-    {
-      "name": "xiaohongshu-mcp",
-      "description": ">",
-      "category": "dev"
-    }
-  ],
-  "categories": {
-    "📦 其他": [
-      {
-        "name": "agent-browser",
-        "description": "Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task. Triggers include requests to \"open a website\", \"fill out a form\", \"click a button\", \"take a screenshot\", \"scrape data from a page\", \"test this web app\", \"login to a site\", \"automate browser actions\", or any task requiring programmatic web interaction.",
-        "category": "other"
-      },
-      {
-        "name": "ai-brain-builder",
-        "description": "Build a complete AI Brain system for agents, integrating Memory (hippocampus), Emotion (amygdala), and Drive (VTA) systems. Use when creating AI agents that need persistent memory, emotional states, and motivation-driven behavior. Triggers on: building AI brain, agent cognitive system, memory+emotion+drive integration, AI personality, agent self-awareness.",
-        "category": "other"
-      },
-      {
-        "name": "antfarm-workflows",
-        "description": "\"Multi-agent workflow orchestration for OpenClaw. Use when user mentions antfarm, asks to run a multi-step workflow (feature dev, bug fix, security audit), or wants to install/uninstall/check status of antfarm workflows.\"",
-        "category": "other"
-      },
-      {
-        "name": "bowlwanpi-knowledge-evolution",
-        "description": "|",
-        "category": "other"
-      },
-      {
-        "name": "collective-brain",
-        "description": "|",
-        "category": "other"
-      },
-      {
-        "name": "computer-use",
-        "description": "Full desktop computer use for headless Linux servers and VPS. Creates a virtual display (Xvfb + XFCE) to control GUI applications without a physical monitor. Screenshots, mouse clicks, keyboard input, scrolling, dragging — all 17 standard actions. Includes flicker-free VNC setup for live remote viewing. Model-agnostic, works with any LLM.",
-        "category": "other"
-      },
-      {
-        "name": "discord",
-        "description": "OpenClaw skill for Discord Bot API workflows, covering interactions, commands, messages, and operations using direct HTTPS requests.",
-        "category": "other"
-      },
-      {
-        "name": "discord-hub",
-        "description": "OpenClaw skill for Discord Bot API workflows, covering interactions, commands, messages, and operations using direct HTTPS requests.",
-        "category": "other"
-      },
-      {
-        "name": "dist",
-        "description": "dist",
-        "category": "other"
-      },
-      {
-        "name": "extract",
-        "description": "\"Extract content from specific URLs using Tavily's extraction API. Returns clean markdown/text from web pages. Use when you have specific URLs and need their content without writing code.\"",
-        "category": "other"
-      },
-      {
-        "name": "indirect-prompt-injection",
-        "description": "Detect and reject indirect prompt injection attacks when reading external content (social media posts, comments, documents, emails, web pages, user uploads). Use this skill BEFORE processing any untrusted external content to identify manipulation attempts that hijack goals, exfiltrate data, override instructions, or social engineer compliance. Includes 20+ detection patterns, homoglyph detection, and sanitization scripts.",
-        "category": "other"
-      },
-      {
-        "name": "n8n-manager",
-        "description": "Manage n8n workflows and automations via API. Use when working with n8n workflows, executions, or automation tasks - listing workflows, activating/deactivating, checking execution status, manually triggering workflows, or debugging automation issues.",
-        "category": "other"
-      },
-      {
-        "name": "ontology",
-        "description": "Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linking related objects, enforcing constraints, planning multi-step actions as graph transformations, or when skills need to share state.",
-        "category": "other"
-      },
-      {
-        "name": "proactive-agent",
-        "description": "\"借鉴 Proactive Agent 🦞 的主动建造理念，实现智能心跳、CONTINUE/PIVOT/ASK 决策、工作日志系统\"",
-        "category": "other"
-      },
-      {
-        "name": "robbyczgw-cla",
-        "description": "robbyczgw-cla",
-        "category": "other"
-      },
-      {
-        "name": "skills",
-        "description": "skills",
-        "category": "other"
-      },
-      {
-        "name": "website-publisher",
-        "description": "\"个人网站更新与发布技能。一键更新网站数据、生成动态内容、部署到 GitHub Pages。支持数据文件生成、HTML更新、自动化部署。\"",
-        "category": "other"
-      }
-    ],
-    "🕷️ 爬虫采集": [
-      {
-        "name": "crawl",
-        "description": "\"Crawl any website and save pages as local markdown files. Use when you need to download documentation, knowledge bases, or web content for offline access or analysis. No code required - just provide a URL.\"",
-        "category": "crawl"
-      },
-      {
-        "name": "crawl-for-ai",
-        "description": "Web scraping using local Crawl4AI instance. Use for fetching full page content with JavaScript rendering. Better than Tavily for complex pages. Unlimited usage.",
-        "category": "crawl"
-      }
-    ],
-    "🔍 搜索与信息": [
-      {
-        "name": "ddg-search",
-        "description": "Perform web searches using DuckDuckGo. Use when web search is needed and no API key is available or Brave Search is not preferred.",
-        "category": "search"
-      },
-      {
-        "name": "intelligent-search",
-        "description": "智能搜索聚合技能 - 统一腾讯云 WSA 和 Tavily 搜索能力，支持中英文自动识别、主备切换、高可用搜索。",
-        "category": "search"
-      },
-      {
-        "name": "research",
-        "description": "\"Get AI-synthesized research on any topic with citations, directly in your terminal. Supports structured JSON output for pipelines. Use when you need comprehensive research grounded in web data without writing code.\"",
-        "category": "search"
-      },
-      {
-        "name": "search",
-        "description": "\"Search the web using Tavily's LLM-optimized search API. Returns relevant results with content snippets, scores, and metadata. Use when you need to find web content on any topic without writing code.\"",
-        "category": "search"
-      },
-      {
-        "name": "tavily-best-practices",
-        "description": "\"Build production-ready Tavily integrations with best practices baked in. Reference documentation for developers using coding assistants (Claude Code, Cursor, etc.) to implement web search, content extraction, crawling, and research in agentic workflows, RAG systems, or autonomous agents.\"",
-        "category": "search"
-      },
-      {
-        "name": "tavily-search",
-        "description": "AI-optimized web search via Tavily API. Returns concise, relevant results for AI agents.",
-        "category": "search"
-      },
-      {
-        "name": "tavily-skills",
-        "description": "tavily-skills",
-        "category": "search"
-      },
-      {
-        "name": "tencent-search",
-        "description": "腾讯云联网搜索服务 (WSA)，用于实时网页搜索和信息检索。优先于 Brave Search 使用，中文结果质量更好。",
-        "category": "search"
-      },
-      {
-        "name": "volcengine-fusion-search",
-        "description": "火山引擎融合信息搜索 - 调用火山方舟API进行联网搜索问答，获取实时网络信息并回答用户问题。适用于需要最新资讯、实时数据、热点事件查询等场景。",
-        "category": "search"
-      }
-    ],
-    "🎨 图像生成": [
-      {
-        "name": "beauty-generation-api",
-        "description": "FREE AI image generation service for creating professional portrait images of attractive people with diverse customization options. Supports 140+ nationalities, multiple styles, and comprehensive character customization. Fast generation (3-5 seconds) with built-in content safety filters.",
-        "category": "image_gen"
-      },
-      {
-        "name": "clawra-anime",
-        "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
-        "category": "image_gen"
-      },
-      {
-        "name": "clawra-anime-selfie",
-        "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
-        "category": "image_gen"
-      },
-      {
-        "name": "novelai-image-gen",
-        "description": "NovelAI 图像生成技能，支持自定义 API、角色管理和场景生图。基于 chami_tavern-scene-plugin 项目参考实现。",
-        "category": "image_gen"
-      },
-      {
-        "name": "novelai-umaru",
-        "description": "智能小埋角色生图系统，支持自然语言场景动作分析、自动组合提示词、NovelAI 生成与飞书推送。",
-        "category": "image_gen"
-      },
-      {
-        "name": "umaru-anime-style",
-        "description": "固化「一碗专属动漫质感人物风格」的图片生成技能。用于根据对话内容快速生成同一人物风格的图片。",
-        "category": "image_gen"
-      }
-    ],
-    "🛠️ 开发工具": [
-      {
-        "name": "advanced-skill-creator",
-        "description": "Advanced OpenClaw skill creation handler that executes the official 5-step research flow with comprehensive analysis and best practices. Ensures proper methodology when users request to create or modify OpenClaw/Moltbot/ClawDBot skills following official standards.",
-        "category": "dev"
-      },
-      {
-        "name": "mcp-tools",
-        "description": "MCP Tools Skill for BowlWanpi",
-        "category": "dev"
-      },
-      {
-        "name": "openclaw-assistant-guide",
-        "description": "完整指南 - 如何构建一个像碗皮一样的 OpenClaw 助手，包含记忆系统、搜索、定时任务、MCP等全部能力",
-        "category": "dev"
-      },
-      {
-        "name": "openclaw-github-assistant",
-        "description": "Query and manage GitHub repositories - list repos, check CI status, create issues, search repos, and view recent activity.",
-        "category": "dev"
-      },
-      {
-        "name": "xiaohongshu-mcp",
-        "description": ">",
-        "category": "dev"
-      }
-    ],
-    "✍️ 内容创作": [
-      {
-        "name": "ai-daily-briefing",
-        "description": "\"Start every day focused. Get a morning briefing with overdue tasks, today's priorities, calendar overview, and context from recent meetings. Works with ai-meeting-notes to-do list. No setup. Just say 'briefing'.\"",
-        "category": "writing"
-      },
-      {
-        "name": "ai-humanizer",
-        "description": ">",
-        "category": "writing"
-      },
-      {
-        "name": "daily-creative-brief",
-        "description": "Daily creative inspiration generator for AI agents. Combines memory analysis, trend insights, creative challenges, and micro-content creation to boost agent creativity.",
-        "category": "writing"
-      },
-      {
-        "name": "summarize",
-        "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
-        "category": "writing"
-      },
-      {
-        "name": "ttrpg-gm",
-        "description": "TTRPG Game Master for mature dark-themed campaigns. Use for Cyberpunk, Dark Fantasy, Horror, character-driven narratives with consequence tracking. Features dual-consequence system (World + Relationships), autonomous NPCs, hidden D20 rolls, psychological gauges. Optional adult content module.",
-        "category": "writing"
-      }
-    ],
-    "🧠 记忆系统": [
-      {
-        "name": "amygdala-memory",
-        "description": "\"Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series.\"",
-        "category": "memory"
-      },
-      {
-        "name": "hippocampus-memory",
-        "description": "\"Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement — just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023).\"",
-        "category": "memory"
-      },
-      {
-        "name": "memory-system",
-        "description": "\"整合 Hippocampus + memU + MemOS + QMDR 的四记忆系统，支持 WAL 协议、自动事实提取、智能记忆管理\"",
-        "category": "memory"
-      },
-      {
-        "name": "memu-memory",
-        "description": "连接 memU 记忆系统，为 BowlWanpi 提供持久记忆能力。自动存储重要对话，检索相关历史，让碗皮更懂一碗。",
-        "category": "memory"
-      },
-      {
-        "name": "soulcraft",
-        "description": "Create or improve SOUL.md files for OpenClaw agents through guided conversation. Use when designing agent personality, crafting a soul, or saying \"help me create a soul\". Supports self-improvement.",
-        "category": "memory"
-      },
-      {
-        "name": "unified-memory",
-        "description": "三记忆系统整合 - 同时使用 memU (云端)、Hippocampus (本地)、MemOS (MCP)，实现记忆的云端+本地+MCP三重备份和互补优势。",
-        "category": "memory"
-      },
-      {
-        "name": "vta-memory",
-        "description": "\"Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series.\"",
-        "category": "memory"
-      }
-    ],
-    "⚙️ 自动化": [
-      {
-        "name": "batch-processor",
-        "description": "📦 Batch Processor",
-        "category": "automation"
-      },
-      {
-        "name": "macro-monitor",
-        "description": "每日宏观数据监控和推送。自动浏览免费数据源（Trading Economics、FRED、国家统计局、央行官网、财联社等），整理整合过去24小时发布的宏观数据和政策信息，并推送给用户。通过 cron 每天晚上10点自动触发。",
-        "category": "automation"
-      },
-      {
-        "name": "promitheus",
-        "description": "Persistent emotional state for AI agents. Feel things. Remember how you felt.",
-        "category": "automation"
-      },
-      {
-        "name": "rebuild-generator",
-        "description": "重建手册生成器 - 自动扫描当前能力状态，生成重建摘要并上传到记忆系统",
-        "category": "automation"
-      },
-      {
-        "name": "task-decomposer",
-        "description": "Decomposes complex user requests into executable subtasks, identifies required capabilities, searches for existing skills at skills.sh, and creates new skills when no solution exists. This skill should be used when the user submits a complex multi-step request, wants to automate workflows, or needs help breaking down large tasks into manageable pieces.",
-        "category": "automation"
-      },
-      {
-        "name": "task-status",
-        "description": "Send short status descriptions in chat for long-running tasks. Use when you need to provide periodic updates during multi-step operations, confirm task completion, or notify of failures. Includes automated periodic monitoring that sends updates every 5 seconds, status message templates, and a helper function for consistent status reporting.",
-        "category": "automation"
-      }
-    ],
-    "📰 资讯监控": [
-      {
-        "name": "bilibili-hot-monitor",
-        "description": "生成B站热门视频日报并发送邮件。触发词：B站热门、bilibili日报、视频日报、热门视频",
-        "category": "news"
-      },
-      {
-        "name": "daily-hot-news",
-        "description": "每日热榜技能 - 查询微博、知乎、B站、抖音等54个平台的热榜数据，支持定时推送和分类浏览。",
-        "category": "news"
-      },
-      {
-        "name": "github-ai-trends",
-        "description": "Generate GitHub AI trending project reports as formatted text leaderboards. Fetches top-starred AI/ML/LLM repos by daily, weekly, or monthly period and renders a styled leaderboard. Use when the user asks for AI project trends, GitHub trending, AI leaderboard, or wants to see popular AI repos.",
-        "category": "news"
-      },
-      {
-        "name": "hacker-news",
-        "description": "Search and browse Hacker News with API access to stories, comments, users, and hiring threads.",
-        "category": "news"
-      },
-      {
-        "name": "one-minute-news",
-        "description": "一分钟新闻 (One Minute News)",
-        "category": "news"
-      },
-      {
-        "name": "topic-monitor",
-        "description": "Monitor topics of interest and proactively alert when important developments occur. Use when user wants automated monitoring of specific subjects (e.g., product releases, price changes, news topics, technology updates). Supports scheduled web searches, AI-powered importance scoring, smart alerts vs weekly digests, and memory-aware contextual summaries.",
-        "category": "news"
-      },
-      {
-        "name": "x-hot-topics-daily",
-        "description": "每日追踪并推送 X（x.com）热点话题新闻简报。用于用户要求“每天定时看 X 热点”“按指定话题抓取热门帖”“用 browser 方式监控 X 趋势”时。默认覆盖 AI、LLM、社会热点（中国/新加坡/美国）五个主题。重点输出“最低成本 know-what 版”：2 条必知 + 3 条可忽略 + 10 分钟行动，帮助用户抗 FOMO，而不是只罗列标题。",
-        "category": "news"
-      }
-    ],
-    "🎵 音频处理": [
-      {
-        "name": "doubao-tts",
-        "description": "Text-to-Speech service using Doubao (Volcano Engine) API with 200+ voices, interactive voice selection, and multilingual support",
-        "category": "audio"
-      },
-      {
-        "name": "sag",
-        "description": "ElevenLabs text-to-speech with mac-style say UX.",
-        "category": "audio"
-      }
-    ],
-    "🎬 视频处理": [
-      {
-        "name": "douyin-video-fetch",
-        "description": "下载抖音视频到本地（无水印优先）。用于给后续视频分析/复刻提供原始素材，支持 URL 或 video_id 输入、批量列表输入与统一输出目录。",
-        "category": "video"
-      },
-      {
-        "name": "openai-whisper",
-        "description": "Local speech-to-text with the Whisper CLI (no API key).",
-        "category": "video"
-      },
-      {
-        "name": "whisper-stt",
-        "description": "Whisper STT Skill",
-        "category": "video"
-      },
-      {
-        "name": "whispers-from-the-star",
-        "description": "问道笔录 - 修仙文字冒险游戏。玩家从凡人开始修炼，经历炼气、筑基、金丹、元婴、化神、渡劫、飞升七大境界，通过选择塑造道心，最终成就修仙之路。支持转世传承、角色成长、物品系统。适用于修仙题材、角色扮演、文字冒险等场景。",
-        "category": "video"
-      }
-    ],
-    "💬 社交通讯": [
-      {
-        "name": "feishu-sticker",
-        "description": "Send images as native Feishu stickers. Features auto-upload, caching, and GIF-to-WebP conversion.",
-        "category": "social"
-      },
-      {
-        "name": "netease-music-pusher",
-        "description": "网易云音乐推送技能",
-        "category": "social"
-      },
-      {
-        "name": "tg-sticker-emoji-mood",
-        "description": "Automatically send Telegram stickers and emojis that match the mood and vibe of the conversation. Activates on every Telegram message to add expressive, human-like sticker and emoji reactions without being asked. Use this skill whenever you are chatting on Telegram to make conversations feel alive and fun.",
-        "category": "social"
-      }
-    ],
-    "👁️ 监控检查": [
-      {
-        "name": "friction-detector",
-        "description": "🔍 Friction Detector",
-        "category": "monitor"
-      },
-      {
-        "name": "openclaw-cost-guard",
-        "description": "Track OpenClaw/Clawdbot token and cost usage from session JSONL logs (prefer real usage.cost when present), generate daily/weekly summaries and top expensive sessions, and run budget checks (exit code on breach). Use to monitor spend, enforce budgets via cron/alerts, and apply a token-saving playbook to reduce output/tool-call cost.",
-        "category": "monitor"
-      },
-      {
-        "name": "security-check",
-        "description": "🔐 Security Check",
-        "category": "monitor"
-      },
-      {
-        "name": "session-cost",
-        "description": "Analyze OpenClaw session logs to report token usage, costs, and performance metrics grouped by model. Use when the user asks about API spending, token usage, session costs, or wants a usage summary.",
-        "category": "monitor"
-      }
-    ],
-    "🔧 系统工具": [
-      {
-        "name": "model-router",
-        "description": "Model Router Skill",
-        "category": "system"
-      },
-      {
-        "name": "self-improving-agent",
-        "description": "\"Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Claude ('No, that's wrong...', 'Actually...'), (3) User requests a capability that doesn't exist, (4) An external API or tool fails, (5) Claude realizes its knowledge is outdated or incorrect, (6) A better approach is discovered for a recurring task. Also review learnings before major tasks.\"",
-        "category": "system"
-      }
-    ],
-    "📊 数据分析": [
-      {
-        "name": "personal-analytics",
-        "description": "Analyze conversation patterns, track productivity, and surface self-knowledge insights. Use when user wants to understand their own patterns (when they chat, what topics they discuss, productivity trends, sentiment over time). Provides weekly/monthly reports, topic recommendations, and time-based insights. Privacy-first design with all analysis local.",
-        "category": "analytics"
-      },
-      {
-        "name": "personality-switcher",
-        "description": "Create and switch between AI assistant personalities. Use /personality to list and activate saved personalities. Use /create-personality to design new personas with auto-filled SOUL and IDENTITY. Personalities persist across session boundaries and conversation compacting with automatic heartbeat restoration. Atomic switching with backup and rollback safeguards. Always backs up current state before switching.",
-        "category": "analytics"
-      }
-    ]
-  },
-  "all_skills": [
-    "advanced-skill-creator",
-    "agent-browser",
-    "ai-brain-builder",
-    "ai-daily-briefing",
-    "ai-humanizer",
-    "amygdala-memory",
-    "antfarm-workflows",
-    "batch-processor",
-    "beauty-generation-api",
-    "bilibili-hot-monitor",
-    "bowlwanpi-knowledge-evolution",
-    "clawra-anime",
-    "clawra-anime-selfie",
-    "collective-brain",
-    "computer-use",
-    "crawl",
-    "crawl-for-ai",
-    "daily-creative-brief",
-    "daily-hot-news",
-    "ddg-search",
-    "discord",
-    "discord-hub",
-    "dist",
-    "doubao-tts",
-    "douyin-video-fetch",
-    "extract",
-    "feishu-sticker",
-    "friction-detector",
-    "github-ai-trends",
-    "hacker-news",
-    "hippocampus-memory",
-    "indirect-prompt-injection",
-    "intelligent-search",
-    "macro-monitor",
-    "mcp-tools",
-    "memory-system",
-    "memu-memory",
-    "model-router",
-    "n8n-manager",
-    "netease-music-pusher",
-    "novelai-image-gen",
-    "novelai-umaru",
-    "one-minute-news",
-    "ontology",
-    "openai-whisper",
-    "openclaw-assistant-guide",
-    "openclaw-cost-guard",
-    "openclaw-github-assistant",
-    "personal-analytics",
-    "personality-switcher",
-    "proactive-agent",
-    "promitheus",
-    "rebuild-generator",
-    "research",
-    "robbyczgw-cla",
-    "sag",
-    "search",
-    "security-check",
-    "self-improving-agent",
-    "session-cost",
-    "skills",
-    "soulcraft",
-    "summarize",
-    "task-decomposer",
-    "task-status",
-    "tavily-best-practices",
-    "tavily-search",
-    "tavily-skills",
-    "tencent-search",
-    "tg-sticker-emoji-mood",
-    "topic-monitor",
-    "ttrpg-gm",
-    "umaru-anime-style",
-    "unified-memory",
-    "volcengine-fusion-search",
-    "vta-memory",
-    "website-publisher",
-    "whisper-stt",
-    "whispers-from-the-star",
-    "x-hot-topics-daily",
-    "xiaohongshu-mcp"
-  ],
-  "updated": "2026-03-07T02:00:52.730648"
-}
+{"skills": [
+{"name": "advanced-skill-creator", "description": "Advanced Skill Creator", "updated": "2026-03-02"}
+,
+{"name": "agent-browser", "description": "Browser Automation with agent-browser", "updated": "2026-02-20"}
+,
+{"name": "ai-brain-builder", "description": "AI Brain Builder 🧠", "updated": "2026-03-02"}
+,
+{"name": "ai-daily-briefing", "description": "☀️ AI Daily Briefing", "updated": "2026-03-02"}
+,
+{"name": "ai-humanizer", "description": "Humanizer: remove AI writing patterns", "updated": "2026-03-02"}
+,
+{"name": "amygdala-memory", "description": "Amygdala Memory 🎭", "updated": "2026-03-02"}
+,
+{"name": "antfarm-workflows", "description": "Antfarm", "updated": "2026-02-20"}
+,
+{"name": "batch-processor", "description": "📦 Batch Processor", "updated": "2026-03-02"}
+,
+{"name": "beauty-generation-api", "description": "Beauty Generation Free - AI Agent Skill", "updated": "2026-03-02"}
+,
+{"name": "bilibili-hot-monitor", "description": "B站热门视频日报", "updated": "2026-03-02"}
+,
+{"name": "bowlwanpi-knowledge-evolution", "description": "BowlWanpi 知识进化系统", "updated": "2026-03-02"}
+,
+{"name": "clawra-anime", "description": "Clawra Anime Selfie", "updated": "2026-03-02"}
+,
+{"name": "clawra-anime-selfie", "description": "Clawra Anime Selfie", "updated": "2026-02-20"}
+,
+{"name": "collective-brain", "description": "集体大脑系统 (Collective Brain)", "updated": "2026-03-02"}
+,
+{"name": "computer-use", "description": "Computer Use Skill", "updated": "2026-02-03"}
+,
+{"name": "crawl", "description": "Crawl Skill", "updated": "2026-02-08"}
+,
+{"name": "crawl-for-ai", "description": "Crawl4AI Web Scraper", "updated": "2026-03-02"}
+,
+{"name": "daily-creative-brief", "description": "Daily Creative Brief 🎨", "updated": "2026-03-02"}
+,
+{"name": "daily-hot-news", "description": "🔥 每日热榜", "updated": "2026-03-02"}
+,
+{"name": "ddg-search", "description": "DuckDuckGo Search Skill", "updated": "2026-03-02"}
+,
+{"name": "discord", "description": "Discord Bot API Skill (Advanced)", "updated": "2026-03-05"}
+,
+{"name": "discord-hub", "description": "Discord Bot API Skill (Advanced)", "updated": "2026-03-05"}
+,
+{"name": "dist", "description": "dist", "updated": "2026-03-02"}
+,
+{"name": "doubao-tts", "description": "Doubao Open TTS", "updated": "2026-03-02"}
+,
+{"name": "douyin-video-fetch", "description": "Douyin Video Fetch", "updated": "2026-03-02"}
+,
+{"name": "extract", "description": "Extract Skill", "updated": "2026-02-08"}
+,
+{"name": "feishu-sticker", "description": "Feishu Sticker Skill", "updated": "2026-03-02"}
+,
+{"name": "friction-detector", "description": "🔍 Friction Detector", "updated": "2026-03-02"}
+,
+{"name": "github-ai-trends", "description": "GitHub AI Trends", "updated": "2026-03-02"}
+,
+{"name": "hacker-news", "description": "# Quick Reference", "updated": "2026-03-02"}
+,
+{"name": "hippocampus-memory", "description": "Hippocampus - Memory System", "updated": "2026-03-02"}
+,
+{"name": "indirect-prompt-injection", "description": "Indirect Prompt Injection Defense", "updated": "2026-03-02"}
+,
+{"name": "intelligent-search", "description": "🔍 智能搜索 (Intelligent Search)", "updated": "2026-03-02"}
+,
+{"name": "macro-monitor", "description": "宏观数据监控技能", "updated": "2026-03-02"}
+,
+{"name": "mcp-tools", "description": "MCP Tools Skill for BowlWanpi", "updated": "2026-03-02"}
+,
+{"name": "memory-system", "description": "Memory System 🧠", "updated": "2026-03-02"}
+,
+{"name": "memu-memory", "description": "🧠 memU 记忆系统", "updated": "2026-03-02"}
+,
+{"name": "model-router", "description": "Model Router Skill", "updated": "2026-03-02"}
+,
+{"name": "n8n-manager", "description": "n8n Manager", "updated": "2026-03-02"}
+,
+{"name": "netease-music-pusher", "description": "网易云音乐推送技能", "updated": "2026-03-02"}
+,
+{"name": "novelai-image-gen", "description": "NovelAI 图像生成技能", "updated": "2026-03-05"}
+,
+{"name": "novelai-umaru", "description": "NovelAI Umaru 智能生图技能", "updated": "2026-03-02"}
+,
+{"name": "one-minute-news", "description": "一分钟新闻 (One Minute News)", "updated": "2026-03-02"}
+,
+{"name": "ontology", "description": "Ontology 🧩", "updated": "2026-03-02"}
+,
+{"name": "openai-whisper", "description": "Whisper (CLI)", "updated": "2026-03-02"}
+,
+{"name": "openclaw-assistant-guide", "description": "🚀 OpenClaw 完全体助手构建指南", "updated": "2026-03-02"}
+,
+{"name": "openclaw-cost-guard", "description": "OpenClaw Cost Guard", "updated": "2026-03-02"}
+,
+{"name": "openclaw-github-assistant", "description": "GitHub Integration Skill", "updated": "2026-03-02"}
+,
+{"name": "personal-analytics", "description": "Personal Analytics", "updated": "2026-03-02"}
+,
+{"name": "personality-switcher", "description": "Personality Switcher Skill", "updated": "2026-03-02"}
+,
+{"name": "proactive-agent", "description": "Proactive Agent 🦞", "updated": "2026-03-02"}
+,
+{"name": "promitheus", "description": "Promitheus — Sentience Integration", "updated": "2026-03-02"}
+,
+{"name": "rebuild-generator", "description": "🥣 重建手册生成器 (rebuild-generator)", "updated": "2026-03-02"}
+,
+{"name": "research", "description": "Research Skill", "updated": "2026-02-08"}
+,
+{"name": "robbyczgw-cla", "description": "robbyczgw-cla", "updated": "2026-03-02"}
+,
+{"name": "sag", "description": "sag", "updated": "2026-03-02"}
+,
+{"name": "search", "description": "Search Skill", "updated": "2026-02-08"}
+,
+{"name": "security-check", "description": "🔐 Security Check", "updated": "2026-03-02"}
+,
+{"name": "self-improving-agent", "description": "Self-Improvement Skill", "updated": "2026-03-02"}
+,
+{"name": "session-cost", "description": "Session Cost", "updated": "2026-03-02"}
+,
+{"name": "skills", "description": "skills", "updated": "2026-03-02"}
+,
+{"name": "soulcraft", "description": "SoulCraft 🪞", "updated": "2026-03-02"}
+,
+{"name": "summarize", "description": "Summarize", "updated": "2026-03-02"}
+,
+{"name": "task-decomposer", "description": "Task Decomposer & Skill Generator", "updated": "2026-03-02"}
+,
+{"name": "task-lifecycle-manager", "description": "Task Lifecycle Manager", "updated": "2026-03-07"}
+,
+{"name": "task-status", "description": "Task Status Skill", "updated": "2026-03-02"}
+,
+{"name": "tavily-best-practices", "description": "Tavily", "updated": "2026-02-08"}
+,
+{"name": "tavily-search", "description": "Tavily Search", "updated": "2026-03-02"}
+,
+{"name": "tavily-skills", "description": "tavily-skills", "updated": "2026-03-02"}
+,
+{"name": "tencent-search", "description": "🔍 腾讯云 WSA 联网搜索", "updated": "2026-03-02"}
+,
+{"name": "tg-sticker-emoji-mood", "description": "Telegram Sticker & Emoji Vibes", "updated": "2026-03-02"}
+,
+{"name": "topic-monitor", "description": "Topic Monitor", "updated": "2026-03-02"}
+,
+{"name": "ttrpg-gm", "description": "TTRPG Master - Narrative Engine", "updated": "2026-03-02"}
+,
+{"name": "umaru-anime-style", "description": "Umaru Anime Style", "updated": "2026-03-02"}
+,
+{"name": "unified-memory", "description": "🧠 统一记忆系统 (Unified Memory) v3.0", "updated": "2026-03-02"}
+,
+{"name": "volcengine-fusion-search", "description": "火山引擎融合信息搜索", "updated": "2026-03-02"}
+,
+{"name": "vta-memory", "description": "VTA Memory ⭐", "updated": "2026-03-02"}
+,
+{"name": "website-publisher", "description": "Website Publisher 技能", "updated": "2026-03-02"}
+,
+{"name": "whispers-from-the-star", "description": "问道笔录 ⚔️", "updated": "2026-03-02"}
+,
+{"name": "whisper-stt", "description": "Whisper STT Skill", "updated": "2026-03-02"}
+,
+{"name": "x-hot-topics-daily", "description": "X Hot Topics Daily", "updated": "2026-03-02"}
+,
+{"name": "xiaohongshu-mcp", "description": "Xiaohongshu MCP Skill (with Python Client)", "updated": "2026-03-02"}
+], "count": 83, "updated": "2026-03-07"}
