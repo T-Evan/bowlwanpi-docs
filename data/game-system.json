@@ -1,15 +1,30 @@
 {
-  "updated": "2026-03-07T17:00:01.856491",
+  "updated": "2026-03-07T21:00:01.683601",
   "level": 12,
   "title": "奶酪预备兵",
-  "xp_current": 0,
+  "xp_current": 16,
   "xp_to_next": 100,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 0,
-  "streak": 0,
+  "bond": 1,
+  "streak": 1,
   "achievements": 7,
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 0,
   "achievements_list": [
+    {
+      "name": "周末战士",
+      "desc": "在周末完成任务",
+      "icon": "🎮",
+      "points": 15,
+      "id": "weekend_warrior"
+    },
     {
       "name": "计数专家",
       "desc": "完成10次任务计数",
@@ -18,25 +33,11 @@
       "id": "count_10"
     },
     {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
-    },
-    {
       "name": "半百达人",
       "desc": "累计完成50次任务",
       "icon": "🏅",
       "points": 20,
       "id": "count_50"
-    },
-    {
-      "name": "早起的鸟儿",
-      "desc": "在8点前完成任务",
-      "icon": "🌅",
-      "points": 10,
-      "id": "early_bird"
     },
     {
       "name": "自动化玩家",
@@ -53,19 +54,18 @@
       "id": "type_explore"
     },
     {
-      "name": "周末战士",
-      "desc": "在周末完成任务",
-      "icon": "🎮",
-      "points": 15,
-      "id": "weekend_warrior"
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
+    },
+    {
+      "name": "早起的鸟儿",
+      "desc": "在8点前完成任务",
+      "icon": "🌅",
+      "points": 10,
+      "id": "early_bird"
     }
-  ],
-  "daily_done": 0,
-  "weekly_done": 0,
-  "season_done": 0,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 0
+  ]
 }
