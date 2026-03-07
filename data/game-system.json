@@ -1,14 +1,14 @@
 {
-  "updated": "2026-03-07T09:00:01.551868",
-  "level": 6,
-  "title": "甜味技术员",
-  "xp_current": 197,
-  "xp_to_next": 350,
-  "season_tier": 1,
-  "season_tokens": 0,
-  "bond": 59,
+  "updated": "2026-03-07T10:00:01.249401",
+  "level": 8,
+  "title": "品糖高手",
+  "xp_current": 88,
+  "xp_to_next": 450,
+  "season_tier": 2,
+  "season_tokens": 8,
+  "bond": 76,
   "streak": 1,
-  "achievements": 5,
+  "achievements": 6,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -16,6 +16,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
     },
     {
       "name": "早起的鸟儿",
@@ -46,12 +53,12 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 1,
+  "daily_done": 2,
   "weekly_done": 1,
-  "season_done": 0,
+  "season_done": 1,
   "daily_total": 3,
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "连胜燃烧",
-  "talent_points": 0
+  "talent_points": 1
 }
