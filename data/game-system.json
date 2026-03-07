@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-08T05:00:01.329411",
+  "updated": "2026-03-08T06:00:02.174014",
   "level": 12,
   "title": "奶酪预备兵",
-  "xp_current": 324,
-  "xp_to_next": 550,
+  "xp_current": 119,
+  "xp_to_next": 600,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 135,
+  "bond": 153,
   "streak": 1,
   "achievements": 8,
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -74,5 +66,13 @@
       "points": 30,
       "id": "count_100"
     }
-  ]
+  ],
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1
 }
