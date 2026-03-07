@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-07T21:00:01.683601",
+  "updated": "2026-03-07T22:00:01.330644",
   "level": 12,
   "title": "奶酪预备兵",
-  "xp_current": 16,
-  "xp_to_next": 100,
+  "xp_current": 166,
+  "xp_to_next": 200,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 1,
+  "bond": 17,
   "streak": 1,
   "achievements": 7,
   "daily_done": 1,
@@ -19,13 +19,6 @@
   "talent_points": 0,
   "achievements_list": [
     {
-      "name": "周末战士",
-      "desc": "在周末完成任务",
-      "icon": "🎮",
-      "points": 15,
-      "id": "weekend_warrior"
-    },
-    {
       "name": "计数专家",
       "desc": "完成10次任务计数",
       "icon": "🔢",
@@ -33,18 +26,25 @@
       "id": "count_10"
     },
     {
-      "name": "半百达人",
-      "desc": "累计完成50次任务",
-      "icon": "🏅",
-      "points": 20,
-      "id": "count_50"
-    },
-    {
       "name": "自动化玩家",
       "desc": "完成自动化类型任务",
       "icon": "🤖",
       "points": 15,
       "id": "type_auto"
+    },
+    {
+      "name": "周末战士",
+      "desc": "在周末完成任务",
+      "icon": "🎮",
+      "points": 15,
+      "id": "weekend_warrior"
+    },
+    {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
     },
     {
       "name": "探索者",
