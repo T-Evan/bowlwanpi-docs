@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-07T07:00:01.357107",
+  "updated": "2026-03-07T08:00:01.632303",
   "level": 5,
   "title": "拌糖熟练工",
-  "xp_current": 99,
-  "xp_to_next": 250,
+  "xp_current": 177,
+  "xp_to_next": 300,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 24,
+  "bond": 42,
   "streak": 1,
   "achievements": 5,
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 0,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 0,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -53,5 +45,13 @@
       "points": 10,
       "id": "type_explore"
     }
-  ]
+  ],
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 0
 }
