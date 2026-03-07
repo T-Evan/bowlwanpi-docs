@@ -1,13 +1,13 @@
 {
-  "updated": "2026-03-07T16:00:01.211433",
-  "level": 11,
-  "title": "糖果志愿者",
-  "xp_current": 494,
-  "xp_to_next": 600,
-  "season_tier": 2,
-  "season_tokens": 8,
-  "bond": 178,
-  "streak": 1,
+  "updated": "2026-03-07T17:00:01.856491",
+  "level": 12,
+  "title": "奶酪预备兵",
+  "xp_current": 0,
+  "xp_to_next": 100,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "bond": 0,
+  "streak": 0,
   "achievements": 7,
   "achievements_list": [
     {
@@ -60,12 +60,12 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
+  "daily_done": 0,
+  "weekly_done": 0,
+  "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "连胜燃烧",
-  "talent_points": 1
+  "talent_points": 0
 }
