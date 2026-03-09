@@ -1,14 +1,22 @@
 {
-  "updated": "2026-03-09T15:20:02.112225",
+  "updated": "2026-03-09T17:00:02.146134",
   "level": 14,
   "title": "刨冰骑兵",
-  "xp_current": 192,
+  "xp_current": 246,
   "xp_to_next": 450,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 81,
+  "bond": 84,
   "streak": 1,
   "achievements": 8,
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -66,13 +74,5 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ],
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1
+  ]
 }
