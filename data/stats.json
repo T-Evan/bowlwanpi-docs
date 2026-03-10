@@ -1,10 +1,11 @@
 {
-  "skills": 82,
-  "tasks": 127,
+  "skills": 83,
+  "cron_tasks": 0,
   "memory_files": 29,
-  "vector_count": 12616,
-  "cron_tasks": 14,
-  "qmdr_vectors": 12616,
-  "updated": "2026-03-11T02:00:48.147013",
-  "diary_entries": 12
+  "session_count": 2291,
+  "qmdr_vectors": 13513,
+  "energy_level": 75,
+  "last_updated": "2026-03-11",
+  "last_build_time": "03:00",
+  "build_version": "4.0"
 }
