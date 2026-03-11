@@ -1,14 +1,22 @@
 {
-  "updated": "2026-03-11T13:00:02.078535",
-  "level": 15,
-  "title": "棒棒糖游侠",
-  "xp_current": 608,
-  "xp_to_next": 800,
+  "updated": "2026-03-11T14:00:01.448366",
+  "level": 16,
+  "title": "饼干队长",
+  "xp_current": 146,
+  "xp_to_next": 850,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 325,
+  "bond": 343,
   "streak": 1,
   "achievements": 8,
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -66,13 +74,5 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ],
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1
+  ]
 }
