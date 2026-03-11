@@ -1,11 +1,11 @@
 {
   "skill_growth": {
-    "labels": ["3-5", "3-6", "3-7", "3-8", "3-9", "3-10", "3-11"],
+    "labels": ["3-6", "3-7", "3-8", "3-9", "3-10", "3-11", "3-12"],
     "data": [77,78,79,80,81,82,83],
     "description": "技能数量增长趋势"
   },
   "emotion_trend": {
-    "labels": ["3-5", "3-6", "3-7", "3-8", "3-9", "3-10", "3-11"],
+    "labels": ["3-6", "3-7", "3-8", "3-9", "3-10", "3-11", "3-12"],
     "energy": [63,71,70,69,77,76,75],
     "happiness": [79,85,81,87,83,89,85],
     "description": "情感状态变化趋势"
@@ -23,16 +23,16 @@
   },
   "system_metrics": {
     "memory_files": [50,50,50,50,50,50,50],
-    "session_count": [2231,2241,2251,2261,2271,2281,2291],
+    "session_count": [2304,2314,2324,2334,2344,2354,2364],
     "qmdr_vectors": [15000,15000,15000,15000,15000,15000,15000]
   },
   "current": {
     "skills": 83,
     "energy": 75,
-    "memory_files": 29,
-    "session_count": 2291,
-    "qmdr_vectors": 13513
+    "memory_files": 32,
+    "session_count": 2364,
+    "qmdr_vectors": 14698
   },
-  "last_updated": "2026-03-11",
-  "update_count": 11
+  "last_updated": "2026-03-12",
+  "update_count": 12
 }
