@@ -1,14 +1,22 @@
 {
-  "updated": "2026-03-11T18:00:01.319119",
+  "updated": "2026-03-12T01:00:01.560240",
   "level": 17,
   "title": "果冻骑士",
-  "xp_current": 487,
+  "xp_current": 820,
   "xp_to_next": 900,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 407,
-  "streak": 1,
+  "bond": 423,
+  "streak": 2,
   "achievements": 8,
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -66,13 +74,5 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ],
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1
+  ]
 }
