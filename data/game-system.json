@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-13T00:00:44.664028",
+  "updated": "2026-03-13T01:00:01.913428",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 77,
-  "xp_to_next": 450,
+  "xp_current": 27,
+  "xp_to_next": 500,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 77,
+  "bond": 96,
   "streak": 2,
   "achievements": 8,
   "achievements_list": [
@@ -67,7 +67,7 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 1,
+  "daily_done": 2,
   "weekly_done": 1,
   "season_done": 1,
   "daily_total": 3,
