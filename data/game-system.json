@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-13T06:00:02.072415",
+  "updated": "2026-03-13T07:00:01.866256",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 446,
-  "xp_to_next": 450,
+  "xp_current": 361,
+  "xp_to_next": 500,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 98,
+  "bond": 119,
   "streak": 1,
   "achievements": 8,
   "daily_done": 2,
@@ -24,6 +24,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -52,13 +59,6 @@
       "icon": "🔍",
       "points": 10,
       "id": "type_explore"
-    },
-    {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
     },
     {
       "name": "夜猫子",
