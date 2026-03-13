@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-13T07:00:01.866256",
+  "updated": "2026-03-13T09:00:01.517291",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 361,
-  "xp_to_next": 500,
+  "xp_current": 38,
+  "xp_to_next": 600,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 119,
+  "bond": 161,
   "streak": 1,
   "achievements": 8,
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -74,5 +66,13 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ]
+  ],
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1
 }
