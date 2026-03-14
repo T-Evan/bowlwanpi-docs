@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-14T22:00:01.763172",
+  "updated": "2026-03-14T23:00:01.491461",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 66,
+  "xp_current": 414,
   "xp_to_next": 600,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 153,
-  "streak": 2,
+  "bond": 171,
+  "streak": 1,
   "achievements": 8,
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -38,6 +30,13 @@
       "icon": "🏅",
       "points": 20,
       "id": "count_50"
+    },
+    {
+      "name": "夜猫子",
+      "desc": "在23点后仍然活跃",
+      "icon": "🦉",
+      "points": 15,
+      "id": "night_owl"
     },
     {
       "name": "自动化玩家",
@@ -66,13 +65,14 @@
       "icon": "🌅",
       "points": 10,
       "id": "early_bird"
-    },
-    {
-      "name": "夜猫子",
-      "desc": "在23点后仍然活跃",
-      "icon": "🦉",
-      "points": 15,
-      "id": "night_owl"
     }
-  ]
+  ],
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1
 }
