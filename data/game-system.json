@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-14T20:00:01.305549",
+  "updated": "2026-03-14T21:03:01.366693",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 203,
-  "xp_to_next": 500,
+  "xp_current": 274,
+  "xp_to_next": 550,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 107,
+  "bond": 136,
   "streak": 2,
   "achievements": 8,
   "achievements_list": [
@@ -67,7 +67,7 @@
       "id": "night_owl"
     }
   ],
-  "daily_done": 1,
+  "daily_done": 2,
   "weekly_done": 1,
   "season_done": 1,
   "daily_total": 3,
