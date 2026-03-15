@@ -1,98 +1,98 @@
 {
-  "updated": "2026-03-15T17:00:01.383662",
+  "updated": "2026-03-15T18:00:02.211265",
   "entries": [
     {
-      "time": "16:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "CPU: OK (16.3%)"
-    },
-    {
-      "time": "16:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Memory: OK (58%)"
-    },
-    {
-      "time": "16:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Disk: OK (73%)"
-    },
-    {
-      "time": "16:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "=== Heartbeat check completed ==="
-    },
-    {
-      "time": "16:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Report suppressed (level: normal, cooldown active)"
-    },
-    {
-      "time": "17:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "=== Heartbeat check started ==="
-    },
-    {
-      "time": "17:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking Gateway..."
-    },
-    {
-      "time": "17:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Gateway: OK (process running)"
-    },
-    {
-      "time": "17:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking Mihomo..."
-    },
-    {
-      "time": "17:00:01",
+      "time": "17:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "17:00:01",
+      "time": "17:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "17:00:01",
+      "time": "17:55:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "CPU: OK (14.6%)"
+    },
+    {
+      "time": "17:55:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Memory: OK (58%)"
+    },
+    {
+      "time": "17:55:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Disk: OK (73%)"
+    },
+    {
+      "time": "17:55:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "=== Heartbeat check completed ==="
+    },
+    {
+      "time": "17:55:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Report suppressed (level: normal, cooldown active)"
+    },
+    {
+      "time": "18:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "=== Heartbeat check started ==="
+    },
+    {
+      "time": "18:00:01",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Checking Gateway..."
+    },
+    {
+      "time": "18:00:02",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Gateway: OK (process running)"
+    },
+    {
+      "time": "18:00:02",
+      "level": "INFO",
+      "source": "heartbeat",
+      "message": "Checking Mihomo..."
+    },
+    {
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "输出: memory/rebuild-summary-2026-03-14.md"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "技能数: 82"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "MCP服务: 0"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "云端同步: memU ❌(402) | Hippocampus ✅ | MemOS ✅"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "EvoMap同步: ✅"
@@ -104,43 +104,43 @@
       "message": "重建手册生成任务"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "WARN",
       "source": "nightly",
       "message": "状态: ⚠️ 部分成功"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "输出: memory/rebuild-summary-2026-03-14.md"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "技能数: 82"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "MCP服务: 0"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "云端同步: memU ❌(402) | Hippocampus ✅ | MemOS ✅"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "EvoMap同步: ✅"
     },
     {
-      "time": "17:00:01",
+      "time": "18:00:02",
       "level": "INFO",
       "source": "nightly",
       "message": "备注: 生成器误写 `memory/rebuild-summary-2026-03-15.md`，已手动纠正为当日摘要"
