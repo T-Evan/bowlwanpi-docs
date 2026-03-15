@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-16T03:00:01.522807",
+  "updated": "2026-03-16T04:00:02.049661",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 19,
-  "xp_to_next": 300,
+  "xp_current": 111,
+  "xp_to_next": 350,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 29,
+  "bond": 47,
   "streak": 2,
   "achievements": 8,
   "daily_done": 1,
@@ -24,6 +24,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
     },
     {
       "name": "早起的鸟儿",
@@ -52,13 +59,6 @@
       "icon": "🎮",
       "points": 15,
       "id": "weekend_warrior"
-    },
-    {
-      "name": "半百达人",
-      "desc": "累计完成50次任务",
-      "icon": "🏅",
-      "points": 20,
-      "id": "count_50"
     },
     {
       "name": "百战成名",
