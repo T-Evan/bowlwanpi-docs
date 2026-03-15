@@ -1,8 +1,8 @@
 {
-  "updated": "2026-03-15T15:00:01.782204",
+  "updated": "2026-03-15T16:00:01.645003",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 49,
+  "xp_current": 56,
   "xp_to_next": 150,
   "season_tier": 1,
   "season_tokens": 0,
@@ -19,20 +19,6 @@
   "talent_points": 0,
   "achievements_list": [
     {
-      "name": "计数专家",
-      "desc": "完成10次任务计数",
-      "icon": "🔢",
-      "points": 10,
-      "id": "count_10"
-    },
-    {
-      "name": "半百达人",
-      "desc": "累计完成50次任务",
-      "icon": "🏅",
-      "points": 20,
-      "id": "count_50"
-    },
-    {
       "name": "自动化玩家",
       "desc": "完成自动化类型任务",
       "icon": "🤖",
@@ -45,6 +31,20 @@
       "icon": "🎮",
       "points": 15,
       "id": "weekend_warrior"
+    },
+    {
+      "name": "计数专家",
+      "desc": "完成10次任务计数",
+      "icon": "🔢",
+      "points": 10,
+      "id": "count_10"
+    },
+    {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
     },
     {
       "name": "百战成名",
