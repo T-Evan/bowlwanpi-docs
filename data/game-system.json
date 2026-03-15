@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-15T08:00:01.977549",
+  "updated": "2026-03-15T09:20:01.957786",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 339,
-  "xp_to_next": 400,
+  "xp_current": 12,
+  "xp_to_next": 500,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 68,
+  "bond": 96,
   "streak": 1,
   "achievements": 8,
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -24,6 +16,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "半百达人",
+      "desc": "累计完成50次任务",
+      "icon": "🏅",
+      "points": 20,
+      "id": "count_50"
     },
     {
       "name": "早起的鸟儿",
@@ -40,6 +39,13 @@
       "id": "type_auto"
     },
     {
+      "name": "探索者",
+      "desc": "完成探索类任务",
+      "icon": "🔍",
+      "points": 10,
+      "id": "type_explore"
+    },
+    {
       "name": "周末战士",
       "desc": "在周末完成任务",
       "icon": "🎮",
@@ -54,25 +60,19 @@
       "id": "count_100"
     },
     {
-      "name": "半百达人",
-      "desc": "累计完成50次任务",
-      "icon": "🏅",
-      "points": 20,
-      "id": "count_50"
-    },
-    {
       "name": "夜猫子",
       "desc": "在23点后仍然活跃",
       "icon": "🦉",
       "points": 15,
       "id": "night_owl"
-    },
-    {
-      "name": "探索者",
-      "desc": "完成探索类任务",
-      "icon": "🔍",
-      "points": 10,
-      "id": "type_explore"
     }
-  ]
+  ],
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1
 }
