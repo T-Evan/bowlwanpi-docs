@@ -1,12 +1,12 @@
 {
-  "updated": "2026-03-17T08:00:01.776077",
+  "updated": "2026-03-17T09:08:33.259505",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 92,
-  "xp_to_next": 150,
+  "xp_current": 41,
+  "xp_to_next": 300,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 9,
+  "bond": 34,
   "streak": 1,
   "achievements": 8,
   "achievements_list": [
@@ -32,6 +32,13 @@
       "id": "type_auto"
     },
     {
+      "name": "探索者",
+      "desc": "完成探索类任务",
+      "icon": "🔍",
+      "points": 10,
+      "id": "type_explore"
+    },
+    {
       "name": "百战成名",
       "desc": "累计完成100次任务",
       "icon": "👑",
@@ -44,13 +51,6 @@
       "icon": "🏅",
       "points": 20,
       "id": "count_50"
-    },
-    {
-      "name": "探索者",
-      "desc": "完成探索类任务",
-      "icon": "🔍",
-      "points": 10,
-      "id": "type_explore"
     },
     {
       "name": "周末战士",
@@ -67,8 +67,8 @@
       "id": "night_owl"
     }
   ],
-  "daily_done": 1,
-  "weekly_done": 0,
+  "daily_done": 2,
+  "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
