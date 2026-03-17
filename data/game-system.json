@@ -1,14 +1,22 @@
 {
-  "updated": "2026-03-17T12:00:02.211985",
+  "updated": "2026-03-17T13:00:02.043788",
   "level": 19,
   "title": "冰淇淋勇者",
-  "xp_current": 124,
-  "xp_to_next": 250,
+  "xp_current": 194,
+  "xp_to_next": 300,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 25,
+  "bond": 42,
   "streak": 1,
   "achievements": 8,
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 0,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -16,6 +24,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -46,13 +61,6 @@
       "id": "type_explore"
     },
     {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
-    },
-    {
       "name": "周末战士",
       "desc": "在周末完成任务",
       "icon": "🎮",
@@ -66,13 +74,5 @@
       "points": 15,
       "id": "night_owl"
     }
-  ],
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 0,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 0
+  ]
 }
