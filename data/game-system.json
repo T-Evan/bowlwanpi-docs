@@ -1,22 +1,14 @@
 {
-  "updated": "2026-03-18T09:00:01.551901",
+  "updated": "2026-03-18T13:14:40.385925",
   "level": 9,
   "title": "造型专家",
-  "xp_current": 0,
-  "xp_to_next": 100,
-  "season_tier": 1,
-  "season_tokens": 0,
-  "bond": 0,
+  "xp_current": 278,
+  "xp_to_next": 450,
+  "season_tier": 2,
+  "season_tokens": 8,
+  "bond": 91,
   "streak": 1,
   "achievements": 6,
-  "daily_done": 0,
-  "weekly_done": 0,
-  "season_done": 0,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 0,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -24,6 +16,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -52,13 +51,14 @@
       "icon": "🔍",
       "points": 10,
       "id": "type_explore"
-    },
-    {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
     }
-  ]
+  ],
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1
 }

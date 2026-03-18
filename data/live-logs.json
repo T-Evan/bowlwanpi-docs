@@ -1,98 +1,98 @@
 {
-  "updated": "2026-03-18T09:00:01.569633",
+  "updated": "2026-03-18T13:15:01.998723",
   "entries": [
     {
-      "time": "08:55:01",
+      "time": "13:10:01",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "CPU: OK (14.0%)"
+      "message": "CPU: OK (35.7%)"
     },
     {
-      "time": "08:55:01",
+      "time": "13:10:01",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Memory: OK (52%)"
+      "message": "Memory: OK (43%)"
     },
     {
-      "time": "08:55:01",
+      "time": "13:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Disk: OK (74%)"
     },
     {
-      "time": "08:55:01",
+      "time": "13:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check completed ==="
     },
     {
-      "time": "08:55:01",
+      "time": "13:10:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Report suppressed (level: normal, cooldown active)"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check started ==="
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Gateway..."
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Gateway: OK (process running)"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "技能数: 82"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "MCP服务: 0"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "云端同步: memU ❌(402) | Hippocampus ✅ | MemOS ✅"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "EvoMap同步: ✅"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "备注: 生成器误写 `memory/rebuild-summary-2026-03-15.md`，已手动纠正为当日摘要"
@@ -110,52 +110,46 @@
       "message": "重建手册生成任务"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "WARN",
       "source": "nightly",
       "message": "状态: ⚠️ 部分成功"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "输出: memory/rebuild-summary-2026-03-15.md"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "技能数: 82"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "MCP服务: 0"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "云端同步: memU ❌(402) | Hippocampus ✅ | MemOS ✅"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "EvoMap同步: ✅"
     },
     {
-      "time": "09:00:01",
+      "time": "13:15:01",
       "level": "INFO",
       "source": "nightly",
       "message": "备注: 生成器误写 `memory/rebuild-summary-2026-03-16.md`，已手动纠正为当日摘要"
-    },
-    {
-      "time": "1.640639",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 4 条新新闻（并行版）"
     },
     {
       "time": "5.601077",
@@ -240,6 +234,12 @@
       "level": "INFO",
       "source": "news",
       "message": "发现 9 条新新闻（并行版）"
+    },
+    {
+      "time": "5.179194",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 7 条新新闻（并行版）"
     }
   ]
 }
