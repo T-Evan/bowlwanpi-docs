@@ -1,14 +1,22 @@
 {
-  "updated": "2026-03-18T16:40:01.797263",
-  "level": 10,
-  "title": "QQ糖大师",
-  "xp_current": 475,
-  "xp_to_next": 550,
+  "updated": "2026-03-18T17:00:01.426890",
+  "level": 11,
+  "title": "糖果志愿者",
+  "xp_current": 15,
+  "xp_to_next": 600,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 152,
+  "bond": 157,
   "streak": 1,
   "achievements": 6,
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "连胜燃烧",
+  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -52,13 +60,5 @@
       "points": 10,
       "id": "type_explore"
     }
-  ],
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "连胜燃烧",
-  "talent_points": 1
+  ]
 }
