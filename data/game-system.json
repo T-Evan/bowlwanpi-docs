@@ -1,14 +1,14 @@
 {
-  "updated": "2026-03-21T16:00:01.375759",
-  "level": 9,
-  "title": "造型专家",
-  "xp_current": 241,
-  "xp_to_next": 500,
+  "updated": "2026-03-21T17:00:02.163241",
+  "level": 10,
+  "title": "QQ糖大师",
+  "xp_current": 54,
+  "xp_to_next": 550,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 109,
+  "bond": 126,
   "streak": 1,
-  "achievements": 6,
+  "achievements": 7,
   "daily_done": 1,
   "weekly_done": 1,
   "season_done": 1,
@@ -24,6 +24,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
     },
     {
       "name": "半百达人",
