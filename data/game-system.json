@@ -1,14 +1,22 @@
 {
-  "updated": "2026-04-01T01:14:09.312143",
-  "level": 11,
-  "title": "糖果志愿者",
-  "xp_current": 426,
-  "xp_to_next": 600,
+  "updated": "2026-04-01T02:00:02.245154",
+  "level": 12,
+  "title": "奶酪预备兵",
+  "xp_current": 74,
+  "xp_to_next": 650,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 170,
+  "bond": 183,
   "streak": 1,
   "achievements": 7,
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 0,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "协作回响",
+  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -59,13 +67,5 @@
       "points": 15,
       "id": "weekend_warrior"
     }
-  ],
-  "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 0,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "协作回响",
-  "talent_points": 1
+  ]
 }
