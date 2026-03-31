@@ -1,12 +1,12 @@
 {
-  "updated": "2026-04-01T06:00:02.104707",
+  "updated": "2026-04-01T07:00:02.016730",
   "level": 14,
   "title": "刨冰骑兵",
-  "xp_current": 422,
-  "xp_to_next": 750,
-  "season_tier": 3,
-  "season_tokens": 16,
-  "bond": 255,
+  "xp_current": 99,
+  "xp_to_next": 150,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "bond": 9,
   "streak": 1,
   "achievements": 7,
   "achievements_list": [
@@ -16,13 +16,6 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
-    },
-    {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -53,6 +46,13 @@
       "id": "type_explore"
     },
     {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
+    },
+    {
       "name": "周末战士",
       "desc": "在周末完成任务",
       "icon": "🎮",
@@ -61,11 +61,11 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 1,
-  "season_done": 1,
+  "weekly_done": 0,
+  "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "协作回响",
-  "talent_points": 2
+  "talent_points": 0
 }
