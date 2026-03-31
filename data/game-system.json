@@ -1,12 +1,12 @@
 {
-  "updated": "2026-04-01T00:45:02.141085",
+  "updated": "2026-04-01T01:14:09.312143",
   "level": 11,
   "title": "糖果志愿者",
-  "xp_current": 126,
+  "xp_current": 426,
   "xp_to_next": 600,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 159,
+  "bond": 170,
   "streak": 1,
   "achievements": 7,
   "achievements_list": [
@@ -60,8 +60,8 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 0,
-  "weekly_done": 0,
+  "daily_done": 1,
+  "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
