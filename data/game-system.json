@@ -1,12 +1,12 @@
 {
-  "updated": "2026-04-01T13:00:01.654699",
+  "updated": "2026-04-01T14:00:01.509641",
   "level": 14,
   "title": "刨冰骑兵",
-  "xp_current": 418,
-  "xp_to_next": 500,
-  "season_tier": 2,
-  "season_tokens": 8,
-  "bond": 117,
+  "xp_current": 49,
+  "xp_to_next": 150,
+  "season_tier": 1,
+  "season_tokens": 0,
+  "bond": 7,
   "streak": 1,
   "achievements": 7,
   "achievements_list": [
@@ -18,25 +18,11 @@
       "id": "count_10"
     },
     {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
-    },
-    {
       "name": "半百达人",
       "desc": "累计完成50次任务",
       "icon": "🏅",
       "points": 20,
       "id": "count_50"
-    },
-    {
-      "name": "早起的鸟儿",
-      "desc": "在8点前完成任务",
-      "icon": "🌅",
-      "points": 10,
-      "id": "early_bird"
     },
     {
       "name": "自动化玩家",
@@ -53,6 +39,20 @@
       "id": "type_explore"
     },
     {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
+    },
+    {
+      "name": "早起的鸟儿",
+      "desc": "在8点前完成任务",
+      "icon": "🌅",
+      "points": 10,
+      "id": "early_bird"
+    },
+    {
       "name": "周末战士",
       "desc": "在周末完成任务",
       "icon": "🎮",
@@ -60,12 +60,12 @@
       "id": "weekend_warrior"
     }
   ],
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
+  "daily_done": 1,
+  "weekly_done": 0,
+  "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "协作回响",
-  "talent_points": 1
+  "talent_points": 0
 }
