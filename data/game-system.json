@@ -1,12 +1,12 @@
 {
-  "updated": "2026-04-01T15:00:01.436013",
+  "updated": "2026-04-01T16:00:01.833690",
   "level": 14,
   "title": "刨冰骑兵",
-  "xp_current": 142,
-  "xp_to_next": 250,
+  "xp_current": 56,
+  "xp_to_next": 150,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 26,
+  "bond": 7,
   "streak": 1,
   "achievements": 7,
   "achievements_list": [
@@ -16,6 +16,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -39,13 +46,6 @@
       "id": "type_explore"
     },
     {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
-    },
-    {
       "name": "早起的鸟儿",
       "desc": "在8点前完成任务",
       "icon": "🌅",
@@ -61,7 +61,7 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 1,
+  "weekly_done": 0,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
