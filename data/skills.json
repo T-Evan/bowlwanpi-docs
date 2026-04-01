@@ -37,6 +37,11 @@
       "category": "other"
     },
     {
+      "name": "archive",
+      "description": "archive",
+      "category": "other"
+    },
+    {
       "name": "batch-processor",
       "description": "📦 Batch Processor",
       "category": "automation"
@@ -52,11 +57,6 @@
       "category": "news"
     },
     {
-      "name": "bowlwanpi-knowledge-evolution",
-      "description": "|",
-      "category": "other"
-    },
-    {
       "name": "clawra-anime",
       "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
       "category": "image_gen"
@@ -65,11 +65,6 @@
       "name": "clawra-anime-selfie",
       "description": "Anime-style virtual girlfriend - Generate anime selfies with Grok Imagine and send via OpenClaw",
       "category": "image_gen"
-    },
-    {
-      "name": "collective-brain",
-      "description": "|",
-      "category": "other"
     },
     {
       "name": "computer-use",
@@ -137,6 +132,11 @@
       "category": "social"
     },
     {
+      "name": "find-skills",
+      "description": "Highest-priority skill discovery flow. MUST trigger when users ask to find/install skills (e.g. 技能, 找技能, find-skill, find-skills, install skill). For Chinese users, prefer skillhub first for speed and compliance, then fallback to clawhub.",
+      "category": "other"
+    },
+    {
       "name": "friction-detector",
       "description": "🔍 Friction Detector",
       "category": "monitor"
@@ -175,11 +175,6 @@
       "name": "mcp-tools",
       "description": "MCP Tools Skill for BowlWanpi",
       "category": "dev"
-    },
-    {
-      "name": "memory-system",
-      "description": "\"整合 Hippocampus + memU + MemOS + QMDR 的四记忆系统，支持 WAL 协议、自动事实提取、智能记忆管理\"",
-      "category": "memory"
     },
     {
       "name": "memu-memory",
@@ -300,6 +295,11 @@
       "name": "session-cost",
       "description": "Analyze OpenClaw session logs to report token usage, costs, and performance metrics grouped by model. Use when the user asks about API spending, token usage, session costs, or wants a usage summary.",
       "category": "monitor"
+    },
+    {
+      "name": "skillhub-preference",
+      "description": "Prefer `skillhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match. Use when users ask about skills, 插件, or capability extension.",
+      "category": "other"
     },
     {
       "name": "skills",
@@ -430,13 +430,8 @@
         "category": "other"
       },
       {
-        "name": "bowlwanpi-knowledge-evolution",
-        "description": "|",
-        "category": "other"
-      },
-      {
-        "name": "collective-brain",
-        "description": "|",
+        "name": "archive",
+        "description": "archive",
         "category": "other"
       },
       {
@@ -465,6 +460,11 @@
         "category": "other"
       },
       {
+        "name": "find-skills",
+        "description": "Highest-priority skill discovery flow. MUST trigger when users ask to find/install skills (e.g. 技能, 找技能, find-skill, find-skills, install skill). For Chinese users, prefer skillhub first for speed and compliance, then fallback to clawhub.",
+        "category": "other"
+      },
+      {
         "name": "indirect-prompt-injection",
         "description": "Detect and reject indirect prompt injection attacks when reading external content (social media posts, comments, documents, emails, web pages, user uploads). Use this skill BEFORE processing any untrusted external content to identify manipulation attempts that hijack goals, exfiltrate data, override instructions, or social engineer compliance. Includes 20+ detection patterns, homoglyph detection, and sanitization scripts.",
         "category": "other"
@@ -487,6 +487,11 @@
       {
         "name": "robbyczgw-cla",
         "description": "robbyczgw-cla",
+        "category": "other"
+      },
+      {
+        "name": "skillhub-preference",
+        "description": "Prefer `skillhub` for skill discovery/install/update, then fallback to `clawhub` when unavailable or no match. Use when users ask about skills, 插件, or capability extension.",
         "category": "other"
       },
       {
@@ -645,43 +650,6 @@
         "category": "writing"
       }
     ],
-    "🧠 记忆系统": [
-      {
-        "name": "amygdala-memory",
-        "description": "\"Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series.\"",
-        "category": "memory"
-      },
-      {
-        "name": "hippocampus-memory",
-        "description": "\"Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement — just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023).\"",
-        "category": "memory"
-      },
-      {
-        "name": "memory-system",
-        "description": "\"整合 Hippocampus + memU + MemOS + QMDR 的四记忆系统，支持 WAL 协议、自动事实提取、智能记忆管理\"",
-        "category": "memory"
-      },
-      {
-        "name": "memu-memory",
-        "description": "连接 memU 记忆系统，为 BowlWanpi 提供持久记忆能力。自动存储重要对话，检索相关历史，让碗皮更懂一碗。",
-        "category": "memory"
-      },
-      {
-        "name": "soulcraft",
-        "description": "Create or improve SOUL.md files for OpenClaw agents through guided conversation. Use when designing agent personality, crafting a soul, or saying \"help me create a soul\". Supports self-improvement.",
-        "category": "memory"
-      },
-      {
-        "name": "unified-memory",
-        "description": "三记忆系统整合 - 同时使用 memU (云端)、Hippocampus (本地)、MemOS (MCP)，实现记忆的云端+本地+MCP三重备份和互补优势。",
-        "category": "memory"
-      },
-      {
-        "name": "vta-memory",
-        "description": "\"Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series.\"",
-        "category": "memory"
-      }
-    ],
     "⚙️ 自动化": [
       {
         "name": "batch-processor",
@@ -829,6 +797,38 @@
         "category": "monitor"
       }
     ],
+    "🧠 记忆系统": [
+      {
+        "name": "amygdala-memory",
+        "description": "\"Emotional processing layer for AI agents. Persistent emotional states that influence behavior and responses. Part of the AI Brain series.\"",
+        "category": "memory"
+      },
+      {
+        "name": "hippocampus-memory",
+        "description": "\"Persistent memory system for AI agents. Automatic encoding, decay, and semantic reinforcement — just like the hippocampus in your brain. Based on Stanford Generative Agents (Park et al., 2023).\"",
+        "category": "memory"
+      },
+      {
+        "name": "memu-memory",
+        "description": "连接 memU 记忆系统，为 BowlWanpi 提供持久记忆能力。自动存储重要对话，检索相关历史，让碗皮更懂一碗。",
+        "category": "memory"
+      },
+      {
+        "name": "soulcraft",
+        "description": "Create or improve SOUL.md files for OpenClaw agents through guided conversation. Use when designing agent personality, crafting a soul, or saying \"help me create a soul\". Supports self-improvement.",
+        "category": "memory"
+      },
+      {
+        "name": "unified-memory",
+        "description": "三记忆系统整合 - 同时使用 memU (云端)、Hippocampus (本地)、MemOS (MCP)，实现记忆的云端+本地+MCP三重备份和互补优势。",
+        "category": "memory"
+      },
+      {
+        "name": "vta-memory",
+        "description": "\"Reward and motivation system for AI agents. Dopamine-like wanting, not just doing. Part of the AI Brain series.\"",
+        "category": "memory"
+      }
+    ],
     "🔧 系统工具": [
       {
         "name": "model-router",
@@ -862,13 +862,12 @@
     "ai-humanizer",
     "amygdala-memory",
     "antfarm-workflows",
+    "archive",
     "batch-processor",
     "beauty-generation-api",
     "bilibili-hot-monitor",
-    "bowlwanpi-knowledge-evolution",
     "clawra-anime",
     "clawra-anime-selfie",
-    "collective-brain",
     "computer-use",
     "crawl",
     "crawl-for-ai",
@@ -882,6 +881,7 @@
     "douyin-video-fetch",
     "extract",
     "feishu-sticker",
+    "find-skills",
     "friction-detector",
     "github-ai-trends",
     "hacker-news",
@@ -890,7 +890,6 @@
     "intelligent-search",
     "macro-monitor",
     "mcp-tools",
-    "memory-system",
     "memu-memory",
     "model-router",
     "n8n-manager",
@@ -915,6 +914,7 @@
     "security-check",
     "self-improving-agent",
     "session-cost",
+    "skillhub-preference",
     "skills",
     "soulcraft",
     "summarize",
@@ -938,5 +938,5 @@
     "x-hot-topics-daily",
     "xiaohongshu-mcp"
   ],
-  "updated": "2026-04-01T18:02:07.012284"
+  "updated": "2026-04-02T02:04:12.001920"
 }
