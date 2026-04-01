@@ -1,12 +1,12 @@
 {
-  "updated": "2026-04-01T14:00:01.509641",
+  "updated": "2026-04-01T15:00:01.436013",
   "level": 14,
   "title": "刨冰骑兵",
-  "xp_current": 49,
-  "xp_to_next": 150,
+  "xp_current": 142,
+  "xp_to_next": 250,
   "season_tier": 1,
   "season_tokens": 0,
-  "bond": 7,
+  "bond": 26,
   "streak": 1,
   "achievements": 7,
   "achievements_list": [
@@ -61,7 +61,7 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 0,
+  "weekly_done": 1,
   "season_done": 0,
   "daily_total": 3,
   "weekly_total": 3,
