@@ -1,92 +1,92 @@
 {
-  "updated": "2026-04-02T07:00:01.760140",
+  "updated": "2026-04-02T08:00:01.454851",
   "entries": [
     {
-      "time": "06:55:01",
+      "time": "07:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Gateway: OK (process running)"
     },
     {
-      "time": "06:55:01",
+      "time": "07:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "06:55:02",
+      "time": "07:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "06:55:02",
+      "time": "07:55:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "06:55:02",
+      "time": "07:55:02",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "CPU: OK (2.3%)"
+      "message": "CPU: OK (4.8%)"
     },
     {
-      "time": "06:55:02",
+      "time": "07:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Memory: OK (46%)"
     },
     {
-      "time": "06:55:02",
+      "time": "07:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Disk: HIGH (88%)"
     },
     {
-      "time": "06:55:02",
+      "time": "07:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check completed ==="
     },
     {
-      "time": "06:55:02",
+      "time": "07:55:02",
       "level": "WARN",
       "source": "heartbeat",
       "message": "Report suppressed (level: warning, cooldown active)"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "=== Heartbeat check started ==="
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Gateway..."
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Gateway: OK (process running)"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
@@ -98,31 +98,31 @@
       "message": "重建手册生成任务执行完成"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 技能数量: 80"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- MCP服务: 0"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 本地副本: memory/rebuild-summary-2026-04-01.md"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 记忆系统: Hippocampus ✅ | QMDR Index ✅ | Core Sync ✅"
     },
     {
-      "time": "07:00:01",
+      "time": "08:00:01",
       "level": "INFO",
       "source": "nightly",
       "message": "- 状态: 成功"
