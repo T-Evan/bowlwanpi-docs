@@ -1,14 +1,14 @@
 {
-  "updated": "2026-04-05T02:00:01.348081",
+  "updated": "2026-04-06T02:00:01.505310",
   "entries": [
     {
-      "time": "01:55:01",
+      "time": "01:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Mihomo: OK (running)"
     },
     {
-      "time": "01:55:01",
+      "time": "01:55:02",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
@@ -17,13 +17,13 @@
       "time": "01:55:02",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "CPU: OK (2.3%)"
+      "message": "CPU: OK (0.0%)"
     },
     {
       "time": "01:55:02",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Memory: OK (65%)"
+      "message": "Memory: OK (66%)"
     },
     {
       "time": "01:55:02",
@@ -83,7 +83,19 @@
       "time": "02:00:01",
       "level": "INFO",
       "source": "nightly",
-      "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 创建今日记忆文件: 2026-04-04.md"
+      "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 网站部署成功!"
+    },
+    {
+      "time": "02:00:01",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "\u001b[0;32m[INFO]\u001b[0m 🔗 https://t-evan.github.io/bowlwanpi-docs/"
+    },
+    {
+      "time": "02:00:01",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 创建今日记忆文件: 2026-04-05.md"
     },
     {
       "time": "02:00:01",
@@ -125,7 +137,7 @@
       "time": "02:00:01",
       "level": "INFO",
       "source": "nightly",
-      "message": "║      2026-04-05 02:00                ║"
+      "message": "║      2026-04-06 02:00                ║"
     },
     {
       "time": "02:00:01",
@@ -138,18 +150,6 @@
       "level": "INFO",
       "source": "nightly",
       "message": "\u001b[0;32m[INFO]\u001b[0m 🧹 清理 health-checks 目录..."
-    },
-    {
-      "time": "02:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 清理完成，剩余 0 个文件"
-    },
-    {
-      "time": "02:00:01",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "\u001b[0;32m[INFO]\u001b[0m 📦 检查 Git 状态..."
     },
     {
       "time": "5.179194",
