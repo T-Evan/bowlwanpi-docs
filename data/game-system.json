@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-08T01:05:30.323323",
-  "level": 18,
-  "title": "巧克力将军",
-  "xp_current": 749,
-  "xp_to_next": 950,
+  "updated": "2026-04-09T01:11:49.112780",
+  "level": 20,
+  "title": "QQ堂英雄",
+  "xp_current": 553,
+  "xp_to_next": 1050,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 342,
-  "streak": 8,
+  "bond": 393,
+  "streak": 9,
   "achievements": 8,
   "achievements_list": [
     {
@@ -68,7 +68,7 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 1,
+  "weekly_done": 2,
   "season_done": 1,
   "daily_total": 3,
   "weekly_total": 3,
