@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-09T01:11:49.112780",
-  "level": 20,
-  "title": "QQ堂英雄",
-  "xp_current": 553,
-  "xp_to_next": 1050,
-  "season_tier": 2,
+  "updated": "2026-04-10T01:04:50.598002",
+  "level": 22,
+  "title": "中华城主",
+  "xp_current": 499,
+  "xp_to_next": 1150,
+  "season_tier": 3,
   "season_tokens": 8,
-  "bond": 393,
-  "streak": 9,
+  "bond": 454,
+  "streak": 10,
   "achievements": 8,
   "achievements_list": [
     {
@@ -74,5 +74,5 @@
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "协作回响",
-  "talent_points": 1
+  "talent_points": 2
 }
