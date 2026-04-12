@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-12T01:09:33.866574",
-  "level": 25,
-  "title": "月亮王子",
-  "xp_current": 615,
-  "xp_to_next": 1300,
+  "updated": "2026-04-13T01:08:26.691486",
+  "level": 26,
+  "title": "太阳国王",
+  "xp_current": 1173,
+  "xp_to_next": 1350,
   "season_tier": 3,
   "season_tokens": 8,
-  "bond": 556,
-  "streak": 12,
+  "bond": 607,
+  "streak": 13,
   "achievements": 8,
   "achievements_list": [
     {
@@ -68,7 +68,7 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 2,
+  "weekly_done": 0,
   "season_done": 1,
   "daily_total": 3,
   "weekly_total": 3,
