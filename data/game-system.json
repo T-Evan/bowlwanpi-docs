@@ -1,13 +1,13 @@
 {
-  "updated": "2026-04-13T01:08:26.691486",
-  "level": 26,
-  "title": "太阳国王",
-  "xp_current": 1173,
-  "xp_to_next": 1350,
-  "season_tier": 3,
-  "season_tokens": 8,
-  "bond": 607,
-  "streak": 13,
+  "updated": "2026-04-14T01:07:47.326671",
+  "level": 28,
+  "title": "酷比大天使",
+  "xp_current": 661,
+  "xp_to_next": 1450,
+  "season_tier": 4,
+  "season_tokens": 15,
+  "bond": 658,
+  "streak": 14,
   "achievements": 8,
   "achievements_list": [
     {
@@ -68,11 +68,11 @@
     }
   ],
   "daily_done": 1,
-  "weekly_done": 0,
-  "season_done": 1,
+  "weekly_done": 1,
+  "season_done": 2,
   "daily_total": 3,
   "weekly_total": 3,
   "season_total": 3,
   "shop_theme": "协作回响",
-  "talent_points": 2
+  "talent_points": 3
 }
