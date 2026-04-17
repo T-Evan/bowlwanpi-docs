@@ -1,155 +1,179 @@
 {
-  "updated": "2026-04-15T02:00:02.057363",
+  "updated": "2026-04-17T19:35:02.102509",
   "entries": [
     {
-      "time": "01:55:01",
+      "time": "19:30:01",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Mihomo: OK (running)"
+      "message": "Gateway: OK (process running)"
     },
     {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking system resources..."
-    },
-    {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "CPU: OK (0.0%)"
-    },
-    {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Memory: OK (25%)"
-    },
-    {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Disk: OK (67%)"
-    },
-    {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "=== Heartbeat check completed ==="
-    },
-    {
-      "time": "01:55:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Report sent (level: normal)"
-    },
-    {
-      "time": "02:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "=== Heartbeat check started ==="
-    },
-    {
-      "time": "02:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Checking Gateway..."
-    },
-    {
-      "time": "02:00:01",
-      "level": "INFO",
-      "source": "heartbeat",
-      "message": "Gateway: FAIL (process not found)"
-    },
-    {
-      "time": "02:00:01",
+      "time": "19:30:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking Mihomo..."
     },
     {
-      "time": "02:00:02",
+      "time": "19:30:01",
       "level": "INFO",
       "source": "heartbeat",
-      "message": "Mihomo: OK (running)"
+      "message": "Mihomo: FAIL"
     },
     {
-      "time": "02:00:02",
+      "time": "19:30:01",
       "level": "INFO",
       "source": "heartbeat",
       "message": "Checking system resources..."
     },
     {
-      "time": "02:00:02",
+      "time": "19:30:01",
       "level": "INFO",
-      "source": "nightly",
-      "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 创建今日记忆文件: 2026-04-14.md"
+      "source": "heartbeat",
+      "message": "CPU: OK (65.7%)"
     },
     {
-      "time": "02:00:02",
+      "time": "19:30:01",
       "level": "INFO",
-      "source": "nightly",
-      "message": "✅ 夜间构建完成!"
+      "source": "heartbeat",
+      "message": "Memory: OK (47%)"
     },
     {
-      "time": "02:00:02",
+      "time": "19:30:01",
       "level": "INFO",
-      "source": "nightly",
-      "message": "📊 统计: 81 技能 | 0 任务 |  向量"
+      "source": "heartbeat",
+      "message": "Disk: OK (85%)"
     },
     {
-      "time": "02:00:02",
+      "time": "19:30:01",
       "level": "INFO",
-      "source": "nightly",
-      "message": "🔗 网站: https://t-evan.github.io/bowlwanpi-docs/"
+      "source": "heartbeat",
+      "message": "=== Heartbeat check completed ==="
     },
     {
-      "time": "02:00:02",
-      "level": "INFO",
-      "source": "nightly",
-      "message": "══════════════════════════════════════════"
+      "time": "19:30:01",
+      "level": "WARN",
+      "source": "heartbeat",
+      "message": "Report suppressed (level: warning, cooldown active)"
     },
     {
-      "time": "02:00:02",
+      "time": "19:35:01",
       "level": "INFO",
-      "source": "nightly",
-      "message": "╔══════════════════════════════════════════╗"
+      "source": "heartbeat",
+      "message": "=== Heartbeat check started ==="
     },
     {
-      "time": "02:00:02",
+      "time": "19:35:01",
       "level": "INFO",
-      "source": "nightly",
-      "message": "║      🌙 BowlWanpi 夜间构建 v4.0          ║"
+      "source": "heartbeat",
+      "message": "Checking Gateway..."
     },
     {
-      "time": "02:00:02",
+      "time": "19:35:02",
       "level": "INFO",
-      "source": "nightly",
-      "message": "║      2026-04-15 02:00                ║"
+      "source": "heartbeat",
+      "message": "Gateway: OK (process running)"
     },
     {
-      "time": "02:00:02",
+      "time": "19:35:02",
       "level": "INFO",
-      "source": "nightly",
-      "message": "╚══════════════════════════════════════════╝"
+      "source": "heartbeat",
+      "message": "Checking Mihomo..."
     },
     {
-      "time": "02:00:02",
+      "time": "19:35:02",
       "level": "INFO",
-      "source": "nightly",
-      "message": "\u001b[0;32m[INFO]\u001b[0m 🧹 清理 health-checks 目录..."
+      "source": "heartbeat",
+      "message": "Mihomo: FAIL"
     },
     {
-      "time": "02:00:02",
+      "time": "19:35:02",
       "level": "INFO",
-      "source": "nightly",
-      "message": "\u001b[0;32m[INFO]\u001b[0m ✅ 清理完成，剩余 0 个文件"
+      "source": "heartbeat",
+      "message": "Checking system resources..."
     },
     {
-      "time": "02:00:02",
+      "time": "1:00 UTC",
       "level": "INFO",
       "source": "nightly",
-      "message": "\u001b[0;32m[INFO]\u001b[0m 📦 检查 Git 状态..."
+      "message": "重建手册生成任务执行完成"
+    },
+    {
+      "time": "19:35:02",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "- 技能数量: 82"
+    },
+    {
+      "time": "19:35:02",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "- MCP服务: 0"
+    },
+    {
+      "time": "19:35:02",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "- 本地副本: memory/rebuild-summary-2026-04-01.md"
+    },
+    {
+      "time": "19:35:02",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "- 记忆系统: Hippocampus ✅ | MemOS ✅ | memU ❌(402)"
+    },
+    {
+      "time": "19:35:02",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "- 状态: 部分成功（本地备份已保存）"
+    },
+    {
+      "time": "6:16 UTC",
+      "level": "ERROR",
+      "source": "nightly",
+      "message": "rebuild-generator: scanned 84 skills / 0 MCP; wrote corrected summary memory/rebuild-summary-2026-04-15.md after generator misdated memory/rebuild-summary-2026-04-16.md; memory sync result memU=fail(Request failed after "
+    },
+    {
+      "time": "5:37 UTC",
+      "level": "ERROR",
+      "source": "nightly",
+      "message": "rebuild-generator: scanned 84 skills / 0 MCP; wrote summary memory/rebuild-summary-2026-04-16.md without date drift; memory sync result memU=fail(Request failed after 3 attempts), Hippocampus=ok, MemOS=ok; EvoMap readonl"
+    },
+    {
+      "time": "7:27 UTC",
+      "level": "INFO",
+      "source": "nightly",
+      "message": "重建手册生成：运行 python3 /root/.openclaw/workspace/skills/rebuild-generator/rebuild_generator.py；技能 84 个，MCP 0 个；摘要落盘 memory/rebuild-summary-2026-04-17.md；同步结果 memU 失败(402: /api/v3/memory/memorize)、Hippocampus 成功、MemOS 成功。"
+    },
+    {
+      "time": "8.069756",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 4 条新新闻（并行版）"
+    },
+    {
+      "time": "8.843180",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 1 条新新闻（并行版）"
+    },
+    {
+      "time": "7.728646",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 3 条新新闻（并行版）"
+    },
+    {
+      "time": "6.989363",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 9 条新新闻（并行版）"
+    },
+    {
+      "time": "5.179194",
+      "level": "INFO",
+      "source": "news",
+      "message": "发现 7 条新新闻（并行版）"
     },
     {
       "time": "9.045024",
@@ -210,36 +234,6 @@
       "level": "INFO",
       "source": "news",
       "message": "发现 7 条新新闻（并行版）"
-    },
-    {
-      "time": "2.955066",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 9 条新新闻（并行版）"
-    },
-    {
-      "time": "1.181610",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 2 条新新闻（并行版）"
-    },
-    {
-      "time": "1.526909",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 1 条新新闻（并行版）"
-    },
-    {
-      "time": "8.064146",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 2 条新新闻（并行版）"
-    },
-    {
-      "time": "2.780723",
-      "level": "INFO",
-      "source": "news",
-      "message": "发现 10 条新新闻（并行版）"
     }
   ]
 }
