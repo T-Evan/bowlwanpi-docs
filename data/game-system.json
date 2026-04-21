@@ -1,14 +1,22 @@
 {
-  "updated": "2026-04-21T12:00:01.489599",
-  "level": 10,
-  "title": "QQ糖大师",
-  "xp_current": 443,
-  "xp_to_next": 550,
+  "updated": "2026-04-22T06:00:01.720188",
+  "level": 15,
+  "title": "棒棒糖游侠",
+  "xp_current": 36,
+  "xp_to_next": 500,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 145,
+  "bond": 93,
   "streak": 1,
-  "achievements": 5,
+  "achievements": 7,
+  "daily_done": 1,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "协作回响",
+  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -16,6 +24,13 @@
       "icon": "🔢",
       "points": 10,
       "id": "count_10"
+    },
+    {
+      "name": "百战成名",
+      "desc": "累计完成100次任务",
+      "icon": "👑",
+      "points": 30,
+      "id": "count_100"
     },
     {
       "name": "半百达人",
@@ -32,6 +47,13 @@
       "id": "early_bird"
     },
     {
+      "name": "夜猫子",
+      "desc": "在23点后仍然活跃",
+      "icon": "🦉",
+      "points": 15,
+      "id": "night_owl"
+    },
+    {
       "name": "自动化玩家",
       "desc": "完成自动化类型任务",
       "icon": "🤖",
@@ -45,13 +67,5 @@
       "points": 10,
       "id": "type_explore"
     }
-  ],
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "协作回响",
-  "talent_points": 1
+  ]
 }
