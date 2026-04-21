@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-21T12:00:01.494596",
+  "updated": "2026-04-21T12:00:01.489599",
   "level": 10,
   "title": "QQ糖大师",
   "xp_current": 443,
@@ -9,14 +9,6 @@
   "bond": 145,
   "streak": 1,
   "achievements": 5,
-  "daily_done": 2,
-  "weekly_done": 1,
-  "season_done": 1,
-  "daily_total": 3,
-  "weekly_total": 3,
-  "season_total": 3,
-  "shop_theme": "协作回响",
-  "talent_points": 1,
   "achievements_list": [
     {
       "name": "计数专家",
@@ -53,5 +45,13 @@
       "points": 10,
       "id": "type_explore"
     }
-  ]
+  ],
+  "daily_done": 2,
+  "weekly_done": 1,
+  "season_done": 1,
+  "daily_total": 3,
+  "weekly_total": 3,
+  "season_total": 3,
+  "shop_theme": "协作回响",
+  "talent_points": 1
 }
