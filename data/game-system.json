@@ -1,15 +1,15 @@
 {
-  "updated": "2026-04-21T00:00:01.656763",
-  "level": 23,
-  "title": "梦幻岛主",
-  "xp_current": 364,
-  "xp_to_next": 700,
+  "updated": "2026-04-21T12:00:01.494596",
+  "level": 10,
+  "title": "QQ糖大师",
+  "xp_current": 443,
+  "xp_to_next": 550,
   "season_tier": 2,
   "season_tokens": 8,
-  "bond": 237,
-  "streak": 2,
-  "achievements": 8,
-  "daily_done": 0,
+  "bond": 145,
+  "streak": 1,
+  "achievements": 5,
+  "daily_done": 2,
   "weekly_done": 1,
   "season_done": 1,
   "daily_total": 3,
@@ -26,13 +26,6 @@
       "id": "count_10"
     },
     {
-      "name": "百战成名",
-      "desc": "累计完成100次任务",
-      "icon": "👑",
-      "points": 30,
-      "id": "count_100"
-    },
-    {
       "name": "半百达人",
       "desc": "累计完成50次任务",
       "icon": "🏅",
@@ -47,13 +40,6 @@
       "id": "early_bird"
     },
     {
-      "name": "夜猫子",
-      "desc": "在23点后仍然活跃",
-      "icon": "🦉",
-      "points": 15,
-      "id": "night_owl"
-    },
-    {
       "name": "自动化玩家",
       "desc": "完成自动化类型任务",
       "icon": "🤖",
@@ -66,13 +52,6 @@
       "icon": "🔍",
       "points": 10,
       "id": "type_explore"
-    },
-    {
-      "name": "周末战士",
-      "desc": "在周末完成任务",
-      "icon": "🎮",
-      "points": 15,
-      "id": "weekend_warrior"
     }
   ]
 }
